@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.12.15)  15 DEC 2019 20:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.10.19)  16 DEC 2019 09:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -444,7 +444,7 @@ Package: inputenc 2018/08/11 v1.3c Input encoding file
 \inpenc@posthook=\toks25
 )
 (/usr/local/texlive/2019/texmf-dist/tex/latex/csquotes/csquotes.sty
-Package: csquotes 2018/04/13 v5.2d context-sensitive quotations (JAW)
+Package: csquotes 2019/05/10 v5.2e context-sensitive quotations (JAW)
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2018/08/19 v2.5f e-TeX tools for LaTeX (JAW)
@@ -459,7 +459,7 @@ Package: etoolbox 2018/08/19 v2.5f e-TeX tools for LaTeX (JAW)
 \csq@ltx@everypar=\toks26
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/csquotes/csquotes.def
-File: csquotes.def 2018/04/13 v5.2d csquotes generic definitions (JAW)
+File: csquotes.def 2019/05/10 v5.2e csquotes generic definitions (JAW)
 )
 Package csquotes Info: Trying to load configuration file 'csquotes.cfg'...
 Package csquotes Info: ... configuration file loaded successfully.
@@ -468,16 +468,16 @@ Package csquotes Info: ... configuration file loaded successfully.
 File: csquotes.cfg 
 ))
 (/usr/local/texlive/2019/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2019/05/04 3.31 The Babel package
+Package: babel 2019/06/03 3.32 The Babel package
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/babel/switch.def
-File: switch.def 2019/05/04 3.31 Babel switching mechanism
+File: switch.def 2019/06/03 3.32 Babel switching mechanism
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/babel-english/english.ldf
 Language: english 2017/06/06 v3.3r English support from the babel system
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/babel/babel.def
-File: babel.def 2019/05/04 3.31 Babel common definitions
+File: babel.def 2019/06/03 3.32 Babel common definitions
 \babel@savecnt=\count150
 \U@D=\dimen149
 
@@ -1180,12 +1180,15 @@ LaTeX Font Info:    Overwriting symbol font `largesymbolsA' in version `boldsf'
 (Font)                  U/jkpexa/m/n --> U/jkpexa/bx/n on input line 620.
 LaTeX Info: Redefining \not on input line 1580.
 ))
-(/usr/local/texlive/2019/texmf-dist/tex/latex/mathalfa/mathalfa.sty
-Package: mathalfa 2018/05/02 - 1.10mathalfa (License LPPL) Michael Sharpe
-LaTeX Font Info:    Redeclaring math alphabet \mathcal on input line 296.
+(/usr/local/texlive/2019/texmf-dist/tex/latex/mathalpha/mathalfa.sty)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/mathalpha/mathalpha.sty
+Package: mathalpha 2019/05/20 - 1.12mathalpha (License LPPL) Michael Sharpe
+
+`mathalpha' v1.12, 2019/05/20, a renaming of mathalfa (msharpe)
+LaTeX Font Info:    Redeclaring math alphabet \mathcal on input line 297.
 LaTeX Font Info:    Overwriting math alphabet `\mathcal' in version `bold'
 (Font)                  U/BOONDOX-calo/m/n --> U/BOONDOX-calo/b/n on input line
- 297.
+ 298.
 )
 (/usr/local/texlive/2019/texmf-dist/tex/latex/colortbl/colortbl.sty
 Package: colortbl 2018/12/12 v1.0d Color table columns (DPC)
@@ -1745,14 +1748,14 @@ Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
 ))
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/pgf.revision.tex)
-Package: pgfrcs 2019/04/04 v3.1.2 (3.1.2)
+Package: pgfrcs 2019/05/09 v3.1.3 (3.1.3)
 ))
-Package: pgf 2019/04/04 v3.1.2 (3.1.2)
+Package: pgf 2019/05/09 v3.1.3 (3.1.3)
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
 (/usr/local/texlive/2019/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
-Package: pgfsys 2019/04/04 v3.1.2 (3.1.2)
+Package: pgfsys 2019/05/09 v3.1.3 (3.1.3)
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
 \pgfkeys@pathtoks=\toks51
 \pgfkeys@temptoks=\toks52
@@ -1769,6 +1772,8 @@ ode.tex
 \pgf@yb=\dimen260
 \pgf@xc=\dimen261
 \pgf@yc=\dimen262
+\pgf@xd=\dimen263
+\pgf@yd=\dimen264
 \w@pgf@writea=\write5
 \r@pgf@reada=\read3
 \c@pgf@counta=\count426
@@ -1781,35 +1786,35 @@ ode.tex
 \pgf@sys@id@count=\count430
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
-File: pgf.cfg 2019/04/04 v3.1.2 (3.1.2)
+File: pgf.cfg 2019/05/09 v3.1.3 (3.1.3)
 )
 Driver file for pgf: pgfsys-pdftex.def
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.d
 ef
-File: pgfsys-pdftex.def 2019/04/04 v3.1.2 (3.1.2)
+File: pgfsys-pdftex.def 2019/05/09 v3.1.3 (3.1.3)
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-p
 df.def
-File: pgfsys-common-pdf.def 2019/04/04 v3.1.2 (3.1.2)
+File: pgfsys-common-pdf.def 2019/05/09 v3.1.3 (3.1.3)
 )))
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
 code.tex
-File: pgfsyssoftpath.code.tex 2019/04/04 v3.1.2 (3.1.2)
+File: pgfsyssoftpath.code.tex 2019/05/09 v3.1.3 (3.1.3)
 \pgfsyssoftpath@smallbuffer@items=\count431
 \pgfsyssoftpath@bigbuffer@items=\count432
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
 code.tex
-File: pgfsysprotocol.code.tex 2019/04/04 v3.1.2 (3.1.2)
+File: pgfsysprotocol.code.tex 2019/05/09 v3.1.3 (3.1.3)
 ))
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
-Package: pgfcore 2019/04/04 v3.1.2 (3.1.2)
+Package: pgfcore 2019/05/09 v3.1.3 (3.1.3)
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
-\pgfmath@dimen=\dimen263
+\pgfmath@dimen=\dimen265
 \pgfmath@count=\count433
 \pgfmath@box=\box45
 \pgfmath@toks=\toks57
@@ -1836,40 +1841,40 @@ code.tex)
 erarithmetics.code.tex)))
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
 \c@pgfmathroundto@lastzeros=\count434
-))
+)) (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
 de.tex
-File: pgfcorepoints.code.tex 2019/04/04 v3.1.2 (3.1.2)
-\pgf@picminx=\dimen264
-\pgf@picmaxx=\dimen265
-\pgf@picminy=\dimen266
-\pgf@picmaxy=\dimen267
-\pgf@pathminx=\dimen268
-\pgf@pathmaxx=\dimen269
-\pgf@pathminy=\dimen270
-\pgf@pathmaxy=\dimen271
-\pgf@xx=\dimen272
-\pgf@xy=\dimen273
-\pgf@yx=\dimen274
-\pgf@yy=\dimen275
-\pgf@zx=\dimen276
-\pgf@zy=\dimen277
+File: pgfcorepoints.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgf@picminx=\dimen266
+\pgf@picmaxx=\dimen267
+\pgf@picminy=\dimen268
+\pgf@picmaxy=\dimen269
+\pgf@pathminx=\dimen270
+\pgf@pathmaxx=\dimen271
+\pgf@pathminy=\dimen272
+\pgf@pathmaxy=\dimen273
+\pgf@xx=\dimen274
+\pgf@xy=\dimen275
+\pgf@yx=\dimen276
+\pgf@yy=\dimen277
+\pgf@zx=\dimen278
+\pgf@zy=\dimen279
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
 ruct.code.tex
-File: pgfcorepathconstruct.code.tex 2019/04/04 v3.1.2 (3.1.2)
-\pgf@path@lastx=\dimen278
-\pgf@path@lasty=\dimen279
+File: pgfcorepathconstruct.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgf@path@lastx=\dimen280
+\pgf@path@lasty=\dimen281
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
 .code.tex
-File: pgfcorepathusage.code.tex 2019/04/04 v3.1.2 (3.1.2)
-\pgf@shorten@end@additional=\dimen280
-\pgf@shorten@start@additional=\dimen281
+File: pgfcorepathusage.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgf@shorten@end@additional=\dimen282
+\pgf@shorten@start@additional=\dimen283
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
 de.tex
-File: pgfcorescopes.code.tex 2019/04/04 v3.1.2 (3.1.2)
+File: pgfcorescopes.code.tex 2019/05/09 v3.1.3 (3.1.3)
 \pgfpic=\box46
 \pgf@hbox=\box47
 \pgf@layerbox@main=\box48
@@ -1877,83 +1882,83 @@ File: pgfcorescopes.code.tex 2019/04/04 v3.1.2 (3.1.2)
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
 ate.code.tex
-File: pgfcoregraphicstate.code.tex 2019/04/04 v3.1.2 (3.1.2)
-\pgflinewidth=\dimen282
+File: pgfcoregraphicstate.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgflinewidth=\dimen284
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
 ations.code.tex
-File: pgfcoretransformations.code.tex 2019/04/04 v3.1.2 (3.1.2)
-\pgf@pt@x=\dimen283
-\pgf@pt@y=\dimen284
-\pgf@pt@temp=\dimen285
+File: pgfcoretransformations.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgf@pt@x=\dimen285
+\pgf@pt@y=\dimen286
+\pgf@pt@temp=\dimen287
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
 e.tex
-File: pgfcorequick.code.tex 2019/04/04 v3.1.2 (3.1.2)
+File: pgfcorequick.code.tex 2019/05/09 v3.1.3 (3.1.3)
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.c
 ode.tex
-File: pgfcoreobjects.code.tex 2019/04/04 v3.1.2 (3.1.2)
+File: pgfcoreobjects.code.tex 2019/05/09 v3.1.3 (3.1.3)
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathproce
 ssing.code.tex
-File: pgfcorepathprocessing.code.tex 2019/04/04 v3.1.2 (3.1.2)
+File: pgfcorepathprocessing.code.tex 2019/05/09 v3.1.3 (3.1.3)
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
 de.tex
-File: pgfcorearrows.code.tex 2019/04/04 v3.1.2 (3.1.2)
-\pgfarrowsep=\dimen286
+File: pgfcorearrows.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgfarrowsep=\dimen288
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
 e.tex
-File: pgfcoreshade.code.tex 2019/04/04 v3.1.2 (3.1.2)
-\pgf@max=\dimen287
+File: pgfcoreshade.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgf@max=\dimen289
 \pgf@sys@shading@range@num=\count436
 \pgf@shadingcount=\count437
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
 e.tex
-File: pgfcoreimage.code.tex 2019/04/04 v3.1.2 (3.1.2)
+File: pgfcoreimage.code.tex 2019/05/09 v3.1.3 (3.1.3)
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
 code.tex
-File: pgfcoreexternal.code.tex 2019/04/04 v3.1.2 (3.1.2)
+File: pgfcoreexternal.code.tex 2019/05/09 v3.1.3 (3.1.3)
 \pgfexternal@startupbox=\box49
 ))
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
 de.tex
-File: pgfcorelayers.code.tex 2019/04/04 v3.1.2 (3.1.2)
+File: pgfcorelayers.code.tex 2019/05/09 v3.1.3 (3.1.3)
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretranspare
 ncy.code.tex
-File: pgfcoretransparency.code.tex 2019/04/04 v3.1.2 (3.1.2)
+File: pgfcoretransparency.code.tex 2019/05/09 v3.1.3 (3.1.3)
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.
 code.tex
-File: pgfcorepatterns.code.tex 2019/04/04 v3.1.2 (3.1.2)
+File: pgfcorepatterns.code.tex 2019/05/09 v3.1.3 (3.1.3)
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.
 tex
-File: pgfcorerdf.code.tex 2019/04/04 v3.1.2 (3.1.2)
+File: pgfcorerdf.code.tex 2019/05/09 v3.1.3 (3.1.3)
 )))
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
 e.tex
-File: pgfmoduleshapes.code.tex 2019/04/04 v3.1.2 (3.1.2)
+File: pgfmoduleshapes.code.tex 2019/05/09 v3.1.3 (3.1.3)
 \pgfnodeparttextbox=\box50
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
 tex
-File: pgfmoduleplot.code.tex 2019/04/04 v3.1.2 (3.1.2)
+File: pgfmoduleplot.code.tex 2019/05/09 v3.1.3 (3.1.3)
 )
 (/usr/local/texlive/2019/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
 -0-65.sty
-Package: pgfcomp-version-0-65 2019/04/04 v3.1.2 (3.1.2)
-\pgf@nodesepstart=\dimen288
-\pgf@nodesepend=\dimen289
+Package: pgfcomp-version-0-65 2019/05/09 v3.1.3 (3.1.3)
+\pgf@nodesepstart=\dimen290
+\pgf@nodesepend=\dimen291
 )
 (/usr/local/texlive/2019/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
 -1-18.sty
-Package: pgfcomp-version-1-18 2019/04/04 v3.1.2 (3.1.2)
+Package: pgfcomp-version-1-18 2019/05/09 v3.1.3 (3.1.3)
 ))
 (/usr/local/texlive/2019/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
 (/usr/local/texlive/2019/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
@@ -1961,30 +1966,30 @@ Package: pgfcomp-version-1-18 2019/04/04 v3.1.2 (3.1.2)
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/pgf/math/pgfmath.sty
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
-Package: pgffor 2019/04/04 v3.1.2 (3.1.2)
+Package: pgffor 2019/05/09 v3.1.3 (3.1.3)
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
-\pgffor@iter=\dimen290
-\pgffor@skip=\dimen291
+\pgffor@iter=\dimen292
+\pgffor@skip=\dimen293
 \pgffor@stack=\toks60
 \pgffor@toks=\toks61
 ))
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.cod
 e.tex
-Package: tikz 2019/04/04 v3.1.2 (3.1.2)
+Package: tikz 2019/05/09 v3.1.3 (3.1.3)
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
 dlers.code.tex
-File: pgflibraryplothandlers.code.tex 2019/04/04 v3.1.2 (3.1.2)
+File: pgflibraryplothandlers.code.tex 2019/05/09 v3.1.3 (3.1.3)
 \pgf@plot@mark@count=\count438
-\pgfplotmarksize=\dimen292
+\pgfplotmarksize=\dimen294
 )
-\tikz@lastx=\dimen293
-\tikz@lasty=\dimen294
-\tikz@lastxsaved=\dimen295
-\tikz@lastysaved=\dimen296
-\tikzleveldistance=\dimen297
-\tikzsiblingdistance=\dimen298
+\tikz@lastx=\dimen295
+\tikz@lasty=\dimen296
+\tikz@lastxsaved=\dimen297
+\tikz@lastysaved=\dimen298
+\tikzleveldistance=\dimen299
+\tikzsiblingdistance=\dimen300
 \tikz@figbox=\box51
 \tikz@figbox@bg=\box52
 \tikz@tempbox=\box53
@@ -1996,7 +2001,7 @@ File: pgflibraryplothandlers.code.tex 2019/04/04 v3.1.2 (3.1.2)
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
 e.tex
-File: pgfmodulematrix.code.tex 2019/04/04 v3.1.2 (3.1.2)
+File: pgfmodulematrix.code.tex 2019/05/09 v3.1.3 (3.1.3)
 \pgfmatrixcurrentrow=\count443
 \pgfmatrixcurrentcolumn=\count444
 \pgf@matrix@numberofcolumns=\count445
@@ -2005,31 +2010,31 @@ File: pgfmodulematrix.code.tex 2019/04/04 v3.1.2 (3.1.2)
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibrarytopaths.code.tex
-File: tikzlibrarytopaths.code.tex 2019/04/04 v3.1.2 (3.1.2)
+File: tikzlibrarytopaths.code.tex 2019/05/09 v3.1.3 (3.1.3)
 )))
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibrarypositioning.code.tex
-File: tikzlibrarypositioning.code.tex 2019/04/04 v3.1.2 (3.1.2)
+File: tikzlibrarypositioning.code.tex 2019/05/09 v3.1.3 (3.1.3)
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibraryshadows.code.tex
-File: tikzlibraryshadows.code.tex 2019/04/04 v3.1.2 (3.1.2)
+File: tikzlibraryshadows.code.tex 2019/05/09 v3.1.3 (3.1.3)
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibraryfadings.code.tex
-File: tikzlibraryfadings.code.tex 2019/04/04 v3.1.2 (3.1.2)
+File: tikzlibraryfadings.code.tex 2019/05/09 v3.1.3 (3.1.3)
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/libraries/pgflibraryfadings
 .code.tex
-File: pgflibraryfadings.code.tex 2019/04/04 v3.1.2 (3.1.2)
+File: pgflibraryfadings.code.tex 2019/05/09 v3.1.3 (3.1.3)
 )))
 \c@@todonotes@numberoftodonotes=\count447
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/lipsum/lipsum.sty
 (/usr/local/texlive/2019/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2019-05-07 L3 programming layer (loader) 
+Package: expl3 2019-05-28 L3 programming layer (loader) 
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/l3kernel/expl3-code.tex
-Package: expl3 2019-05-07 L3 programming layer (code)
+Package: expl3 2019-05-28 L3 programming layer (code)
 \c_max_int=\count448
 \l_tmpa_int=\count449
 \l_tmpb_int=\count450
@@ -2042,12 +2047,12 @@ Package: expl3 2019-05-07 L3 programming layer (code)
 \l__iow_line_target_int=\count457
 \l__iow_one_indent_int=\count458
 \l__iow_indent_int=\count459
-\c_zero_dim=\dimen299
-\c_max_dim=\dimen300
-\l_tmpa_dim=\dimen301
-\l_tmpb_dim=\dimen302
-\g_tmpa_dim=\dimen303
-\g_tmpb_dim=\dimen304
+\c_zero_dim=\dimen301
+\c_max_dim=\dimen302
+\l_tmpa_dim=\dimen303
+\l_tmpb_dim=\dimen304
+\g_tmpa_dim=\dimen305
+\g_tmpb_dim=\dimen306
 \c_zero_skip=\skip299
 \c_max_skip=\skip300
 \l_tmpa_skip=\skip301
@@ -2062,7 +2067,7 @@ Package: expl3 2019-05-07 L3 programming layer (code)
 \g_tmpb_muskip=\muskip17
 \l_keys_choice_int=\count460
 \l__intarray_loop_int=\count461
-\c__intarray_sp_dim=\dimen305
+\c__intarray_sp_dim=\dimen307
 \g__intarray_font_int=\count462
 \c__fp_leading_shift_int=\count463
 \c__fp_middle_shift_int=\count464
@@ -2137,23 +2142,23 @@ Package: expl3 2019-05-07 L3 programming layer (code)
 \l_tmpb_box=\box57
 \g_tmpa_box=\box58
 \g_tmpb_box=\box59
-\l__box_top_dim=\dimen306
-\l__box_bottom_dim=\dimen307
-\l__box_left_dim=\dimen308
-\l__box_right_dim=\dimen309
-\l__box_top_new_dim=\dimen310
-\l__box_bottom_new_dim=\dimen311
-\l__box_left_new_dim=\dimen312
-\l__box_right_new_dim=\dimen313
+\l__box_top_dim=\dimen308
+\l__box_bottom_dim=\dimen309
+\l__box_left_dim=\dimen310
+\l__box_right_dim=\dimen311
+\l__box_top_new_dim=\dimen312
+\l__box_bottom_new_dim=\dimen313
+\l__box_left_new_dim=\dimen314
+\l__box_right_new_dim=\dimen315
 \l__box_internal_box=\box60
 \l__coffin_internal_box=\box61
-\l__coffin_internal_dim=\dimen314
-\l__coffin_offset_x_dim=\dimen315
-\l__coffin_offset_y_dim=\dimen316
-\l__coffin_x_dim=\dimen317
-\l__coffin_y_dim=\dimen318
-\l__coffin_x_prime_dim=\dimen319
-\l__coffin_y_prime_dim=\dimen320
+\l__coffin_internal_dim=\dimen316
+\l__coffin_offset_x_dim=\dimen317
+\l__coffin_offset_y_dim=\dimen318
+\l__coffin_x_dim=\dimen319
+\l__coffin_y_dim=\dimen320
+\l__coffin_x_prime_dim=\dimen321
+\l__coffin_y_prime_dim=\dimen322
 \c_empty_coffin=\box62
 \l__coffin_aligned_coffin=\box63
 \l__coffin_aligned_internal_coffin=\box64
@@ -2161,20 +2166,20 @@ Package: expl3 2019-05-07 L3 programming layer (code)
 \l_tmpb_coffin=\box66
 \g_tmpa_coffin=\box67
 \g_tmpb_coffin=\box68
-\l__coffin_bounding_shift_dim=\dimen321
-\l__coffin_left_corner_dim=\dimen322
-\l__coffin_right_corner_dim=\dimen323
-\l__coffin_bottom_corner_dim=\dimen324
-\l__coffin_top_corner_dim=\dimen325
-\l__coffin_scaled_total_height_dim=\dimen326
-\l__coffin_scaled_width_dim=\dimen327
+\l__coffin_bounding_shift_dim=\dimen323
+\l__coffin_left_corner_dim=\dimen324
+\l__coffin_right_corner_dim=\dimen325
+\l__coffin_bottom_corner_dim=\dimen326
+\l__coffin_top_corner_dim=\dimen327
+\l__coffin_scaled_total_height_dim=\dimen328
+\l__coffin_scaled_width_dim=\dimen329
 \c__coffin_empty_coffin=\box69
 \l__coffin_display_coffin=\box70
 \l__coffin_display_coord_coffin=\box71
 \l__coffin_display_pole_coffin=\box72
-\l__coffin_display_offset_dim=\dimen328
-\l__coffin_display_x_dim=\dimen329
-\l__coffin_display_y_dim=\dimen330
+\l__coffin_display_offset_dim=\dimen330
+\l__coffin_display_x_dim=\dimen331
+\l__coffin_display_y_dim=\dimen332
 \g__file_internal_ior=\read4
 \l__seq_internal_a_int=\count531
 \l__seq_internal_b_int=\count532
@@ -2182,11 +2187,11 @@ Package: expl3 2019-05-07 L3 programming layer (code)
 )
 (/usr/local/texlive/2019/texmf-dist/tex/latex/l3kernel/l3pdfmode.def
 File: l3pdfmode.def 2019-04-06 v L3 Experimental driver: PDF mode
+\l__driver_internal_box=\box73
 \l__driver_color_stack_int=\count534
-\l__driver_pdf_tmp_box=\box73
 ))
 (/usr/local/texlive/2019/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-Package: xparse 2019-05-03 L3 Experimental document command parser
+Package: xparse 2019-05-28 L3 Experimental document command parser
 \l__xparse_current_arg_int=\count535
 \g__xparse_grabber_int=\count536
 \l__xparse_m_args_int=\count537
@@ -2352,13 +2357,13 @@ Package caption Info: End \AtBeginDocument code.
 (/usr/local/texlive/2019/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count551
-\scratchdimen=\dimen331
+\scratchdimen=\dimen333
 \scratchbox=\box74
 \nofMPsegments=\count552
 \nofMParguments=\count553
 \everyMPshowfont=\toks62
 \MPscratchCnt=\count554
-\MPscratchDim=\dimen332
+\MPscratchDim=\dimen334
 \MPnumerator=\count555
 \makeMPintoPDFobject=\count556
 \everyMPtoPDFconversion=\toks63
@@ -2591,50 +2596,21 @@ Overfull \hbox (10.97795pt too wide) in paragraph at lines 17--19
 
 ] [2
 
-] (./Chapters/chapter2.tex
-Underfull \hbox (badness 10000) in paragraph at lines 17--18
-
- []
-
-
-Overfull \hbox (20.7293pt too wide) in paragraph at lines 19--20
-[]\T1/jkp/m/n/10.95 (-10) This chap-ter des-cri-bes how to use the L[]T[]X \T1/
-jkp/m/it/10.95 (-10) no-vathe-sis \T1/jkp/m/n/10.95 (-10) tem-plate (and the ^^
-P\T1/jkptt/m/n/10.95 novathesis.cls\T1/jkp/m/n/10.95 (-10) ^^Q
- []
-
-[3
+] (./Chapters/chapter2.tex [3
 
 ]
-Underfull \hbox (badness 1490) in paragraph at lines 64--64
-[]|\T1/jkp/m/n/10.95 (+10) A pos-si-ble re-sult of ap-plying pdfL[]T[]X to the 
-\T1/jkptt/m/n/10.95 tem-
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [4]
-
-LaTeX Font Warning: Font shape `T1/jkptt/m/sc' undefined
-(Font)              using `T1/jkptt/m/n' instead on input line 184.
-
-[5]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [6]
-Overfull \hbox (28.60425pt too wide) in paragraph at lines 216--217
+Overfull \hbox (28.60425pt too wide) in paragraph at lines 73--74
 \T1/jkp/m/n/10.95 (-10) semesters MSc work. The fi-les spe-ci-fied by [][]\T1/j
 kptt/m/n/10.95 \dedicatoryfile []\T1/jkp/m/n/10.95 (-10) and [][]\T1/jkptt/m/n/
 10.95 \acknowledgmentsfile
  []
 
-[7] [8]) [9] [10
+[4]) [5] [6
 
-] (./Chapters/chapter3.tex [11
+] (./Chapters/chapter3.tex [7
 
 ]
-<Chapters/Figures/knitting-vectorial.pdf, id=529, 153.35727pt x 106.73355pt>
+<Chapters/Figures/knitting-vectorial.pdf, id=497, 153.35727pt x 106.73355pt>
 File: Chapters/Figures/knitting-vectorial.pdf Graphic file (type pdf)
 <use Chapters/Figures/knitting-vectorial.pdf>
 Package pdftex.def Info: Chapters/Figures/knitting-vectorial.pdf  used on input
@@ -2645,13 +2621,13 @@ File: Chapters/Figures/knitting-vectorial.pdf Graphic file (type pdf)
 Package pdftex.def Info: Chapters/Figures/knitting-vectorial.pdf  used on input
  line 79.
 (pdftex.def)             Requested size: 213.0pt x 148.25494pt.
- [12 <./Chapters/Figures/knitting-vectorial.pdf>] [13] [14]
+ [8 <./Chapters/Figures/knitting-vectorial.pdf>] [9] [10]
 Underfull \hbox (badness 10000) in paragraph at lines 141--142
 
  []
 
-[15]
-<Chapters/Figures/snowman-bitmap.jpg, id=591, 141.6492pt x 146.4672pt>
+[11]
+<Chapters/Figures/snowman-bitmap.jpg, id=560, 141.6492pt x 146.4672pt>
 File: Chapters/Figures/snowman-bitmap.jpg Graphic file (type jpg)
 <use Chapters/Figures/snowman-bitmap.jpg>
 Package pdftex.def Info: Chapters/Figures/snowman-bitmap.jpg  used on input lin
@@ -2671,7 +2647,7 @@ e 196.
 
 LaTeX Warning: Float too large for page by 4.15938pt on input line 199.
 
-<Chapters/Figures/snowman-vectorial.pdf, id=592, 141.13371pt x 146.038pt>
+<Chapters/Figures/snowman-vectorial.pdf, id=561, 141.13371pt x 146.038pt>
 File: Chapters/Figures/snowman-vectorial.pdf Graphic file (type pdf)
 <use Chapters/Figures/snowman-vectorial.pdf>
 Package pdftex.def Info: Chapters/Figures/snowman-vectorial.pdf  used on input 
@@ -2695,7 +2671,7 @@ File: Chapters/Figures/knitting-vectorial.pdf Graphic file (type pdf)
 Package pdftex.def Info: Chapters/Figures/knitting-vectorial.pdf  used on input
  line 218.
 (pdftex.def)             Requested size: 103.84396pt x 72.26999pt.
-<Chapters/Figures/snowstorm-vectorial.pdf, id=596, 70.42444pt x 51.58853pt>
+<Chapters/Figures/snowstorm-vectorial.pdf, id=565, 70.42444pt x 51.58853pt>
 File: Chapters/Figures/snowstorm-vectorial.pdf Graphic file (type pdf)
 <use Chapters/Figures/snowstorm-vectorial.pdf>
 Package pdftex.def Info: Chapters/Figures/snowstorm-vectorial.pdf  used on inpu
@@ -2704,13 +2680,28 @@ t line 223.
 LaTeX Font Info:    Font shape `T1/jkptt/m/it' in size <9> not available
 (Font)              Font shape `T1/jkptt/m/sl' tried instead on input line 233.
 
-) [16] [17 <./Chapters/Figures/snowman-bitmap.jpg>] [18 <./Chapters/Figures/sno
-wman-vectorial.pdf>] [19 <./Chapters/Figures/snowstorm-vectorial.pdf>] [20
+) [12] [13 <./Chapters/Figures/snowman-bitmap.jpg>] [14 <./Chapters/Figures/sno
+wman-vectorial.pdf>] [15 <./Chapters/Figures/snowstorm-vectorial.pdf>] [16
 
 ]
-[21] [22
+[17] [18
 
 ] (./Chapters/appendix1.tex)
+Underfull \vbox (badness 6675) has occurred while \output is active []
+
+ [19
+
+
+
+]
+[20] (./Chapters/appendix2.tex)
+Underfull \vbox (badness 6675) has occurred while \output is active []
+
+ [21
+
+
+]
+[22] (./Chapters/annex1.tex)
 Underfull \vbox (badness 6675) has occurred while \output is active []
 
  [23
@@ -2718,22 +2709,7 @@ Underfull \vbox (badness 6675) has occurred while \output is active []
 
 
 ]
-[24] (./Chapters/appendix2.tex)
-Underfull \vbox (badness 6675) has occurred while \output is active []
-
- [25
-
-
-]
-[26] (./Chapters/annex1.tex)
-Underfull \vbox (badness 6675) has occurred while \output is active []
-
- [27
-
-
-
-]
-[28]
+[24]
 \tf@toc=\write7
 \openout7 = `template.toc'.
 
@@ -2755,43 +2731,41 @@ Package rerunfilecheck Info: File `template.out' has not changed.
 (rerunfilecheck)             Checksum: 1D5D73E569FF3B4E8A8EE34DE096587C;2396.
 
 
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
 Package logreq Info: Writing requests to 'template.run.xml'.
 \openout1 = `template.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 53637 strings out of 492616
- 978362 string characters out of 6129480
- 1564244 words of memory out of 5000000
- 56219 multiletter control sequences out of 15000+600000
- 806093 words of font info for 428 fonts, out of 8000000 for 9000
+ 53699 strings out of 492609
+ 980140 string characters out of 6129047
+ 1568809 words of memory out of 5000000
+ 56318 multiletter control sequences out of 15000+600000
+ 791075 words of font info for 399 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  72i,16n,96p,2006b,2430s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/kpfonts/kpfonts-expert-tt
-.enc}{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/kpfonts/kpfonts-expert
-.enc}{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/loca
-l/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpbit8a.pfb></usr/local/t
-exlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/local/texli
-ve/2019/texmf-dist/fonts/type1/public/kpfonts/jkpbsc8a.pfb></usr/local/texlive/
-2019/texmf-dist/fonts/type1/public/kpfonts/jkpmi.pfb></usr/local/texlive/2019/t
-exmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/local/texlive/2019/texm
-f-dist/fonts/type1/public/kpfonts/jkpmite.pfb></usr/local/texlive/2019/texmf-di
-st/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2019/texmf-dist/f
-onts/type1/public/kpfonts/jkpmne.pfb></usr/local/texlive/2019/texmf-dist/fonts/
-type1/public/kpfonts/jkpmsc8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/typ
-e1/public/kpfonts/jkpsy.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/pub
-lic/kpfonts/jkpttbn8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/publi
-c/kpfonts/jkpttmn8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/
-kpfonts/jkpttmn8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kp
-fonts/jkpttmne.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/helvetic
-/uhvb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/helvetic/uhvr8a
-.pfb>
-Output written on template.pdf (54 pages, 389994 bytes).
+.enc}{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/loca
+l/texlive/2019/texmf-dist/fonts/enc/dvips/kpfonts/kpfonts-expert.enc}</usr/loca
+l/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/local/te
+xlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpbsc8a.pfb></usr/local/texli
+ve/2019/texmf-dist/fonts/type1/public/kpfonts/jkpmi.pfb></usr/local/texlive/201
+9/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/local/texlive/2019/t
+exmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2019/texmf
+-dist/fonts/type1/public/kpfonts/jkpmne.pfb></usr/local/texlive/2019/texmf-dist
+/fonts/type1/public/kpfonts/jkpmsc8a.pfb></usr/local/texlive/2019/texmf-dist/fo
+nts/type1/public/kpfonts/jkpsy.pfb></usr/local/texlive/2019/texmf-dist/fonts/ty
+pe1/public/kpfonts/jkpttbn8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type
+1/public/kpfonts/jkpttmn8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/
+public/kpfonts/jkpttmn8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/pu
+blic/kpfonts/jkpttmne.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/h
+elvetic/uhvb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/helvetic
+/uhvr8a.pfb>
+Output written on template.pdf (50 pages, 361694 bytes).
 PDF statistics:
- 852 PDF objects out of 1000 (max. 8388607)
- 716 compressed objects within 8 object streams
- 209 named destinations out of 1000 (max. 500000)
- 75182 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 813 PDF objects out of 1000 (max. 8388607)
+ 690 compressed objects within 7 object streams
+ 201 named destinations out of 1000 (max. 500000)
+ 73646 words of extra memory for PDF output out of 74296 (max. 10000000)
 
