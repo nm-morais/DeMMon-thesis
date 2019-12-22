@@ -68,22 +68,22 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.5}Floats, Figures and Captions}{7}{section.3.5}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.6}Text Formatting}{9}{section.3.6}% 
+\contentsline {section}{\numberline {3.6}Text Formatting}{7}{section.3.6}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.7}Generating PDFs from \LaTeX }{9}{section.3.7}% 
+\contentsline {section}{\numberline {3.7}Generating PDFs from \LaTeX }{7}{section.3.7}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.7.1}Generating PDFs with pdflatex}{9}{subsection.3.7.1}% 
+\contentsline {subsection}{\numberline {3.7.1}Generating PDFs with pdflatex}{7}{subsection.3.7.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.7.2}Dealing with Images}{10}{subsection.3.7.2}% 
+\contentsline {subsection}{\numberline {3.7.2}Dealing with Images}{8}{subsection.3.7.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.7.3}Creating Source Files Compatible with both latex and pdflatex}{10}{subsection.3.7.3}% 
+\contentsline {subsection}{\numberline {3.7.3}Creating Source Files Compatible with both latex and pdflatex}{8}{subsection.3.7.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.8}Equa\IeC {\c c}\IeC {\~o}es}{12}{section.3.8}% 
+\contentsline {section}{\numberline {3.8}Equa\IeC {\c c}\IeC {\~o}es}{11}{section.3.8}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Bibliografia}{17}{section*.17}% 
+\contentsline {chapter}{Bibliografia}{15}{section*.17}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {appendix}{\chapternumberline {A}Appendix 1 Lorem Ipsum}{19}{appendix.A}% 
+\contentsline {appendix}{\chapternumberline {A}Appendix 1 Lorem Ipsum}{17}{appendix.A}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {appendix}{\chapternumberline {B}Appendix 2 Lorem Ipsum}{21}{appendix.B}% 
+\contentsline {appendix}{\chapternumberline {B}Appendix 2 Lorem Ipsum}{19}{appendix.B}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {appendix}{\chapternumberline {I}Annex 1 Lorem Ipsum}{23}{annex.A}% 
+\contentsline {appendix}{\chapternumberline {I}Annex 1 Lorem Ipsum}{21}{annex.A}% 
