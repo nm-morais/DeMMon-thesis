@@ -1,37 +1,21 @@
-\BOOKMARK [0][-]{section*.4}{Lista de Figuras}{}% 1
-\BOOKMARK [0][-]{section*.5}{Lista de Tabelas}{}% 2
-\BOOKMARK [0][-]{section*.6}{Listagens}{}% 3
-\BOOKMARK [0][-]{section*.7}{Gloss\341rio}{}% 4
-\BOOKMARK [0][-]{section*.9}{Siglas}{}% 5
-\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 6
-\BOOKMARK [1][-]{section.1.1}{A Bit of History}{chapter.1}% 7
-\BOOKMARK [1][-]{section.1.2}{Disclaimer}{chapter.1}% 8
-\BOOKMARK [0][-]{chapter.2}{ThesisDIFCTNL User's Manual}{}% 9
-\BOOKMARK [1][-]{section.2.1}{Introduction}{chapter.2}% 10
-\BOOKMARK [1][-]{section.2.2}{Folder Structure}{chapter.2}% 11
-\BOOKMARK [1][-]{section.2.3}{novathesis.cls Class Options}{chapter.2}% 12
-\BOOKMARK [1][-]{section.2.4}{Additional considerations about the class options}{chapter.2}% 13
-\BOOKMARK [2][-]{subsection.2.4.1}{The main language}{section.2.4}% 14
-\BOOKMARK [2][-]{subsection.2.4.2}{Class of Text}{section.2.4}% 15
-\BOOKMARK [2][-]{subsection.2.4.3}{Printing}{section.2.4}% 16
-\BOOKMARK [2][-]{subsection.2.4.4}{Font Size}{section.2.4}% 17
-\BOOKMARK [2][-]{subsection.2.4.5}{Text Encoding}{section.2.4}% 18
-\BOOKMARK [2][-]{subsection.2.4.6}{Examples}{section.2.4}% 19
-\BOOKMARK [1][-]{section.2.5}{How to Write Using LaTeX}{chapter.2}% 20
-\BOOKMARK [1][-]{section.2.6}{Exmaple glossary and acronyms}{chapter.2}% 21
-\BOOKMARK [0][-]{chapter.3}{A Short LaTeX Tutorial with Examples}{}% 22
-\BOOKMARK [1][-]{section.3.1}{Document Structure}{chapter.3}% 23
-\BOOKMARK [1][-]{section.3.2}{Dealing with Bibliogrpahy}{chapter.3}% 24
-\BOOKMARK [1][-]{section.3.3}{Inserting Tables}{chapter.3}% 25
-\BOOKMARK [1][-]{section.3.4}{Importing Images}{chapter.3}% 26
-\BOOKMARK [1][-]{section.3.5}{Floats, Figures and Captions}{chapter.3}% 27
-\BOOKMARK [1][-]{section.3.6}{Text Formatting}{chapter.3}% 28
-\BOOKMARK [1][-]{section.3.7}{Generating PDFs from LaTeX}{chapter.3}% 29
-\BOOKMARK [2][-]{subsection.3.7.1}{Generating PDFs with pdflatex}{section.3.7}% 30
-\BOOKMARK [2][-]{subsection.3.7.2}{Dealing with Images}{section.3.7}% 31
-\BOOKMARK [2][-]{subsection.3.7.3}{Creating Source Files Compatible with both latex and pdflatex}{section.3.7}% 32
-\BOOKMARK [1][-]{section.3.8}{Equa\347\365es}{chapter.3}% 33
-\BOOKMARK [0][-]{section*.17}{Bibliografia}{}% 34
-\BOOKMARK [0][-]{appendix.A}{Appendix 1 Lorem Ipsum}{}% 35
-\BOOKMARK [0][-]{appendix.B}{Appendix 2 Lorem Ipsum}{}% 36
-\BOOKMARK [0][-]{annex.A}{Annex 1 Lorem Ipsum}{}% 37
+\BOOKMARK [0][-]{section*.3}{Lista de Figuras}{}% 1
+\BOOKMARK [0][-]{section*.4}{Lista de Tabelas}{}% 2
+\BOOKMARK [0][-]{section*.5}{Listagens}{}% 3
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 4
+\BOOKMARK [0][-]{chapter.2}{Motivation}{}% 5
+\BOOKMARK [1][-]{section.2.1}{What is the problem}{chapter.2}% 6
+\BOOKMARK [0][-]{chapter.3}{Related Work}{}% 7
+\BOOKMARK [1][-]{section.3.1}{Topology Management}{chapter.3}% 8
+\BOOKMARK [2][-]{subsection.3.1.1}{Random overlays}{section.3.1}% 9
+\BOOKMARK [2][-]{subsection.3.1.2}{Structured overlays}{section.3.1}% 10
+\BOOKMARK [2][-]{subsection.3.1.3}{Self-adapting overlays}{section.3.1}% 11
+\BOOKMARK [1][-]{section.3.2}{Aggregation}{chapter.3}% 12
+\BOOKMARK [2][-]{subsection.3.2.1}{Types of aggregation}{section.3.2}% 13
+\BOOKMARK [2][-]{subsection.3.2.2}{Relevant aggregation protocols}{section.3.2}% 14
+\BOOKMARK [1][-]{section.3.3}{Resource Discovery}{chapter.3}% 15
+\BOOKMARK [1][-]{section.3.4}{Offloading computation to the edge}{chapter.3}% 16
+\BOOKMARK [0][-]{chapter.4}{Planning}{}% 17
+\BOOKMARK [1][-]{subsection.4.0.1}{Proposed solution}{chapter.4}% 18
+\BOOKMARK [2][-]{subsection.4.0.2}{Scheduling}{subsection.4.0.1}% 19
+\BOOKMARK [0][-]{appendix.A}{Appendix 2 Lorem Ipsum}{}% 20
+\BOOKMARK [0][-]{annex.A}{Annex 1 Lorem Ipsum}{}% 21
