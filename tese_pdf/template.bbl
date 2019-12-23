@@ -16,5 +16,152 @@
   {}
 \endgroup
 
-\datalist[entry]{nyt/global//global/global}\enddatalist
+\datalist[entry]{nyt/global//global/global}
+  \entry{Armbrust:2010:VCC:1721654.1721672}{article}{}
+    \name{author}{11}{}{%
+      {{hash=AM}{%
+         family={Armbrust},
+         familyi={A\bibinitperiod},
+         given={Michael},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=FA}{%
+         family={Fox},
+         familyi={F\bibinitperiod},
+         given={Armando},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=GR}{%
+         family={Griffith},
+         familyi={G\bibinitperiod},
+         given={Rean},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=JAD}{%
+         family={Joseph},
+         familyi={J\bibinitperiod},
+         given={Anthony\bibnamedelima D.},
+         giveni={A\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+      {{hash=KR}{%
+         family={Katz},
+         familyi={K\bibinitperiod},
+         given={Randy},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=KA}{%
+         family={Konwinski},
+         familyi={K\bibinitperiod},
+         given={Andy},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=LG}{%
+         family={Lee},
+         familyi={L\bibinitperiod},
+         given={Gunho},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=PD}{%
+         family={Patterson},
+         familyi={P\bibinitperiod},
+         given={David},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=RA}{%
+         family={Rabkin},
+         familyi={R\bibinitperiod},
+         given={Ariel},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SI}{%
+         family={Stoica},
+         familyi={S\bibinitperiod},
+         given={Ion},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=ZM}{%
+         family={Zaharia},
+         familyi={Z\bibinitperiod},
+         given={Matei},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {ACM}%
+    }
+    \strng{namehash}{AM+1}
+    \strng{fullhash}{AMFAGRJADKRKALGPDRASIZM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \verb{doi}
+    \verb 10.1145/1721654.1721672
+    \endverb
+    \field{issn}{0001-0782}
+    \field{number}{4}
+    \field{pages}{50\bibrangedash 58}
+    \field{title}{A View of Cloud Computing}
+    \verb{url}
+    \verb http://doi.acm.org/10.1145/1721654.1721672
+    \endverb
+    \field{volume}{53}
+    \list{location}{1}{%
+      {New York, NY, USA}%
+    }
+    \field{journaltitle}{Commun. ACM}
+    \field{month}{04}
+    \field{year}{2010}
+  \endentry
+
+  \entry{iot_journal_shi_weisong_and_cao}{article}{}
+    \name{author}{5}{}{%
+      {{hash=SW}{%
+         family={Shi},
+         familyi={S\bibinitperiod},
+         given={Weisong},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=CJ}{%
+         family={Cao},
+         familyi={C\bibinitperiod},
+         given={Jie},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=ZQ}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Quan},
+         giveni={Q\bibinitperiod},
+      }}%
+      {{hash=LY}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Youhuizi},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=XL}{%
+         family={Xu},
+         familyi={X\bibinitperiod},
+         given={Lanyu},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SW+1}
+    \strng{fullhash}{SWCJZQLYXL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \verb{doi}
+    \verb 10.1109/JIOT.2016.2579198
+    \endverb
+    \field{pages}{1\bibrangedash 1}
+    \field{title}{Edge Computing: Vision and Challenges}
+    \field{volume}{3}
+    \field{journaltitle}{IEEE Internet of Things Journal}
+    \field{month}{10}
+    \field{year}{2016}
+  \endentry
+\enddatalist
 \endinput

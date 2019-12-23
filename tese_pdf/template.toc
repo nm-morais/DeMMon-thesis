@@ -52,6 +52,8 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.0.2}Scheduling}{7}{subsection.4.0.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {appendix}{\chapternumberline {A}Appendix 2 Lorem Ipsum}{9}{appendix.A}% 
+\contentsline {chapter}{Bibliografia}{9}{section*.7}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {appendix}{\chapternumberline {I}Annex 1 Lorem Ipsum}{11}{annex.A}% 
+\contentsline {appendix}{\chapternumberline {A}Appendix 2 Lorem Ipsum}{11}{appendix.A}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {appendix}{\chapternumberline {I}Annex 1 Lorem Ipsum}{13}{annex.A}% 

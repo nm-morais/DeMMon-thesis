@@ -9,7 +9,7 @@ The goal of this project is to (hopefully)  develop a new innovative algorithm f
 which takes into account device heterogeneity and builds a topology that can efficiently be used for 
 aggregating values / monitoring edge devices.
 
-This information can then be leveraged upon to be able to deploy services (e.g. in areas where there are hotspots of user activity)
+This information can then be leveraged upon to be able to deploy services (e.g. in areas where there are hotspots of user activity), monitor service health, monitor device status. (macro view)
 
 ### 2. Objectives to tackle
 
@@ -42,5 +42,6 @@ This information can then be leveraged upon to be able to deploy services (e.g. 
 
 ### 4. TODOS
 
-1. Research lots
+1. Research lots more
 2. Find efficient simulator for edge networks / build a new one
+3. Pass notes from paper to digital
