@@ -17,7 +17,7 @@
 Nowadays, the Cloud Computing paradigm is the standard for development, deployment and management of services, 
 it has proven to have massive economic benefits that make it very likely to remain permanent in future of the 
 computing landscape. It provides the ilusion of unlimited resources available to services, and has changed the 
-way developers, users and businesses rationalize about  applications \cite{Armbrust:2010:VCC:1721654.1721672}.
+way developers, users and businesses rationalize about  applications \cite{10.1145/1721654.1721672}.
 Currently, most software present in our everyday life such as Google Apps,
 Amazon, Twitter, among many others is deployed on some form of cloud service. 
 
@@ -25,22 +25,29 @@ However, currently, the rise in popularity of mobile applications and IoT applic
 the centralized model proposed by the Cloud Computing paradigm.
 When all computations reside in the data center (DC), far from the source of the data, 
 problems arise: from the physical space needed to contain all the infrastructure,
-the increasingly ammount of bandwidth needed to support the information exchange from the DC to the client,
-the latency in communication between to the DC, has directed us
- into a post-cloud era where a new computing paradigm emerged, Edge Computing. 
+the increasing ammount of bandwidth needed to support the information exchange from the DC to the client,
+the latency in communication from the client to the DC as well as the security aspects that arise from offloading data storage and computation,
+have directed us into a post-cloud era where a new computing paradigm emerged, Edge Computing. 
+
+Edge computing takes into consideration all the computing and network resources that act as an "edge" along
+the path between the data source and the DC and addresses the increasing need for supporting interaction between cloud 
+computing systems and mobile or IoT applications \cite{iot_journal_shi_weisong_and_cao}. However, 
+when accounting for all the devices that are external to the DC, we are met by a huge increase in hetereogeneity of devices: 
+from Data Centers to private servers, desktops and mobile devices to 5G towers and ISP servers, among others. 
 
 \section{Motivation}
 
-Edge computing takes into consideration all the computing and network resources along
-the path from the data source to the DC, it resolves the increasing need for supporting interaction
- between IoT applications and cloud computing systems \cite{iot_journal_shi_weisong_and_cao}.
- Since data is effectively being consumed closer to where it is being produced,
-decentralizing computation has many benefits for end-users and business owners:
- novel applications that take into account the locality of computations for functionality,
- faster response times for end users, enabled through the deployment of microservices 
- that are composed and inter-connected over both edge and cloud infrastructures.
+The aforementioned hetereogeneity implies that there is a broad spectrum of
+computational, storage and networking capabilities along the edge of the network that
+can be leveraged upon to perform different types of computation that rely on the individual
+characteristics of the devices performing the tasks, which can vary from
+from generic computations to aggregation, summarization, and filtering of data. \cite{DBLP:journals/corr/abs-1805-06989}
 
- Understanding how 
+% exemplos reais
+
+To fully materialize the Edge Computing paradigm, tools must be developed that allow the
+federation and search over a large number of heteregenous devices. These tools must leverage on efficient
+topologies and aggregation protocols.
 
 \section{Expected Contribution}
 

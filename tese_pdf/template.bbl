@@ -17,7 +17,7 @@
 \endgroup
 
 \datalist[entry]{nyt/global//global/global}
-  \entry{Armbrust:2010:VCC:1721654.1721672}{article}{}
+  \entry{10.1145/1721654.1721672}{article}{}
     \name{author}{11}{}{%
       {{hash=AM}{%
          family={Armbrust},
@@ -79,18 +79,18 @@
          given={Ion},
          giveni={I\bibinitperiod},
       }}%
-      {{hash=ZM}{%
-         family={Zaharia},
-         familyi={Z\bibinitperiod},
-         given={Matei},
-         giveni={M\bibinitperiod},
+      {{hash=ea}{%
+         prefix={et},
+         prefixi={e\bibinitperiod},
+         family={al.},
+         familyi={a\bibinitperiod},
       }}%
     }
     \list{publisher}{1}{%
-      {ACM}%
+      {Association for Computing Machinery}%
     }
     \strng{namehash}{AM+1}
-    \strng{fullhash}{AMFAGRJADKRKALGPDRASIZM1}
+    \strng{fullhash}{AMFAGRJADKRKALGPDRASIae1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{sortinit}{A}
@@ -100,10 +100,10 @@
     \endverb
     \field{issn}{0001-0782}
     \field{number}{4}
-    \field{pages}{50\bibrangedash 58}
+    \field{pages}{50–58}
     \field{title}{A View of Cloud Computing}
     \verb{url}
-    \verb http://doi.acm.org/10.1145/1721654.1721672
+    \verb https://doi.org/10.1145/1721654.1721672
     \endverb
     \field{volume}{53}
     \list{location}{1}{%
@@ -112,6 +112,52 @@
     \field{journaltitle}{Commun. ACM}
     \field{month}{04}
     \field{year}{2010}
+  \endentry
+
+  \entry{DBLP:journals/corr/abs-1805-06989}{article}{}
+    \name{author}{4}{}{%
+      {{hash=LJ}{%
+         family={Leit{\~{a}}o},
+         familyi={L\bibinitperiod},
+         given={Jo{\~{a}}o},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=CPA}{%
+         family={Costa},
+         familyi={C\bibinitperiod},
+         given={Pedro\bibnamedelima {\'{A}}kos},
+         giveni={P\bibinitperiod\bibinitdelim {\'{A}}\bibinitperiod},
+      }}%
+      {{hash=GMC}{%
+         family={Gomes},
+         familyi={G\bibinitperiod},
+         given={Maria\bibnamedelima Cec{\'{\i}}lia},
+         giveni={M\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+      {{hash=PNM}{%
+         family={Pregui{\c{c}}a},
+         familyi={P\bibinitperiod},
+         given={Nuno\bibnamedelima M.},
+         giveni={N\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LJ+1}
+    \strng{fullhash}{LJCPAGMCPNM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \verb{eprint}
+    \verb 1805.06989
+    \endverb
+    \field{title}{Towards Enabling Novel Edge-Enabled Applications}
+    \verb{url}
+    \verb http://arxiv.org/abs/1805.06989
+    \endverb
+    \field{volume}{abs/1805.06989}
+    \field{journaltitle}{CoRR}
+    \field{eprinttype}{arXiv}
+    \field{year}{2018}
   \endentry
 
   \entry{iot_journal_shi_weisong_and_cao}{article}{}
