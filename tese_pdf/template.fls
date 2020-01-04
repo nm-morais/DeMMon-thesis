@@ -167,8 +167,10 @@ INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/amsmath/amsbsy.sty
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/amsmath/amsbsy.sty
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/amsmath/amsopn.sty
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/amsmath/amsopn.sty
-INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/mathalfa/mathalfa.sty
-INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/mathalfa/mathalfa.sty
+INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/mathalpha/mathalfa.sty
+INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/mathalpha/mathalfa.sty
+INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/mathalpha/mathalpha.sty
+INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/mathalpha/mathalpha.sty
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/colortbl/colortbl.sty
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/colortbl/colortbl.sty
 INPUT /usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/hyperref.sty
@@ -338,6 +340,7 @@ INPUT /usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.r
 INPUT /usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex
 INPUT /usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex
 INPUT /usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+INPUT /usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfint.code.tex
 INPUT /usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
 INPUT /usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
 INPUT /usr/local/texlive/2019/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex

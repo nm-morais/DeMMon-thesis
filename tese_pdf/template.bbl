@@ -114,6 +114,35 @@
     \field{year}{2010}
   \endentry
 
+  \entry{finnegan_2013}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=FM}{%
+         family={Finnegan},
+         familyi={F\bibinitperiod},
+         given={Matthew},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Computerworld}%
+    }
+    \strng{namehash}{FM1}
+    \strng{fullhash}{FM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{title}{Boeing 787s to create half a terabyte of data per flight,
+  says Virgin Atlantic}
+    \verb{url}
+    \verb https://www.computerworld.com/article/3417915/boeing-787s-to-create-h
+    \verb alf-a-terabyte-of-data-per-flight--says-virgin-atlantic.html
+    \endverb
+    \field{journaltitle}{Computerworld}
+    \field{year}{2013}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+
   \entry{DBLP:journals/corr/abs-1805-06989}{article}{}
     \name{author}{4}{}{%
       {{hash=LJ}{%
@@ -158,6 +187,19 @@
     \field{journaltitle}{CoRR}
     \field{eprinttype}{arXiv}
     \field{year}{2018}
+  \endentry
+
+  \entry{datafloq}{misc}{}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{title}{Self-driving Cars Will Create 2 Petabytes Of Data, What Are
+  The Big Data Opportunities For The Car Industry?}
+    \verb{url}
+    \verb https://datafloq.com/read/self-driving-cars-create-2-petabytes-data-a
+    \verb nnually/172
+    \endverb
+    \field{journaltitle}{Datafloq}
   \endentry
 
   \entry{iot_journal_shi_weisong_and_cao}{article}{}
@@ -208,6 +250,99 @@
     \field{journaltitle}{IEEE Internet of Things Journal}
     \field{month}{10}
     \field{year}{2016}
+  \endentry
+
+  \entry{yi2015fog}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=YS}{%
+         family={Yi},
+         familyi={Y\bibinitperiod},
+         given={Shanhe},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=HZ}{%
+         family={Hao},
+         familyi={H\bibinitperiod},
+         given={Zijiang},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=QZ}{%
+         family={Qin},
+         familyi={Q\bibinitperiod},
+         given={Zhengrui},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=LQ}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Qun},
+         giveni={Q\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {IEEE}%
+    }
+    \strng{namehash}{YS+1}
+    \strng{fullhash}{YSHZQZLQ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Y}
+    \field{sortinithash}{Y}
+    \field{booktitle}{2015 Third IEEE Workshop on Hot Topics in Web Systems and
+  Technologies (HotWeb)}
+    \field{pages}{73\bibrangedash 78}
+    \field{title}{Fog computing: Platform and applications}
+    \field{year}{2015}
+  \endentry
+
+  \entry{Improving_Web_Sites_Performance_Using_Edge_Servers_in_Fog_Computing_Architecture}{inproceedings}{}
+    \name{author}{5}{}{%
+      {{hash=ZJ}{%
+         family={Zhu},
+         familyi={Z\bibinitperiod},
+         given={Jiang},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=CD}{%
+         family={Chan},
+         familyi={C\bibinitperiod},
+         given={D.S.},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=PM}{%
+         family={Prabhu},
+         familyi={P\bibinitperiod},
+         given={M.S.},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=NP}{%
+         family={Natarajan},
+         familyi={N\bibinitperiod},
+         given={Preethi},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=HH}{%
+         family={Hu},
+         familyi={H\bibinitperiod},
+         given={Hao},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ZJ+1}
+    \strng{fullhash}{ZJCDPMNPHH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Z}
+    \field{sortinithash}{Z}
+    \verb{doi}
+    \verb 10.1109/SOSE.2013.73
+    \endverb
+    \field{isbn}{978-1-4673-5659-6}
+    \field{pages}{320\bibrangedash 323}
+    \field{title}{Improving Web Sites Performance Using Edge Servers in Fog
+  Computing Architecture}
+    \field{month}{03}
+    \field{year}{2013}
   \endentry
 \enddatalist
 \endinput

@@ -22,18 +22,24 @@ Currently, most software present in our everyday life such as Google Apps,
 Amazon, Twitter, among many others is deployed on some form of cloud service. 
 
 However, currently, the rise in popularity of mobile applications and IoT applications differs from 
-the centralized model proposed by the Cloud Computing paradigm.
+the centralized model proposed by the Cloud Computing paradigm. With recent advances in the IoT
+industry, it is safe to assume that in the future almost all consumer eletronics will play 
+a role in producing as well as consuming data. The number of devices at the
+edge and the data they produce will increase rapidly, and transporting the
+data to be processed in the Cloud will become unfeasable in the future. 
+
 When all computations reside in the data center (DC), far from the source of the data, 
 problems arise: from the physical space needed to contain all the infrastructure,
 the increasing ammount of bandwidth needed to support the information exchange from the DC to the client,
-the latency in communication from the client to the DC as well as the security aspects that arise from offloading data storage and computation,
+the latency in communication from the client to the DC as well as the
+security aspects that arise from offloading data storage and computation,
 have directed us into a post-cloud era where a new computing paradigm emerged, Edge Computing. 
 
 Edge computing takes into consideration all the computing and network resources that act as an "edge" along
 the path between the data source and the DC and addresses the increasing need for supporting interaction between cloud 
 computing systems and mobile or IoT applications \cite{iot_journal_shi_weisong_and_cao}. However, 
-when accounting for all the devices that are external to the DC, we are met by a huge increase in hetereogeneity of devices: 
-from Data Centers to private servers, desktops and mobile devices to 5G towers and ISP servers, among others. 
+when accounting for all the devices that are external to the DC, we are met by a huge increase in 
+hetereogeneity of devices: from Data Centers to private servers, desktops and mobile devices to 5G towers and ISP servers, among others. 
 
 \section{Motivation}
 
@@ -43,15 +49,68 @@ can be leveraged upon to perform different types of computation that rely on the
 characteristics of the devices performing the tasks, which can vary from
 from generic computations to aggregation, summarization, and filtering of data. \cite{DBLP:journals/corr/abs-1805-06989}
 
-% exemplos reais
+Systems that require real-time processing of data may not even be feasible with Cloud Computing. 
+When the volume of data increases, transporting the data in real time to a Data Center is impossible, for example,
+a  Boeing 787 will create around 5 gygabytes of data per second \cite{finnegan_2013}, and Google's self-driving
+car generates 1 Gygabyte every second \cite{datafloq}, which is infeasible to transport to the DC for processing
+and responding in real-time.
 
-To fully materialize the Edge Computing paradigm, tools must be developed that allow the
-federation and search over a large number of heteregenous devices. These tools must leverage on efficient
-topologies and aggregation protocols.
+% mais 1 paragrafo de exemplos de melhoria com edge / fog / mist / iot
+
+There have been efforts to move computation towards the Edge of the network, Fog Computing \cite{yi2015fog}, which is
+an extension of cloud computing from the core of the network to the edge of the network, has shown to benefit
+web application performance \cite{Improving_Web_Sites_Performance_Using_Edge_Servers_in_Fog_Computing_Architecture}, 
+additionally, Content Distribution Networks \cite{} and Cloudlets \cite{} 
+are an extension of this paradigm and are extensibly used nowadays.
+
+To fully materialize the Edge Computing paradigm, applications need to be split into small services
+that cooperate to fulfill applicational needs. Additionally, tools must be
+developed that allow service and resource discovery in adition to service and device
+monitoring. All of this performed over the inherent scale considered by the
+infrastructure of the Edge Computing paradigm.
+
+% paragrafo com sobre para quem e que isto e (e.g. Google -> mudanca para IOT)
+
+These tools must be based on protocols that are able to federate all the devices 
+and aggregate massive ammounts of device data in order to perform efficient service deployment. 
+Additionally, they must handle the churn and network instability that arises when relying on devices 
+that do not have the same infrastructure as those in Data Centers.
+
+% also porque e que isto e diferente e unico
 
 \section{Expected Contribution}
 
+To achieve this, we propose to create a new novel algorithm which employs a hierarchical topology
+that resembles the device distribution of the Edge Infrastructure. This topology is created by
+assigning a level to each device and leveraging on gossip mechanisms to build a structure resembling a FAT-tree \cite{}.
 
+The levels of the tree will be determined by ................ and will the tree be used to employ
+efficient aggregation and search algorithms. Each level of the tree will be composed by many devices that form groups 
+among themselves, the topology of the groups will be determined by (or random) ..... and ..... 
 
- % \cite{DBLP:journals/corr/abs-1805-06989}
+The purpose of this algorithm is to allow:
+
+\begin{enumerate} 
+    \item Efficient resource monitoring to deploy services on.
+    \item Oflloading computation from the cloud to the Edge and vice-versa through elastic management of deployed services.
+    \item Service discovery enabled by efficiently searching over large ammount of devices
+    \item Federate large ammount of heterogeneous devices and use hetereogeneity as an advantage for building the topology.
+\end{enumerate}
+
+We plan to research existing protocols (both for topology management and aggregation)
+and enumerate their trade-offs along with how they behave across different environments. 
+Then, employ a combination of different techniques inspired in the performed research 
+in a unique way that is tailored for this topology.
+
+\section{Document Structure}
+
+The document is structured in the following manner:
+
+\textbf{Chapter 2} focuses on the related work, first section covers the different types of topology management protocols,
+with an emphasis on random and self-adapting overlays, second section studies the different types of aggregation and  
+popular implementations for each aggregation type. Third section adresses resource discovery and how to perorm efficient 
+searches over networks composed by a large number of devices. Finally, fourth section discusses recent approaches towards enabling
+Edge Computing, along with discussion about Fog, Mist and Osmotic Computing.
+
+% \cite{DBLP:journals/corr/abs-1805-06989}
 
