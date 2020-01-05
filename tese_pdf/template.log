@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.10.19)  4 JAN 2020 15:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.10.19)  5 JAN 2020 13:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2060,11 +2060,13 @@ Underfull \vbox (badness 1616) has occurred while \output is active []
 
 ] [2]) [3] [4
 
-] (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/motivation.tex) [5
+] (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex)
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-] [6
+ [5
 
-] (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex) [7
+] [6] (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/proposed_solution.tex) [7
+
 
 ] [8
 
@@ -2107,21 +2109,21 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 308.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 308.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 308.
 Package rerunfilecheck Info: File `template.out' has not changed.
-(rerunfilecheck)             Checksum: EA7E20E17B2AE112E7267888013759AA;1584.
+(rerunfilecheck)             Checksum: 671299CDB2A962D771AC95714EC578D1;1584.
 Package logreq Info: Writing requests to 'template.run.xml'.
 \openout1 = `template.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 41224 strings out of 492609
- 750034 string characters out of 6129047
- 1288179 words of memory out of 5000000
+ 41244 strings out of 492609
+ 750240 string characters out of 6129047
+ 1288186 words of memory out of 5000000
  44102 multiletter control sequences out of 15000+600000
- 184817 words of font info for 277 fonts, out of 8000000 for 9000
+ 186937 words of font info for 292 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  72i,12n,96p,2074b,2434s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/kpfonts/kpfonts-expert.enc}</usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpbne.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpbsc8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpmne.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpmsc8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpttmn8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on /Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/template.pdf (31 pages, 223499 bytes).
+Output written on /Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/template.pdf (31 pages, 225104 bytes).
 PDF statistics:
  405 PDF objects out of 1000 (max. 8388607)
  335 compressed objects within 4 object streams

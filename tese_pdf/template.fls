@@ -729,11 +729,11 @@ INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/kpfonts/jkpmsc8t.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/vf/public/kpfonts/jkpmsc8t.vf
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/kpfonts/jkpmsc8r.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/kpfonts/jkpmsce.tfm
-INPUT /Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/motivation.tex
-INPUT /Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/motivation.tex
 INPUT /Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex
 INPUT /Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/kpfonts/jkpmn8t.tfm
+INPUT /Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/proposed_solution.tex
+INPUT /Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/proposed_solution.tex
 INPUT /Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/planning.tex
 INPUT /Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/planning.tex
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/kpfonts/jkpmit8t.tfm

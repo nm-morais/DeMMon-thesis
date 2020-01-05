@@ -1,18 +1,43 @@
-%!TEX root = ../template.tex
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% chapter3.tex
-%% NOVA thesis document file
-%%
-%% Chapter with a short laext tutorial and examples
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Related Work}
 \label{cha:related_work}
+
+
+\section{Peer to Peer} % (fold)
+\label{sec:p2p}
+
+The Peer to Peer (P2P) paradigm has been extensibly used to implement distributed, scalable, fault-tolerant services, it overcomes limitations such as scalability and fault-tolerance that arise from the client-server model. 
+
+Collaboration is the foundation of P2P systems, it is the foundation of the scalability provided by P2P. participants of the system (peers) perform tasks that contribute towards a common goal which is beneficial for the overall functioning of the system. Collaboration enables P2P systems that accomplish tasks would otherwise be impossible by an individual server. 
+
+Peers contribute with a portion of their resources (such as computing, memory or network bandwidth, e.t.c) to other participants as well as consume resources from other peers in the system. This contrasts with the traditional client-server paradigm where the consumption and supply of resources is decoupled. Finally, fault tolerance is achieved by the absence of a centralized point of failure.
+
+There are many services that are based on P2P systems, some popular applications of this paradigm are file sharing applications, (e.g. Napster, BitTorrent, Emule and Gnutella), cryptocurrencies (bitcoin), streaming (skype), anonimity (TOR) among others. 
+
+One factor that imposes a large difference in how these systems behave is the membership information, a participant in the system that knows every other participant in the system is said to have full membership information, the alternative is called partial membership, where a peer is only aware of a partial view of the system.
+
+Full membership systems are usually employed in small to medium sized systems to implement storage solutions like on One-Hop DHTs e.g. Kadmilia, Amazon's Dynamo and DynamoDB. However, full membership solutions tend to have scalability problems and behave poorly in the face of churn (participants leaving and entering the system), which increases the workload necessary to maintain the membership information up-to-date. 
+
+Partial membership systems rely on some membership mechanism that allow each peer to only be aware of a a few neighboring relations, peers then use the partial view to perform direct communication  (usually through message exchanges) between each other. Similarly to full membership, the number of connections a peer has to maintain dictates the scalability of the system, where systems with larger views will have a larger time maintaining them. The accumulation of the partial views of all peers in the system dictates the topology of the overlay network.
 
 \section{Topology Management} % (fold)
 \label{sec:topology_mgmt}
 
-\subsection{Random overlays}
+Topology management consists in the creation and management of an
+\textbf{overlay network}, which consists in a logical network built on top of another
+network (usually the internet). Elements of overlays are connected through 
+virtual links that are a combination of one or more underlying physical links.
+
+The way the aforementioned links are organized dictate the type of overlay: if the links are logically organized by some metric, we call it a structured overlay. On contrary, when there is no logic to control the formed links, we call it an unstructured overlay. Applications then leverage on the different topologies to optimize their behavior, it is paramount that topologies are tailored as closely as possible towards application requirements.
+
 \subsection{Structured overlays}
+
+Structured overlays impose restrictions over the neighboring relations that can be established between peers, often based on the identifier of each participant of the system. Examples of common resulting topologies of structured overlays are rings, meshes, hypercubes, among others.
+
+As previously mentioned, a widely used type of structured overlays are distributed hash tables (DHT
+), often DHT's leverage on topologies that allow exact resource location in a short amount of hops among peers.
+
+\subsection{Random overlays}
+
 \subsection{Self-adapting overlays}
 
 \section{Aggregation} % (fold)

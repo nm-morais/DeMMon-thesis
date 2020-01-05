@@ -30,29 +30,29 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.4}Document Structure}{3}{section.1.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {2}Motivation}{5}{chapter.2}% 
+\contentsline {chapter}{\chapternumberline {2}Related Work}{5}{chapter.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.1}What is the problem}{5}{section.2.1}% 
+\contentsline {section}{\numberline {2.1}Peer to Peer}{5}{section.2.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {3}Related Work}{7}{chapter.3}% 
+\contentsline {section}{\numberline {2.2}Topology Management}{5}{section.2.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}Topology Management}{7}{section.3.1}% 
+\contentsline {subsection}{\numberline {2.2.1}Random overlays}{6}{subsection.2.2.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.1.1}Random overlays}{7}{subsection.3.1.1}% 
+\contentsline {subsection}{\numberline {2.2.2}Structured overlays}{6}{subsection.2.2.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.1.2}Structured overlays}{7}{subsection.3.1.2}% 
+\contentsline {subsection}{\numberline {2.2.3}Self-adapting overlays}{6}{subsection.2.2.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.1.3}Self-adapting overlays}{7}{subsection.3.1.3}% 
+\contentsline {section}{\numberline {2.3}Aggregation}{6}{section.2.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}Aggregation}{7}{section.3.2}% 
+\contentsline {subsection}{\numberline {2.3.1}Types of aggregation}{6}{subsection.2.3.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.2.1}Types of aggregation}{7}{subsection.3.2.1}% 
+\contentsline {subsection}{\numberline {2.3.2}Relevant aggregation protocols}{6}{subsection.2.3.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.2.2}Relevant aggregation protocols}{7}{subsection.3.2.2}% 
+\contentsline {section}{\numberline {2.4}Resource Discovery}{6}{section.2.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.3}Resource Discovery}{7}{section.3.3}% 
+\contentsline {section}{\numberline {2.5}Offloading computation to the edge}{6}{section.2.5}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.4}Offloading computation to the edge}{7}{section.3.4}% 
+\contentsline {chapter}{\chapternumberline {3}Proposed Solution}{7}{chapter.3}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\chapternumberline {4}Planning}{9}{chapter.4}% 
 \defcounter {refsection}{0}\relax 
