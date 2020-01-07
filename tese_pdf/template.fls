@@ -733,6 +733,7 @@ INPUT /Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapte
 INPUT /Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/kpfonts/jkpmn8t.tfm
 INPUT /Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/proposed_solution.tex
+INPUT /usr/local/texlive/2019/texmf-dist/fonts/vf/public/kpfonts/jkpmn7t.vf
 INPUT /Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/proposed_solution.tex
 INPUT /Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/planning.tex
 INPUT /Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/planning.tex
@@ -776,6 +777,7 @@ INPUT /usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/kpfonts/kpfonts-expert.
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpbne.pfb
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpbsc8a.pfb
+INPUT /usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpmi.pfb
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpmne.pfb

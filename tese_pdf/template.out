@@ -9,8 +9,8 @@
 \BOOKMARK [0][-]{chapter.2}{Related Work}{}% 9
 \BOOKMARK [1][-]{section.2.1}{Peer to Peer}{chapter.2}% 10
 \BOOKMARK [1][-]{section.2.2}{Topology Management}{chapter.2}% 11
-\BOOKMARK [2][-]{subsection.2.2.1}{Random overlays}{section.2.2}% 12
-\BOOKMARK [2][-]{subsection.2.2.2}{Structured overlays}{section.2.2}% 13
+\BOOKMARK [2][-]{subsection.2.2.1}{Structured overlays}{section.2.2}% 12
+\BOOKMARK [2][-]{subsection.2.2.2}{Random overlays}{section.2.2}% 13
 \BOOKMARK [2][-]{subsection.2.2.3}{Self-adapting overlays}{section.2.2}% 14
 \BOOKMARK [1][-]{section.2.3}{Aggregation}{chapter.2}% 15
 \BOOKMARK [2][-]{subsection.2.3.1}{Types of aggregation}{section.2.3}% 16

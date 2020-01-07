@@ -34,34 +34,34 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.1}Peer to Peer}{5}{section.2.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.2}Topology Management}{5}{section.2.2}% 
+\contentsline {section}{\numberline {2.2}Topology Management}{6}{section.2.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2.1}Random overlays}{6}{subsection.2.2.1}% 
+\contentsline {subsection}{\numberline {2.2.1}Structured overlays}{6}{subsection.2.2.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2.2}Structured overlays}{6}{subsection.2.2.2}% 
+\contentsline {subsection}{\numberline {2.2.2}Random overlays}{8}{subsection.2.2.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2.3}Self-adapting overlays}{6}{subsection.2.2.3}% 
+\contentsline {subsection}{\numberline {2.2.3}Self-adapting overlays}{8}{subsection.2.2.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.3}Aggregation}{6}{section.2.3}% 
+\contentsline {section}{\numberline {2.3}Aggregation}{8}{section.2.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3.1}Types of aggregation}{6}{subsection.2.3.1}% 
+\contentsline {subsection}{\numberline {2.3.1}Types of aggregation}{8}{subsection.2.3.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3.2}Relevant aggregation protocols}{6}{subsection.2.3.2}% 
+\contentsline {subsection}{\numberline {2.3.2}Relevant aggregation protocols}{8}{subsection.2.3.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.4}Resource Discovery}{6}{section.2.4}% 
+\contentsline {section}{\numberline {2.4}Resource Discovery}{8}{section.2.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.5}Offloading computation to the edge}{6}{section.2.5}% 
+\contentsline {section}{\numberline {2.5}Offloading computation to the edge}{8}{section.2.5}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {3}Proposed Solution}{7}{chapter.3}% 
+\contentsline {chapter}{\chapternumberline {3}Proposed Solution}{9}{chapter.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {4}Planning}{9}{chapter.4}% 
+\contentsline {chapter}{\chapternumberline {4}Planning}{11}{chapter.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.0.1}Proposed solution}{9}{subsection.4.0.1}% 
+\contentsline {subsection}{\numberline {4.0.1}Proposed solution}{11}{subsection.4.0.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.0.2}Scheduling}{9}{subsection.4.0.2}% 
+\contentsline {subsection}{\numberline {4.0.2}Scheduling}{11}{subsection.4.0.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Bibliografia}{11}{section*.7}% 
+\contentsline {chapter}{Bibliografia}{13}{section*.7}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {appendix}{\chapternumberline {A}Appendix 2 Lorem Ipsum}{13}{appendix.A}% 
+\contentsline {appendix}{\chapternumberline {A}Appendix 2 Lorem Ipsum}{15}{appendix.A}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {appendix}{\chapternumberline {I}Annex 1 Lorem Ipsum}{15}{annex.A}% 
+\contentsline {appendix}{\chapternumberline {I}Annex 1 Lorem Ipsum}{17}{annex.A}% 

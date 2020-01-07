@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.10.19)  5 JAN 2020 13:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.10.19)  6 JAN 2020 13:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2060,34 +2060,37 @@ Underfull \vbox (badness 1616) has occurred while \output is active []
 
 ] [2]) [3] [4
 
-] (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex)
+] (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [5
 
-] [6] (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/proposed_solution.tex) [7
+] [6])
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [7] [8] (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/proposed_solution.tex) [9
 
 
-] [8
+] [10
 
 ] (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/planning.tex
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
 (hyperref)                than one, level fixed on input line 11.
 
-) [9
+) [11
 
-] [10
+] [12
 
-] [11] [12
+] [13] [14
 
-] (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/appendix/appendix1.tex) [13
+] (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/appendix/appendix1.tex) [15
 
 
 
-] [14
+] [16
 
-] (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/annex/annex1.tex) [15
+] (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/annex/annex1.tex) [17
 
 
 ]
@@ -2109,24 +2112,24 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 308.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 308.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 308.
 Package rerunfilecheck Info: File `template.out' has not changed.
-(rerunfilecheck)             Checksum: 671299CDB2A962D771AC95714EC578D1;1584.
+(rerunfilecheck)             Checksum: 1660B7D7126BD81977E3D585DF8205A3;1584.
 Package logreq Info: Writing requests to 'template.run.xml'.
 \openout1 = `template.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 41244 strings out of 492609
- 750240 string characters out of 6129047
+ 41253 strings out of 492609
+ 750344 string characters out of 6129047
  1288186 words of memory out of 5000000
- 44102 multiletter control sequences out of 15000+600000
- 186937 words of font info for 292 fonts, out of 8000000 for 9000
+ 44107 multiletter control sequences out of 15000+600000
+ 187129 words of font info for 294 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  72i,12n,96p,2074b,2434s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/kpfonts/kpfonts-expert.enc}</usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpbne.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpbsc8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpmne.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpmsc8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpttmn8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on /Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/template.pdf (31 pages, 225104 bytes).
+{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/kpfonts/kpfonts-expert.enc}</usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpbne.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpbsc8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpmi.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpmne.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpmsc8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpttmn8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
+Output written on /Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/template.pdf (33 pages, 234381 bytes).
 PDF statistics:
- 405 PDF objects out of 1000 (max. 8388607)
- 335 compressed objects within 4 object streams
- 72 named destinations out of 1000 (max. 500000)
+ 419 PDF objects out of 1000 (max. 8388607)
+ 346 compressed objects within 4 object streams
+ 74 named destinations out of 1000 (max. 500000)
  55618 words of extra memory for PDF output out of 61914 (max. 10000000)
 

@@ -18,7 +18,7 @@ Nowadays, the Cloud Computing paradigm is the standard for development, deployme
 
 Currently, most software present in our everyday life such as Google Apps,
 Amazon, Twitter, among many others is deployed on some form of cloud service. However, currently, the rise in popularity of mobile applications and IoT applications differs from the centralized model proposed by the Cloud Computing paradigm. With recent advances in the IoT
-industry, it is safe to assume that in the future almost all consumer electronics will play a role in producing as well as consuming data. As number of devices at the edge and the data they produce increases rapidly, transporting the data to be processed in the Cloud will become unfeasible. 
+industry, it is safe to assume that in the future almost all consumer electronics will play a role in producing and consuming data. As number of devices at the edge and the data they produce increases rapidly, transporting the data to be processed in the Cloud will become unfeasible. 
 
 Systems that require real-time processing of data may not even be feasible with Cloud Computing. When the volume of data increases, transporting the data in real time to a Data Center is impossible, for example, a  Boeing 787 will create around 5 gigabytes of data per second \cite{finnegan_2013}, and Google's self-driving car generates 1 Gigabyte every second \cite{datafloq}, which is infeasible to transport to the DC for processing and responding in real-time. 
 
@@ -29,27 +29,26 @@ Edge computing takes into consideration all the computing and network resources 
 \section{Motivation}
 
 The aforementioned heterogeneity implies that there is a broad spectrum of
-computational, storage and networking capabilities along the edge of the network that can be leveraged upon to perform computations that rely on the individual characteristics of the devices performing the tasks, which can vary from from generic computations to aggregation, summarization, and filtering of data. \cite{DBLP:journals/corr/abs-1805-06989}
+computational, storage and networking capabilities along the edge of the network that can be leveraged upon to perform computations that rely on the individual characteristics of the devices performing the tasks, which can vary from from generic computations to aggregation, summarization, and filtering of data. \cite{DBLP:journals/corr/abs-1805-06989} % separar
 
 % mais 1 paragrafo de exemplos de melhoria com edge / fog / mist / iot
 
-There have been efforts to move computation towards the Edge of the network, Fog Computing \cite{yi2015fog}, which is an extension of cloud computing from the core of the network to the edge of the network, has shown to benefit web application performance \cite{Improving_Web_Sites_Performance_Using_Edge_Servers_in_Fog_Computing_Architecture}, additionally, Content Distribution Networks \cite{} and Cloudlets \cite{} 
-are an extension of this paradigm and are extensibly used nowadays.
+There have been efforts to move computation towards the Edge of the network, Fog Computing \cite{yi2015fog}, which is an extension of cloud computing from the core of the network to the edge of the network, has shown to benefit web application performance \cite{Improving_Web_Sites_Performance_Using_Edge_Servers_in_Fog_Computing_Architecture}. Additionally, Content Distribution Networks \cite{} and Cloudlets \cite{} 
+are an extension of this paradigm and are extensibly used nowadays. % escrever mais um pouquito
 
 To fully materialize the Edge Computing paradigm, applications need to be split into small services that cooperate to fulfill applicational needs. 
-Additionally, tools must be developed that allow service and resource discovery as well as service and device monitoring. All of this performed over the inherent scale considered by the infrastructure of the Edge Computing paradigm.
+Furthermore, tools must be developed that allow service and resource discovery as well as service and device monitoring. All of this performed over the inherent scale considered by the infrastructure of the Edge Computing paradigm.
 
+%%%%%%%%
 \textcolor{red}{paragrafo com sobre para quem e que isto e (e.g. Google, Amazon, Smart City, Smart Country ?? also porque e que isto e diferente do que ja existe}
 % also porque e que isto e diferente e unico
 % paragrafo com sobre para quem e que isto e (e.g. Google, Amazon, Smart City, Smart Country ??)
 
-These tools must be based on protocols that are able to federate all the devices and aggregate massive amounts of device data in order to perform efficient service deployment and management. Additionally, they must handle the churn and network instability that arises when relying on devices that do not have the same infrastructure as those in Data Centers.
+These tools must be based on protocols that are able to federate all the devices and aggregate massive amounts of device data in order to perform efficient service deployment and management. Finally, they must handle the churn and network instability that arises when relying on devices that do not have the same infrastructure as those in Data Centers.
 
 \section{Expected Contribution}
 
-To achieve this, we propose to create a new novel algorithm which employs a hierarchical topology
-that resembles the device distribution of the Edge Infrastructure. This topology is created by
-assigning a level to each device and leveraging on gossip mechanisms to build a structure resembling a FAT-tree \cite{}.
+To achieve this, we propose to create a new novel algorithm which employs a hierarchical topology that resembles the device distribution of the Edge Infrastructure. This topology is created by assigning a level to each device and leveraging on gossip mechanisms to build a structure resembling a FAT-tree \cite{}.
 
 The levels of the tree will be determined by \textcolor{red}{...undecided...} and will the tree be used to employ efficient aggregation and search algorithms. Each level of the tree will be composed by many devices that form groups among themselves, the topology of the groups \textcolor{red}{...undecided...} 
 
