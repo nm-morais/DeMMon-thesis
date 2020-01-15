@@ -76,12 +76,12 @@ failed node and adds the new node to the bucket.
 
 Operations : 4 RPS (PING, STORE; FIND_NODE , FIND_VALUE)
 Find_Node returns the k-nodes it knows about closest to the target, which come from the closest k-buckets to the target.
-Find_Value behaves like Find_Node but if the recipent has received a Store RPC for the key, it just returns it.
+Find_Value behaves like Find_Node but if the recipient has received a Store RPC for the key, it just returns it.
 Ping and Store are their intuitive meanings
 
 #### Node Lookup:
 
-Node initiator sendes paralel, asynchronous FIND_NODE RPCs to the α closest nodes it knows about. 
+Node initiator sends paralel, asynchronous FIND_NODE RPCs to the α closest nodes it knows about. 
 α Is a system-wide concurrency parameter
 
 #### JOIN

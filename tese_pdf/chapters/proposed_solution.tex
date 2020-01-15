@@ -1,0 +1,37 @@
+%!TEX root = ../template.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% chapter2.tex
+%% NOVA thesis document file
+%%
+%% Chapter with the template manual
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Proposed Solution}
+\label{cha:proposed_sol}
+
+
+To achieve this, we propose to create a new novel algorithm which employs a hierarchical topology that resembles the device distribution of the Edge Infrastructure. This topology is created by assigning a level to each device and leveraging on gossip mechanisms to build a structure resembling a FAT-tree \cite{}.
+
+The levels of the tree will be determined by \textcolor{red}{...undecided...} and will the tree be used to employ efficient aggregation and search algorithms. Each level of the tree will be composed by many devices that form groups among themselves, the topology of the groups \textcolor{red}{...undecided...} 
+
+The purpose of this algorithm is to allow:
+
+\begin{enumerate} 
+    \item Efficient resource monitoring to deploy services on.
+    \item Offloading computation from the cloud to the Edge and vice-versa through elastic management of deployed services.
+    \item Service discovery enabled by efficiently searching over large amount of devices
+    \item Federate large amount of heterogeneous devices and use heterogeneity as an advantage for building the topology.
+\end{enumerate}
+
+We plan to research existing protocols (both for topology management and aggregation) and enumerate their trade-offs along with how they behave across different environments. Then, employ a combination of different techniques according to their strengths in a unique way that is tailored for this topology.
+
+\section{Document Structure}
+
+The document is structured in the following manner:
+
+\textbf{Chapter 2} focuses on the related work, first section covers the different types of topology management protocols,
+with an emphasis on random and self-adapting overlays, second section studies the different types of aggregation and  popular implementations for each aggregation type. Third section addresses resource discovery and how to perform efficient searches over networks composed by a large number of devices. Finally,fourth section discusses recent approaches towards enabling Edge Computing along with discussion about Fog, Mist and Osmotic Computing.
+
+\textbf{Chapter 3} further explains the proposed contribution along with the work plan for the remainder of the thesis. 
+
+% \cite{DBLP:journals/corr/abs-1805-06989}
+
