@@ -1,0 +1,60 @@
+%!TEX root = ../template.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% chapter1.tex
+%% NOVA thesis document file
+%%
+%% Chapter with introduction
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\novathesis}{\emph{novathesis}}
+\newcommand{\novathesisclass}{\texttt{novathesis.cls}}
+
+
+\chapter{Introduction}
+\label{cha:introduction}
+
+\section{Context}
+
+Nowadays, the Cloud Computing paradigm is the standard for development, deployment and management of services, it has proven to have massive economic benefits that make it very likely to remain permanent in future of the computing landscape. It provides the illusion of unlimited resources available to services, and has changed the way developers, users and businesses rationalize about  applications \cite{10.1145/1721654.1721672}.
+
+Currently, most software present in our everyday life such as Google Apps,
+Amazon, Twitter, among many others is deployed on some form of cloud service. However, currently, the rise in popularity of mobile applications and IoT applications differs from the centralized model proposed by the Cloud Computing paradigm. With recent advances in the IoT
+industry, it is safe to assume that in the future almost all consumer electronics will play a role in producing and consuming data. As the number of devices at the edge and the data they produce increases rapidly, transporting the data to be processed in the Cloud will become unfeasible. 
+
+Systems that require real-time processing of data may not even be feasible with Cloud Computing. When the volume of data increases, transporting the data in real time to a Data Center is impossible, for example, a  Boeing 787 will create around 5 gigabytes of data per second \cite{finnegan_2013}, and Google's self-driving car generates 1 Gigabyte every second \cite{datafloq}, which is infeasible to transport to the DC for processing and responding in real-time. 
+
+When all computations reside in the data center (DC), far from the source of the data, problems arise: from the physical space needed to contain all the infrastructure, the increasing amount of bandwidth needed to support the information exchange from the DC to the client, the latency in communication from the client to the DC as well as the security aspects that arise from offloading data storage and computation, have directed us into a post-cloud era where a new computing paradigm emerged, Edge Computing. 
+
+Edge computing takes into consideration all the computing and network resources that act as an "edge" along the path between the data source and the DC and addresses the increasing need for supporting interaction between cloud computing systems and mobile or IoT applications \cite{iot_journal_shi_weisong_and_cao}. However, when accounting for all the devices that are external to the DC, we are met by a huge increase in heterogeneity of devices: from Data Centers to private servers, desktops and mobile devices to 5G towers and ISP servers, among others. 
+
+\section{Motivation}
+
+The aforementioned heterogeneity implies that there is a broad spectrum of
+computational, storage and networking capabilities along the edge of the network that can be leveraged upon to perform computations that rely on the individual characteristics of the devices performing the tasks, which can vary from from generic computations to aggregation, summarization, and filtering of data. \cite{DBLP:journals/corr/abs-1805-06989} % separar
+
+There have been efforts to move computation towards the Edge of the network, Fog Computing \cite{yi2015fog}, which is an extension of cloud computing from the core of the network to the edge of the network, has shown to benefit web application performance \cite{Improving_Web_Sites_Performance_Using_Edge_Servers_in_Fog_Computing_Architecture}. Additionally, Content Distribution Networks \cite{} and Cloudlets \cite{} 
+are an extension of this paradigm and are extensibly used nowadays. % escrever mais um pouquito
+
+Recently, and hand in hand with the trend of cloud decentralization, applications have strayed away from their monolithic application architecture towards splitting in smaller, cohesive, and independent services (microservices). Microservices interact using messages \cite{Dragoni}, and may cooperate to perform applicational tasks. Specializing services provides many advantages for businesses: each service may be independently built, versioned, and maintained, in addition to the load-balancing, scalability and fault tolerance that arise from employing a decentralized architecture \cite{newman2015building}. 
+
+However, the study state of the art reveals that there is a lack of unified infrastructure that provides the necessary scalability along with resource location and monitoring in to efficiently support dynamic service deployment and management in the Edge. An infrastructure capable of performing the aforementioned tasks successfully has strong applicability in todays world: from commercial purposes (for example, Cloud providers that look to better employ IoT devices), or Smart Cities/Countries.
+
+Given this, p2p protocols must be devised that provide exact resource location and monitoring while providing resource locality according the device distribution in the Edge environment. A common approach to leverage on device heterogeneity is to federate devices in hierarchical topologies. Hierarchical topologies handle the churn and network instability that arises when relying on devices that do not have the same infrastructure as those in Data Centers. Consequently, the hierarchy be used to employ efficient aggregation protocols towards device and service monitoring.
+
+\section{Expected Contributions}
+
+The expected contributions from this work are two fold:
+
+\begin{itemize}
+    \item Devise a framework built on top of a membership algorithm that employs a hierarchical topology which reflects the Edge device distribution. Then, exploit the topology to perform aggregation over device and service status. Finally, utilize the aggregation results to efficiently deploy services in Edge environments.
+
+    \item Perform experimental comparisons with other resource location protocols under various types of environments, namely scenarios where we vary network instability, device heterogeneity, and application load. 
+\end{itemize}
+
+\section{Thesis structure}
+
+This document is structured in the following manner:
+
+\textbf{Chapter 2} focuses on the related work, first and second sections cover P2P systems and the different types of topology management protocols, with an emphasis on structured and self-adapting overlays, third section studies the different types of aggregation and popular implementations for each aggregation type. Fourth section addresses resource discovery and how to perform efficient searches over networks composed by a large number of devices. Finally, last section discusses recent approaches towards enabling Edge Computing along with discussion about Fog, Mist and Osmotic Computing.
+
+\textbf{Chapter 3} further explains the proposed contribution along with the work plan for the remainder of the thesis. 
+

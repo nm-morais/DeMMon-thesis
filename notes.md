@@ -180,5 +180,6 @@ Cons :
 ### Simulators for edge networks
   * PeerSim
   * INET Framework (https://github.com/inet-framework/inet) / 
-  * ModdelNet
+  * ModelNet
+  * GT-ITM (Topology generator)
  

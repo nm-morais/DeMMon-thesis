@@ -1,0 +1,922 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.0 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{nyt/global//global/global}
+  \entry{10.1145/1721654.1721672}{article}{}
+    \name{author}{11}{}{%
+      {{hash=AM}{%
+         family={Armbrust},
+         familyi={A\bibinitperiod},
+         given={Michael},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=FA}{%
+         family={Fox},
+         familyi={F\bibinitperiod},
+         given={Armando},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=GR}{%
+         family={Griffith},
+         familyi={G\bibinitperiod},
+         given={Rean},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=JAD}{%
+         family={Joseph},
+         familyi={J\bibinitperiod},
+         given={Anthony\bibnamedelima D.},
+         giveni={A\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+      {{hash=KR}{%
+         family={Katz},
+         familyi={K\bibinitperiod},
+         given={Randy},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=KA}{%
+         family={Konwinski},
+         familyi={K\bibinitperiod},
+         given={Andy},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=LG}{%
+         family={Lee},
+         familyi={L\bibinitperiod},
+         given={Gunho},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=PD}{%
+         family={Patterson},
+         familyi={P\bibinitperiod},
+         given={David},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=RA}{%
+         family={Rabkin},
+         familyi={R\bibinitperiod},
+         given={Ariel},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SI}{%
+         family={Stoica},
+         familyi={S\bibinitperiod},
+         given={Ion},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=ea}{%
+         prefix={et},
+         prefixi={e\bibinitperiod},
+         family={al.},
+         familyi={a\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Association for Computing Machinery}%
+    }
+    \strng{namehash}{AM+1}
+    \strng{fullhash}{AMFAGRJADKRKALGPDRASIae1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \verb{doi}
+    \verb 10.1145/1721654.1721672
+    \endverb
+    \field{issn}{0001-0782}
+    \field{number}{4}
+    \field{pages}{50–58}
+    \field{title}{A View of Cloud Computing}
+    \verb{url}
+    \verb https://doi.org/10.1145/1721654.1721672
+    \endverb
+    \field{volume}{53}
+    \list{location}{1}{%
+      {New York, NY, USA}%
+    }
+    \field{journaltitle}{Commun. ACM}
+    \field{month}{04}
+    \field{year}{2010}
+  \endentry
+
+  \entry{decandia2007dynamo}{inproceedings}{}
+    \name{author}{9}{}{%
+      {{hash=DG}{%
+         family={DeCandia},
+         familyi={D\bibinitperiod},
+         given={Giuseppe},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=HD}{%
+         family={Hastorun},
+         familyi={H\bibinitperiod},
+         given={Deniz},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=JM}{%
+         family={Jampani},
+         familyi={J\bibinitperiod},
+         given={Madan},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=KG}{%
+         family={Kakulapati},
+         familyi={K\bibinitperiod},
+         given={Gunavardhan},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=LA}{%
+         family={Lakshman},
+         familyi={L\bibinitperiod},
+         given={Avinash},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=PA}{%
+         family={Pilchin},
+         familyi={P\bibinitperiod},
+         given={Alex},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SS}{%
+         family={Sivasubramanian},
+         familyi={S\bibinitperiod},
+         given={Swaminathan},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=VP}{%
+         family={Vosshall},
+         familyi={V\bibinitperiod},
+         given={Peter},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=VW}{%
+         family={Vogels},
+         familyi={V\bibinitperiod},
+         given={Werner},
+         giveni={W\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {ACM}%
+    }
+    \strng{namehash}{DG+1}
+    \strng{fullhash}{DGHDJMKGLAPASSVPVW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{booktitle}{ACM SIGOPS operating systems review}
+    \field{number}{6}
+    \field{pages}{205\bibrangedash 220}
+    \field{title}{Dynamo: amazon's highly available key-value store}
+    \field{volume}{41}
+    \field{year}{2007}
+  \endentry
+
+  \entry{Dragoni}{article}{}
+    \name{author}{7}{}{%
+      {{hash=DN}{%
+         family={Dragoni},
+         familyi={D\bibinitperiod},
+         given={Nicola},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=GS}{%
+         family={Giallorenzo},
+         familyi={G\bibinitperiod},
+         given={Saverio},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=LAL}{%
+         family={Lafuente},
+         familyi={L\bibinitperiod},
+         given={Alberto\bibnamedelima Lluch},
+         giveni={A\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+      {{hash=MM}{%
+         family={Mazzara},
+         familyi={M\bibinitperiod},
+         given={Manuel},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=MF}{%
+         family={Montesi},
+         familyi={M\bibinitperiod},
+         given={Fabrizio},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=MR}{%
+         family={Mustafin},
+         familyi={M\bibinitperiod},
+         given={Ruslan},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=SL}{%
+         family={Safina},
+         familyi={S\bibinitperiod},
+         given={Larisa},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{DN+1}
+    \strng{fullhash}{DNGSLALMMMFMRSL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{isbn}{9783319674254}
+    \field{pages}{195\bibrangedash 196}
+    \field{title}{{Microservices : Yesterday , Today , and Tomorrow}}
+  \endentry
+
+  \entry{990064}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=DP}{%
+         family={{Druschel}},
+         familyi={D\bibinitperiod},
+         given={P.},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=RA}{%
+         family={{Rowstron}},
+         familyi={R\bibinitperiod},
+         given={A.},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \keyw{storage management;resource allocation;PAST;persistent peer-to-peer
+  storage utility;Internet-based global storage utility;scalability;high
+  availability;client requests;storage access;load balancing;Pastry location
+  and routing scheme;node failures;node additions;Large-scale systems;Peer to
+  peer computing;Internet;Scalability;Routing;Load management;Secure
+  storage;Availability;Security;Supply and demand}
+    \strng{namehash}{DPRA1}
+    \strng{fullhash}{DPRA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{booktitle}{Proceedings Eighth Workshop on Hot Topics in Operating
+  Systems}
+    \verb{doi}
+    \verb 10.1109/HOTOS.2001.990064
+    \endverb
+    \field{issn}{null}
+    \field{pages}{75\bibrangedash 80}
+    \field{title}{PAST: a large-scale, persistent peer-to-peer storage utility}
+    \field{year}{2001}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+
+  \entry{finnegan_2013}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=FM}{%
+         family={Finnegan},
+         familyi={F\bibinitperiod},
+         given={Matthew},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Computerworld}%
+    }
+    \strng{namehash}{FM1}
+    \strng{fullhash}{FM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{title}{Boeing 787s to create half a terabyte of data per flight,
+  says Virgin Atlantic}
+    \verb{url}
+    \verb https://www.computerworld.com/article/3417915/boeing-787s-to-create-h
+    \verb alf-a-terabyte-of-data-per-flight--says-virgin-atlantic.html
+    \endverb
+    \field{journaltitle}{Computerworld}
+    \field{year}{2013}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+
+  \entry{gupta2003kelips}{inproceedings}{}
+    \name{author}{5}{}{%
+      {{hash=GI}{%
+         family={Gupta},
+         familyi={G\bibinitperiod},
+         given={Indranil},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=BK}{%
+         family={Birman},
+         familyi={B\bibinitperiod},
+         given={Ken},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=LP}{%
+         family={Linga},
+         familyi={L\bibinitperiod},
+         given={Prakash},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=DA}{%
+         family={Demers},
+         familyi={D\bibinitperiod},
+         given={Al},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=VRR}{%
+         family={Van\bibnamedelima Renesse},
+         familyi={V\bibinitperiod\bibinitdelim R\bibinitperiod},
+         given={Robbert},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {Springer}%
+    }
+    \strng{namehash}{GI+1}
+    \strng{fullhash}{GIBKLPDAVRR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{booktitle}{International Workshop on Peer-to-Peer Systems}
+    \field{pages}{160\bibrangedash 169}
+    \field{title}{Kelips: Building an efficient and stable P2P DHT through
+  increased memory and background overhead}
+    \field{year}{2003}
+  \endentry
+
+  \entry{Hyparview}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=LJ}{%
+         family={{Leitao}},
+         familyi={L\bibinitperiod},
+         given={J.},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=PJ}{%
+         family={{Pereira}},
+         familyi={P\bibinitperiod},
+         given={J.},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=RL}{%
+         family={{Rodrigues}},
+         familyi={R\bibinitperiod},
+         given={L.},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \keyw{protocols;HyParView;membership protocol;gossip-based
+  broadcast;resilient reliable broadcast primitives;gossip
+  protocol;Broadcasting;Peer to peer computing;Maintenance;Power system
+  reliability;Clustering algorithms;Transport
+  protocols;Scalability;Redundancy;Costs;Sampling methods}
+    \strng{namehash}{LJ+1}
+    \strng{fullhash}{LJPJRL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{booktitle}{37th Annual IEEE/IFIP International Conference on
+  Dependable Systems and Networks (DSN'07)}
+    \verb{doi}
+    \verb 10.1109/DSN.2007.56
+    \endverb
+    \field{issn}{2158-3927}
+    \field{pages}{419\bibrangedash 429}
+    \field{title}{HyParView: A Membership Protocol for Reliable Gossip-Based
+  Broadcast}
+    \field{year}{2007}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+
+  \entry{DBLP:journals/corr/abs-1805-06989}{article}{}
+    \name{author}{4}{}{%
+      {{hash=LJ}{%
+         family={Leit{\~{a}}o},
+         familyi={L\bibinitperiod},
+         given={Jo{\~{a}}o},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=CPA}{%
+         family={Costa},
+         familyi={C\bibinitperiod},
+         given={Pedro\bibnamedelima {\'{A}}kos},
+         giveni={P\bibinitperiod\bibinitdelim {\'{A}}\bibinitperiod},
+      }}%
+      {{hash=GMC}{%
+         family={Gomes},
+         familyi={G\bibinitperiod},
+         given={Maria\bibnamedelima Cec{\'{\i}}lia},
+         giveni={M\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+      {{hash=PNM}{%
+         family={Pregui{\c{c}}a},
+         familyi={P\bibinitperiod},
+         given={Nuno\bibnamedelima M.},
+         giveni={N\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LJ+2}
+    \strng{fullhash}{LJCPAGMCPNM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \verb{eprint}
+    \verb 1805.06989
+    \endverb
+    \field{title}{Towards Enabling Novel Edge-Enabled Applications}
+    \verb{url}
+    \verb http://arxiv.org/abs/1805.06989
+    \endverb
+    \field{volume}{abs/1805.06989}
+    \field{journaltitle}{CoRR}
+    \field{eprinttype}{arXiv}
+    \field{year}{2018}
+  \endentry
+
+  \entry{10.1007/3-540-45748-8_5}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=MP}{%
+         family={Maymounkov},
+         familyi={M\bibinitperiod},
+         given={Petar},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=MD}{%
+         family={Mazi{\`e}res},
+         familyi={M\bibinitperiod},
+         given={David},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \name{editor}{3}{}{%
+      {{hash=DP}{%
+         family={Druschel},
+         familyi={D\bibinitperiod},
+         given={Peter},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=KF}{%
+         family={Kaashoek},
+         familyi={K\bibinitperiod},
+         given={Frans},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=RA}{%
+         family={Rowstron},
+         familyi={R\bibinitperiod},
+         given={Antony},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer Berlin Heidelberg}%
+    }
+    \strng{namehash}{MPMD1}
+    \strng{fullhash}{MPMD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{abstract}{%
+    We describe a peer-to-peer distributed hash table with provable consistency
+  and performance in a fault-prone environment. Our system routes queries and
+  locates nodes using a novel XOR-based metric topology that simplifies the
+  algorithm and facilitates our proof. The topology has the property that every
+  message exchanged conveys or reinforces useful contact information. The
+  system exploits this information to send parallel, asynchronous query
+  messages that tolerate node failures without imposing timeout delays on
+  users.%
+    }
+    \field{booktitle}{Peer-to-Peer Systems}
+    \field{isbn}{978-3-540-45748-0}
+    \field{pages}{53\bibrangedash 65}
+    \field{title}{Kademlia: A Peer-to-Peer Information System Based on the XOR
+  Metric}
+    \list{location}{1}{%
+      {Berlin, Heidelberg}%
+    }
+    \field{year}{2002}
+  \endentry
+
+  \entry{newman2015building}{book}{}
+    \name{author}{1}{}{%
+      {{hash=NS}{%
+         family={Newman},
+         familyi={N\bibinitperiod},
+         given={Sam},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {" O'Reilly Media, Inc."}%
+    }
+    \strng{namehash}{NS1}
+    \strng{fullhash}{NS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{N}
+    \field{sortinithash}{N}
+    \field{title}{Building microservices: designing fine-grained systems}
+    \field{year}{2015}
+  \endentry
+
+  \entry{rowstron2001pastry}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=RA}{%
+         family={Rowstron},
+         familyi={R\bibinitperiod},
+         given={Antony},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=DP}{%
+         family={Druschel},
+         familyi={D\bibinitperiod},
+         given={Peter},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {Springer}%
+    }
+    \strng{namehash}{RADP1}
+    \strng{fullhash}{RADP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \field{booktitle}{IFIP/ACM International Conference on Distributed Systems
+  Platforms and Open Distributed Processing}
+    \field{pages}{329\bibrangedash 350}
+    \field{title}{Pastry: Scalable, decentralized object location, and routing
+  for large-scale peer-to-peer systems}
+    \field{year}{2001}
+  \endentry
+
+  \entry{10.1007/3-540-45546-9_3}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=RA}{%
+         family={Rowstron},
+         familyi={R\bibinitperiod},
+         given={Antony},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=KAM}{%
+         family={Kermarrec},
+         familyi={K\bibinitperiod},
+         given={Anne-Marie},
+         giveni={A\bibinithyphendelim M\bibinitperiod},
+      }}%
+      {{hash=CM}{%
+         family={Castro},
+         familyi={C\bibinitperiod},
+         given={Miguel},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=DP}{%
+         family={Druschel},
+         familyi={D\bibinitperiod},
+         given={Peter},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \name{editor}{2}{}{%
+      {{hash=CJ}{%
+         family={Crowcroft},
+         familyi={C\bibinitperiod},
+         given={Jon},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=HM}{%
+         family={Hofmann},
+         familyi={H\bibinitperiod},
+         given={Markus},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer Berlin Heidelberg}%
+    }
+    \strng{namehash}{RA+1}
+    \strng{fullhash}{RAKAMCMDP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \field{abstract}{%
+    This paper presents Scribe, a large-scale event notification infrastructure
+  for topic-based publish-subscribe applications. Scribe supports large numbers
+  of topics, with a potentiallylarge number of subscribers per topic. Scribe is
+  built on top of Pastry, a generic peer-topeer object location and routing
+  substrate overlayed on the Internet, and leverages Pastry's reliability,
+  self-organization and locality properties. Pastryi s used to create a topic
+  (group) and to build an efficient multicast tree for the dissemination of
+  events to the topic's subscribers (members). Scribe provides weak
+  reliabilitygu arantees, but we outline how an application can extend Scribe
+  to provide stronger ones.%
+    }
+    \field{booktitle}{Networked Group Communication}
+    \field{isbn}{978-3-540-45546-2}
+    \field{pages}{30\bibrangedash 43}
+    \field{title}{Scribe: The Design of a Large-Scale Event Notification
+  Infrastructure}
+    \list{location}{1}{%
+      {Berlin, Heidelberg}%
+    }
+    \field{year}{2001}
+  \endentry
+
+  \entry{datafloq}{misc}{}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{title}{Self-driving Cars Will Create 2 Petabytes Of Data, What Are
+  The Big Data Opportunities For The Car Industry?}
+    \verb{url}
+    \verb https://datafloq.com/read/self-driving-cars-create-2-petabytes-data-a
+    \verb nnually/172
+    \endverb
+    \field{journaltitle}{Datafloq}
+  \endentry
+
+  \entry{iot_journal_shi_weisong_and_cao}{article}{}
+    \name{author}{5}{}{%
+      {{hash=SW}{%
+         family={Shi},
+         familyi={S\bibinitperiod},
+         given={Weisong},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=CJ}{%
+         family={Cao},
+         familyi={C\bibinitperiod},
+         given={Jie},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=ZQ}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Quan},
+         giveni={Q\bibinitperiod},
+      }}%
+      {{hash=LY}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Youhuizi},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=XL}{%
+         family={Xu},
+         familyi={X\bibinitperiod},
+         given={Lanyu},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SW+1}
+    \strng{fullhash}{SWCJZQLYXL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \verb{doi}
+    \verb 10.1109/JIOT.2016.2579198
+    \endverb
+    \field{pages}{1\bibrangedash 1}
+    \field{title}{Edge Computing: Vision and Challenges}
+    \field{volume}{3}
+    \field{journaltitle}{IEEE Internet of Things Journal}
+    \field{month}{10}
+    \field{year}{2016}
+  \endentry
+
+  \entry{stoica2003chord}{article}{}
+    \name{author}{7}{}{%
+      {{hash=SI}{%
+         family={Stoica},
+         familyi={S\bibinitperiod},
+         given={Ion},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=MR}{%
+         family={Morris},
+         familyi={M\bibinitperiod},
+         given={Robert},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=LND}{%
+         family={Liben-Nowell},
+         familyi={L\bibinithyphendelim N\bibinitperiod},
+         given={David},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=KDR}{%
+         family={Karger},
+         familyi={K\bibinitperiod},
+         given={David\bibnamedelima R},
+         giveni={D\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+      {{hash=KMF}{%
+         family={Kaashoek},
+         familyi={K\bibinitperiod},
+         given={M\bibnamedelima Frans},
+         giveni={M\bibinitperiod\bibinitdelim F\bibinitperiod},
+      }}%
+      {{hash=DF}{%
+         family={Dabek},
+         familyi={D\bibinitperiod},
+         given={Frank},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=BH}{%
+         family={Balakrishnan},
+         familyi={B\bibinitperiod},
+         given={Hari},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {IEEE Press}%
+    }
+    \strng{namehash}{SI+1}
+    \strng{fullhash}{SIMRLNDKDRKMFDFBH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{number}{1}
+    \field{pages}{17\bibrangedash 32}
+    \field{title}{Chord: a scalable peer-to-peer lookup protocol for internet
+  applications}
+    \field{volume}{11}
+    \field{journaltitle}{IEEE/ACM Transactions on Networking (TON)}
+    \field{year}{2003}
+  \endentry
+
+  \entry{yi2015fog}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=YS}{%
+         family={Yi},
+         familyi={Y\bibinitperiod},
+         given={Shanhe},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=HZ}{%
+         family={Hao},
+         familyi={H\bibinitperiod},
+         given={Zijiang},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=QZ}{%
+         family={Qin},
+         familyi={Q\bibinitperiod},
+         given={Zhengrui},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=LQ}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Qun},
+         giveni={Q\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {IEEE}%
+    }
+    \strng{namehash}{YS+1}
+    \strng{fullhash}{YSHZQZLQ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Y}
+    \field{sortinithash}{Y}
+    \field{booktitle}{2015 Third IEEE Workshop on Hot Topics in Web Systems and
+  Technologies (HotWeb)}
+    \field{pages}{73\bibrangedash 78}
+    \field{title}{Fog computing: Platform and applications}
+    \field{year}{2015}
+  \endentry
+
+  \entry{tapestry}{article}{}
+    \name{author}{6}{}{%
+      {{hash=ZB}{%
+         family={Zhao},
+         familyi={Z\bibinitperiod},
+         given={Ben},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=HL}{%
+         family={Huang},
+         familyi={H\bibinitperiod},
+         given={Ling},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=SJ}{%
+         family={Stribling},
+         familyi={S\bibinitperiod},
+         given={Jeremy},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=RS}{%
+         family={Rhea},
+         familyi={R\bibinitperiod},
+         given={Sean},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=JA}{%
+         family={Joseph},
+         familyi={J\bibinitperiod},
+         given={Anthony},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=KJ}{%
+         family={Kubiatowicz},
+         familyi={K\bibinitperiod},
+         given={John},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ZB+1}
+    \strng{fullhash}{ZBHLSJRSJAKJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Z}
+    \field{sortinithash}{Z}
+    \verb{doi}
+    \verb 10.1109/JSAC.2003.818784
+    \endverb
+    \field{title}{Tapestry: A Resilient Global-Scale Overlay for Service
+  Deployment}
+    \field{volume}{22}
+    \field{journaltitle}{IEEE Journal on Selected Areas in Communications}
+    \field{month}{07}
+    \field{year}{2003}
+  \endentry
+
+  \entry{Improving_Web_Sites_Performance_Using_Edge_Servers_in_Fog_Computing_Architecture}{inproceedings}{}
+    \name{author}{5}{}{%
+      {{hash=ZJ}{%
+         family={Zhu},
+         familyi={Z\bibinitperiod},
+         given={Jiang},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=CD}{%
+         family={Chan},
+         familyi={C\bibinitperiod},
+         given={D.S.},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=PM}{%
+         family={Prabhu},
+         familyi={P\bibinitperiod},
+         given={M.S.},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=NP}{%
+         family={Natarajan},
+         familyi={N\bibinitperiod},
+         given={Preethi},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=HH}{%
+         family={Hu},
+         familyi={H\bibinitperiod},
+         given={Hao},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ZJ+1}
+    \strng{fullhash}{ZJCDPMNPHH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Z}
+    \field{sortinithash}{Z}
+    \verb{doi}
+    \verb 10.1109/SOSE.2013.73
+    \endverb
+    \field{isbn}{978-1-4673-5659-6}
+    \field{pages}{320\bibrangedash 323}
+    \field{title}{Improving Web Sites Performance Using Edge Servers in Fog
+  Computing Architecture}
+    \field{month}{03}
+    \field{year}{2013}
+  \endentry
+\enddatalist
+\endinput

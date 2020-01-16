@@ -1,0 +1,24 @@
+
+
+The Peer to Peer (P2P) paradigm has been extensibly used to implement distributed, scalable, fault-tolerant services, it overcomes limitations such as scalability and fault-tolerance that arise from the client-server model. 
+
+There are many types of services that are based on P2P systems, however, most popular types of services built on this paradigm are: resource location, content delivery, cryptocurrency or blockchain, etc. Popular services built on this paradigm are file sharing applications, (e.g. Napster, BitTorrent, Emule and Gnutella), cryptocurrencies (Bitcoin), streaming (Skype), anonymity services (TOR) among others. 
+
+Collaboration is the foundation of the benefits provided by P2P. Participants of the system (peers) perform tasks that contribute towards a common goal which is beneficial for the overall functioning of the system. Collaboration enables P2P systems that accomplish tasks would otherwise be impossible by an individual server.  % citations
+
+In a P2P system peers contribute with a portion of their resources (such as computing, memory or network bandwidth, among others) to other participants as well as consume resources from other peers. This contrasts with the traditional client-server paradigm where the consumption and supply of resources is decoupled. Finally, fault tolerance is achieved by the absence of a centralized point of failure.
+
+\subsubsection{Membership in P2P systems}
+
+One factor that imposes a crucial difference in how these systems behave is the membership information, a participant in the system that knows every other participant in the system is said to have \textbf{full membership}, the alternative is called \textbf{partial membership}, where a peer is only aware of a partial number of elements in the system.
+
+\textbf{Full membership} systems are usually employed in small to medium sized storage solutions like on One-Hop distributed hash tables(DHT) e.g. Kademlia \cite{10.1007/3-540-45748-8_5} and Amazon's Dynamo \cite{decandia2007dynamo}. 
+
+However, full membership solutions  have scalability problems due to memory constrains and the increase in messages necessary to maintain the membership information up-to-date. Finally, maintaining full membership is costly in the presence churn (participants entering and leaving the system concurrently). % citations
+
+\textbf{Partial membership} systems rely on some membership mechanism that restricts each peer to only have a few neighboring relations that are used to perform communication (usually through message exchanges) between each other. Similarly to full membership, the number of connections a peer has  dictates the scalability of the system, where systems with larger views will have a harder time maintaining them. 
+
+The accumulation of the partial views of all peers in the system dictates the topology of the overlay network. Topology management consists in the creation and management of an \textbf{overlay network}, which consists in a logical network built on top of another network (usually the internet). Elements of overlays are connected through virtual links that are a combination of one or more underlying physical links.
+
+The way the aforementioned links are organized dictate the type of overlay: if the links are logically organized by some metric, we call it a \textbf{structured overlay}. On contrary, when there are no restrictions form the links, we call it an \textbf{unstructured overlay}. Services then leverage on the topologies that are tailored as closely as possible towards application requirements to build efficient services.
+

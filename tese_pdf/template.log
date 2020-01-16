@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.10.19)  15 JAN 2020 08:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.10.19)  16 JAN 2020 17:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1812,50 +1812,54 @@ Package biblatex Info: Trying to load language 'portuguese'...
 Package biblatex Info: ... file 'portuguese.lbx' found.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/biblatex/lbx/portuguese.lbx
 File: portuguese.lbx 2018/11/02 v3.12 biblatex localization (PK/MW)
-)) (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/template.aux)
+)) (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/template.aux
+
+LaTeX Warning: Label `sec:aggregation' multiply defined.
+
+)
 \openout1 = `template.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/jkp/m/it on input line 276.
-LaTeX Font Info:    Try loading font information for OML+jkp on input line 276.
+LaTeX Font Info:    Checking defaults for OML/jkp/m/it on input line 274.
+LaTeX Font Info:    Try loading font information for OML+jkp on input line 274.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/kpfonts/omljkp.fd
 File: omljkp.fd 2006/08/15 v1.0
 )
-LaTeX Font Info:    ... okay on input line 276.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 276.
-LaTeX Font Info:    ... okay on input line 276.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 276.
-LaTeX Font Info:    ... okay on input line 276.
-LaTeX Font Info:    Checking defaults for OMS/jkp/m/n on input line 276.
-LaTeX Font Info:    Try loading font information for OMS+jkp on input line 276.
+LaTeX Font Info:    ... okay on input line 274.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 274.
+LaTeX Font Info:    ... okay on input line 274.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 274.
+LaTeX Font Info:    ... okay on input line 274.
+LaTeX Font Info:    Checking defaults for OMS/jkp/m/n on input line 274.
+LaTeX Font Info:    Try loading font information for OMS+jkp on input line 274.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/kpfonts/omsjkp.fd
 File: omsjkp.fd 2006/08/15 v1.0
 )
-LaTeX Font Info:    ... okay on input line 276.
-LaTeX Font Info:    Checking defaults for OMX/jkp/m/n on input line 276.
-LaTeX Font Info:    Try loading font information for OMX+jkp on input line 276.
+LaTeX Font Info:    ... okay on input line 274.
+LaTeX Font Info:    Checking defaults for OMX/jkp/m/n on input line 274.
+LaTeX Font Info:    Try loading font information for OMX+jkp on input line 274.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/kpfonts/omxjkp.fd
 File: omxjkp.fd 2006/08/15 v1.0
 )
-LaTeX Font Info:    ... okay on input line 276.
-LaTeX Font Info:    Checking defaults for U/jkpexa/m/n on input line 276.
-LaTeX Font Info:    Try loading font information for U+jkpexa on input line 276.
+LaTeX Font Info:    ... okay on input line 274.
+LaTeX Font Info:    Checking defaults for U/jkpexa/m/n on input line 274.
+LaTeX Font Info:    Try loading font information for U+jkpexa on input line 274.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/kpfonts/ujkpexa.fd
 File: ujkpexa.fd 2006/08/15 v1.0
 )
-LaTeX Font Info:    ... okay on input line 276.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 276.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 276.
+LaTeX Font Info:    ... okay on input line 274.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 274.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 274.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 276.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 276.
-LaTeX Font Info:    ... okay on input line 276.
-LaTeX Font Info:    Try loading font information for T1+jkp on input line 276.
+LaTeX Font Info:    ... okay on input line 274.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 274.
+LaTeX Font Info:    ... okay on input line 274.
+LaTeX Font Info:    Try loading font information for T1+jkp on input line 274.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/kpfonts/t1jkp.fd
 File: t1jkp.fd 2007/01/24 Fontinst v1.928 font definitions for T1/jkp.
 )
-LaTeX Info: Redefining \microtypecontext on input line 276.
+LaTeX Info: Redefining \microtypecontext on input line 274.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2),
 (microtype)             factor: 1100.
@@ -1911,7 +1915,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 \AtBeginShipoutBox=\box56
 \c@lstlisting=\count466
-Package hyperref Info: Link coloring ON on input line 276.
+Package hyperref Info: Link coloring ON on input line 274.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
  (/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -1921,10 +1925,11 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 Redoing nameref's sectioning
 Redoing nameref's label
-LaTeX Info: Redefining \nameref on input line 276.
-LaTeX Info: Redefining \ref on input line 276.
-LaTeX Info: Redefining \pageref on input line 276.
-LaTeX Info: Redefining \nameref on input line 276.
+LaTeX Info: Redefining \nameref on input line 274.
+LaTeX Info: Redefining \ref on input line 274.
+LaTeX Info: Redefining \pageref on input line 274.
+LaTeX Info: Redefining \nameref on input line 274.
+(/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/template.out) (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/template.out)
 \@outlinefile=\write6
 \openout6 = `template.out'.
 
@@ -1937,12 +1942,28 @@ Package biblatex Info: Data encoding 'utf8' specified.
 \openout4 = `template-blx.bib'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'template.bbl' not found.
-No file template.bbl.
-Package biblatex Info: Reference section=0 on input line 276.
-Package biblatex Info: Reference segment=0 on input line 276.
-ABD: EveryShipout initializing macros
-LaTeX Font Info:    Try loading font information for T1+phv on input line 281.
+Package biblatex Info: ... file 'template.bbl' found.
+ (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/template.bbl
+
+Package biblatex Warning: BibTeX reported the following issues
+(biblatex)                with '990064':
+(biblatex)                - Invalid format of field 'month'.
+
+
+Package biblatex Warning: BibTeX reported the following issues
+(biblatex)                with 'finnegan_2013':
+(biblatex)                - Invalid format of field 'month'.
+
+
+Package biblatex Warning: BibTeX reported the following issues
+(biblatex)                with 'Hyparview':
+(biblatex)                - Invalid format of field 'month'.
+
+)
+Package biblatex Info: Reference section=0 on input line 274.
+Package biblatex Info: Reference segment=0 on input line 274.
+ ABD: EveryShipout initializing macros
+LaTeX Font Info:    Try loading font information for T1+phv on input line 279.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
@@ -1951,7 +1972,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 \novathesis@savebox=\box57
-LaTeX Font Info:    Try loading font information for OT1+jkp on input line 281.
+LaTeX Font Info:    Try loading font information for OT1+jkp on input line 279.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/kpfonts/ot1jkp.fd
 File: ot1jkp.fd 2007/08/30 Fontinst v1.928 font definitions for OT1/jkp.
 )
@@ -1959,56 +1980,43 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `jkp' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Try loading font information for U+jkpmia on input line 281.
+LaTeX Font Info:    Try loading font information for U+jkpmia on input line 279.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/kpfonts/ujkpmia.fd
 File: ujkpmia.fd 2006/08/15 v1.0
 )
-LaTeX Font Info:    Try loading font information for U+jkpsya on input line 281.
+LaTeX Font Info:    Try loading font information for U+jkpsya on input line 279.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/kpfonts/ujkpsya.fd
 File: ujkpsya.fd 2006/08/15 v1.0
 )
-LaTeX Font Info:    Try loading font information for U+jkpsyb on input line 281.
+LaTeX Font Info:    Try loading font information for U+jkpsyb on input line 279.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/kpfonts/ujkpsyb.fd
 File: ujkpsyb.fd 2006/08/15 v1.0
 )
-LaTeX Font Info:    Try loading font information for U+jkpsyc on input line 281.
+LaTeX Font Info:    Try loading font information for U+jkpsyc on input line 279.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/kpfonts/ujkpsyc.fd
 File: ujkpsyc.fd 2006/08/15 v1.0
 )
-<novathesis-files/Schools/nova/fct/Images/cover-msc-std.pdf, id=31, 597.23125pt x 845.1575pt>
+<novathesis-files/Schools/nova/fct/Images/cover-msc-std.pdf, id=127, 597.23125pt x 845.1575pt>
 File: novathesis-files/Schools/nova/fct/Images/cover-msc-std.pdf Graphic file (type pdf)
 <use novathesis-files/Schools/nova/fct/Images/cover-msc-std.pdf>
-Package pdftex.def Info: novathesis-files/Schools/nova/fct/Images/cover-msc-std.pdf  used on input line 281.
+Package pdftex.def Info: novathesis-files/Schools/nova/fct/Images/cover-msc-std.pdf  used on input line 279.
 (pdftex.def)             Requested size: 597.54874pt x 845.06516pt.
  [1
 
 
 {/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map} </Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/novathesis-files/Schools/nova/fct/Images/cover-msc-std.pdf>] [2
 
-]
-LaTeX Font Info:    Try loading font information for TS1+jkp on input line 283.
- (/usr/local/texlive/2019/texmf-dist/tex/latex/kpfonts/ts1jkp.fd
-File: ts1jkp.fd 2007/08/30 Fontinst v1.928 font definitions for TS1/jkp.
-)
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `jkp' (encoding: TS1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
-LaTeX Font Info:    Calculating math sizes for size <6.3> on input line 283.
-LaTeX Font Info:    Try loading font information for T1+jkptt on input line 283.
- (/usr/local/texlive/2019/texmf-dist/tex/latex/kpfonts/t1jkptt.fd
-File: t1jkptt.fd 2007/01/26 Fontinst v1.928 font definitions for T1/jkptt.
-)
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `jkptt' (encoding: T1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
- [3
+] (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/abstract-pt.tex
+Underfull \hbox (badness 10000) in paragraph at lines 285--8
+
+ []
+
+) [3
 
 ] [4
 
-] (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/abstract-pt.tex
-Underfull \hbox (badness 10000) in paragraph at lines 287--8
+] (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/abstract-en.tex
+Underfull \hbox (badness 10000) in paragraph at lines 285--8
 
  []
 
@@ -2016,513 +2024,132 @@ Underfull \hbox (badness 10000) in paragraph at lines 287--8
 
 ] [6
 
-] (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/abstract-en.tex
-Underfull \hbox (badness 10000) in paragraph at lines 287--8
+] (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/template.toc) [7] [8
 
- []
-
-) [7
-
-] [8
-
-] [9] [10
-
-] [11
-
-] [12
-
-] [13] [14
-
-]
-
-Package hyperref Warning: old lol file detected, not used; run LaTeX again.
-
-[15] [16
-
-]
-
-Package glossaries Warning: Empty glossary for \printnoidxglossary[type={main}]. Rerun may be required (or you may have forgotten to use commands like \gls) on input line 290.
-
-
-Package glossaries Warning: Empty glossary for \printnoidxglossary[type={acronym}]. Rerun may be required (or you may have forgotten to use commands like \gls) on input line 290.
-
-(/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/introduction.tex
-
-LaTeX Warning: Citation '10.1145/1721654.1721672' on page 1 undefined on input line 17.
-
-
-LaTeX Warning: Citation 'finnegan_2013' on page 1 undefined on input line 23.
-
-
-LaTeX Warning: Citation 'datafloq' on page 1 undefined on input line 23.
-
-
+] (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/introduction.tex
 Underfull \vbox (badness 1616) has occurred while \output is active []
 
  [1
 
 
+] [2]
+LaTeX Font Info:    Try loading font information for TS1+jkp on input line 48.
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/kpfonts/ts1jkp.fd
+File: ts1jkp.fd 2007/08/30 Fontinst v1.928 font definitions for TS1/jkp.
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `jkp' (encoding: TS1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+) [3] [4
+
+] (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work/resource_location.tex [5
+
+] [6]
+/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work/resource_location.tex:36: Missing $ inserted.
+<inserted text> 
+                $
+l.36 \paragraph
+               { \textbf{Tapestry} \cite{tapestry} Is a DHT similar to pastr...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work/resource_location.tex:36: Extra }, or forgotten $.
+\frac  #1#2->{\begingroup #1\endgroup \@@over #2}
+                                                 
+l.36 \paragraph
+               { \textbf{Tapestry} \cite{tapestry} Is a DHT similar to pastr...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work/resource_location.tex:36: Extra }, or forgotten $.
+\@svsechd ...d to Pastry, Chord or Kademlia. }{4}}
+                                                  \csname paragraphmark\endc...
+l.36 \paragraph
+               { \textbf{Tapestry} \cite{tapestry} Is a DHT similar to pastr...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work/resource_location.tex:36: Missing $ inserted.
+<inserted text> 
+                $
+l.36 \paragraph
+               { \textbf{Tapestry} \cite{tapestry} Is a DHT similar to pastr...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work/resource_location.tex:36: Missing } inserted.
+<inserted text> 
+                }
+l.36 \paragraph
+               { \textbf{Tapestry} \cite{tapestry} Is a DHT similar to pastr...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work/resource_location.tex:36: Missing } inserted.
+<inserted text> 
+                }
+l.36 \paragraph
+               { \textbf{Tapestry} \cite{tapestry} Is a DHT similar to pastr...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
 
 
-
-]
-
-LaTeX Warning: Citation 'iot_journal_shi_weisong_and_cao' on page 2 undefined on input line 27.
-
-
-LaTeX Warning: Citation 'DBLP:journals/corr/abs-1805-06989' on page 2 undefined on input line 32.
-
-
-LaTeX Warning: Citation 'yi2015fog' on page 2 undefined on input line 36.
-
-
-LaTeX Warning: Citation 'Improving_Web_Sites_Performance_Using_Edge_Servers_in_Fog_Computing_Architecture' on page 2 undefined on input line 36.
-
-
-Overfull \hbox (43.30405pt too wide) in paragraph at lines 36--38
-\T1/jkp/m/n/10.95 (-10) [[]].
+Overfull \hbox (1500.913pt too wide) in paragraph at lines 36--36
+\T1/jkp/b/n/10.95 sys-tem, each af-fi-nity group con-tains n$[]$ 
  []
 
-) [2] (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex [3
-
-
-]
-
-LaTeX Warning: Citation '10.1007/3-540-45748-8_5' on page 4 undefined on input line 27.
-
-
-LaTeX Warning: Citation 'decandia2007dynamo' on page 4 undefined on input line 27.
-
-
-Overfull \hbox (52.56914pt too wide) in paragraph at lines 27--27
-\T1/jkp/b/n/10.95 lu-ti-ons like on One-Hop dis-tri-bu-ted hash ta-bles(DHT) e.g. Ka-dem-lia [[]]
- []
-
-[4]
-Runaway argument?
-{ \textbf {Chord} \cite {stoica2003chord} is a distributed lookup pro\ETC.
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:63: Paragraph ended before \M@sect was complete.
-<to be read again> 
-                   \par 
-l.63 ...ps only take logarithmic time to finish. }
+/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work/resource_location.tex:36: Undefined control sequence.
+<argument> ...sized neighbor map of size $b.\logb 
+                                                  (N)$. 
+l.36 ...sized neighbor map of size $b.\logb(N)$. }
                                                   
-I suspect you've forgotten a `}', causing me to apply this
-control sequence to too much text. How can we recover?
-My plan is to forget the whole thing and hope for the best.
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:63: Too many }'s.
-\@xxtrplarg #1#2->#1[{#2}
-                         ][{#2}]{#2}
-l.63 ...ps only take logarithmic time to finish. }
-                                                  
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
+/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work/resource_location.tex:39: Undefined control sequence.
+<argument> ...sized neighbor map of size $b.\logb 
+                                                  (N)$. 
+l.39 \textcolor{red}{surrogate routing}
+                                       
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
-
-LaTeX Warning: Citation 'stoica2003chord' on page 5 undefined on input line 63.
-
-[5]
-
-LaTeX Warning: Citation 'stoica2003chord' on page 6 undefined on input line 63.
-
-Runaway argument?
-{ \textbf {Pastry} \cite {rowstron2001pastry} is a DHT that assigns a\ETC.
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:69: Paragraph ended before \M@sect was complete.
-<to be read again> 
-                   \par 
-l.69 ... formal analysis of worst case behavior. }
-                                                  
-I suspect you've forgotten a `}', causing me to apply this
-control sequence to too much text. How can we recover?
-My plan is to forget the whole thing and hope for the best.
-
-
-LaTeX Warning: Citation '10.1007/3-540-45546-9_3' on page 6 undefined on input line 69.
-
-
-LaTeX Warning: Citation '990064' on page 6 undefined on input line 69.
-
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:69: Too many }'s.
-\@xxtrplarg #1#2->#1[{#2}
-                         ][{#2}]{#2}
-l.69 ... formal analysis of worst case behavior. }
-                                                  
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
-
-
-LaTeX Warning: Citation 'rowstron2001pastry' on page 6 undefined on input line 69.
-
-[6]
-
-LaTeX Warning: Citation '10.1007/3-540-45546-9_3' on page 7 undefined on input line 69.
-
-
-LaTeX Warning: Citation '990064' on page 7 undefined on input line 69.
-
-
-LaTeX Warning: Citation 'rowstron2001pastry' on page 7 undefined on input line 69.
-
-
-LaTeX Warning: Citation '10.1007/3-540-45546-9_3' on page 7 undefined on input line 69.
-
-
-LaTeX Warning: Citation '990064' on page 7 undefined on input line 69.
-
-Runaway argument?
-{ \textbf {Kademlia} \cite {10.1007/3-540-45748-8_5} is a DHT with pr\ETC.
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:75: Paragraph ended before \M@sect was complete.
-<to be read again> 
-                   \par 
-l.75 ...re already present in the routing table. }
-                                                  
-I suspect you've forgotten a `}', causing me to apply this
-control sequence to too much text. How can we recover?
-My plan is to forget the whole thing and hope for the best.
-
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:75: Too many }'s.
-\@xxtrplarg #1#2->#1[{#2}
-                         ][{#2}]{#2}
-l.75 ...re already present in the routing table. }
-                                                  
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
-
-
-LaTeX Warning: Citation '10.1007/3-540-45748-8_5' on page 7 undefined on input line 75.
+/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work/resource_location.tex:39: Undefined control sequence.
+<argument> ...sized neighbor map of size $b.\logb 
+                                                  (N)$. }{\thepage }{\@curre...
+l.39 \textcolor{red}{surrogate routing}
+                                       
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
 [7]
-
-LaTeX Warning: Citation '10.1007/3-540-45748-8_5' on page 8 undefined on input line 75.
-
-Runaway argument?
-{ \textbf {Kelips} \cite {gupta2003kelips} exploits increased memory \ETC.
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:81: Paragraph ended before \M@sect was complete.
-<to be read again> 
-                   \par 
-l.81 ...n compared to Pastry, Chord or Kademlia. }
-                                                  
-I suspect you've forgotten a `}', causing me to apply this
-control sequence to too much text. How can we recover?
-My plan is to forget the whole thing and hope for the best.
-
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:81: Missing $ inserted.
-<inserted text> 
-                $
-l.81 ...n compared to Pastry, Chord or Kademlia. }
-                                                  
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:81: Extra }, or forgotten $.
-\frac  #1#2->{\begingroup #1\endgroup \@@over #2}
-                                                 
-l.81 ...n compared to Pastry, Chord or Kademlia. }
-                                                  
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:81: Missing $ inserted.
-<inserted text> 
-                $
-l.81 ...n compared to Pastry, Chord or Kademlia. }
-                                                  
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Overfull \hbox (345.37347pt too wide) in paragraph at lines 81--81
-\T1/jkp/m/n/10.95 (-10) thus, with $\OML/jkp/m/it/10.95 n$ \T1/jkp/m/n/10.95 (-10) no-des in the sys-tem, each af-fi-nity group con-tains n$[]$ 
- []
-
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:81: Missing $ inserted.
-<inserted text> 
-                $
-l.81 ...n compared to Pastry, Chord or Kademlia. }
-                                                  
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:81: Extra }, or forgotten $.
-\@xxtrplarg #1#2->#1[{#2}
-                         ][{#2}]{#2}
-l.81 ...n compared to Pastry, Chord or Kademlia. }
-                                                  
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:81: You can't use `\spacefactor' in math mode.
-\blx@leavevmode ...\else \leavevmode \spacefactor 
-                                                  \blx@sf@par \fi 
-l.81 ...n compared to Pastry, Chord or Kademlia. }
-                                                  
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-
-LaTeX Warning: Citation 'gupta2003kelips' on page 8 undefined on input line 81.
-
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:81: You can't use `\spacefactor' in math mode.
-\reserved@b ->\spacefactor 
-                           \@m 
-l.81 ...n compared to Pastry, Chord or Kademlia. }
-                                                  
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:81: Missing $ inserted.
-<inserted text> 
-                $
-l.81 ...n compared to Pastry, Chord or Kademlia. }
-                                                  
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:81: Missing } inserted.
-<inserted text> 
-                }
-l.81 ...n compared to Pastry, Chord or Kademlia. }
-                                                  
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-Missing character: There is no ò in font jkpex!
-Missing character: There is no è in font jkpex!
-
-Overfull \hbox (1576.64302pt too wide) in paragraph at lines 81--81
-\T1/jkp/m/n/10.95 (-10) con-sump-tion (O($[]\OT1/jkp/m/n/10.95 (-10) )\OML/jkp/m/it/10.95 assumingaproportionalnumberoffilesandpeersinthesystemandafixedviewofnodesinforeignaffinitygroups\OT1/jkp/m/n/10.95 (-10) )\OML/jkp/m/it/10.95 ; KelipsachievesO\OT1/jkp/m/n/10.95 (-10) (1)\OML/jkp/m/it/10.95 timeandmessagecomplexityinlookups:However; systemscalabilityislimitedwhencomparedtoPastry; ChordorKademlia:\OT1/jkp/m/n/10.95 (-10) ][[]$ 
- []
-
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:81: Missing $ inserted.
-<inserted text> 
-                $
-l.81 ...n compared to Pastry, Chord or Kademlia. }
-                                                  
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:81: Extra }, or forgotten $.
-\frac  #1#2->{\begingroup #1\endgroup \@@over #2}
-                                                 
-l.81 ...n compared to Pastry, Chord or Kademlia. }
-                                                  
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:81: Missing $ inserted.
-<inserted text> 
-                $
-l.81 ...n compared to Pastry, Chord or Kademlia. }
-                                                  
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Overfull \hbox (345.37347pt too wide) in paragraph at lines 81--81
-\T1/jkp/m/n/10.95 (-10) thus, with $\OML/jkp/m/it/10.95 n$ \T1/jkp/m/n/10.95 (-10) no-des in the sys-tem, each af-fi-nity group con-tains n$[]$ 
- []
-
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:81: Missing $ inserted.
-<inserted text> 
-                $
-l.81 ...n compared to Pastry, Chord or Kademlia. }
-                                                  
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:81: Extra }, or forgotten $.
-\@xxtrplarg #1#2->#1[{#2}][{#2}
-                               ]{#2}
-l.81 ...n compared to Pastry, Chord or Kademlia. }
-                                                  
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:81: You can't use `\spacefactor' in math mode.
-\blx@leavevmode ...\else \leavevmode \spacefactor 
-                                                  \blx@sf@par \fi 
-l.81 ...n compared to Pastry, Chord or Kademlia. }
-                                                  
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-
-LaTeX Warning: Citation 'gupta2003kelips' on page 8 undefined on input line 81.
-
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:81: You can't use `\spacefactor' in math mode.
-\reserved@b ->\spacefactor 
-                           \@m 
-l.81 ...n compared to Pastry, Chord or Kademlia. }
-                                                  
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
-
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:81: Missing $ inserted.
-<inserted text> 
-                $
-l.81 ...n compared to Pastry, Chord or Kademlia. }
-                                                  
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:81: Missing } inserted.
-<inserted text> 
-                }
-l.81 ...n compared to Pastry, Chord or Kademlia. }
-                                                  
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-Missing character: There is no ò in font jkpex!
-Missing character: There is no è in font jkpex!
-
-Overfull \hbox (1573.10902pt too wide) in paragraph at lines 81--81
-\T1/jkp/m/n/10.95 (-10) con-sump-tion (O($[]\OT1/jkp/m/n/10.95 (-10) )\OML/jkp/m/it/10.95 assumingaproportionalnumberoffilesandpeersinthesystemandafixedviewofnodesinforeignaffinitygroups\OT1/jkp/m/n/10.95 (-10) )\OML/jkp/m/it/10.95 ; KelipsachievesO\OT1/jkp/m/n/10.95 (-10) (1)\OML/jkp/m/it/10.95 timeandmessagecomplexityinlookups:However; systemscalabilityislimitedwhencomparedtoPastry; ChordorKademlia:\OT1/jkp/m/n/10.95 (-10) ][]$ 
- []
-
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:81: Missing $ inserted.
-<inserted text> 
-                $
-l.81 ...n compared to Pastry, Chord or Kademlia. }
-                                                  
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:81: Extra }, or forgotten $.
-\frac  #1#2->{\begingroup #1\endgroup \@@over #2}
-                                                 
-l.81 ...n compared to Pastry, Chord or Kademlia. }
-                                                  
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:81: Missing $ inserted.
-<inserted text> 
-                $
-l.81 ...n compared to Pastry, Chord or Kademlia. }
-                                                  
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Overfull \hbox (345.37347pt too wide) in paragraph at lines 81--81
-\T1/jkp/m/n/10.95 (-10) thus, with $\OML/jkp/m/it/10.95 n$ \T1/jkp/m/n/10.95 (-10) no-des in the sys-tem, each af-fi-nity group con-tains n$[]$ 
- []
-
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:81: Missing $ inserted.
-<inserted text> 
-                $
-l.81 ...n compared to Pastry, Chord or Kademlia. }
-                                                  
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:81: Extra }, or forgotten $.
-\@xxtrplarg #1#2->#1[{#2}][{#2}]{#2}
-                                    
-l.81 ...n compared to Pastry, Chord or Kademlia. }
-                                                  
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:82: Missing $ inserted.
-<inserted text> 
-                $
-l.82 
-     
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Overfull \hbox (867.84619pt too wide) in paragraph at lines 81--82
-\T1/jkp/m/n/10.95 (-10) con-sump-tion (O($[]\OT1/jkp/m/n/10.95 (-10) )\OML/jkp/m/it/10.95 assumingaproportionalnumberoffilesandpeersinthesystemandafixedviewofnodesinforeignaffinitygroups\OT1/jkp/m/n/10.95 (-10) )\OML/jkp/m/it/10.95 ; KelipsachievesO\OT1/jkp/m/n/10.95 (-10) (1)\OML/jkp/m/it/10.95 timeandmessagecomplexityinlookups:However; systemscalabilityislimitedwhencomparedtoPastry; ChordorKademlia:$ 
- []
-
-Runaway argument?
-{ \textbf {Tapestry} \cite {tapestry} Is a DHT similar to pastry wher\ETC.
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:85: Paragraph ended before \M@sect was complete.
-<to be read again> 
-                   \par 
-l.85 ...sized neighbor map of size $b.\logb(N)$. }
-                                                  
-I suspect you've forgotten a `}', causing me to apply this
-control sequence to too much text. How can we recover?
-My plan is to forget the whole thing and hope for the best.
-
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:85: Undefined control sequence.
-<argument> ...sized neighbor map of size $b.\logb 
-                                                  (N)$. 
-l.85 ...sized neighbor map of size $b.\logb(N)$. }
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-LaTeX Warning: Citation 'tapestry' on page 8 undefined on input line 85.
-
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:85: Undefined control sequence.
-<argument> ...sized neighbor map of size $b.\logb 
-                                                  (N)$. 
-l.85 ...sized neighbor map of size $b.\logb(N)$. }
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-LaTeX Warning: Citation 'tapestry' on page 8 undefined on input line 85.
-
-[8]
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:85: Undefined control sequence.
-<argument> ...sized neighbor map of size $b.\logb 
-                                                  (N)$. 
-l.85 ...sized neighbor map of size $b.\logb(N)$. }
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:108: Misplaced alignment tab character &.
-l.108 ...ibe resources (e.g. "pop", "rock", "pop &
+/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work/resource_location.tex:59: Misplaced alignment tab character &.
+l.59 ...ribe resources (e.g. "pop", "rock", "pop &
                                                   & rock" ...) . These queri...
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -2531,8 +2158,8 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work.tex:108: Misplaced alignment tab character &.
-l.108 ...be resources (e.g. "pop", "rock", "pop &&
+/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work/resource_location.tex:59: Misplaced alignment tab character &.
+l.59 ...ibe resources (e.g. "pop", "rock", "pop &&
                                                    rock" ...) . These querie...
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -2541,96 +2168,73 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-[9]
+[8]) (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work/resource_management.tex) (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work/aggregation.tex [9]) (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work/resource_discovery.tex)) [10] [11] [12
 
-LaTeX Warning: Citation 'Hyparview' on page 10 undefined on input line 124.
-
-) [10] (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/proposed_solution.tex [11
-
-
-]) [12] (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/planning.tex
-
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 11.
-
-)
-
-LaTeX Warning: Empty bibliography on input line 298.
-
-[13
-
+] (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/proposed_solution.tex) [13
 
 ] [14
 
-] (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/appendix/appendix1.tex) [15
-
-
+] (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/planning.tex) [15
 
 ] [16
 
-] (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/annex/annex1.tex) [17
+]
+LaTeX Font Info:    Try loading font information for T1+jkptt on input line 296.
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/kpfonts/t1jkptt.fd
+File: t1jkptt.fd 2007/01/26 Fontinst v1.928 font definitions for T1/jkptt.
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `jkptt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+ [17] [18] (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/appendix/appendix1.tex) [19
+
+
+
+
+] [20
+
+] (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/annex/annex1.tex)
+
+Package glossaries Warning: No \printnoidxglossary or \printnoidxglossaries
+ found. (Remove \makenoidxglossaries if you don't want any glossaries.)
+This document will not have a glossary.
+
+[21
 
 
 ]
 \tf@toc=\write7
 \openout7 = `template.toc'.
 
-\tf@lof=\write8
-\openout8 = `template.lof'.
-
-\tf@lot=\write9
-\openout9 = `template.lot'.
-
-\tf@lol=\write10
-\openout10 = `template.lol'.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 308.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 308.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 306.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 306.
  (/Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/template.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 308.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 308.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 306.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 306.
+Package rerunfilecheck Info: File `template.out' has not changed.
+(rerunfilecheck)             Checksum: 8F2326800156B271F688E6BCA1D190DE;1483.
 
 
-Package rerunfilecheck Warning: File `template.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `template.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  14C321BFE86A1FBB36CBEADBCA42700E;1529.
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package biblatex Warning: Please (re)run BibTeX on the file(s):
-(biblatex)                template
-(biblatex)                and rerun LaTeX afterwards.
+LaTeX Warning: There were multiply-defined labels.
 
 Package logreq Info: Writing requests to 'template.run.xml'.
 \openout1 = `template.run.xml'.
 
- )
-(\end occurred inside a group at level 2)
-
-### simple group (level 2) entered at line 81 ({)
-### simple group (level 1) entered at line 81 ({)
-### bottom level 
+ ) 
 Here is how much of TeX's memory you used:
- 41157 strings out of 492609
- 746893 string characters out of 6129047
- 1293186 words of memory out of 5000000
- 44057 multiletter control sequences out of 15000+600000
- 198487 words of font info for 269 fonts, out of 8000000 for 9000
+ 41288 strings out of 492609
+ 752992 string characters out of 6129047
+ 1290186 words of memory out of 5000000
+ 44102 multiletter control sequences out of 15000+600000
+ 166707 words of font info for 271 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 72i,13n,96p,2074b,2434s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/kpfonts/kpfonts-expert.enc}{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpbne.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpbsc8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpmi.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpmne.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpmsc8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpsy.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpttmn8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on /Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/template.pdf (33 pages, 235623 bytes).
+ 72i,12n,96p,2074b,2434s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/kpfonts/kpfonts-expert.enc}</usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpbne.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpbsc8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpmi.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpmne.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpmsc8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpsy.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/kpfonts/jkpttmn8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
+Output written on /Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/template.pdf (29 pages, 261521 bytes).
 PDF statistics:
- 301 PDF objects out of 1000 (max. 8388607)
- 229 compressed objects within 3 object streams
- 80 named destinations out of 1000 (max. 500000)
- 50802 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 445 PDF objects out of 1000 (max. 8388607)
+ 375 compressed objects within 4 object streams
+ 99 named destinations out of 1000 (max. 500000)
+ 52018 words of extra memory for PDF output out of 61914 (max. 10000000)
 
