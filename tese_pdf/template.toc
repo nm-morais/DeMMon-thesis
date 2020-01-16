@@ -40,9 +40,9 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{ \textbf {Kademlia} \cite {10.1007/3-540-45748-8_5} is a DHT with provable consistency and performance in a fault-prone environment. Kademlia nodes are assigned 160-bit identifiers uniformly distributed in the ID space. Peers route queries and locate nodes by employing a XOR-based distance function that is symmetric and unidirectional. Each node in Kademlia is a router whose routing tables consist of shortcuts to peers whose \textbf {xor distance} is between \(2^{i}\) by \(2^{i + 1}\) in the ID space. Intuitively, and similar to Pastry, "closer" nodes are those that share a longer common prefix. The main benefits that Kademlia draws from this approach are: nodes learn routing information from receiving messages, there is a single routing algorithm for the whole routing process (unlike Pastry) which eases formal analysis of worst-case behavior. Finally, Kademlia exploits the fact that node failures are inversely related to uptime by prioritizing nodes that are already present in the routing table. }{7}{section*.8}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{ \textbf {Kelips} \cite {gupta2003kelips} exploits increased memory usage and constant background communication to achieve O(1) lookup time and message complexity. Kelips nodes are split in $k$ affinity groups split in the intervals [0,$k-1$] of the ID space, thus, with $n$ nodes in the system, each affinity group contains \frac {n}{k} peers. Each node stores a partial set of nodes contained in the same affinity group and a small set of nodes lying in foreign affinity groups. Through increased communication cost by employing Gossip protocols and memory consumption (O(\sqrt {n}) assuming a proportional number of files and peers in the system and a fixed view of nodes in foreign affinity groups), Kelips achieves O(1) time and message complexity in lookups. However, system scalability is limited when compared to Pastry, Chord or Kademlia. }{7}{section*.9}% 
+\contentsline {paragraph}{ \textbf {Kelips} \cite {gupta2003kelips} exploits increased memory usage and constant background communication to achieve O(1) lookup time and message complexity. Kelips nodes are split in $k$ affinity groups split in the intervals [0,$k-1$] of the ID space, thus, with $n$ nodes in the system, each affinity group contains $\frac {n}{k}$ peers. Each node stores a partial set of nodes contained in the same affinity group and a small set of nodes lying in foreign affinity groups. Through increased communication cost by employing Gossip protocols and memory consumption (O($\sqrt {n}$) assuming a proportional number of files and peers in the system and a fixed view of nodes in foreign affinity groups), Kelips achieves O(1) time and message complexity in lookups. However, system scalability is limited when compared to Pastry, Chord or Kademlia. }{8}{section*.9}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{ \textbf {Tapestry} \cite {tapestry} Is a DHT similar to pastry where messages are incrementally forwarded to the destination digit by digit (e.g. ***8 -> **98 -> *598 -> 4598). Lookups have logb(n) time complexity where b is the base of the ID space. A system with n nodes has a resulting topology composed of n spanning trees, where each node is the root of its own tree. Because nodes assume that the preceding digits all match the current node's suffix, it only needs to keep a constant size of entries at each route level. Thus, nodes contain entries for a fixed-sized neighbor map of size $b.(N)$. }{8}{section*.10}% 
+\contentsline {paragraph}{ \textbf {Tapestry} \cite {tapestry} Is a DHT similar to pastry where messages are incrementally forwarded to the destination digit by digit (e.g. ***8 -> **98 -> *598 -> 4598). Lookups have logb(n) time complexity where b is the base of the ID space. A system with n nodes has a resulting topology composed of n spanning trees, where each node is the root of its own tree. Because nodes assume that the preceding digits all match the current node's suffix, it only needs to keep a constant size of entries at each route level. Thus, nodes contain entries for a fixed-sized neighbor map of size b.log(N). }{8}{section*.10}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{\textbf {Viceroy} }{8}{section*.11}% 
 \defcounter {refsection}{0}\relax 
@@ -60,29 +60,31 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{\textbf {Build One Get One Free}}{9}{section*.15}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.2}Aggregation}{9}{section.2.2}% 
+\contentsline {section}{\numberline {2.2}Aggregation}{10}{section.2.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2.1}Types of aggregation}{9}{subsection.2.2.1}% 
+\contentsline {subsection}{\numberline {2.2.1}Types of aggregation}{10}{subsection.2.2.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2.2}Relevant aggregation protocols}{9}{subsection.2.2.2}% 
+\contentsline {subsection}{\numberline {2.2.2}Relevant aggregation protocols}{10}{subsection.2.2.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.3}Offloading computation to the edge}{9}{section.2.3}% 
+\contentsline {section}{\numberline {2.3}Offloading computation to the edge}{10}{section.2.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.3.0.1}Decentralizing clouds}{9}{subsubsection.2.3.0.1}% 
+\contentsline {subsubsection}{\numberline {2.3.0.1}Decentralizing clouds}{10}{subsubsection.2.3.0.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.3.0.2}Fog Computing}{9}{subsubsection.2.3.0.2}% 
+\contentsline {subsubsection}{\numberline {2.3.0.2}Fog Computing}{10}{subsubsection.2.3.0.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.3.0.3}Edge Computing}{9}{subsubsection.2.3.0.3}% 
+\contentsline {subsubsection}{\numberline {2.3.0.3}Edge Computing}{10}{subsubsection.2.3.0.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.3.0.4}Osmotic Computing}{9}{subsubsection.2.3.0.4}% 
+\contentsline {subsubsection}{\numberline {2.3.0.4}Osmotic Computing}{10}{subsubsection.2.3.0.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.4}Resource and Service Management}{9}{section.2.4}% 
+\contentsline {section}{\numberline {2.4}Resource and Service Management}{10}{section.2.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.5}Aggregation}{9}{section.2.5}% 
+\contentsline {section}{\numberline {2.5}Aggregation}{10}{section.2.5}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\numberline {2.5.0.1}Membership in P2P systems}{10}{subsubsection.2.5.0.1}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2.6}Resource Discovery}{11}{section.2.6}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.7}Offloading computation to the Edge}{11}{section.2.7}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\chapternumberline {3}Proposed Solution}{13}{chapter.3}% 
 \defcounter {refsection}{0}\relax 
