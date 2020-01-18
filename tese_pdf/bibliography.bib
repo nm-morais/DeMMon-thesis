@@ -63,7 +63,8 @@ pages={637-646},
 keywords={cloud computing;data privacy;Internet of Things;smart cities;smart city;smart home;cloud offloading;data privacy;data safety;bandwidth cost saving;battery life constraint;response time requirement;data processing;cloud services;Internet of Things;edge computing;Cloud computing;Internet of things;Bandwidth;Time factors;Mobile handsets;Data privacy;Smart homes;Edge computing;Internet of Things (IoT);smart home and city},
 doi={10.1109/JIOT.2016.2579198},
 ISSN={2372-2541},
-month={Oct},}
+month={Oct}
+}
 
 @inproceedings{yi2015fog,
   title={Fog computing: Platform and applications},
@@ -85,16 +86,16 @@ month={Oct},}
  says Virgin Atlantic},
  url={https://www.computerworld.com/article/3417915/boeing-787s-to-create-half-a-terabyte-of-data-per-flight--says-virgin-atlantic.html},
  journal={Computerworld}, publisher={Computerworld}, author={Finnegan, Matthew}, year={2013}, month={Mar}
- }
+}
 
- @inproceedings{Improving_Web_Sites_Performance_Using_Edge_Servers_in_Fog_Computing_Architecture,
-author = {Zhu, Jiang and Chan, D.S. and Prabhu, M.S. and Natarajan, Preethi and Hu, Hao},
-year = {2013},
-month = {03},
-pages = {320-323},
-title = {Improving Web Sites Performance Using Edge Servers in Fog Computing Architecture},
-isbn = {978-1-4673-5659-6},
-doi = {10.1109/SOSE.2013.73}
+@inproceedings{Improving_Web_Sites_Performance_Using_Edge_Servers_in_Fog_Computing_Architecture,
+  author = {Zhu, Jiang and Chan, D.S. and Prabhu, M.S. and Natarajan, Preethi and Hu, Hao},
+  year = {2013},
+  month = {03},
+  pages = {320-323},
+  title = {Improving Web Sites Performance Using Edge Servers in Fog Computing Architecture},
+  isbn = {978-1-4673-5659-6},
+  doi = {10.1109/SOSE.2013.73}
 }
 
 @inproceedings{decandia2007dynamo,
@@ -245,3 +246,101 @@ isbn = {9783319674254},
 pages = {195--196},
 title = {{Microservices : Yesterday , Today , and Tomorrow}}
 }
+
+% bittorrent
+@inproceedings{cohen2003incentives,
+  title={Incentives build robustness in BitTorrent},
+  author={Cohen, Bram},
+  booktitle={Workshop on Economics of Peer-to-Peer systems},
+  volume={6},
+  pages={68--72},
+  year={2003}
+}
+
+@inproceedings{dht_performance_churn,
+author = {Li, Jinyang and Stribling, Jeremy and Gil, Thomer and Morris, Robert and Kaashoek, M.},
+year = {2004},
+month = {03},
+pages = {},
+title = {Comparing the Performance of Distributed Hash Tables Under Churn},
+journal = {Lecture Notes in Computer Science},
+doi = {10.1007/978-3-540-30183-7_9}
+}
+
+% T-chord
+@inproceedings{montresor2005chord,
+  title={Chord on demand},
+  author={Montresor, Alberto and Jelasity, M{\'a}rk and Babaoglu, Ozalp},
+  booktitle={Fifth IEEE International Conference on Peer-to-Peer Computing (P2P'05)},
+  pages={87--94},
+  year={2005},
+  organization={IEEE}
+}
+
+% Cyclone, uses PREFIX and SUFIX to diminish routing tables
+@inproceedings{Artigas2005,
+abstract = {Recent research efforts have improved the existing flat Distributed Hash Tables to accommodate hierarchical structure. Nevertheless, many problems still remain to be solved regarding scalability issues, autonomous systems, connection degree, and network proximity. In this paper, we present a new Hierarchical DHT called Cyclone that aims to solve the aforementioned issues with a near-optimal architecture. Cyclone provides optimal logarithmic routing hops without establishing unnecessary connection links to other nodes. Our approach follows a horizontal and uniform leaf-based approach that considerably reduces the overall number of links per node. Furthermore, Cyclone also offers a disjoint multipath routing scheme that benefits from network proximity and thus creates a more robust overlay infrastructure. {\textcopyright} 2005 IEEE.},
+author = {Artigas, Marc S{\'{a}}nchez and L{\'{o}}pez, Pedro Garc{\'{i}}a and Ahull{\'{o}}, Jordi Pujol and Skarmeta, Antonio F.G{\'{o}}mez},
+booktitle = {Proceedings - Fifth IEEE International Conference on Peer-to-Peer Computing, P2P 2005},
+doi = {10.1109/P2P.2005.5},
+file = {:Users/nunomorais/Documents/Developer/tese{\_}edge{\_}monitoring/related{\_}work/2005{\_}Artigas et al.{\_}Cyclone A novel design schema for hierarchical DHTs.pdf:pdf},
+isbn = {0769523765},
+pages = {49--56},
+title = {{Cyclone: A novel design schema for hierarchical DHTs}},
+volume = {2005},
+year = {2005}
+}
+
+% Hieras : hierarchical chord with many levels, nodes in lower levels are grouped by latency, lookups first look in lower levels before going to next level, limitation: hierarchical improves performance, but at an increase in routing table size 
+@INPROCEEDINGS{1240580,
+author={ {Zhiyong Xu} and {Rui Min} and {Yiming Hu}},
+booktitle={2003 International Conference on Parallel Processing, 2003. Proceedings.},
+title={HIERAS: a DHT based hierarchical P2P routing algorithm},
+year={2003},
+volume={},
+number={},
+pages={187-194},
+keywords={distributed algorithms;telecommunication network routing;HIERAS routing algorithm;DHT based hierarchical P2P routing algorithm;distributed hash table;peer-to-peer applications;routing hop;P2P rings;P2P overlay network;routing overheads;P2P system routing performance;Routing;Peer to peer computing;Delay;Large-scale systems;Network topology;Computer science;Application software;Scalability;Internet;Distributed control},
+doi={10.1109/ICPP.2003.1240580},
+ISSN={0190-3918},
+month={Oct},}
+
+% Crescendo 
+@article{Ganesan2004,
+abstract = {Distributed Hash Tables have been proposed as flat, non-hierarchical structures, in contrast to most scalable dis tributed systems of the past. We show how to construct hi erarchical DHTs while retaining the homogeneity of load and functionality offered by flat designs. Our generic con struction, Canon, offers the same routing state vs. routing hops trade-off provided by standard DHT designs. The ad vantages of Canon include (but are not limited to) (a) fault isolation, (b) efficient caching and effective bandwidth us age for multicast, (c) adaptation to the underlying physical network, (d) hierarchical storage of content, and (e) hierar chical access control. Canon can be applied to many differ ent proposed DHTs to construct their Canonical versions. We show how four different DHTs - Chord, Symphony, CAN and Kademlia - can be converted into their Canonical ver sions that we call Crescendo, Cacophony, Can-Can and Kandy respectively.},
+author = {Ganesan, Prasanna and Gummadi, Krishna and Garcia-Molina, Hector},
+doi = {10.1109/icdcs.2004.1281591},
+file = {:Users/nunomorais/Documents/Developer/tese{\_}edge{\_}monitoring/related{\_}work/hierarchical{\_}dhts{\_}tech{\_}rep.pdf:pdf},
+journal = {Proceedings - International Conference on Distributed Computing Systems},
+pages = {263--272},
+title = {{Canon in G major: Designing DHTs with hierarchical structure}},
+volume = {24},
+year = {2004}
+}
+
+%  Routing indices for peer-to-peer systems, which allow nodes to forward queries to neighbors that are more likely to have answers.
+@INPROCEEDINGS{1022239,
+author={A. {Crespo} and H. {Garcia-Molina}},
+booktitle={Proceedings 22nd International Conference on Distributed Computing Systems},
+title={Routing indices for peer-to-peer systems},
+year={2002},
+volume={},
+number={},
+pages={23-32},
+keywords={query processing;distributed databases;telecommunication network routing;routing indices;peer-to-peer systems;compound routing index;hop-count routing index;exponential routing index;flooding-based system;random forwarding system;Routing;Peer to peer computing;System performance;Distributed computing;Robustness;Costs;Web search;Search engines;Computer hacking},
+doi={10.1109/ICDCS.2002.1022239},
+ISSN={1063-6927},
+month={July},}
+
+@ARTICLE{5751342,
+author={S. {Tarkoma} and C. E. {Rothenberg} and E. {Lagerspetz}},
+journal={IEEE Communications Surveys Tutorials},
+title={Theory and Practice of Bloom Filters for Distributed Systems},
+year={2012},
+volume={14},
+number={1},
+pages={131-155},
+keywords={filters;overlay networks;peer-to-peer computing;probability;telecommunication network routing;bloom filters;distributed systems;overlay networks;probabilistic techniques;information processing;networking costs;peer-to-peer systems;routing;forwarding;measurement data summarization;Probabilistic logic;Arrays;Fingerprint recognition;Filtering theory;Peer to peer computing;Bismuth;Bloom filters;probabilistic structures;distributed systems},
+doi={10.1109/SURV.2011.031611.00024},
+ISSN={2373-745X},
+month={First},}

@@ -4,22 +4,21 @@
 \BOOKMARK [1][-]{section.1.3}{Expected Contributions}{chapter.1}% 4
 \BOOKMARK [1][-]{section.1.4}{Thesis structure}{chapter.1}% 5
 \BOOKMARK [0][-]{chapter.2}{Related Work}{}% 6
-\BOOKMARK [1][-]{section.2.1}{Resource Location}{chapter.2}% 7
-\BOOKMARK [2][-]{subsection.2.1.1}{Unstructured overlays}{section.2.1}% 8
-\BOOKMARK [2][-]{subsection.2.1.2}{Hybrid Approaches}{section.2.1}% 9
-\BOOKMARK [1][-]{section.2.2}{Aggregation}{chapter.2}% 10
-\BOOKMARK [2][-]{subsection.2.2.1}{Types of aggregation}{section.2.2}% 11
-\BOOKMARK [2][-]{subsection.2.2.2}{Relevant aggregation protocols}{section.2.2}% 12
-\BOOKMARK [1][-]{section.2.3}{Offloading computation to the edge}{chapter.2}% 13
-\BOOKMARK [1][-]{section.2.4}{Resource and Service Management}{chapter.2}% 14
-\BOOKMARK [1][-]{section.2.5}{Aggregation}{chapter.2}% 15
-\BOOKMARK [1][-]{section.2.6}{Resource Discovery}{chapter.2}% 16
-\BOOKMARK [1][-]{section.2.7}{Offloading computation to the Edge}{chapter.2}% 17
-\BOOKMARK [0][-]{chapter.3}{Proposed Solution}{}% 18
-\BOOKMARK [1][-]{section.3.1}{Document Structure}{chapter.3}% 19
-\BOOKMARK [0][-]{chapter.4}{Planning}{}% 20
-\BOOKMARK [1][-]{section.4.1}{Proposed solution}{chapter.4}% 21
-\BOOKMARK [1][-]{section.4.2}{Scheduling}{chapter.4}% 22
-\BOOKMARK [0][-]{section*.17}{Bibliografia}{}% 23
-\BOOKMARK [0][-]{appendix.A}{Appendix 2 Lorem Ipsum}{}% 24
-\BOOKMARK [0][-]{annex.A}{Annex 1 Lorem Ipsum}{}% 25
+\BOOKMARK [1][-]{section.2.1}{Context}{chapter.2}% 7
+\BOOKMARK [1][-]{section.2.2}{Topology Management}{chapter.2}% 8
+\BOOKMARK [2][-]{subsection.2.2.1}{Hybrid Approaches}{section.2.2}% 9
+\BOOKMARK [1][-]{section.2.3}{Resource Location and Discovery}{chapter.2}% 10
+\BOOKMARK [2][-]{subsection.2.3.1}{Hybrid Approaches}{section.2.3}% 11
+\BOOKMARK [1][-]{section.2.4}{Monitoring}{chapter.2}% 12
+\BOOKMARK [1][-]{section.2.5}{Aggregation}{chapter.2}% 13
+\BOOKMARK [2][-]{subsection.2.5.1}{Types of aggregation}{section.2.5}% 14
+\BOOKMARK [2][-]{subsection.2.5.2}{Relevant aggregation protocols}{section.2.5}% 15
+\BOOKMARK [1][-]{section.2.6}{Offloading computation to the Edge}{chapter.2}% 16
+\BOOKMARK [0][-]{chapter.3}{Proposed Solution}{}% 17
+\BOOKMARK [1][-]{section.3.1}{Document Structure}{chapter.3}% 18
+\BOOKMARK [0][-]{chapter.4}{Planning}{}% 19
+\BOOKMARK [1][-]{section.4.1}{Proposed solution}{chapter.4}% 20
+\BOOKMARK [1][-]{section.4.2}{Scheduling}{chapter.4}% 21
+\BOOKMARK [0][-]{section*.6}{Bibliografia}{}% 22
+\BOOKMARK [0][-]{appendix.A}{Appendix 2 Lorem Ipsum}{}% 23
+\BOOKMARK [0][-]{annex.A}{Annex 1 Lorem Ipsum}{}% 24

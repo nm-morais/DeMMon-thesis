@@ -114,6 +114,131 @@
     \field{year}{2010}
   \endentry
 
+  \entry{Artigas2005}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=AMS}{%
+         family={Artigas},
+         familyi={A\bibinitperiod},
+         given={Marc\bibnamedelima S{\'{a}}nchez},
+         giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=LPG}{%
+         family={L{\'{o}}pez},
+         familyi={L\bibinitperiod},
+         given={Pedro\bibnamedelima Garc{\'{i}}a},
+         giveni={P\bibinitperiod\bibinitdelim G\bibinitperiod},
+      }}%
+      {{hash=AJP}{%
+         family={Ahull{\'{o}}},
+         familyi={A\bibinitperiod},
+         given={Jordi\bibnamedelima Pujol},
+         giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod},
+      }}%
+      {{hash=SAF}{%
+         family={Skarmeta},
+         familyi={S\bibinitperiod},
+         given={Antonio\bibnamedelima F.G{\'{o}}mez},
+         giveni={A\bibinitperiod\bibinitdelim F\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{AMS+1}
+    \strng{fullhash}{AMSLPGAJPSAF1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{abstract}{%
+    Recent research efforts have improved the existing flat Distributed Hash
+  Tables to accommodate hierarchical structure. Nevertheless, many problems
+  still remain to be solved regarding scalability issues, autonomous systems,
+  connection degree, and network proximity. In this paper, we present a new
+  Hierarchical DHT called Cyclone that aims to solve the aforementioned issues
+  with a near-optimal architecture. Cyclone provides optimal logarithmic
+  routing hops without establishing unnecessary connection links to other
+  nodes. Our approach follows a horizontal and uniform leaf-based approach that
+  considerably reduces the overall number of links per node. Furthermore,
+  Cyclone also offers a disjoint multipath routing scheme that benefits from
+  network proximity and thus creates a more robust overlay infrastructure.
+  {\textcopyright} 2005 IEEE.%
+    }
+    \field{booktitle}{Proceedings - Fifth IEEE International Conference on
+  Peer-to-Peer Computing, P2P 2005}
+    \verb{doi}
+    \verb 10.1109/P2P.2005.5
+    \endverb
+    \field{isbn}{0769523765}
+    \field{pages}{49\bibrangedash 56}
+    \field{title}{{Cyclone: A novel design schema for hierarchical DHTs}}
+    \field{volume}{2005}
+    \verb{file}
+    \verb :Users/nunomorais/Documents/Developer/tese{\_}edge{\_}monitoring/rela
+    \verb ted{\_}work/2005{\_}Artigas et al.{\_}Cyclone A novel design schema f
+    \verb or hierarchical DHTs.pdf:pdf
+    \endverb
+    \field{year}{2005}
+  \endentry
+
+  \entry{cohen2003incentives}{inproceedings}{}
+    \name{author}{1}{}{%
+      {{hash=CB}{%
+         family={Cohen},
+         familyi={C\bibinitperiod},
+         given={Bram},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CB1}
+    \strng{fullhash}{CB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{booktitle}{Workshop on Economics of Peer-to-Peer systems}
+    \field{pages}{68\bibrangedash 72}
+    \field{title}{Incentives build robustness in BitTorrent}
+    \field{volume}{6}
+    \field{year}{2003}
+  \endentry
+
+  \entry{1022239}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=CA}{%
+         family={{Crespo}},
+         familyi={C\bibinitperiod},
+         given={A.},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=GH}{%
+         family={{Garcia-Molina}},
+         familyi={G\bibinitperiod},
+         given={H.},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \keyw{query processing;distributed databases;telecommunication network
+  routing;routing indices;peer-to-peer systems;compound routing index;hop-count
+  routing index;exponential routing index;flooding-based system;random
+  forwarding system;Routing;Peer to peer computing;System
+  performance;Distributed computing;Robustness;Costs;Web search;Search
+  engines;Computer hacking}
+    \strng{namehash}{CAGH1}
+    \strng{fullhash}{CAGH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{booktitle}{Proceedings 22nd International Conference on Distributed
+  Computing Systems}
+    \verb{doi}
+    \verb 10.1109/ICDCS.2002.1022239
+    \endverb
+    \field{issn}{1063-6927}
+    \field{pages}{23\bibrangedash 32}
+    \field{title}{Routing indices for peer-to-peer systems}
+    \field{year}{2002}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+
   \entry{decandia2007dynamo}{inproceedings}{}
     \name{author}{9}{}{%
       {{hash=DG}{%
@@ -312,6 +437,64 @@
     \warn{\item Invalid format of field 'month'}
   \endentry
 
+  \entry{Ganesan2004}{article}{}
+    \name{author}{3}{}{%
+      {{hash=GP}{%
+         family={Ganesan},
+         familyi={G\bibinitperiod},
+         given={Prasanna},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=GK}{%
+         family={Gummadi},
+         familyi={G\bibinitperiod},
+         given={Krishna},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=GMH}{%
+         family={Garcia-Molina},
+         familyi={G\bibinithyphendelim M\bibinitperiod},
+         given={Hector},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{GP+1}
+    \strng{fullhash}{GPGKGMH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{abstract}{%
+    Distributed Hash Tables have been proposed as flat, non-hierarchical
+  structures, in contrast to most scalable dis tributed systems of the past. We
+  show how to construct hi erarchical DHTs while retaining the homogeneity of
+  load and functionality offered by flat designs. Our generic con struction,
+  Canon, offers the same routing state vs. routing hops trade-off provided by
+  standard DHT designs. The ad vantages of Canon include (but are not limited
+  to) (a) fault isolation, (b) efficient caching and effective bandwidth us age
+  for multicast, (c) adaptation to the underlying physical network, (d)
+  hierarchical storage of content, and (e) hierar chical access control. Canon
+  can be applied to many differ ent proposed DHTs to construct their Canonical
+  versions. We show how four different DHTs - Chord, Symphony, CAN and Kademlia
+  - can be converted into their Canonical ver sions that we call Crescendo,
+  Cacophony, Can-Can and Kandy respectively.%
+    }
+    \verb{doi}
+    \verb 10.1109/icdcs.2004.1281591
+    \endverb
+    \field{pages}{263\bibrangedash 272}
+    \field{title}{{Canon in G major: Designing DHTs with hierarchical
+  structure}}
+    \field{volume}{24}
+    \verb{file}
+    \verb :Users/nunomorais/Documents/Developer/tese{\_}edge{\_}monitoring/rela
+    \verb ted{\_}work/hierarchical{\_}dhts{\_}tech{\_}rep.pdf:pdf
+    \endverb
+    \field{journaltitle}{Proceedings - International Conference on Distributed
+  Computing Systems}
+    \field{year}{2004}
+  \endentry
+
   \entry{gupta2003kelips}{inproceedings}{}
     \name{author}{5}{}{%
       {{hash=GI}{%
@@ -361,51 +544,6 @@
     \field{year}{2003}
   \endentry
 
-  \entry{Hyparview}{inproceedings}{}
-    \name{author}{3}{}{%
-      {{hash=LJ}{%
-         family={{Leitao}},
-         familyi={L\bibinitperiod},
-         given={J.},
-         giveni={J\bibinitperiod},
-      }}%
-      {{hash=PJ}{%
-         family={{Pereira}},
-         familyi={P\bibinitperiod},
-         given={J.},
-         giveni={J\bibinitperiod},
-      }}%
-      {{hash=RL}{%
-         family={{Rodrigues}},
-         familyi={R\bibinitperiod},
-         given={L.},
-         giveni={L\bibinitperiod},
-      }}%
-    }
-    \keyw{protocols;HyParView;membership protocol;gossip-based
-  broadcast;resilient reliable broadcast primitives;gossip
-  protocol;Broadcasting;Peer to peer computing;Maintenance;Power system
-  reliability;Clustering algorithms;Transport
-  protocols;Scalability;Redundancy;Costs;Sampling methods}
-    \strng{namehash}{LJ+1}
-    \strng{fullhash}{LJPJRL1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{sortinit}{L}
-    \field{sortinithash}{L}
-    \field{booktitle}{37th Annual IEEE/IFIP International Conference on
-  Dependable Systems and Networks (DSN'07)}
-    \verb{doi}
-    \verb 10.1109/DSN.2007.56
-    \endverb
-    \field{issn}{2158-3927}
-    \field{pages}{419\bibrangedash 429}
-    \field{title}{HyParView: A Membership Protocol for Reliable Gossip-Based
-  Broadcast}
-    \field{year}{2007}
-    \warn{\item Invalid format of field 'month'}
-  \endentry
-
   \entry{DBLP:journals/corr/abs-1805-06989}{article}{}
     \name{author}{4}{}{%
       {{hash=LJ}{%
@@ -433,7 +571,7 @@
          giveni={N\bibinitperiod\bibinitdelim M\bibinitperiod},
       }}%
     }
-    \strng{namehash}{LJ+2}
+    \strng{namehash}{LJ+1}
     \strng{fullhash}{LJCPAGMCPNM1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
@@ -450,6 +588,55 @@
     \field{journaltitle}{CoRR}
     \field{eprinttype}{arXiv}
     \field{year}{2018}
+  \endentry
+
+  \entry{dht_performance_churn}{inproceedings}{}
+    \name{author}{5}{}{%
+      {{hash=LJ}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Jinyang},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=SJ}{%
+         family={Stribling},
+         familyi={S\bibinitperiod},
+         given={Jeremy},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=GT}{%
+         family={Gil},
+         familyi={G\bibinitperiod},
+         given={Thomer},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=MR}{%
+         family={Morris},
+         familyi={M\bibinitperiod},
+         given={Robert},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=KM}{%
+         family={Kaashoek},
+         familyi={K\bibinitperiod},
+         given={M.},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LJ+2}
+    \strng{fullhash}{LJSJGTMRKM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \verb{doi}
+    \verb 10.1007/978-3-540-30183-7_9
+    \endverb
+    \field{title}{Comparing the Performance of Distributed Hash Tables Under
+  Churn}
+    \field{journaltitle}{Lecture Notes in Computer Science}
+    \field{month}{03}
+    \field{year}{2004}
   \endentry
 
   \entry{10.1007/3-540-45748-8_5}{inproceedings}{}
@@ -867,6 +1054,45 @@
     \field{journaltitle}{IEEE Journal on Selected Areas in Communications}
     \field{month}{07}
     \field{year}{2003}
+  \endentry
+
+  \entry{1240580}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=Z}{%
+         family={{Zhiyong Xu}},
+         familyi={Z\bibinitperiod},
+      }}%
+      {{hash=R}{%
+         family={{Rui Min}},
+         familyi={R\bibinitperiod},
+      }}%
+      {{hash=Y}{%
+         family={{Yiming Hu}},
+         familyi={Y\bibinitperiod},
+      }}%
+    }
+    \keyw{distributed algorithms;telecommunication network routing;HIERAS
+  routing algorithm;DHT based hierarchical P2P routing algorithm;distributed
+  hash table;peer-to-peer applications;routing hop;P2P rings;P2P overlay
+  network;routing overheads;P2P system routing performance;Routing;Peer to peer
+  computing;Delay;Large-scale systems;Network topology;Computer
+  science;Application software;Scalability;Internet;Distributed control}
+    \strng{namehash}{Z+1}
+    \strng{fullhash}{ZRY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Z}
+    \field{sortinithash}{Z}
+    \field{booktitle}{2003 International Conference on Parallel Processing,
+  2003. Proceedings.}
+    \verb{doi}
+    \verb 10.1109/ICPP.2003.1240580
+    \endverb
+    \field{issn}{0190-3918}
+    \field{pages}{187\bibrangedash 194}
+    \field{title}{HIERAS: a DHT based hierarchical P2P routing algorithm}
+    \field{year}{2003}
+    \warn{\item Invalid format of field 'month'}
   \endentry
 
   \entry{Improving_Web_Sites_Performance_Using_Edge_Servers_in_Fog_Computing_Architecture}{inproceedings}{}
