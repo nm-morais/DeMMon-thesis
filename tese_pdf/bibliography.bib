@@ -1,13 +1,4 @@
-@article{iot_journal_shi_weisong_and_cao,
-author = {Shi, Weisong and Cao, Jie and Zhang, Quan and Li, Youhuizi and Xu, Lanyu},
-year = {2016},
-month = {10},
-pages = {1-1},
-title = {Edge Computing: Vision and Challenges},
-volume = {3},
-journal = {IEEE Internet of Things Journal},
-doi = {10.1109/JIOT.2016.2579198}
-}
+
 
 @article{10.1145/1721654.1721672,
  author = {Armbrust, Michael and Fox, Armando and Griffith, Rean and Joseph, Anthony D. and Katz, Randy and Konwinski, Andy and Lee, Gunho and Patterson, David and Rabkin, Ariel and Stoica, Ion and et al.},
@@ -50,6 +41,17 @@ doi = {10.1109/JIOT.2016.2579198}
   timestamp = {Mon, 13 Aug 2018 16:47:08 +0200},
   biburl    = {https://dblp.org/rec/bib/journals/corr/abs-1805-06989},
   bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{iot_journal_shi_weisong_and_cao,
+author = {Shi, Weisong and Cao, Jie and Zhang, Quan and Li, Youhuizi and Xu, Lanyu},
+year = {2016},
+month = {10},
+pages = {1-1},
+title = {Edge Computing: Vision and Challenges},
+volume = {3},
+journal = {IEEE Internet of Things Journal},
+doi = {10.1109/JIOT.2016.2579198}
 }
 
 @ARTICLE{7488250,
@@ -318,7 +320,7 @@ volume = {24},
 year = {2004}
 }
 
-%  Routing indices for peer-to-peer systems, which allow nodes to forward queries to neighbors that are more likely to have answers.
+%  Routing indices for resource location systems, which allow nodes to forward queries to neighbors that are more likely to answers to the query.
 @INPROCEEDINGS{1022239,
 author={A. {Crespo} and H. {Garcia-Molina}},
 booktitle={Proceedings 22nd International Conference on Distributed Computing Systems},
@@ -332,6 +334,7 @@ doi={10.1109/ICDCS.2002.1022239},
 ISSN={1063-6927},
 month={July},}
 
+% bloom filters
 @ARTICLE{5751342,
 author={S. {Tarkoma} and C. E. {Rothenberg} and E. {Lagerspetz}},
 journal={IEEE Communications Surveys Tutorials},
@@ -344,3 +347,45 @@ keywords={filters;overlay networks;peer-to-peer computing;probability;telecommun
 doi={10.1109/SURV.2011.031611.00024},
 ISSN={2373-745X},
 month={First},}
+
+% aggregation
+@book{grabisch2009aggregation,
+  title={Aggregation functions},
+  author={Grabisch, Michel and Marichal, Jean-Luc and Mesiar, Radko and Pap, Endre},
+  volume={127},
+  year={2009},
+  publisher={Cambridge University Press}
+}
+
+% Cassandra 
+@article{lakshman2010cassandra,
+  title={Cassandra: a decentralized structured storage system},
+  author={Lakshman, Avinash and Malik, Prashant},
+  journal={ACM SIGOPS Operating Systems Review},
+  volume={44},
+  number={2},
+  pages={35--40},
+  year={2010},
+  publisher={ACM}
+}
+
+% Gnutella gtk
+@misc{gnutella_gtk, title={Gtk-Gnutella}, url={https://sourceforge.net/projects/gtk-gnutella/}, journal={SourceForge}, year={2019}, month={Dec}}
+
+
+% Making gnutella scalable: implements super-peers in gnutella 
+@article{Chawathe2003,
+abstract = {Napster pioneered the idea of peer-to-peer file sharing, and supported it with a centralized file search facility. Subsequent P2P systems like Gnutella adopted decentralized search algorithms. However, Gnutella's notoriously poor scaling led some to propose distributed hash table solutions to the wide-area file search problem. Contrary to that trend, we advocate retaining Gnutella's simplicity while proposing new mechanisms that greatly improve its scalability. Building upon prior research [1, 12, 22], we propose several modifications to Gnutella's design that dynamically adapt the overlay topology and the search algorithms in order to accommodate the natural heterogeneity present in most peer-to-peer systems. We test our design through simulations and the results show three to five orders of magnitude improvement in total system capacity. We also report on a prototype implementation and its deployment on a testbed.},
+author = {Chawathe, Yatin and Ratnasamy, Sylvia and Breslau, Lee and Lanham, Nick and Shenker, Scott},
+doi = {10.1145/863997.864000},
+file = {:Users/nunomorais/Documents/Developer/tese{\_}edge{\_}monitoring/related{\_}work/making-gnutella-scalable.pdf:pdf},
+isbn = {1581137354},
+issn = {01464833},
+journal = {Computer Communication Review},
+keywords = {Distributed hash tables,Gnutella,Peer-to-peer},
+number = {4},
+pages = {407--418},
+title = {{Making Gnutella-like P2P Systems Scalable}},
+volume = {33},
+year = {2003}
+}

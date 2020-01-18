@@ -6,19 +6,25 @@
 \BOOKMARK [0][-]{chapter.2}{Related Work}{}% 6
 \BOOKMARK [1][-]{section.2.1}{Context}{chapter.2}% 7
 \BOOKMARK [1][-]{section.2.2}{Topology Management}{chapter.2}% 8
-\BOOKMARK [2][-]{subsection.2.2.1}{Hybrid Approaches}{section.2.2}% 9
-\BOOKMARK [1][-]{section.2.3}{Resource Location and Discovery}{chapter.2}% 10
-\BOOKMARK [2][-]{subsection.2.3.1}{Hybrid Approaches}{section.2.3}% 11
-\BOOKMARK [1][-]{section.2.4}{Monitoring}{chapter.2}% 12
-\BOOKMARK [1][-]{section.2.5}{Aggregation}{chapter.2}% 13
-\BOOKMARK [2][-]{subsection.2.5.1}{Types of aggregation}{section.2.5}% 14
-\BOOKMARK [2][-]{subsection.2.5.2}{Relevant aggregation protocols}{section.2.5}% 15
-\BOOKMARK [1][-]{section.2.6}{Offloading computation to the Edge}{chapter.2}% 16
-\BOOKMARK [0][-]{chapter.3}{Proposed Solution}{}% 17
-\BOOKMARK [1][-]{section.3.1}{Document Structure}{chapter.3}% 18
-\BOOKMARK [0][-]{chapter.4}{Planning}{}% 19
-\BOOKMARK [1][-]{section.4.1}{Proposed solution}{chapter.4}% 20
-\BOOKMARK [1][-]{section.4.2}{Scheduling}{chapter.4}% 21
-\BOOKMARK [0][-]{section*.6}{Bibliografia}{}% 22
-\BOOKMARK [0][-]{appendix.A}{Appendix 2 Lorem Ipsum}{}% 23
-\BOOKMARK [0][-]{annex.A}{Annex 1 Lorem Ipsum}{}% 24
+\BOOKMARK [2][-]{subsection.2.2.1}{P2P systems}{section.2.2}% 9
+\BOOKMARK [2][-]{subsection.2.2.2}{Types of overlays}{section.2.2}% 10
+\BOOKMARK [2][-]{subsection.2.2.3}{Evaluating topologies}{section.2.2}% 11
+\BOOKMARK [2][-]{subsection.2.2.4}{Discussion}{section.2.2}% 12
+\BOOKMARK [1][-]{section.2.3}{Resource Location and Discovery}{chapter.2}% 13
+\BOOKMARK [2][-]{subsection.2.3.1}{Centralized Architectures}{section.2.3}% 14
+\BOOKMARK [2][-]{subsection.2.3.2}{Distributed Hash tables}{section.2.3}% 15
+\BOOKMARK [2][-]{subsection.2.3.3}{Unstructured Approaches}{section.2.3}% 16
+\BOOKMARK [2][-]{subsection.2.3.4}{Discussion}{section.2.3}% 17
+\BOOKMARK [1][-]{section.2.4}{Monitoring}{chapter.2}% 18
+\BOOKMARK [1][-]{section.2.5}{Aggregation}{chapter.2}% 19
+\BOOKMARK [2][-]{subsection.2.5.1}{Types of aggregation}{section.2.5}% 20
+\BOOKMARK [2][-]{subsection.2.5.2}{Relevant aggregation protocols}{section.2.5}% 21
+\BOOKMARK [1][-]{section.2.6}{Offloading computation to the Edge}{chapter.2}% 22
+\BOOKMARK [0][-]{chapter.3}{Proposed Solution}{}% 23
+\BOOKMARK [1][-]{section.3.1}{Document Structure}{chapter.3}% 24
+\BOOKMARK [0][-]{chapter.4}{Planning}{}% 25
+\BOOKMARK [1][-]{section.4.1}{Proposed solution}{chapter.4}% 26
+\BOOKMARK [1][-]{section.4.2}{Scheduling}{chapter.4}% 27
+\BOOKMARK [0][-]{section*.5}{Bibliografia}{}% 28
+\BOOKMARK [0][-]{appendix.A}{Appendix 2 Lorem Ipsum}{}% 29
+\BOOKMARK [0][-]{annex.A}{Annex 1 Lorem Ipsum}{}% 30

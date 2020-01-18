@@ -1,7 +1,24 @@
 
-% rever
-\textbf{Unstructured Overlay networks} 
+% -------------------
+% Topology Management
+% -------------------
+\subsection{P2P systems}
 
-are the second common approach towards build resource location systems, in this type of overlay, queries are supported using of dissemination techniques to find sets of nodes that own matching resources. Unstructured overlays usually impose little to no rules in neighboring relations, which results in a low maintenance overhead and high robustness to churn, but at the same time limited efficiency and scalability when performing exact resource location. 
+As previously mentioned, a challenge towards solving the proposed solution is to federate all peers in an abstraction layer that allows intercommunication, which can be done by employing the P2P paradigm.
 
-Unstructured resource location systems usually resort to disseminating queries in the system using gossip techniques. Following we present some types of queries:
+In P2P, participants contribute to the system with a portion of their resources,so that that the overall system can accomplish tasks that would otherwise be impossible for a single peer to solve. However, due to memory and communication overhead, it is undesirable that all nodes in a P2P system collaborate with all other peers (unless in specific scenarios we will further elaborate). 
+
+Given this, peers select a subset of peers in the system to establish neighboring relations. These neighboring relations are usually constructed on top links from an already existing network (commonly called an underlay). The accumulation of neighboring relations on top of the underlay network is what constitutes the \textbf{overlay network}. Overlay networks can be categorized in four categories: structured, unstructured, flat, and hierarchical.  
+
+
+\subsection{Types of overlays} 
+
+\textbf{Unstructured overlays} usually impose little to no rules in neighboring relations, peers may pick random peers to be their neighbors, or alternatively employ strategies to "rank" neighbors and selectively pick the "best". A key factor of unstructured overlays is that nodes can easily replace failed neighbors. Which provides a low maintenance overhead and provides high resilience to participants concurrently entering and leaving the system (this is called churn \cite{stutzbach2006understanding}). Unstructured overlays present an attractive option to federate edge devices, as edge devices do not need use many resources to join and participate in the system, and can easily adapt to the dynamic environment.
+
+\textbf{Structured overlays} enforce strong rules towards neighbor selection (generally based on identifiers of peers). As a result, the overlay generally converges to a topology known a priori, where the target topologies are normally tailored towards applicational requirements. A canonical example of a type of structured overlay is a distributed hash table (DHT), peers in a DHT use consistent hashing functions to select random identifiers that are uniformly distributed over the identifier space. Then, DHTs offer efficient routing capabilities over the identifier space (usually routing procedures take a logarithmic number of steps). DHTs have been extensibly used to support many large scale services (publish-subscribe, file sharing, among others) and are especially used in Cloud-based environments.
+
+\textbf{Flat or hierarchical overlays} Flat overlays are composed by peers that evenly share the tasks of the system, there is no differentiation between the resources that peers have to contribute to  the system. Contrary their flat counterpart, hierarchical overlays may be characterized as overlays where peers have different tasks in the system according to their roles, this is an easy way to accommodate device heterogeneity while potentially increasing the performance of the system. Hierarchical structures can be applied to both structured and unstructured overlays: in the case of unstructured overlays, the canonical example is \textbf{super-peers}, which are peers that have increased capacity and stability, this is the approach taken by Gia \cite{Chawathe2003} to improve the scalability of Gnutella \cite{gnutella_gtk}. Super Peers are commonly assigned with the task of disseminating queries throughout the system so that other peers do not have to. This technique effectively reduces the number of peers that have to exchange messages, which by consequence raises system scalability, however, this approach is still inefficient when finding rare resources in the system. The second approach to building a hierarchical topology is to employ a DHT, hierarchical DHTS usually form contained DHTS within other DHTS (e.g. a ring within a ring). This offers several important advantages over a flat DHT: first, lookups take less hops and messages to reach the target, second, organizing nodes in disjoint groups allows traffic locality if groups of nodes are close in the underlay, finally, churn events within a group stay contained within that group. However, many of these systems either sacrifice memory to accommodate the hierarchical DHT, or tradeoff reliability for memory and communication efficiency.
+
+\subsection{Evaluating topologies}
+
+\subsection{Discussion}
