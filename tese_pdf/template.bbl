@@ -114,6 +114,70 @@
     \field{year}{2010}
   \endentry
 
+  \entry{Artigas2006}{article}{}
+    \name{author}{3}{}{%
+      {{hash=AMS}{%
+         family={Artigas},
+         familyi={A\bibinitperiod},
+         given={Marc\bibnamedelima S.},
+         giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=GP}{%
+         family={Garc{\'{i}}a},
+         familyi={G\bibinitperiod},
+         given={Pedro},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=SAF}{%
+         family={Skarmeta},
+         familyi={S\bibinitperiod},
+         given={Antonio\bibnamedelima F.},
+         giveni={A\bibinitperiod\bibinitdelim F\bibinitperiod},
+      }}%
+    }
+    \keyw{Aggregation,Cayley graphs,DHT,Gossip,Hierarchical model,Structured
+  P2P networks}
+    \strng{namehash}{AMS+1}
+    \strng{fullhash}{AMSGPSAF1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{abstract}{%
+    As Structured Peer-to-Peer (P2P) Networks become popular, there is an
+  emerging need to monitor continuously the huge number of participants in a
+  robust and scalable manner. To this end, aggregation has emerged as a basis
+  for the self-management of these networks. However, the structured P2P
+  networks lack today of efficient mechanisms for the decentralized computation
+  of these aggregates. In this paper, we propose a hierarchical theoretic model
+  based on Cayley Graphs, which overcomes the requisite to accommodate growth
+  without impacting the efficiency of distributed applications. Also, the paper
+  presents an aggregation protocol that fuses the fault-resilience of gossip
+  algorithms with the scalability of trees. In particular, simulation results
+  show that this algorithm is capable to cope with the distributed and
+  unreliable nature of P2P networks. {\textcopyright} IFIP International
+  Federation for Information Processing 2006.%
+    }
+    \verb{doi}
+    \verb 10.1007/11907466_23
+    \endverb
+    \field{isbn}{9783540476597}
+    \field{issn}{16113349}
+    \field{pages}{246\bibrangedash 257}
+    \field{title}{{DECA: A hierarchical framework for DECentralized aggregation
+  in DHTs}}
+    \field{volume}{4269 LNCS}
+    \verb{file}
+    \verb :Users/nunomorais/Documents/Developer/tese{\_}edge{\_}monitoring/rela
+    \verb ted{\_}work/2006{\_}Artigas, Garc{\'{i}}a, Skarmeta{\_}DECA A hierarc
+    \verb hical framework for DECentralized aggregation in DHTs.pdf:pdf
+    \endverb
+    \field{journaltitle}{Lecture Notes in Computer Science (including subseries
+  Lecture Notes in Artificial Intelligence and Lecture Notes in
+  Bioinformatics)}
+    \field{year}{2006}
+  \endentry
+
   \entry{Artigas2005}{inproceedings}{}
     \name{author}{4}{}{%
       {{hash=AMS}{%
@@ -141,7 +205,7 @@
          giveni={A\bibinitperiod\bibinitdelim F\bibinitperiod},
       }}%
     }
-    \strng{namehash}{AMS+1}
+    \strng{namehash}{AMS+2}
     \strng{fullhash}{AMSLPGAJPSAF1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
@@ -670,6 +734,84 @@
     \field{year}{2003}
   \endentry
 
+  \entry{gossip_aggregation}{article}{}
+    \name{author}{3}{}{%
+      {{hash=JM}{%
+         family={Jelasity},
+         familyi={J\bibinitperiod},
+         given={Márk},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=MA}{%
+         family={Montresor},
+         familyi={M\bibinitperiod},
+         given={Alberto},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=BO}{%
+         family={Babaoglu},
+         familyi={B\bibinitperiod},
+         given={Ozalp},
+         giveni={O\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{JM+1}
+    \strng{fullhash}{JMMABO1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{J}
+    \field{sortinithash}{J}
+    \verb{doi}
+    \verb 10.1145/1082469.1082470
+    \endverb
+    \field{pages}{219\bibrangedash 252}
+    \field{title}{Gossip-Based Aggregation in Large Dynamic Networks}
+    \field{volume}{23}
+    \field{journaltitle}{ACM Transactions on Computer Systems}
+    \field{month}{08}
+    \field{year}{2005}
+  \endentry
+
+  \entry{DBLP:journals/corr/abs-1110-0725}{article}{}
+    \name{author}{3}{}{%
+      {{hash=JP}{%
+         family={Jesus},
+         familyi={J\bibinitperiod},
+         given={Paulo},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=BC}{%
+         family={Baquero},
+         familyi={B\bibinitperiod},
+         given={Carlos},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=APS}{%
+         family={Almeida},
+         familyi={A\bibinitperiod},
+         given={Paulo\bibnamedelima S{\'{e}}rgio},
+         giveni={P\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{JP+1}
+    \strng{fullhash}{JPBCAPS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{J}
+    \field{sortinithash}{J}
+    \verb{eprint}
+    \verb 1110.0725
+    \endverb
+    \field{title}{A Survey of Distributed Data Aggregation Algorithms}
+    \verb{url}
+    \verb http://arxiv.org/abs/1110.0725
+    \endverb
+    \field{volume}{abs/1110.0725}
+    \field{journaltitle}{CoRR}
+    \field{eprinttype}{arXiv}
+    \field{year}{2011}
+  \endentry
+
   \entry{lakshman2010cassandra}{article}{}
     \name{author}{2}{}{%
       {{hash=LA}{%
@@ -797,6 +939,51 @@
     \field{year}{2004}
   \endentry
 
+  \entry{Madden2002}{article}{}
+    \name{author}{4}{}{%
+      {{hash=MS}{%
+         family={Madden},
+         familyi={M\bibinitperiod},
+         given={Samuel},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=FMJ}{%
+         family={Franklin},
+         familyi={F\bibinitperiod},
+         given={Michael\bibnamedelima J},
+         giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=HJ}{%
+         family={Hellerstein},
+         familyi={H\bibinitperiod},
+         given={Joseph},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=HW}{%
+         family={Hong},
+         familyi={H\bibinitperiod},
+         given={Wei},
+         giveni={W\bibinitperiod},
+      }}%
+    }
+    \keyw{TinyDB, databases, sensor nets,sql}
+    \strng{namehash}{MS+1}
+    \strng{fullhash}{MSFMJHJHW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{pages}{131\bibrangedash 146}
+    \field{title}{{{\{}TAG{\}}: {\{}Tiny{\}} {\{}AGgregate{\}} Queries in
+  Ad-Hoc Sensor Networks}}
+    \verb{url}
+    \verb xxx
+    \endverb
+    \field{journaltitle}{Proceedings of the{\{}USENIX{\}} Symposium on
+  Operating Systems Design and Implementation}
+    \field{year}{2002}
+  \endentry
+
   \entry{10.1007/3-540-45748-8_5}{inproceedings}{}
     \name{author}{2}{}{%
       {{hash=MP}{%
@@ -882,6 +1069,82 @@
     \field{sortinithash}{N}
     \field{title}{Building microservices: designing fine-grained systems}
     \field{year}{2015}
+  \endentry
+
+  \entry{Renesse2003}{article}{}
+    \name{author}{3}{}{%
+      {{hash=RRVAN}{%
+         family={Renesse},
+         familyi={R\bibinitperiod},
+         given={Robbert V A\bibnamedelima N},
+         giveni={R\bibinitperiod\bibinitdelim V\bibinitperiod\bibinitdelim
+  A\bibinitperiod\bibinitdelim N\bibinitperiod},
+      }}%
+      {{hash=BKP}{%
+         family={Birman},
+         familyi={B\bibinitperiod},
+         given={Kenneth\bibnamedelima P},
+         giveni={K\bibinitperiod\bibinitdelim P\bibinitperiod},
+      }}%
+      {{hash=VW}{%
+         family={Vogels},
+         familyi={V\bibinitperiod},
+         given={Werner},
+         giveni={W\bibinitperiod},
+      }}%
+    }
+    \keyw{Aggregation,Algorithms,C21 [Computer-Communication Networks],C24
+  [Computer-Communication Networks],Categories and Subject
+  Descriptors,Communica-tions Management—network communication,Concurrent
+  Programming—distributed programming,D13 [Programming Techniques],D44
+  [Operating Systems],D45 [Operating Systems],D46 [Operating Systems],D47
+  [Operating Systems],Design,Distributed Systems—distributed applications,H33
+  [Information Storage and Retrieval],H34 [Information Storage and
+  Retrieval],H35 [Information Storage and Retrieval],Management,Organization
+  and Design—distributed systems,Performance,Reliability,Reliability—fault
+  tol-erance,Security and Protection—authentication,System and
+  Software—distributed systems,epidemic protocols,failure
+  detection,gossip,mem-bership,publish-subscribe,scalability}
+    \strng{namehash}{RRVAN+1}
+    \strng{fullhash}{RRVANBKPVW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \field{abstract}{%
+    Scalable management and self-organizational capabilities are emerging as
+  central requirements for a generation of large-scale, highly dynamic,
+  distributed applications. We have developed an entirely new distributed
+  information management system called Astrolabe. Astrolabe collects
+  large-scale system state, permitting rapid updates and providing on-the-fly
+  attribute aggregation. This latter capability permits an application to
+  locate a resource, and also offers a scalable way to track system state as it
+  evolves over time. The combination of features makes it possible to solve a
+  wide variety of management and self-configuration problems. This paper
+  describes the design of the system with a focus upon its scalability. After
+  describing the Astrolabe service, we present examples of the use of Astrolabe
+  for locating resources, publish-subscribe, and distributed synchronization in
+  large systems. Astrolabe is implemented using a peer-to-peer protocol, and
+  uses a restricted form of mobile code based on the SQL query language for
+  aggregation. This protocol gives rise to a novel consistency model. Astrolabe
+  addresses several security considerations using a built-in PKI. The
+  scalability of the system is evaluated using both simulation and experiments;
+  these confirm that Astrolabe could scale to thousands and perhaps millions of
+  nodes, with information propagation delays in the tens of seconds.%
+    }
+    \field{number}{2}
+    \field{pages}{164\bibrangedash 206}
+    \field{title}{{Astrolabe: A Robust and Scalable Technology for Distributed
+  System Monitoring, Management, and Data Mining}}
+    \field{volume}{21}
+    \verb{file}
+    \verb :Users/nunomorais/Documents/Developer/tese{\_}edge{\_}monitoring/rela
+    \verb ted{\_}work/2003{\_}Renesse, Birman, Vogels{\_}Astrolabe A Robust and
+    \verb  Scalable Technology for Distributed System Monitoring, Management, a
+    \verb nd Data Mining.pdf:pdf
+    \endverb
+    \field{journaltitle}{ACM Transactions on Computer Systems}
+    \field{year}{2003}
   \endentry
 
   \entry{rowstron2001pastry}{inproceedings}{}
