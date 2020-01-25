@@ -1,24 +1,23 @@
 \chapter{Related Work} \label{cha:related_work}
 
-The following chapter provides context about the challenge we attempt to solve and presents the studied related work towards the identified sub-challenges in deploying and managing microservices in the edge of the network. 
+In this chapter we provide further context about the Edge Computing paradigm and study related work to the identified challenges towards creating a unified infrastructure which performs monitoring and management of resources in the edge environment. First, we study the taxonomy of resources in the edge of the network, and describe how they can be employed (Section \ref{sec:offloading_computation}).
 
-First, \textbf{microservice networking}: microservices need to cooperate towards solving applicational tasks, as such, microservices need to be integrated in an efficient abstraction layer that allows them to find each other and communicate. This raises an old challenge in P2P computing: how can peers organize themselves in the network such that they can find resources (e.g. other peers, services or even computing power) in an efficient way? It is important to notice that the edge environment is composed by lots of sub-networks of heterogenous devices concurrently entering and leaving the network, which presents a hard scenario in \textbf{resource location systems}, particularly in creating and maintaining the topology (\textbf{topology management}), because the overlay needs to federate large numbers of devices and adapt to the underlying network in order to remain efficient. 
+Then, after understanding the environment taxonomy, we describe common approaches towards integrating those devices in an efficient abstraction layer. It is paramount that such layer provides efficient communication patterns, traffic locality and load balancing (according to device heterogeneity). As such, we will cover the different techniques of topology management and present popular implementations (Section \ref{sec:topology_management}).
 
-Addressing this, section \ref{sec:topology_management} of this chapter provides context about \textbf{topology management}, particularly the main categories of topologies and discuss their applicability in edge environments. Second section, \ref{sec:res_location} covers \textbf{resource location architectures}, which leverage on one (or a combination of) topologies to index resources in the system. For each type of architecture we discuss their differences and present popular implementations in the state of the art. 
+Following, we analyze how nodes can find resources (e.g. other peers, services or even computing power) in the aforementioned layer. We present popular implementations for each type of \textbf{resource location architecture}  in the state of the art (Section \ref{sec:res_location}). 
 
-Now, provided that we have an efficient overlay tailored towards deploying microservices, the next step is \textbf{ensuring and maintaining quality of service}. For this, we need to perform \textbf{monitoring} of device and service status, with a special emphasis on devices in the edge environment. Section \ref{sec:res_monitoring} covers popular techniques used towards tracking device and service status, we particularly study failure detectors and study metrics assist in pinpointing causes of QoS degradation. Furthermore, section \ref{sec:res_monitoring} also covers related work about monitoring edge devices and some examples of popular monitoring systems.
+Next, we study how to \textbf{monitor} the state of the devices and the tasks running on them, we study popular techniques of monitoring device and task status, and how to aggregate those values (Section \ref{sec:res_monitoring}).
 
-However, if we wish to gather metrics on device and service status, devices will produce a continuous stream of monitoring data, transmitting and storing that data becomes a limitation to the scalability of the system. To circumvent this, that data needs to somehow be combined, this process is called \textbf{aggregation}. Section \ref{sec:aggregation} studies aggregation, which consists in the process of combining several numeric values into one single representative \cite{grabisch2009aggregation}. Next, we discuss the different types of aggregation, and how they can be applied towards maintaining the aforementioned quality of service.
+Lastly, we study how the monitoring data can be used to distribute and offload tasks. We discuss the differences between performing resource management in the Edge instead of the Cloud. Lastly, we discuss related towards offloading tasks  in Edge environments.
 
-Lastly, section \ref{sec:offloading_computation} studies how the aggregated results can be used to perform microservice management and deployment. Namely, how to orchestrate microservice deployment and migration such that the computation is offloaded to the Edge. We discuss the difference between paradigms such as Fog Computing, Osmotic Computing and Edge Computing. Lastly, we discuss approaches towards implementing elastic computing in Edge environments.
+\section{Offloading computation to the Edge} \label{sec:offloading_computation} \input{Chapters/related_work/offloading_computation.tex}
 
 \section{Topology Management} \label{sec:topology_management} \input{Chapters/related_work/topology_management.tex}
 
 \section{Resource Location and Discovery} \label{sec:res_location} \input{Chapters/related_work/resource_location.tex}
 
-\section{Monitoring} \label{sec:res_monitoring} \input{Chapters/related_work/monitoring.tex}
+\section{Resource monitoring} \label{sec:res_monitoring} \input{Chapters/related_work/monitoring.tex}
 
-\section{Aggregation} \label{sec:aggregation} \input{Chapters/related_work/aggregation.tex}
+\section{Resource management} \label{sec:res_management} \input{Chapters/related_work/resource_management.tex}
 
-\section{Offloading computation to the Edge} \label{sec:offloading_computation} \input{Chapters/related_work/offloading_computation.tex}
 

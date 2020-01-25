@@ -6,7 +6,9 @@
 
 Given that the main challenge to solve is to provide a platform which enables microservice deployment and management in Edge devices, it is imperative that services are able to find the resources they need (either other services or peers in the system) to meet their requests. For this, peers need implement a \textbf{resource location system}.
 
-Resource location systems are one of the most common applications of the P2P paradigm. In these systems, a participant provided with a resource descriptor is able to query peers and obtain an answer to the location (or absence) of that resource in the system within a reasonable amount of time. There are many types of queries a resource location system may support, we present some of them:
+Resource location systems are one of the most common applications of the P2P paradigm. In these systems, a participant provided with a resource descriptor is able to query peers and obtain an answer to the location (or absence) of that resource in the system within a reasonable amount of time. There are many types of queries a resource location system may support, we present some of them.
+
+\subsection{Query taxonomy}
 
 \begin{enumerate}
     \item \textbf{Exact Match queries} specify the resource to search by the value of a specific attribute (for example, a hash of the value).
@@ -16,16 +18,25 @@ Resource location systems are one of the most common applications of the P2P par
     \item \textbf{Range queries} retrieve all resources whose value is contained in a given interval (e.g. "movies with 100 to 300 minutes of duration"). These queries are especially applied in databases.
     
     \item \textbf{Arbitrary queries} are queries that aim to find a set of nodes or resources that satisfy one or more arbitrary conditions, a possible example of an arbitrary query is looking for a set resources with a certain size or format.
-    \item 
 \end{enumerate}
+
+\subsection{Query dissemination}
+
+A basic requirement towards forming these overlays is performing efficient information exchange among nodes, as previously mentioned, it would be undesirable if all nodes communicate with all other nodes in the system.
+
+To circumvent this, throughout the years many communication patterns arose which are specifically tailored towards different requirements.
+
+First, \textbf{Flooding}
 
 \textbf{Disseminating} the previously mentioned queries in an efficient manner through the overlay is a challenge in P2P resource location systems, there have been devised many \textbf{dissemination strategies} whose applicability depends on the applicational requirements and system capabilities. There are two main types of dissemination of queries, \textbf{flooding} and \textbf{walks}.
 
-When \textbf{flooding}, peers eagerly forward queries to other peers in the system , the objective of flooding is to contact a certain number of distinct peers in the system that may have the desired resource. One approach is \textbf{complete flooding} which consists in contacting every node in the system, this guarantees that if the resource exists, it will be found (this is the only way to provide exact resource location in a decentralized resource location system), however, complete flooding is not scalable and incurs lots of message redundancy. \textbf{Flooding with limited horizon} minimizes the message redundancy overhead by attaching a TTL to messages that limits the number of times a message can be retransmitted. However, there is a trade-off for efficiency: flooding with limited horizon does not provide exact resource location. There are many other dissemination techniques, often tailored towards specific application requirements.
+When \textbf{flooding}, peers eagerly forward queries to other peers in the system , the objective of flooding is to contact a certain number of distinct peers in the system that may have the desired resource.
 
-\textbf{Walks} are a dissemination strategy that attempts to minimize the communication overhead that accompanies flooding. Instead of peers forwarding messages to multiple peers, walks are forwarded one peer at a time throughout the system. How walks are propagated in the system dictates the type of walk being used: if walks are propagated randomly, they are said to be \textbf{random walks}.
+One approach is \textbf{complete flooding} which consists in contacting every node in the system, this guarantees that if the resource exists, it will be found (this is the only way to provide exact resource location in a decentralized resource location system), however, complete flooding is not scalable and incurs lots of message redundancy. 
 
-Conversely, walks may take a biased paths in the system based on information accumulated by peers, this is called a \textbf{guided walk}. Guided walks implement the concept of routing indices that allow nodes to forward queries to neighbors that are more likely to have answers \cite{1022239}. Another approach to bias walks is to use bloom filters \cite{5751342}, which is a space-efficient probabilistic data structure that supports set membership queries. Again, there are many techniques of performing guided walks, often  tailored for specific system needs. 
+\textbf{Flooding with limited horizon} minimizes the message redundancy overhead by attaching a TTL to messages that limits the number of times a message can be retransmitted. However, there is a trade-off for efficiency: flooding with limited horizon does not provide exact resource location. There are many other dissemination techniques, often tailored towards specific application requirements.
+
+\textbf{Random Walks} are a dissemination strategy that attempts to minimize the communication overhead that accompanies flooding. Instead of flooding, a random walk consists of a message with a TTL that is randomly forwarded one peer at a time throughout the network. Walks may also take a biased paths in the system based on information accumulated by peers, through aggregation, this is called a \textbf{random guided walk}. Random guided walks  forward queries to neighbors that are more likely to have answers \cite{1022239}. Another approach to bias walks is to use bloom filters \cite{5751342}, which are space-efficient probabilistic data structures that support set membership queries. There are many other techniques of performing guided walks, often tailored for application system needs.
 
 Throughout the years 3 popular architectures emerged that are common towards indexing resources in a distributed system:
 
@@ -37,14 +48,13 @@ It is important to notice that in a centralized architecture, while the indexati
 
 Because centralized architectures have limited scalability, purely centralized architectures cannot be applied in large scale Edge environments. However, there are many ways that a hybrid architecture can be applied to Edge computing: since the failure rate of a single DC is low, if we assume a system composed by multiple DCs, they may act as a reliable failover for whenever edge devices are partitioned of fail. DCs can also act as an entrypoint for systems, or finally, act as an optimization reference point for peers. 
 
-\subsection{Unstructured Architectures}
+\subsection{Decentralized Architectures}
 
-
-\subsection{Distributed Hash tables}
+\subsubsection{Distributed Hash tables}
 
 \textbf{Distributed Hash Tables} (DHTs) contrast with centralized servers, where the index distribution is split among peers in the system. In a DHT, peers are assigned uniformly distributed IDs using hash functions, then, peers employ a global coordination mechanism that restricts their neighboring relations (usually called routing tables) such that the resulting overlays commonly consist in low-diameter geometric structures like rings, hypercubes, among others. % rever definicao, meter citacao
 
-Peers maintain routing tables to forward messages in the system, such that they can contact any other participant in a bounded number of steps, where the bound (usually logarithmic) is dictated by the topology . Finally, using the same hash functions to map resources (files, multimedia, messages, etc.) to the peer identifier space, and assigning a key-space interval to each peer, peers can store and find any resource in a bounded number of steps (\textbf{exact resource location}).
+Peers maintain routing tables to forward messages in the system, such that they can contact any other participant in a bounded number of steps, where the bound (usually logarithmic) is dictated by the topology . Finally, using the same hash functions to map resources (files, multimedia, messages, among others) to the peer identifier space, and assigning a key-space interval to each peer, peers can store and find any resource in a bounded number of steps (\textbf{exact resource location}).
 
 One particular type of DHT that is commonly employed in in small to medium sized storage solutions is the One-Hop DHT, nodes in a one-hop DHT have \textbf{Full membership} of the system and consequently, can perform lookups in O(1) time and message complexity. Facebook's Cassandra \cite{lakshman2010cassandra} and Amazon's Dynamo \cite{decandia2007dynamo} are widely used implementations of one-hop DHTs. However, full membership solutions have scalability problems due to the required memory and message volume necessary to maintain the full membership information up-to-date. Finally, maintaining full membership is costly in the presence churn (participants entering and leaving the system concurrently). The accumulation of these factors make full-membership solutions impractical in Edge environments.
 
@@ -71,9 +81,11 @@ Chord is a basis for lots of work: Cyclone \cite{Artigas2005} is a hierarchical 
 
 \textbf{Tapestry} \cite{tapestry} Is a DHT similar to pastry where messages are incrementally forwarded to the destination digit by digit (e.g. ***8 -> **98 -> *598 -> 4598). Lookups have logb(n) time complexity where b is the base of the ID space. A system with n nodes has a resulting topology composed of n spanning trees, where each node is the root of its own tree. Because nodes assume that the preceding digits all match the current node's suffix, it only needs to keep a constant size of entries at each route level. Thus, nodes contain entries for a fixed-sized neighbor map of size b.log(N). 
 
-\subsection{Hybrid approaches}
+\subsubsection{Unstructured Overlays}
 
-\textbf{Curiata} & \textbf{Build One Get One Free}
+\subsubsection{Hybrid approaches}
+
+\textbf{Curiata} \& \textbf{Build One Get One Free}
 
 \subsection{Discussion}
 
