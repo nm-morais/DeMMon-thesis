@@ -1,4 +1,47 @@
+Provided that we intend to build a robust decentralized monitoring system, it is crucial to understand how monitoring can be used towards resource management. In this section we present an overview of the taxonomy of resource management systems. We analyze resource management systems for cloud and edge systems in the literature and discuss their advantages and limitations.
+
+As in \cite{Hong2019}, we classify resource management architectures in fog/edge according to their \textit{data flow}, \textit{control} and \textit{tenancy}.
+
+\begin{enumerate}
+
+    \item \textit{Data flow architectures}, these architectures focus on the flow of the data, i.e. from user devices to edge nodes or alternatively from the cloud to edge nodes.
+    
+    \item \textit{Control architectures}, these architectures are based on how the resources are controlled, either centralized by a single controller, or in a distributed manner.
+    
+    \item \textit{Tenancy architecture} is based on controlling wether or not multiple entities share the same resources.
+
+\end{enumerate}
+
+We may classify data flow as how the data or workload is transferred within a fog/edge computing environment. There are three data flow architectures, namely \textit{sharing, aggregation} and \textit{offloading}.
 
 
+\subsection{Sharing workload}
+
+\textit{Sharing} is usually employed whenever the workload is shared among peers. The aim of this model is to satisfy workload requirements on mobile devices without offloading the computation towards the cloud. Cooperative task distribution needs to be inherently energy-aware for this technique to be feasible, first, we describe task distribution based on \textbf{control}. \textit{Controlling} the task distribution of the system may be performed two-fold: 
+
+\textbf{Centralized control} in this technique, there is a centralized controller which manages the workloads of devices in each edge of the environment. This is the approach taken by Yarn \cite{Vavilapalli2013ApacheHY} , Mesos \cite{hindman2011mesos}, ENORM \cite{wang2017enorm} among others. However, this approach is limited in scalability due to the centralized controller computing all task distributions, and has a centralized point of failure. \textbf{Decentralized control}, in this area there is limited research done. However, a game theoretic approach was employed which is based on a decentralized  approach for achieving Nash equilibrium among cloudlets \cite{Cui2017}. \textcolor{red}{sharing é mais entre mobile devices, vale a pena escrever mais?}
+
+\subsection{Offloading}
+
+Offloading is a technique in which a server, application and the associated data are moved onto the edge of the network. There are two variants for offloading, either from the user device to the edge, of from the cloud to the edge.
+
+\subsubsection{Offloading from User device to the Edge}
+
+This technique enhances computing in  mobile nodes by employing edge nodes which are usually only one or two hops away. In the literature we found two main ways of performing this, first is \textit{caching} and the second is \textit{application partitioning}
+
+\textit{Application partitioning} consists in partitioning applications in many different sub-components, then, application fragments are deployed across the infrastructure. There are many approaches towards deciding where to offload the computation:
+
+\begin{enumerate}
+    \item \textbf{Brute force} proposes exhaustively exploring all potential targets combinations towards offloading tasks (including the Cloud, the Edge and other user devices) and picking the one which provides the minumum execution time. This technique intuitively is not scalable enough to be applied in practice.
+    
+    \item Greedy heuristics focus on minimizing the time it takes for the task to be completed on a mobile device. FogTorch \cite{Brogi2017} employs a greedy heuristic by which reduces the search space of devices which constitute options for service deployments.
+
+    \item Simulated Annealing
+    \item Fuzzy logic
+\end{enumerate}
+
+\subsubsection{Offloading from to the Cloud to the Edge}
+
+\subsection{Discussion}
 
 \subsection{Schedulers}

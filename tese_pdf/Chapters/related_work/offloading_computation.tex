@@ -4,7 +4,22 @@ In this chapter we provide context about related work towards decentralizing com
 
 \subsection{Edge Computing}
 
-As previously mentioned, edge computing calls for the processing of data in the edge of the network, specifically servicing IoT devices and performing computations on behalf of cloud services. This proposes to address battery life constraints, lower bandwidth consumption (which in turn lowers infrastructure costs) as well as address data privacy and safety \cite{7488250}. 
+As previously mentioned, edge computing calls for the processing of data in the edge of the network, specifically servicing IoT devices and performing computations on behalf of cloud services \cite{7488250}.
+
+As previously mentioned, edge computing has the potential of enabling novel edge-enabled applications along with providing many improvements to existing systems:
+
+\begin{itemize}
+
+    \item \textit{Reducing the amount of traffic}, if the workload of a client can be computed in the cloud, then the latency can be greatly improved vs when doing the work in the cloud. For example, in the case of a smart home which computes the average home temperature in all divisions, almost all the data collected by the sensors can be aggregated (averaged) in a home gateway, effectively summarizing the data from a set of values to one single value. Reducing the data size improves the transmission reliability and saves bandwidth for other edge devices.
+    
+    \item \textit{Latency} is one of the most important aspects towards the performance of applications / services, especially time-critical applications (e.g. traffic monitoring) have special latency needs. Latency consists in the time it takes for a packet to travel the network from the origin endpoint to the target endpoint. Edge computing solves this by offloading the computation towards the nearest edge device, for example a cellphone offloading facial recognition to the nearest 5G cell tower.
+
+    \item Facilitating new approaches of \textit{load-balancing}, given that there is a massive increase of devices in the edge of the network, if all devices cooperate towards a common goal, they can achieve tasks similar to those of more complex systems (e.g. sensor networks performing sql queries \cite{Madden2002}). For example, edge computing solves service load-balancing by offloading its computation towards the nearest availablse neighbor which has more capacity, or by offloading a portion of its tasks.
+    
+    \item \textit{Minimizing energy consumption}, edge computing has the potential of performing some of the aforementioned tasks, however, instead of optimizing towards latency or traffic locality, devices take into consideration their energy percentage. For example, a device which has very low latency but also low battery in a time-critical service can chose to offload any unnecessary computations towards neighbors, as a cost-saving measure. Additionally, given that devices are closer to their targets, communications are faster and consequently consume less energy.
+    
+\end{itemize}
+
 
 Many approaches have already leveraged on some form of Edge computing in the past. \textbf{Cloudlets} \cite{10.1145/2307849.2307858} are an extension of the cloud computing paradigm beyond the DC, which consists of deploying resource rich computers near the vicinity of users that provide cloud functionality.
 
@@ -12,7 +27,7 @@ A limitation of cloudlets is that because they are specialized computers, they c
 
 \textbf{Content Distribution networks} \cite{peng2004cdn} (CDNs) emerged to address the overwhelming utilization of network bandwidth and server capacity that arose with bandwidth-intensive content (e.g. streaming HD video). In short, CDNs consist of specialized high bandwidth servers strategically located at the edge of the network, these servers replicate content from a certain origin and serve it at reduced latencies, effectively decentralizing the content delivery. 
 
-Additionally, many paradigms have emerged which propose to solve similar problems to the Edge Computing paradigm. \textbf{Fog Computing} \cite{bonomi2012fog} proposes to provide compute, storage and networking services between end devices and traditional cloud computing data centers, typically, but not exclusively located at the edge of the network. Fog computing is interchangeable with our vision of all devices acting as an "edge" contributing towards computing, however, with a bigger emphasis on providing infrastructure towards sensor networks that produce large amounts of data, and less in how to properly integrate the whole infrastructure. 
+Additionally, many paradigms have emerged which propose to solve similar problems to the Edge Computing paradigm. \textbf{Fog Computing} \cite{bonomi2012fog} proposes to provide compute, storage and networking services between end devices and traditional cloud computing data centers, typically, but not exclusively located at the edge of the network. Fog computing is interchangeable with our vision of all devices acting as an "edge"\ contributing towards computing tasks.
 
 \textbf{Osmotic Computing} \cite{villari2016osmotic} envisions the automatic deployment and management of inter-connected microservices on both edge and cloud infrastructures. Osmotic computing envisions edge devices employing an orchestration technique similar to the process of "osmosis". Translated, this consists in dynamically detecting and resolving resource contention via coordinated microservice deployments, furthermore, this paradigm is focused towards ensuring and maintaining quality of service.
 
@@ -20,7 +35,7 @@ Additionally, many paradigms have emerged which propose to solve similar problem
 
 \subsubsection{Edge Environment Taxonomy} \label{subsec:edge_taxonomy}
 
-Similar to \cite{Leitao2018}, we classify edge device according to 3 main attributes: \textbf{capacity} refers to computational, storage and connectivity capabilities of the device,  \textbf{availability} consists in the probability of a device being reachable, and finally, \textbf{domain} characterizes the way in which a device may be employed towards applications in short, if the device can support the whole \textit{applicational domain} or only the activities of a single user (\textit{user domain}) .
+Similar to \cite{Leitao2018}, we classify edge device according to 3 main attributes: \textbf{capacity} refers to computational, storage and connectivity capabilities of the device,  \textbf{availability} consists in the probability of a device being reachable, and finally, \textbf{domain} characterizes the way in which a device may be employed towards applications. In short, if the device can support the whole \textit{applicational domain} or only the activities of a single user (\textit{user domain}) .
 
 \begin{table}[!htb]
     \caption{Taxonomy of the edge environment}
@@ -53,9 +68,9 @@ Similar to \cite{Leitao2018}, we classify edge device according to 3 main attrib
 
 Table \ref{tab:taxonomy_edge} shows the categories of edge devices, we assign levels to categories as a function of the distance from the cloud infrastructure. Coincidently, the levels are correlated to the number of devices and their computational power, where higher levels tend to have more devices that are closer to the origin of the data and have lower computational power.
 
-\textbf{Levels 0 and 1} \textit{cloud and edge DCs} offer pools of computational and storage resources, that can dynamically scale to support the operation of edge-enabled applications (e.g. serving as an optimization reference point for edge devices). Both of these have high availability and large amounts of storage and computational power, as such, there is no limitations on which type of computations these devices can perform.
+\textbf{Levels 0 and 1} \textit{cloud and edge DCs} offer pools of computational and storage resources, that can dynamically scale to support the operation of edge-enabled applications. Both of these options have high availability and large amounts of storage and computational power, as such, there is no limitations on which type of computations these devices can perform.
 
-\textbf{Level 2} is composed of \textit{5G cell towers}, which serve as access points for mobile devices, \textbf{Level 3} also consists of \textit{networking devices}, although with lower capacity than those in level 2. Devices in both levels have high availability, and they can still contribute to the applicational domain, however in a limited fashion (e.g. coordinate resource management, host a microservice, or just act as a gateway for mobile devices).
+\textbf{Level 2} is composed of \textit{5G cell towers}, which serve as access points for mobile devices, \textbf{Level 3} also consists of \textit{networking devices}, although with lower capacity than those in level 2. Devices in both levels have high availability, and they can contribute to the applicational domain, however in a limited fashion (e.g. coordinate resource management, host a microservice, or just act as a gateway for mobile devices). Devices in this level can easily improve the management of the network, for example, by manipulating data flows.
 
 \textbf{Level 4} Consists of \textit{private servers and desktops}, it is the first level where devices belong to the user domain. Devices in this level have medium capacity and availability, and can perform a varied amount of tasks on behalf of devices in higher levels (e.g. compute on behalf of smartphones, act as logical gateways or just cache data). 
 
@@ -69,4 +84,4 @@ Finally, \textbf{level 7} consists of \textit{actuators, sensors and things}, th
 
 Intuitively, the lower the level the harder it is to employ devices towards applications. Devices in levels 6 and 7 are especially restricted due to having lower availability and computational power, however, these can still be used in specific scenarios (e.g. an application with very low computational overhead but real-time latency requirements). 
 
-Devices in levels 0-5 are potential candidates towards building the resource monitoring system we intend to create. Given the low availability of devices in higher levels, they are not very suitable towards overlay that supports the resource monitoring system, as they could not contribute much towards the system and would incur churn. This can be circumvented by employing devices in  other levels as gateways for mobile devices and \textit{things}.
+Devices in levels 0-5 are potential candidates towards building the resource monitoring system we intend to create. Given the low availability of devices in higher levels, they are not very suitable, as they could not contribute much towards the system and would incur churn. This effect can be circumvented by employing devices in other levels as gateways for mobile devices and \textit{things}.

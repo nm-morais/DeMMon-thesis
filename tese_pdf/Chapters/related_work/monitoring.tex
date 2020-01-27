@@ -1,44 +1,68 @@
-
-The goal of this section is further identify the challenges that arise from creating a monitoring infrastructure tailored for general computing in edge environments. For this, we start by identifying the functional requirements of monitoring systems within edge computing scenarios.
-
-\subsection{Monitoring requirements}
-
-\textit{Scalability}, a scalable monitoring system can handle a remarkable number of monitored devices and services. This property is paramount towards edge computing environments because of the necessity of managing a wide variety of parameters which need to be monitored across a largely decentralized environment. Existing centralized monitoring tools fail to distribute the monitoring load, which in turn leads to a single point of failure.
-
-\textit{Non-intrusiveness}, following the edge computing viewpoint of performing simple lightweight tasks, the monitoring solution should follow this approach. Given this, a monitoring tool which adopts minimal processing, consumes low memory and generates low amounts of traffic is essential.
-
-\textit{Interoperability}, edge computing aims at a cooperative deployment of applications interconnected over both cloud and edge infrastructures. Ideally, companies should be able to deploy components across a wide range of infrastructures owned by different providers.
-
-
-\textit{Robustness}, the monitoring system must be robust in the face of failures or network partitions. Especially in the edge environment, where devices are scattered and restricted in capacity. 
-
-\textit{Live Migration Support}, with the current offers of virtualization technologies, there is a wide variety in resource management options, such as VMs or containers. For edge-enabled applications, live migration is a highly desirable feature, as it is a tool towards providing highly available applications.
-
 \subsection{Device monitoring}
 
-To adapt edge computing applications to changes in the environment and ensure application QoS requirements, it is necessary to tailor the monitoring system to support the whole spectrum of underlying infrastructures (section \ref{sec:offloading_computation}) 
+In order to adapt edge computing applications to changes in the environment and ensure that the above requirements can be met, it is necessary to tailor the monitoring system to support the whole spectrum of underlying infrastructures (section \ref{sec:offloading_computation}). 
 
+A modern approach towards deploying systems is to deploy them in loosely coupled independent components running some form of virtualization software. Virtualization is the building block of resource management systems, as it enables co-deployment of logical machines in the same physical node.
 
+\subsubsection{VM monitoring ?}
 
+In virtual machines (VMs), all the physical resources can be virtualized (CPU, memory, disk and network). Multiple VMs can co-deployed in the same physical node and thus share resources among each other. 
 
+In order to have efficient resource utilization and prevent any problems in the virtualized resources, monitoring of VMs is critical. This can be best achieved by tracking the utilization of the virtualized resources, mainly usage of CPU, memory, storage and network.
 
+\begin{itemize}
 
-\subsection{Service monitoring}
+    \item \textbf{CPU} usage tracks the amount of usage of the CPU as a percentage of all available CPU to the machine. It is never desirable that the CPU usage reaches 100\%, as queues start filling up and it means that the device has run out of capacity for processing tasks.
+    
+    \item \textbf{Memory} indicates the amount of virtualized memory left.
+    
+    \item \textbf{Disk usage} tracks the amount of data read or written by a VM. Alternatively, it can indicate the percentage of used space.
+    \item \textbf{Network usage} consists in the volume of traffic on a specific network interface of the VM, either external or internal traffic.
 
+\end{itemize}
 
+Although VMs are widely present in the cloud infrastructure, we believe their applicability towards edge scenarios is limited, due to the fact that they have significant start up time (having to start-up an OS).
 
+\subsubsection{Container monitoring}
 
-\subsection{Aggregation} 
+Containers are the recent alternative to VMs, as previously mentioned, containers do not require an OS to boot up \cite{}, and the images that compose them are significantly smaller. Container-based virtualization can be compared to an OS running on bare-metal in terms of memory, CPU and disk usage, however at a cost of network utilization \cite{preeth2015evaluation}, which makes them an attractive options towards resource-constrained devices.
 
-Aggregation is an essential building block towards monitoring distributed systems, it  enables the determination of important system wide properties in a decentralized manner \cite{DBLP:journals/corr/abs-1110-0725}.
+Due to their lightweight nature, it is possible to deploy container-based applications (e.g. microservices), which can perform fast migration across nodes in the edge environment in order to improve QoS. This flexibility towards the migration process is an efficient tool to deal with many challenges such as load balancing, scaling, resource reallocation and fault-tolerance. 
+
+There are many container-specific tools which provide statistics about a given container, most use REST APIs to expose this functionality to external entities. Docker, which is a container provider, \textcolor{red}{citação?} has a built tool called \textit{docker stats} which provides runtime metrics for a given container.
+
+Prometheus is is an open source system for monitoring and alerting, originally built at SoundCloud. Prometheus is a tool which scrapes data from containers using HTTP and stores them into time series, then, it offers a platform towards configuring alerts, which are triggered whenever a certain criteria is met. However, the data collection is centralized, and thus its scalability is limited. 
+
+\textcolor{red}{// TODO falar de quais metricas (como nas vms) ? }
+
+\subsection{End-to-end link monitoring}
+
+Given that the edge infrastructure envisions cooperation from all devices in the path from the origin of the data to the DC, devices need to be interconnected across an underlying infrastructure which is continuously changing. This raises concerns about the network quality of links between devices across the system, especially if they are running time-critical services. 
+
+It is paramount to analyze how to monitor and improve link quality, for providing traffic locality, latency, among others. According to the literature \cite{}, the most popular metrics to analyze are:
+
+\begin{enumerate}
+
+    \item Network throughput, which is the average rate of successful data transfer through a network connection.
+    
+    \item Latency, which consists in how long a packet takes to travel across a link from one endpoint to another
+    
+    \item Packet loss, which consists in how many packets are lost when traveling towards their destination.
+    
+    \item Jitter is the variation in latency of sequential received packets. 
+\end{enumerate}
+
+\subsection{Aggregation}
+
+\textbf{Aggregation} is an essential building block towards monitoring distributed systems, it enables the determination of important system wide properties in a decentralized manner \cite{DBLP:journals/corr/abs-1110-0725}. 
 
 Aggregation consists in computing an aggregation function over a set of input values where each node has one input value. Common aggregation functions consist in sum, count, average, min, max.
 
-Towards monitoring edge devices and tasks, aggregation is paramount, examples of usages are (e.g. computing the average latency of the closest available service that meets a certain criteria; counting nearby available computing resources that can be used to offload services, or identify hotspots by aggregating the average system load in certain areas).
+Towards monitoring edge devices and tasks running on them, aggregation is paramount, examples of usages are (e.g. computing the average latency of the closest available  service that meets a certain criteria; counting nearby available computing resources that can be used to offload services, or identify hotspots by aggregating the average system load in certain areas).
 
-\subsection{Properties of aggregation functions}
+Given this, it is important to understand the taxonomy of aggregation functions. There are two properties of aggregation functions: \textit{decomposability} and \textit{duplicate sensitiveness}.
 
-Given this, it is important to understand the taxonomy aggregation functions. There are two properties of aggregation functions: \textit{decomposable functions} and \textit{duplicate sensitive} functions.
+\textbf{Decomposability}
 
 For some aggregation functions, we may need to involve all elements in the multiset, however, for memory and bandwidth issues, it is impractical to perform a centralized computation, hence, the aim is to employ \textit{in-transit computation}. In order to enable this, it is required that the aggregation function is \textbf{decomposable}. 
 
@@ -64,19 +88,31 @@ Table \ref{table:aggregation_functions} classifies popular aggregation functions
 
 Building on the concepts of duplicate sensitiveness and decomposability, we show that aggregation functions present their own particularities which dictate their applicability in particular scenarios. For example, a Min or Max function may be easier to implement with a simpler algorithm, while Sum, Count and Average require extra considerations. This presents a limitation towards calculating exact aggregations in large scale systems, to circumvent this, some systems do not require obtaining exact aggregated values to perform near optimally  (e.g. estimating the system size in order to select the optimal fanout for a gossip system only requires an estimation of the magnitude of the system). 
 
-\subsection{Aggregation techniques}
+\subsubsection{Aggregation techniques}
 
-Following, we present the studied categories of aggregation techniques: Hierarchical, Averaging, Sketches (hash or min-k based), Digests, Deterministic and Sampling. In each technique, we discuss its applicability in the edge environment.
+Following, we present a taxonomy of aggregation techniques for edge devices, for each technique, we provide context and discuss its possible advantages and limitations in the edge environment.
 
 \subsubsection{Hierarchical}
 
-\textbf{Hierarchical} approaches leverage directly on the decomposability of aggregation functions. Aggregations from this class depend on the existence of a hierarchical communication structure, (e.g. a spanning tree) with one root (sink node). Aggregations take place by splitting inputs into groups and aggregating values bottom-up in the hierarchy. Commonly, hierarchical aggregation systems have nodes whose roles are \textit{aggregators} or \textit{forwarders}, intuitively, aggregators compute the aggregation functions forward results to forwarders who transfer results to upper levels in the hierarchy. In the absence of faults, the correct final result is obtained in the sink node. Many systems employ hierarchical approaches to aggregation, namely TAG \cite{}, DAG \cite{}, among others. Hierarchical approaches, due to taking advantage of device heterogeneity, are attractive in edge environments. However, due to the low computational power of devices, not all nodes may be  able to handle the additional overhead of maintaining the hierarchical topology.
+\textbf{Tree-based} approaches leverage directly on the decomposability of aggregation functions. Aggregations from this class depend on the existence of a hierarchical communication structure, (e.g. a spanning tree) with one root (sink node). Aggregations take place by splitting inputs into groups and aggregating values bottom-up in the hierarchy. 
 
-\textbf{Averaging} aggregation consists in the continuous computation and exchanging of partial averages data among all active nodes in the aggregation process. In this type of systems, after a few rounds, all nodes usually converge to the correct value with high accuracy, as shown in \cite{gossip_aggregation}. This type of aggregation is attractive for gossip protocols, where nodes may employ varied gossip techniques to continuously share and update their values with random neighbors. Algorithms from this category are also attractive to use in edge environments, because they are accurate while employing random unstructured overlays, which retain their fault-tolerance and resilience to churn.
+Commonly, hierarchical aggregation systems have nodes whose roles are \textit{aggregators} or \textit{forwarders}, intuitively, aggregators compute the aggregation functions and forward results to forwarders who then retransmit the results to upper levels in the hierarchy. In the absence of faults, the correct final result is obtained in the sink node.
+
+\textbf{Cluster-based} techniques rely on clustering the nodes in the network according to a certain criterion (e.g. latency, energy efficiency). In each cluster a representative is responsible for local aggregation and for transmitting the results to other nodes. 
+
+Hierarchical approaches, due to taking advantage of device heterogeneity, are attractive in edge environments. However, due to the low computational power of devices, not all nodes may be able to handle the additional overhead of maintaining the hierarchical topology.
+
+\subsubsection{Averaging}
+
+Averaging aggregation consists in the continuous computation and exchanging of partial averages data among all active nodes in the aggregation process. In this type of systems, after a few rounds, all nodes usually converge to the correct value with high accuracy, as shown in \cite{gossip_aggregation}.
+
+This type of aggregation is attractive for gossip protocols, where nodes may employ varied gossip techniques to continuously share and update their values with random neighbors.
+
+Algorithms from this category are also attractive to use in edge environments, because they are accurate while employing random unstructured overlays, which retain their fault-tolerance and resilience to churn.
 
 \textbf{Sketches} are fixed-size data structures that hold a \textit{sketch} of all network values. Multiple sketches are usually forwarded throughout the system, and nodes who forward sketches apply (usually commutative and associative) operations to update and merge them. \textcolor{red}{functioning and edge discussion}
 
-% completar functionamento
+% completar funcionamento
 
 \textbf{Digests} are an aggregation technique that gathers a representation of all system values, it supports complex aggregation functions such as Median and Mode. In short, algorithms employ a fixed-size data structures commonly composed of a set of values and associated counters) which compacts the data distribution (e.g. into a histogram). \textcolor{red}{edge discussion}
 
@@ -84,16 +120,21 @@ Following, we present the studied categories of aggregation techniques: Hierarch
 
 \subsection{Relevant aggregation protocols}
 
-In this subsection we will analyze relevant aggregation protocolsthat ilustrate some techniques discussed above.
+In this subsection we will analyze relevant aggregation protocols that ilustrate some techniques discussed above.
+
+\subsubsection{TAG: Tiny AGgregation}
 
 \textbf{TAG: Tiny AGgregation}\cite{Madden2002} is a service for aggregation in low-power, distributed, wireless sensor networks. TAG distributes queries in the network in a time and power-efficient manner by employing a hierarchical aggregation pattern. For each aggregation procedure, there is a \textit{root} nodes which broadcasts a message to start the tree-building process, each message contains two fields: a level and a an ID. Whenever a node without an assigned level receives a tree-building message, it assigns its own level as the message level plus one, and its own parent as the message sender. Then, it reassigns the level and ID to its own and forwards the message to other nodes. Then, whenever a node wishes to send a message to the root, it simply forwards the message bottom-up in the tree. The formed topology allows the computation of Count, Maximum, Minimum, Sum and Average. It is important to notice that the formed tree will be unbalanced as a function of the underlay latency and processing time.
 
+\subsubsection{DECA}
+
 \textbf{DECA} \cite{Artigas2006} \textcolor{red}{//TODO}
+
+\subsubsection{Astrolabe}
 
 \textbf{Astrolabe} \cite{Renesse2003} \textcolor{red}{//TODO}
 
+\subsubsection{SingleTree \& MultipleTree}
+
 \textbf{SingleTree \cite{} and MultipleTree \cite{}} \textcolor{red}{//TODO}
 
-
-
-\subsection{Discussion}

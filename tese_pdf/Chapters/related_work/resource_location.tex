@@ -4,9 +4,9 @@
 % Resource Management
 % -------------------
 
-Given that the main challenge to solve is to provide a platform which enables microservice deployment and management in Edge devices, it is imperative that services are able to find the resources they need (either other services or peers in the system) to meet their requests. For this, peers need implement a \textbf{resource location system}.
+Given that the main challenge to solve is to provide a platform which enables monitoring of edge devices and tasks running on them, it is imperative that peers are able to find the resources they need (e.g. services, peers or computing power) to meet their requests. For this, peers need implement a \textbf{resource location system}.
 
-Resource location systems are one of the most common applications of the P2P paradigm. In these systems, a participant provided with a resource descriptor is able to query peers and obtain an answer to the location (or absence) of that resource in the system within a reasonable amount of time. There are many types of queries a resource location system may support, we present some of them.
+Resource location systems are one of the most common applications of the P2P paradigm. In these systems, a participant provided with a resource descriptor is able to query peers and obtain an answer to the location (or absence) of that resource in the system within a reasonable amount of time. 
 
 \subsection{Query taxonomy}
 
@@ -22,13 +22,9 @@ Resource location systems are one of the most common applications of the P2P par
 
 \subsection{Query dissemination}
 
-A basic requirement towards forming these overlays is performing efficient information exchange among nodes, as previously mentioned, it would be undesirable if all nodes communicate with all other nodes in the system.
+\textbf{Disseminating} the previously mentioned queries in an efficient manner through the overlay is a challenge in P2P resource location systems, there have been devised many \textbf{dissemination strategies} whose applicability depends on the applicational requirements and system capabilities. There are two main types of dissemination of queries, \textbf{flooding} and \textbf{random walks}.
 
-To circumvent this, throughout the years many communication patterns arose which are specifically tailored towards different requirements.
-
-First, \textbf{Flooding}
-
-\textbf{Disseminating} the previously mentioned queries in an efficient manner through the overlay is a challenge in P2P resource location systems, there have been devised many \textbf{dissemination strategies} whose applicability depends on the applicational requirements and system capabilities. There are two main types of dissemination of queries, \textbf{flooding} and \textbf{walks}.
+\subsubsection{Flooding}
 
 When \textbf{flooding}, peers eagerly forward queries to other peers in the system , the objective of flooding is to contact a certain number of distinct peers in the system that may have the desired resource.
 
@@ -36,19 +32,23 @@ One approach is \textbf{complete flooding} which consists in contacting every no
 
 \textbf{Flooding with limited horizon} minimizes the message redundancy overhead by attaching a TTL to messages that limits the number of times a message can be retransmitted. However, there is a trade-off for efficiency: flooding with limited horizon does not provide exact resource location. There are many other dissemination techniques, often tailored towards specific application requirements.
 
-\textbf{Random Walks} are a dissemination strategy that attempts to minimize the communication overhead that accompanies flooding. Instead of flooding, a random walk consists of a message with a TTL that is randomly forwarded one peer at a time throughout the network. Walks may also take a biased paths in the system based on information accumulated by peers, through aggregation, this is called a \textbf{random guided walk}. Random guided walks  forward queries to neighbors that are more likely to have answers \cite{1022239}. Another approach to bias walks is to use bloom filters \cite{5751342}, which are space-efficient probabilistic data structures that support set membership queries. There are many other techniques of performing guided walks, often tailored for application system needs.
+\subsubsection{Random Walks}
+
+\textbf{Random Walks} are a dissemination strategy that attempts to minimize the communication overhead that accompanies flooding. Instead of flooding, a random walk consists of a message with a TTL that is randomly forwarded one peer at a time throughout the network. Walks may also take a biased paths in the system based on information accumulated by peers, through aggregation, this is called a \textbf{random guided walk}. Random guided walks  forward queries to neighbors that are more likely to have answers \cite{1022239}. 
+
+A common approach to bias walks is to use bloom filters \cite{5751342}, which are space-efficient probabilistic data structures that support set membership queries. There are many other techniques of performing guided walks, often tailored for application needs.
+
+\subsection{Centralized Resource Location}
 
 Throughout the years 3 popular architectures emerged that are common towards indexing resources in a distributed system:
 
-\subsection{Centralized Architectures}
-
 \textbf{Centralized architectures} rely on one (or a group of) centralized peers that index all resources in the system. This type of architecture greatly reduces the complexity of systems, as peers only need to contact a subset of nodes to locate resources. However, their scalability is limited, due to the centralized point of failure. 
 
-It is important to notice that in a centralized architecture, while the indexation of resources is centralized, the resource access may still be distributed (e.g. a centralized server provides the addresses of peers who have the files, and files are obtained in a pure P2P fashion). Some systems use a combination of architectures with success: file sharing systems like Napster and BitTorrent \cite{cohen2003incentives} are two examples of hybrid resource location systems that lasted the test of time. 
+It is important to notice that in a centralized architecture, while the indexation of resources is centralized, the resource access may still be distributed (e.g. a centralized server provides the addresses of peers who have the files, and files are obtained in a pure P2P fashion). A system which employs this architecture with success is BitTorrent \cite{cohen2003incentives}.
 
-Because centralized architectures have limited scalability, purely centralized architectures cannot be applied in large scale Edge environments. However, there are many ways that a hybrid architecture can be applied to Edge computing: since the failure rate of a single DC is low, if we assume a system composed by multiple DCs, they may act as a reliable failover for whenever edge devices are partitioned of fail. DCs can also act as an entrypoint for systems, or finally, act as an optimization reference point for peers. 
+Because centralized architectures have limited scalability, purely centralized architectures cannot be applied in large scale Edge environments. However, there are many ways that a hybrid architecture can be applied to Edge computing: since the failure rate of a single DC is low, if we assume a system composed by multiple DCs, they may act as a reliable failover for whenever edge devices are partitioned of fail. 
 
-\subsection{Decentralized Architectures}
+\subsection{Decentralized Resource Location}
 
 \subsubsection{Distributed Hash tables}
 
@@ -70,18 +70,43 @@ Chord implements a system of "shortcuts"\ called the \textbf{finger table}. The 
 
 Chord, although provides the best trade-off between bandwidth and lookup latency \cite{dht_performance_churn}, however, chord presents some limitations: peers do not learn routing information from incoming requests and links have no correlation to latency or traffic locality.
 
-Chord is a basis for lots of work: Cyclone \cite{Artigas2005} is a hierarchical version of Chord provides that constructs a hierarchy by splitting the ID space into a PREFIX and SUFIX. The PREFIX provides intra-cluster identity, whereas the SUFIX is used towards creating clusters of nodes. Routing procedures are executed in lower rings and move up the hierarchy.  Hieras \cite{1240580} uses a binning scheme according the underlay topology to group peers into smaller rings. The lower the ring, the smaller the average link latency. Routing is similar to Cyclone. Crescendo \cite{Ganesan2004} splits the ID range into domains (similar to DNS), where nodes in leaf-domains form Chord rings, then nodes merge rings by applying rules such that rings in different domains can communicate. The resulting routing table and the routing procedures in Crescendo are similar to chord.
+Chord is a basis for lots of work: Cyclone \cite{Artigas2005} is a hierarchical version of Chord provides that constructs a hierarchy by splitting the ID space into a PREFIX and SUFIX. The PREFIX provides intra-cluster identity, whereas the SUFIX is used towards creating clusters of nodes. Routing procedures are executed in lower rings and move up the hierarchy.  
 
-    
-\textbf{Pastry} \cite{rowstron2001pastry} is a DHT that assigns a 128-bit node identifier (nodeId) to each peer in the system. The nodes are randomly generated thus uniformly distributed in the 128-bit nodeId space. Nodes store values whose keys are also distributed in the nodeId space. Key-value pairs are stored among nodes that are numerically closest to the key. This is accomplished by: in each routing step, messages are forwarded to nodes whose nodeId shares a prefix that is at least one bit closer to the key. If there are no nodes available, Pastry routes messages towards the numerically closest nodeId. This routing technique accomplishes routing in O(log N), where N is the number of Pastry nodes in the system. This protocol has been widely used and tested in applications such as Scribe \cite{10.1007/3-540-45546-9_3} and PAST \cite{990064}. Limitations from using Pastry arise from the use of a numeric distance function towards the end of the routing process, which creates discontinuities at some node ID values, and complicates attempts at formal analysis of worst case behavior.
+Hieras \cite{1240580} uses a binning scheme according the underlay topology to group peers into smaller rings. The lower the ring, the smaller the average link latency. Routing is similar to Cyclone.
 
-\textbf{Kademlia} \cite{10.1007/3-540-45748-8_5} is a DHT with provable consistency and performance in a fault-prone environment. Kademlia nodes are assigned 160-bit identifiers uniformly distributed in the ID space. Peers route queries and locate nodes by employing a novel \textbf{XOR-based distance} function that is symmetric and unidirectional. Each node in Kademlia is a router whose routing tables consist of shortcuts to peers whose XOR distance is between \(2^{i}\) by \(2^{i + 1}\) in the ID space. Intuitively, and similar to Pastry, "closer" nodes are those that share a longer common prefix. The main benefits that Kademlia draws from this approach are: nodes learn routing information from receiving messages, there is a single routing algorithm for the whole routing process (unlike Pastry) which eases formal analysis of worst-case behavior. Finally, Kademlia exploits the fact that node failures are inversely related to uptime by prioritizing nodes that are already present in the routing table.
+Crescendo \cite{Ganesan2004} splits the ID range into domains (similar to DNS), where nodes in leaf-domains form Chord rings, then nodes merge rings by applying rules such that rings in different domains can communicate. The resulting routing table and the routing procedures in Crescendo are similar to chord.
 
-\textbf{Kelips} \cite{gupta2003kelips} exploits increased memory usage and constant background communication to achieve O(1) lookup time and message complexity. Kelips nodes are split in $k$ affinity groups split in the intervals [0,$k-1$] of the ID space, thus, with $n$ nodes in the system, each affinity group contains $\frac{n}{k}$ peers. Each node stores a partial set of nodes contained in the same affinity group and a small set of nodes lying in foreign affinity groups. Assuming a proportional number of files and peers in the system and a fixed view of nodes in foreign affinity groups, Kelips achieves O(1) time and message complexity in lookups at the cost of increased memory consumption (O($\sqrt{n}$). Due to this, system scalability is limited when compared to Pastry, Chord or Kademlia. 
+\textbf{Pastry} \cite{rowstron2001pastry} is a DHT that assigns a 128-bit node identifier (nodeId) to each peer in the system. The nodes are randomly generated thus uniformly distributed in the 128-bit nodeId space. 
+
+Nodes store values whose keys are also distributed in the nodeId space, and Key-value pairs are stored among nodes which are numerically closest to the key. 
+
+The routing procedure is as follows: in each routing step, messages are forwarded to nodes whose nodeId shares a prefix that is at least one bit closer to the key. If there are no nodes available, Pastry routes messages towards the numerically closest nodeId. 
+
+This routing technique accomplishes routing in O(log N), where N is the number of Pastry nodes in the system. This protocol has been widely used and tested in applications such as Scribe \cite{10.1007/3-540-45546-9_3} and PAST \cite{990064}. 
+
+Limitations from using Pastry arise from the use of a numeric distance function towards the end of the routing process, which creates discontinuities at some node ID values, and complicates attempts at formal analysis of worst case behavior.
+
+\textbf{Kademlia} \cite{10.1007/3-540-45748-8_5} is a DHT with provable consistency and performance in a fault-prone environment. Kademlia nodes are assigned 160-bit identifiers uniformly distributed in the ID space.
+
+Peers route queries and locate nodes by employing a novel \textbf{XOR-based distance} function which is symmetric and unidirectional. Each node in Kademlia is a router where its routing tables consist of shortcuts to peers whose XOR distance is between \(2^{i}\) by \(2^{i + 1}\) in the ID space. Intuitively, and similar to Pastry, "closer" nodes are those that share a longer common prefix.
+
+The main benefits that Kademlia draws from this approach are: nodes learn routing information from receiving messages, there is a single routing algorithm for the whole routing process (unlike Pastry) which eases formal analysis of worst-case behavior. 
+
+Finally, Kademlia exploits the fact that node failures are inversely related to uptime by prioritizing nodes that are already present in the routing table.
+
+\textbf{Kelips} \cite{gupta2003kelips} exploits increased memory usage and constant background communication to achieve O(1) lookup time and message complexity. 
+
+Kelips nodes are split in $k$ affinity groups split in the intervals [0,$k-1$] of the ID space, thus, with $n$ nodes in the system, each affinity group contains $\frac{n}{k}$ peers.  Each node stores a partial set of nodes contained in the same affinity group and a small set of nodes lying in foreign affinity groups.
+
+Assuming a proportional number of files and peers in the system and a fixed view of nodes in foreign affinity groups, Kelips achieves O(1) time and message complexity in lookups at the cost of increased memory consumption (O($\sqrt{n}$). Due to this, system scalability is limited when compared to Pastry, Chord or Kademlia. 
 
 \textbf{Tapestry} \cite{tapestry} Is a DHT similar to pastry where messages are incrementally forwarded to the destination digit by digit (e.g. ***8 -> **98 -> *598 -> 4598). Lookups have logb(n) time complexity where b is the base of the ID space. A system with n nodes has a resulting topology composed of n spanning trees, where each node is the root of its own tree. Because nodes assume that the preceding digits all match the current node's suffix, it only needs to keep a constant size of entries at each route level. Thus, nodes contain entries for a fixed-sized neighbor map of size b.log(N). 
 
 \subsubsection{Unstructured Overlays}
+
+
+
+SOSP-Net (Self-Organizing Super-Peer Network) \cite{garbacki2007optimizing} proposes to optimize super-peer networks by organizing super-peers in a topology that reflects the semantic similarity of peers with similar interests. Super-peers maintain cache references to files which were recently requested by weak peers, while the weak peers maintain caches containing super-peers that satisfied most of its requests. This yields good cache hit ratios, and load balancing. However, the original paper does not specify how super-peers communicate among themselves, nor the election process of super-peers.
 
 \subsubsection{Hybrid approaches}
 

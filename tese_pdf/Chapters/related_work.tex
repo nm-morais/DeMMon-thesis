@@ -1,14 +1,30 @@
 \chapter{Related Work} \label{cha:related_work}
 
-In this chapter we provide further context about the Edge Computing paradigm and study related work to the identified challenges towards creating a unified infrastructure which performs monitoring and management of resources in the edge environment. First, we study the taxonomy of resources in the edge of the network, and describe how they can be employed (Section \ref{sec:offloading_computation}).
+The goal of this chapter is to further identify the challenges that arise from creating a device monitoring infrastructure which enables efficient scheduling/offloading of tasks across edge environments, and to study related work towards the identified challenges.
 
-Then, after understanding the environment taxonomy, we describe common approaches towards integrating those devices in an efficient abstraction layer. It is paramount that such layer provides efficient communication patterns, traffic locality and load balancing (according to device heterogeneity). As such, we will cover the different techniques of topology management and present popular implementations (Section \ref{sec:topology_management}).
+Computing platforms (e.g. Mesos \cite{hindman2011mesos}, Yarn \cite{Vavilapalli2013ApacheHY}) are usually tailored towards cloud computing systems. As such, they are usually centralized and tailored towards clusters of homogeneous devices which have very different monitoring requirements as those in edge environments. Given this, we identify a set of requirements which we believe to be important towards monitoring systems in general, and critical in an edge environment:
 
-Following, we analyze how nodes can find resources (e.g. other peers, services or even computing power) in the aforementioned layer. We present popular implementations for each type of \textbf{resource location architecture}  in the state of the art (Section \ref{sec:res_location}). 
+\begin{enumerate}
 
-Next, we study how to \textbf{monitor} the state of the devices and the tasks running on them, we study popular techniques of monitoring device and task status, and how to aggregate those values (Section \ref{sec:res_monitoring}).
+    \item  \textit{Scalability}, a scalable monitoring system can handle a remarkable number of monitored devices and services. This property is paramount towards edge computing environments because of the necessity of managing a wide variety of parameters which needs to be monitored across a largely decentralized and fault-prone environment. Existing cloud monitoring tools fail to distribute the monitoring load, which in turn leads to a single point of failure and lack of scalability.
 
-Lastly, we study how the monitoring data can be used to distribute and offload tasks. We discuss the differences between performing resource management in the Edge instead of the Cloud. Lastly, we discuss related towards offloading tasks  in Edge environments.
+    \item  \textit{Non-intrusiveness}, following the edge computing viewpoint of performing simple lightweight tasks, the monitoring solution should follow this approach. Given this, a monitoring tool which adopts minimal processing, consumes low memory and generates low amounts of traffic is essential.
+
+    \item  \textit{Interoperability}, edge computing aims at a cooperative deployment of applications interconnected over both cloud and edge infrastructures. Ideally, companies should be able to deploy components across a wide range of infrastructures owned by different providers.
+
+    \item \textit{Robustness}, the monitoring system must be robust in the face of failures or network partitions. Especially in the edge environment, where devices are scattered and restricted in capacity. 
+    
+    \item \textit{Live Migration Support}, with the current offers of virtualization technologies, such as VMs or containers, there is a wide variety of migration tools for resource management systems. For edge-enabled applications, live migration is a highly desirable feature, as it is a crucial tool towards enabling the self-adaptation to the environment (e.g. dealing with failures, or scaling systems).
+
+\end{enumerate}
+
+Now that we have identified the main requirements of such a system, we study related work towards solving these challenges. First, we study the taxonomy of resources in the edge of the network, and discuss how they can be employed towards the proposed solution (Section \ref{sec:offloading_computation}).
+
+After understanding the environment taxonomy, we need to federate devices and sub-networks in an efficient abstraction layer (to ensure interoperability), it is paramount that such layer provides efficient communication patterns, traffic locality and load balancing (according to device heterogeneity) (Section \ref{sec:topology_management}).
+
+Furthermore, nodes must employ the aforementioned topology in order to efficiently find resources (e.g. other peers, services or even computing power) in the system, and to keep track of which tasks are running and where. For this, we cover different types of queries employed in resource location systems, how to disseminate them, and finally study related resource location systems in the state of the art (Section \ref{sec:res_location}).
+
+Next, we study how to \textbf{monitor} the state of the devices and the tasks running on them, we study popular techniques of monitoring device and task status, and how to aggregate those values (Section \ref{sec:res_monitoring}). Lastly, we briefly study how the monitoring data can be used to distribute and offload tasks (Section \ref{sec:res_management}). 
 
 \section{Offloading computation to the Edge} \label{sec:offloading_computation} \input{Chapters/related_work/offloading_computation.tex}
 

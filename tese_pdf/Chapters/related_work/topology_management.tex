@@ -3,15 +3,15 @@
 % Topology Management
 % -------------------
 
-As previously mentioned, a challenge towards solving the proposed solution is to federate all peers in an abstraction layer that allows intercommunication and efficient resource discovery. Given that this is a classic P2P problem, this section provides context about P2P systems, mainly the taxonomy of overlay networks.
+As previously mentioned, a challenge towards solving the proposed solution is to federate all peers in an abstraction layer that allows intercommunication and efficient resource discovery. Given that this is a classic P2P problem, this section provides context about P2P systems and the taxonomy of overlay networks.
 
-In P2P, participants contribute to the system with a portion of their resources,so that that the overall system can accomplish tasks that would otherwise be impossible for a single peer to solve. However, due to memory and communication overhead, it is undesirable that all nodes in a P2P system collaborate with all other peers (unless in specific scenarios which we will further elaborate). 
+In P2P, participants contribute to the system with a portion of their resources,so that that the overall system can accomplish tasks which would otherwise be impossible for a single peer to solve. However, due to memory and communication overhead, it is undesirable that all nodes in a P2P system collaborate with all other peers (unless in specific scenarios which we will further elaborate). 
 
-Instead, peers select a subset of peers in the system to establish neighboring relations. These neighboring relations are usually constructed on top links from an already existing network (commonly called an underlay). The accumulation of neighboring relations on top of the underlay network is what constitutes the \textbf{overlay network}. 
+Instead, peers select a subset of peers in the system to establish neighboring relations. These neighboring relations are usually constructed on top underlying links from an already existing network (called an underlay). Intuitively, the accumulation of neighboring relations on top of the underlay network is what constitutes the \textbf{overlay network}. 
 
 \subsection{Evaluating topologies}
 
-Given that the accumulation of the neighboring relations among peers forms a graph, one can define a set of metrics to measure graph-related metrics to measure overlay performance:
+If we look at neighboring connections as edges in a graph, we can define a set of metrics to measure graph-related metrics to measure overlay performance:
 
 \begin{enumerate}
     
@@ -29,7 +29,7 @@ Given that the accumulation of the neighboring relations among peers forms a gra
 
 \subsection{Taxonomy of overlay networks}
 
-There are two main approaches to build decentralized P2P systems, these are commonly categorized in two categories: structured and unstructured. Furthermore, within those categories we have identified the following sub-categories: flat and hierarchical. 
+There are two main approaches to build decentralized P2P systems, which are split in two categories: structured and unstructured. Within those categories we have identified the following sub-categories: flat and hierarchical. 
 
 \subsection{Unstructured Overlays}
 
@@ -39,7 +39,10 @@ A key factor of unstructured overlays is their low maintenance cost, given that 
 
 \subsubsection{Flat unstructured Overlays}
 
-A flat unstructured overlay is an overlay where peers contribute evenly towards a common system goal. These overlays attempt to have even degree distributions while providing good connectivity. A prime example of a flat unstructured overlay which is highly resilient to churn and catastrophic failures is \textbf{Hyparview} \cite{Hyparview}. Hyparview (Hybrid Partial View) gets its name from maintaining two exclusive views: the \textit{active} and \textit{passive} view. What distinguishes these views is their maintenance strategy. 
+A flat unstructured overlay is an overlay where peers contribute evenly towards a common system goal. These overlays attempt to have even degree distributions while providing good connectivity. A prime example of a flat unstructured overlay which is highly resilient to churn and catastrophic failures is \textbf{Hyparview} \cite{Hyparview}. 
+
+
+Hyparview (Hybrid Partial View) gets its name from maintaining two exclusive views: the \textit{active} and \textit{passive} view. What distinguishes these views is their maintenance strategy. 
 
 The \textit{passive view} is a larger view which consists of a random set of peers in the system, this view is maintained by a simple gossip protocol which periodically gossips a message to a random peer in the active view. This message contains a subset of the neighbors of the sending node and a time-to-live (TTL), the message is forwarded in the system until the TTL expires. In contrast, the \textit{active view} is a smaller view (around log(n) ) created during the bootstrap of the protocol, and actively maintained by monitoring peers with a TCP connection (effectively making the active view connections bidirectional and acting as a failure detector). Whenever peers from the active view fail, nodes attempt to replace them with nodes in the passive view.
 
@@ -53,22 +56,28 @@ The canonical example is \textbf{super-peers}, which are peers that have increas
 
 Super-peers have proven their effectiveness in reducing the number of peers that have to exchange messages, which by consequence raises system scalability. This is the approach taken by Gia \cite{Chawathe2003} to improve the scalability of Gnutella \cite{gnutella_gtk}. However, this approach is inefficient when finding rare resources in the system.
 
-SOSP-Net (Self-Organizing Super-Peer Network) \cite{garbacki2007optimizing} proposes to optimize super-peer networks by organizing super-peers in a topology that reflects the semantic similarity of peers with similar interests. Super-peers maintain cache references to files which were recently requested by weak peers, while the weak peers maintain caches containing super-peers that satisfied most of its requests. This yields good cache hit ratios, and load balancing. However, the original paper does not specify how super-peers communicate among themselves, nor the election process of super-peers.
+\textbf{Overnesia} \cite{leitao2014overnesia} creates virtual super-peers by maintaining fully connected groups of nodes with the same identifier which is known by all elements in the group. Nodes join the system by sending a JOIN request to a bootstrap node which triggers a random walk, the requesting node joins the group where random walk finishes (either because it finds an underpopulated group or because the TTL expires). 
 
-Overnesia \cite{leitao2014overnesia}
+Then, in order to promote intra-group membership consistency, nodes employ an anti-entropy mechanism where they periodically exchange messages containing their own view of the group. 
+
+When a group detects that its size has become too large, it triggers a dividing procedure which splits the groups in two halves. This division reduces the costs of replicating data among its members, but also promotes good load-balancing of the system. 
+
+When group size has fallen bellow a certain threshold, Overnesia triggers a collapse procedure, where each node takes the initiative to relocate itself to another group, resulting in the collaps of the group. Finally, nodes perform walks along the overlay in order to establish inter-group links.
+
 
 \subsection{Structured overlays} 
 
-\textbf{Structured overlays} enforce strong rules towards neighbor selection (generally based on identifiers of peers). As a result, the overlay generally converges to a topology known a priori, where the target topologies are normally tailored towards applicational requirements. A canonical example of a type of structured overlay is a distributed hash table (DHT), peers in a DHT use consistent hashing functions to select random identifiers that are uniformly distributed over the identifier space. Then, DHTs offer efficient routing capabilities over the identifier space (usually routing procedures take a logarithmic number of steps). DHTs have been extensibly used to support many large scale services (publish-subscribe, file sharing, among others) and are especially used in Cloud-based environments. 
+\textbf{Structured overlays} enforce stronger rules towards neighbor selection (generally based on identifiers of peers). As a result, the overlay generally converges to a topology known a priori, where the target topologies are normally tailored towards applicational requirements. 
+
+DHTs offer efficient routing capabilities over the identifier space (usually routing procedures take a logarithmic number of steps), DHTs have been extensibly used to support many large scale services (publish-subscribe, file sharing, among others) and are especially used in Cloud-based environments. 
 
 \subsubsection{Flat structured overlays}
 
-
+A canonical example of a type structured overlay is a distributed hash table (DHT), peers in a DHT use consistent hashing functions to select random identifiers that are uniformly distributed over the identifier space. 
 
 \subsubsection{Hierarchical structured overlays}
 
-
- The second approach to building a hierarchical topology is to employ a DHT, hierarchical DHTS usually form contained DHTS within other DHTS (e.g. a ring within a ring). This offers several important advantages over a flat DHT: first, lookups take less hops and messages to reach the target, second, organizing nodes in disjoint groups allows traffic locality if groups of nodes are close in the underlay, finally, churn events within a group stay contained within that group. However, many of these systems either employ more memory to accommodate the many levels hierarchical DHT, or tradeoff reliability (by shortening the number of connections) for memory and communication efficiency.
+The second approach to building a hierarchical topology is to employ a DHT, hierarchical DHTS usually form contained DHTS within other DHTS (e.g. a ring within a ring). This offers several important advantages over a flat DHT: first, lookups take less hops and messages to reach the target, second, organizing nodes in disjoint groups allows traffic locality if groups of nodes are close in the underlay, finally, churn events within a group stay contained within that group. However, many of these systems either employ more memory to accommodate the many levels hierarchical DHT, or tradeoff reliability (by shortening the number of connections) for memory and communication efficiency.
 
 
 \subsection{Discussion}

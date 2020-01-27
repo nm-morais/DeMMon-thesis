@@ -282,6 +282,58 @@
     \field{year}{2012}
   \endentry
 
+  \entry{Brogi2017}{article}{}
+    \name{author}{2}{}{%
+      {{hash=BA}{%
+         family={Brogi},
+         familyi={B\bibinitperiod},
+         given={Antonio},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=FS}{%
+         family={Forti},
+         familyi={F\bibinitperiod},
+         given={Stefano},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BAFS1}
+    \strng{fullhash}{BAFS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{abstract}{%
+    Fog computing aims at extending the Cloud by bringing computational power,
+  storage and communication capabilities to the edge of the network, in support
+  of the IoT. Segmentation, distribution and adaptive deployment of
+  functionalities over the continuum from Things to Cloud are challenging
+  tasks, due to the intrinsic heterogeneity, hierarchical structure and very
+  large scale infrastructure they will have to exploit. In this paper, we
+  propose a simple, yet general, model to support the QoS-aware deployment of
+  multi-component IoT applications to Fog infrastructures. The model describes
+  operational systemic qualities of the available infrastructure (latency and
+  bandwidth), interactions among software components and Things, and business
+  policies. Algorithms to determine eligible deployments for an application to
+  a Fog infrastructure are presented. A Java tool, FogTorch, based on the
+  proposed model has been prototyped.%
+    }
+    \verb{doi}
+    \verb 10.1109/JIOT.2017.2701408
+    \endverb
+    \field{issn}{23274662}
+    \field{number}{5}
+    \field{pages}{1\bibrangedash 8}
+    \field{title}{{QoS-aware deployment of IoT applications through the fog}}
+    \field{volume}{4}
+    \verb{file}
+    \verb :Users/nunomorais/Documents/Developer/tese{\_}edge{\_}monitoring/rela
+    \verb ted{\_}work/144217019.pdf:pdf
+    \endverb
+    \field{journaltitle}{IEEE Internet of Things Journal}
+    \field{year}{2017}
+  \endentry
+
   \entry{Chawathe2003}{article}{}
     \name{author}{5}{}{%
       {{hash=CY}{%
@@ -346,10 +398,6 @@
     \field{pages}{407\bibrangedash 418}
     \field{title}{{Making Gnutella-like P2P Systems Scalable}}
     \field{volume}{33}
-    \verb{file}
-    \verb :Users/nunomorais/Documents/Developer/tese{\_}edge{\_}monitoring/rela
-    \verb ted{\_}work/making-gnutella-scalable.pdf:pdf
-    \endverb
     \field{journaltitle}{Computer Communication Review}
     \field{year}{2003}
   \endentry
@@ -413,6 +461,98 @@
     \field{title}{Routing indices for peer-to-peer systems}
     \field{year}{2002}
     \warn{\item Invalid format of field 'month'}
+  \endentry
+
+  \entry{Cui2017}{article}{}
+    \name{author}{7}{}{%
+      {{hash=CY}{%
+         family={Cui},
+         familyi={C\bibinitperiod},
+         given={Yong},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=SJ}{%
+         family={Song},
+         familyi={S\bibinitperiod},
+         given={Jian},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=RK}{%
+         family={Ren},
+         familyi={R\bibinitperiod},
+         given={Kui},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=LM}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Minming},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=LZ}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Zongpeng},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=RQ}{%
+         family={Ren},
+         familyi={R\bibinitperiod},
+         given={Qingmei},
+         giveni={Q\bibinitperiod},
+      }}%
+      {{hash=ZY}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Yangjun},
+         giveni={Y\bibinitperiod},
+      }}%
+    }
+    \keyw{Energy-efficiency,Mobile cloudlet,Offloading,Software defined
+  networking}
+    \strng{namehash}{CY+2}
+    \strng{fullhash}{CYSJRKLMLZRQZY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{abstract}{%
+    Device to Device communication enables the deployment of mobile cloudlets
+  in LTE-advanced networks. The distributed nature of mobile users and dynamic
+  task arrivals makes it challenging to schedule tasks fairly among multiple
+  devices. Leveraging the idea of software defined networking, we propose a
+  software defined cooperative offloading model (SDCOM), where the SDCOM
+  controller is deployed at the PDN gateway and schedules tasks in a
+  centralized manner to save the energy of mobile devices and reduce the
+  traffic on access links. We formulate the minimum-energy task scheduling
+  problem as a 0-1 knapsack problem and prove its NP-hardness. To compute the
+  optimal solution as a benchmark, we design the conditioned optimal algorithm
+  based on the aggregated analysis of energy consumption. The greedy algorithm
+  with a polynominal-time complexity is proposed to solve large-scale problems
+  efficiently. To address the problem without predicting future information on
+  task arrivals, we further design an online task scheduling algorithm (OTS).
+  It can minimize the energy consumption arbitrarily close to the optimal
+  solution by appropriately setting the tradeoff coefficient. Moreover, we
+  extend OTS to design a proportional fair online task scheduling algorithm to
+  achieve the fair energy consumption among mobile devices. Extensive
+  tracebased simulations demonstrate the effectiveness of SDCOM for a variety
+  of typical mobile devices and applications.%
+    }
+    \verb{doi}
+    \verb 10.1109/TNET.2017.2650964
+    \endverb
+    \field{issn}{10636692}
+    \field{number}{3}
+    \field{pages}{1746\bibrangedash 1760}
+    \field{title}{{Software defined cooperative offloading for mobile
+  cloudlets}}
+    \field{volume}{25}
+    \verb{file}
+    \verb :Users/nunomorais/Documents/Developer/tese{\_}edge{\_}monitoring/rela
+    \verb ted{\_}work/cui2017.pdf:pdf
+    \endverb
+    \field{journaltitle}{IEEE/ACM Transactions on Networking}
+    \field{year}{2017}
   \endentry
 
   \entry{decandia2007dynamo}{inproceedings}{}
@@ -658,7 +798,7 @@
     \field{sortinithash}{G}
     \field{title}{Gtk-Gnutella}
     \verb{url}
-    \verb https://sourceforge.net/projects/gtk-gnutella/
+    \verb https://sourceforge.net/projects/ gtk-gnutella/
     \endverb
     \field{journaltitle}{SourceForge}
     \field{year}{2019}
@@ -778,6 +918,59 @@
   data center.}
     \field{volume}{11}
     \field{year}{2011}
+  \endentry
+
+  \entry{Hong2019}{article}{}
+    \name{author}{2}{}{%
+      {{hash=HCH}{%
+         family={Hong},
+         familyi={H\bibinitperiod},
+         given={Cheol\bibnamedelima Ho},
+         giveni={C\bibinitperiod\bibinitdelim H\bibinitperiod},
+      }}%
+      {{hash=VB}{%
+         family={Varghese},
+         familyi={V\bibinitperiod},
+         given={Blesson},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \keyw{Algorithms,Architectures,Fog/edge computing,Infrastructure,Resource
+  management}
+    \strng{namehash}{HCHVB1}
+    \strng{fullhash}{HCHVB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{abstract}{%
+    Contrary to using distant and centralized cloud data center resources,
+  employing decentralized resources at the edge of a network for processing
+  data closer to user devices, such as smartphones and tablets, is an upcoming
+  computing paradigm, referred to as fog/edge computing. Fog/edge resources are
+  typically resource-constrained, heterogeneous, and dynamic compared to the
+  cloud, thereby making resource management an important challenge that needs
+  to be addressed. This article reviews publications as early as 1991, with
+  85{\%} of the publications between 2013 and 2018, to identify and classify
+  the architectures, infrastructure, and underlying algorithms for managing
+  resources in fog/edge computing.%
+    }
+    \verb{doi}
+    \verb 10.1145/3326066
+    \endverb
+    \field{issn}{15577341}
+    \field{number}{5}
+    \field{title}{{Resource management in fog/Edge computing: A survey on
+  architectures, infrastructure, and algorithms}}
+    \field{volume}{52}
+    \verb{file}
+    \verb :Users/nunomorais/Documents/Developer/tese{\_}edge{\_}monitoring/rela
+    \verb ted{\_}work/2019{\_}Hong, Varghese{\_}Resource management in fogEdge
+    \verb computing A survey on architectures, infrastructure, and algorithms.p
+    \verb df:pdf
+    \endverb
+    \field{journaltitle}{ACM Computing Surveys}
+    \field{year}{2019}
   \endentry
 
   \entry{gossip_aggregation}{article}{}
@@ -1300,6 +1493,51 @@
     \field{title}{CDN: Content distribution network}
     \field{journaltitle}{arXiv preprint cs/0411069}
     \field{year}{2004}
+  \endentry
+
+  \entry{preeth2015evaluation}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=PE}{%
+         family={Preeth},
+         familyi={P\bibinitperiod},
+         given={EN},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=MFJP}{%
+         family={Mulerickal},
+         familyi={M\bibinitperiod},
+         given={Fr\bibnamedelima Jaison\bibnamedelima Paul},
+         giveni={F\bibinitperiod\bibinitdelim J\bibinitperiod\bibinitdelim
+  P\bibinitperiod},
+      }}%
+      {{hash=PB}{%
+         family={Paul},
+         familyi={P\bibinitperiod},
+         given={Biju},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=SY}{%
+         family={Sastri},
+         familyi={S\bibinitperiod},
+         given={Yedhu},
+         giveni={Y\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {IEEE}%
+    }
+    \strng{namehash}{PE+1}
+    \strng{fullhash}{PEMFJPPBSY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{booktitle}{2015 International Conference on Control Communication \&
+  Computing India (ICCC)}
+    \field{pages}{697\bibrangedash 700}
+    \field{title}{Evaluation of Docker containers based on hardware
+  utilization}
+    \field{year}{2015}
   \endentry
 
   \entry{Renesse2003}{article}{}
@@ -1960,6 +2198,47 @@
     \field{volume}{3}
     \field{journaltitle}{IEEE Cloud Computing}
     \field{year}{2016}
+  \endentry
+
+  \entry{wang2017enorm}{article}{}
+    \name{author}{4}{}{%
+      {{hash=WN}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Nan},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=VB}{%
+         family={Varghese},
+         familyi={V\bibinitperiod},
+         given={Blesson},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=MM}{%
+         family={Matthaiou},
+         familyi={M\bibinitperiod},
+         given={Michail},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=NDS}{%
+         family={Nikolopoulos},
+         familyi={N\bibinitperiod},
+         given={Dimitrios\bibnamedelima S},
+         giveni={D\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {IEEE}%
+    }
+    \strng{namehash}{WN+1}
+    \strng{fullhash}{WNVBMMNDS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \field{title}{ENORM: A framework for edge node resource management}
+    \field{journaltitle}{IEEE transactions on services computing}
+    \field{year}{2017}
   \endentry
 
   \entry{tapestry}{article}{}

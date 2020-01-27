@@ -24,84 +24,104 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\chapternumberline {2}Related Work}{5}{chapter.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.1}Offloading computation to the Edge}{5}{section.2.1}% 
+\contentsline {section}{\numberline {2.1}Offloading computation to the Edge}{6}{section.2.1}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.1.1}Edge Computing}{6}{subsection.2.1.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.1.1.1}Edge Environment Taxonomy}{7}{subsubsection.2.1.1.1}% 
+\contentsline {subsubsection}{\numberline {2.1.1.1}Edge Environment Taxonomy}{8}{subsubsection.2.1.1.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1.2}Discussion}{8}{subsection.2.1.2}% 
+\contentsline {subsection}{\numberline {2.1.2}Discussion}{9}{subsection.2.1.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.2}Topology Management}{8}{section.2.2}% 
+\contentsline {section}{\numberline {2.2}Topology Management}{10}{section.2.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2.1}Evaluating topologies}{8}{subsection.2.2.1}% 
+\contentsline {subsection}{\numberline {2.2.1}Evaluating topologies}{10}{subsection.2.2.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2.2}Taxonomy of overlay networks}{9}{subsection.2.2.2}% 
+\contentsline {subsection}{\numberline {2.2.2}Taxonomy of overlay networks}{11}{subsection.2.2.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2.3}Unstructured Overlays}{10}{subsection.2.2.3}% 
+\contentsline {subsection}{\numberline {2.2.3}Unstructured Overlays}{11}{subsection.2.2.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.2.3.1}Flat unstructured Overlays}{10}{subsubsection.2.2.3.1}% 
+\contentsline {subsubsection}{\numberline {2.2.3.1}Flat unstructured Overlays}{11}{subsubsection.2.2.3.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.2.3.2}Unstructured Hierarchical Overlays}{10}{subsubsection.2.2.3.2}% 
+\contentsline {subsubsection}{\numberline {2.2.3.2}Unstructured Hierarchical Overlays}{12}{subsubsection.2.2.3.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2.4}Structured overlays}{11}{subsection.2.2.4}% 
+\contentsline {subsection}{\numberline {2.2.4}Structured overlays}{12}{subsection.2.2.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.2.4.1}Flat structured overlays}{11}{subsubsection.2.2.4.1}% 
+\contentsline {subsubsection}{\numberline {2.2.4.1}Flat structured overlays}{13}{subsubsection.2.2.4.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.2.4.2}Hierarchical structured overlays}{11}{subsubsection.2.2.4.2}% 
+\contentsline {subsubsection}{\numberline {2.2.4.2}Hierarchical structured overlays}{13}{subsubsection.2.2.4.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2.5}Discussion}{11}{subsection.2.2.5}% 
+\contentsline {subsection}{\numberline {2.2.5}Discussion}{13}{subsection.2.2.5}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.3}Resource Location and Discovery}{12}{section.2.3}% 
+\contentsline {section}{\numberline {2.3}Resource Location and Discovery}{13}{section.2.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3.1}Query taxonomy}{12}{subsection.2.3.1}% 
+\contentsline {subsection}{\numberline {2.3.1}Query taxonomy}{14}{subsection.2.3.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3.2}Query dissemination}{12}{subsection.2.3.2}% 
+\contentsline {subsection}{\numberline {2.3.2}Query dissemination}{14}{subsection.2.3.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3.3}Centralized Architectures}{13}{subsection.2.3.3}% 
+\contentsline {subsubsection}{\numberline {2.3.2.1}Flooding}{14}{subsubsection.2.3.2.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3.4}Decentralized Architectures}{14}{subsection.2.3.4}% 
+\contentsline {subsubsection}{\numberline {2.3.2.2}Random Walks}{14}{subsubsection.2.3.2.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.3.4.1}Distributed Hash tables}{14}{subsubsection.2.3.4.1}% 
+\contentsline {subsection}{\numberline {2.3.3}Centralized Resource Location}{15}{subsection.2.3.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.3.4.2}Unstructured Overlays}{16}{subsubsection.2.3.4.2}% 
+\contentsline {subsection}{\numberline {2.3.4}Decentralized Resource Location}{15}{subsection.2.3.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.3.4.3}Hybrid approaches}{16}{subsubsection.2.3.4.3}% 
+\contentsline {subsubsection}{\numberline {2.3.4.1}Distributed Hash tables}{15}{subsubsection.2.3.4.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.3.5}Discussion}{16}{subsection.2.3.5}% 
+\contentsline {subsubsection}{\numberline {2.3.4.2}Unstructured Overlays}{18}{subsubsection.2.3.4.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.4}Resource monitoring}{16}{section.2.4}% 
+\contentsline {subsubsection}{\numberline {2.3.4.3}Hybrid approaches}{18}{subsubsection.2.3.4.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.4.1}Monitoring requirements}{16}{subsection.2.4.1}% 
+\contentsline {subsection}{\numberline {2.3.5}Discussion}{18}{subsection.2.3.5}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.4.2}Device monitoring}{17}{subsection.2.4.2}% 
+\contentsline {section}{\numberline {2.4}Resource monitoring}{18}{section.2.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.4.3}Service monitoring}{17}{subsection.2.4.3}% 
+\contentsline {subsection}{\numberline {2.4.1}Device monitoring}{18}{subsection.2.4.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.4.4}Aggregation}{17}{subsection.2.4.4}% 
+\contentsline {subsubsection}{\numberline {2.4.1.1}VM monitoring ?}{18}{subsubsection.2.4.1.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.4.5}Properties of aggregation functions}{18}{subsection.2.4.5}% 
+\contentsline {subsubsection}{\numberline {2.4.1.2}Container monitoring}{19}{subsubsection.2.4.1.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.4.6}Aggregation techniques}{19}{subsection.2.4.6}% 
+\contentsline {subsection}{\numberline {2.4.2}End-to-end link monitoring}{20}{subsection.2.4.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {2.4.6.1}Hierarchical}{19}{subsubsection.2.4.6.1}% 
+\contentsline {subsection}{\numberline {2.4.3}Aggregation}{20}{subsection.2.4.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.4.7}Relevant aggregation protocols}{20}{subsection.2.4.7}% 
+\contentsline {subsubsection}{\numberline {2.4.3.1}Aggregation techniques}{21}{subsubsection.2.4.3.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.4.8}Discussion}{20}{subsection.2.4.8}% 
+\contentsline {subsubsection}{\numberline {2.4.3.2}Hierarchical}{21}{subsubsection.2.4.3.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.5}Resource management}{20}{section.2.5}% 
+\contentsline {subsubsection}{\numberline {2.4.3.3}Averaging}{22}{subsubsection.2.4.3.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.5.1}Schedulers}{20}{subsection.2.5.1}% 
+\contentsline {subsection}{\numberline {2.4.4}Relevant aggregation protocols}{23}{subsection.2.4.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {3}Proposed Solution}{21}{chapter.3}% 
+\contentsline {subsubsection}{\numberline {2.4.4.1}TAG: Tiny AGgregation}{23}{subsubsection.2.4.4.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}Document Structure}{21}{section.3.1}% 
+\contentsline {subsubsection}{\numberline {2.4.4.2}DECA}{23}{subsubsection.2.4.4.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {4}Planning}{23}{chapter.4}% 
+\contentsline {subsubsection}{\numberline {2.4.4.3}Astrolabe}{23}{subsubsection.2.4.4.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.1}Proposed solution}{23}{section.4.1}% 
+\contentsline {subsubsection}{\numberline {2.4.4.4}SingleTree \& MultipleTree}{23}{subsubsection.2.4.4.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}Scheduling}{23}{section.4.2}% 
+\contentsline {section}{\numberline {2.5}Resource management}{23}{section.2.5}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Bibliografia}{25}{section*.6}% 
+\contentsline {subsection}{\numberline {2.5.1}Sharing workload}{24}{subsection.2.5.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.5.2}Offloading}{24}{subsection.2.5.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.5.2.1}Offloading from User device to the Edge}{24}{subsubsection.2.5.2.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.5.2.2}Offloading from to the Cloud to the Edge}{25}{subsubsection.2.5.2.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.5.3}Discussion}{25}{subsection.2.5.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.5.4}Schedulers}{25}{subsection.2.5.4}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\chapternumberline {3}Proposed Solution}{27}{chapter.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\chapternumberline {4}Planning}{29}{chapter.4}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.1}Proposed solution}{29}{section.4.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.2}Scheduling}{29}{section.4.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Bibliografia}{31}{section*.6}% 
