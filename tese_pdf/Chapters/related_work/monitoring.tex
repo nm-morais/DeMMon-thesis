@@ -1,10 +1,13 @@
+
+Monitoring is key to the effective management of applications. 
+
 \subsection{Device monitoring}
 
-In order to adapt edge computing applications to changes in the environment and ensure that the above requirements can be met, it is necessary to tailor the monitoring system to support the whole spectrum of underlying infrastructures (section \ref{sec:offloading_computation}). 
+In order to adapt edge computing applications to changes in the environment and ensure that the above requirements can be met, it is necessary to tailor the monitoring system to support the whole spectrum of underlying infrastructures (section \ref{sec:edge_computing}). 
 
-A modern approach towards deploying systems is to deploy them in loosely coupled independent components running some form of virtualization software. Virtualization is the building block of resource management systems, as it enables co-deployment of logical machines in the same physical node.
+A modern approach towards deploying systems is to deploy them in loosely coupled independent components running some form of virtualization software, as it enables co-deployment of logical machines in the same physical node.
 
-\subsubsection{VM monitoring ?}
+\subsubsection{VM monitoring}
 
 In virtual machines (VMs), all the physical resources can be virtualized (CPU, memory, disk and network). Multiple VMs can co-deployed in the same physical node and thus share resources among each other. 
 
@@ -17,11 +20,12 @@ In order to have efficient resource utilization and prevent any problems in the 
     \item \textbf{Memory} indicates the amount of virtualized memory left.
     
     \item \textbf{Disk usage} tracks the amount of data read or written by a VM. Alternatively, it can indicate the percentage of used space.
+
     \item \textbf{Network usage} consists in the volume of traffic on a specific network interface of the VM, either external or internal traffic.
 
 \end{itemize}
 
-Although VMs are widely present in the cloud infrastructure, we believe their applicability towards edge scenarios is limited, due to the fact that they have significant start up time (having to start-up an OS).
+Although VMs are widely present in the cloud infrastructure, we believe their applicability towards edge scenarios is limited, due to the fact that they have significant start up time (having to start-up an OS).  
 
 \subsubsection{Container monitoring}
 
@@ -29,11 +33,10 @@ Containers are the recent alternative to VMs, as previously mentioned, container
 
 Due to their lightweight nature, it is possible to deploy container-based applications (e.g. microservices), which can perform fast migration across nodes in the edge environment in order to improve QoS. This flexibility towards the migration process is an efficient tool to deal with many challenges such as load balancing, scaling, resource reallocation and fault-tolerance. 
 
-There are many container-specific tools which provide statistics about a given container, most use REST APIs to expose this functionality to external entities. Docker, which is a container provider, \textcolor{red}{citação?} has a built tool called \textit{docker stats} which provides runtime metrics for a given container.
+There are many container-specific tools which provide statistics about a given container, most use REST APIs to expose this functionality to external entities. Docker \cite{docker}, which is a container provider, \textcolor{red}{citação?} has a built tool called \textit{docker stats} \cite{docker_stats} which provides runtime metrics for a given container.
 
-Prometheus is is an open source system for monitoring and alerting, originally built at SoundCloud. Prometheus is a tool which scrapes data from containers using HTTP and stores them into time series, then, it offers a platform towards configuring alerts, which are triggered whenever a certain criteria is met. However, the data collection is centralized, and thus its scalability is limited. 
+\textit{Container Advisor} \cite{cAdvisor} (cAdvisor) is a service which analyzes and exposes resource usage and performance data from running containers. Simply put, cAdvisor consists of a daemon which collects, aggregates and exports information. The information it collects resource isolation parameters, historical resource usage and network statistics. cAdvisor includes native support for Docker containers and supports a wide variety of other container implementations.
 
-\textcolor{red}{// TODO falar de quais metricas (como nas vms) ? }
 
 \subsection{End-to-end link monitoring}
 
@@ -52,7 +55,7 @@ It is paramount to analyze how to monitor and improve link quality, for providin
     \item Jitter is the variation in latency of sequential received packets. 
 \end{enumerate}
 
-\subsection{Aggregation}
+\subsection{Aggregation techniques}
 
 \textbf{Aggregation} is an essential building block towards monitoring distributed systems, it enables the determination of important system wide properties in a decentralized manner \cite{DBLP:journals/corr/abs-1110-0725}. 
 
@@ -120,21 +123,70 @@ Algorithms from this category are also attractive to use in edge environments, b
 
 \subsection{Relevant aggregation protocols}
 
-In this subsection we will analyze relevant aggregation protocols that ilustrate some techniques discussed above.
+In this subsection we will analyze relevant aggregation protocols that illustrate some techniques discussed above.
 
 \subsubsection{TAG: Tiny AGgregation}
 
 \textbf{TAG: Tiny AGgregation}\cite{Madden2002} is a service for aggregation in low-power, distributed, wireless sensor networks. TAG distributes queries in the network in a time and power-efficient manner by employing a hierarchical aggregation pattern. For each aggregation procedure, there is a \textit{root} nodes which broadcasts a message to start the tree-building process, each message contains two fields: a level and a an ID. Whenever a node without an assigned level receives a tree-building message, it assigns its own level as the message level plus one, and its own parent as the message sender. Then, it reassigns the level and ID to its own and forwards the message to other nodes. Then, whenever a node wishes to send a message to the root, it simply forwards the message bottom-up in the tree. The formed topology allows the computation of Count, Maximum, Minimum, Sum and Average. It is important to notice that the formed tree will be unbalanced as a function of the underlay latency and processing time.
 
-\subsubsection{DECA}
+\subsubsection{SingleTree} 
 
-\textbf{DECA} \cite{Artigas2006} \textcolor{red}{//TODO}
+\textbf{SingleTree} \cite{} \textcolor{red}{//TODO}
+
+\subsubsection{MultipleTree} 
+
+\textbf{MultipleTree} \cite{} \textcolor{red}{//TODO}
+
+\subsubsection{DECA} \textbf{DECA} \cite{Artigas2006} \textcolor{red}{//TODO}
+
+\subsection{Monitoring systems}
 
 \subsubsection{Astrolabe}
 
-\textbf{Astrolabe} \cite{Renesse2003} \textcolor{red}{//TODO}
+\textbf{Astrolabe} \cite{Renesse2003} is a platform which aims at monitoring the dynamically changing state of a collection of distributed resources. 
 
-\subsubsection{SingleTree \& MultipleTree}
+Astrolabe introduces a hierarchical architecture defined by zones, a zone is recursively defined to be either a host or a set of non-overlapping zones. Each zone (minus the root zone) has a local identifier, which is unique within the zone where it is contained, zones are globally identified by their \textit{zone name}, which consists of the concatenation of all zone identifiers within the path from the root to the zone.
 
-\textbf{SingleTree \cite{} and MultipleTree \cite{}} \textcolor{red}{//TODO}
+Associated with each zone there is a Management Information Base (MIB), which consists in a set of attributes from that zone. Zone attributes are not directly writable, instead, they are generated by aggregation functions contained in special entries in the MIB. Leaf zones are the exception to the aforementioned mechanism, leaf zones contain \textit{virtual child zones} which are directly writable by devices within that virtual child zone.
 
+The aggregation functions which produce the MIBs are contained in \textit{aggregation function certificates} (AFCs), which contain a user-programmable SQL function, a timestamp and a digital signature. In addition to the aforementioned code, AFCs may contain other information. An \textit{Information Request AFC}, in addition to the code, specifies which information to retrieve from each participating host, and how to summarize the retrieved information. Alternatively, we may have a \textit{Configuration AFC} which specifies runtime parameters that applications may use for dynamic configuration.
+
+Astrolabe a employs gossip which provides an eventual consistency model: if updates cease to exist for a long enough time, all the elements of the system  converge towards the same state. This is achieved by employing a gossip algorithm which selects another agent at random and exchanges zone state with it. If the agents are within the same zone, they simply exchange information relative to their zone. Conversely, if agents are in different zones, they exchange information relative to the zone which is their least common ancestor.
+
+Not all nodes gossip information, within each zone, a node is elected (the authors do not specify how) to perform gossip on behalf of that zone, additionally, nodes can represent nodes from other zones, in this case nodes run one instance of the gossip protocol per zone it represents. The number of represented zones is bounded by the number of levels in the Astrolabe tree.
+
+Astrolabe relies on clock time from the devices enforce an order among MIBs. Originally, it compared timestamps contained in MIBs to impose an order among them, however, as the system scaled, this approach is became unreliable. To circumvent this, Astrolabe agents store the last MIB from each agent that gossiped with them, and only compare the timestamps of MIBs which originated from the same representative.
+
+Given this, attribute updates may not be monotonic, this happens due to the fact that aggregations do not take into account the time where the leaf attribute was updated. 
+
+A agents' zone is defined by the system administrator, which is a potential limitation towards scalability, given that configuration errors have the potential to heavily reduce system latency and traffic locality. Additionally, the original authors state that the size of gossip messages scales with the branching factor, often exceeding the maximum size of a UDP packet. 
+
+\subsubsection{Ganglia}
+
+\textbf{Ganglia} is a scalable distributed monitoring system \cite{massie2004ganglia} for high performance computing systems, namely clusters and grids. In short, Ganglia groups nodes in clusters, in each cluster, there are representative cluster nodes which federate devices and aggregate internal cluster state.
+
+Ganglia relies on IP multicast to perform intra-cluster aggregation, it is mainly designed to monitor infrastructure monitoring data about machines in a high-performance computing cluster. Then, it displays the time series data in a Web interface.
+
+As previously mentioned, Ganglia is aimed towards monitoring high-performance 
+grids. And its applicability is limited towards edge environments: (1) clusters are situated in stable environments, which contrasts with the edge environment; (2) it relies on IP multicast (which has been proven not to hold in a number of cases) to perform automatic discovery of nodes as they are added and removed within clusters; (3) has no mechanism to prevent network congestion 
+
+\subsubsection{SDIMS}
+
+\cite{10.1145/1030194.1015509} proposes a scalable distributed information management system (SDIMS) which leverages on distributed hash tables to create scalable aggregation trees. \textcolor{red}{completar...}
+
+\subsubsection{Prometheus}
+
+\textbf{Prometheus} \cite{prometheus} is an open-source monitoring and alerting toolkit originally built at SoundCloud. Prometheus works well for recording any purely numeric time series. It supports machine-centric monitoring as well as monitoring of highly dynamic service-oriented architectures. 
+
+Prometheus is especially useful towards querying and collecting multi-dimensional data collections. Furthermore, it offers a platform towards configuring alerts, which are triggered whenever a certain criteria is met.
+
+Prometheus allows a prometheus server to scrape selected time-series from another Prometheus server. This allows deploying scalable monitoring setups or scraping related metrics from another service's Prometheus into another. Prometheus federation is split in two categories, \textit{hierarchical federation} and \textit{cross-service federation} 
+
+In \textit{hierarchical federation}, prometheus servers are organized into a topology which resembles a tree, where each server aggregates aggregated time series data from a larger number of subordinated servers. Alternatively,  \textit{cross-service federation} enables scraping selected data from another service's prometheus server to enable alerting and queries against both datasets within a single server. 
+
+Prometheus employs a variety of service discovery options for discovering and scraping targets, including Kubernetes, Consul, among others. A key feature which improves its flexibility is the option to use file-based discovery,  which enables the use of customized service discovery. This is achieved by programmers by providing a custom file with list of targets (and target metadata) which prometheus will scrape.
+
+\subsubsection{\textcolor{red}{Mais papers sobre monitoring, especialmente na edge}}
+
+
+\subsection{Discussion}

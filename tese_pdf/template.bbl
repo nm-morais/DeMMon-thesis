@@ -282,56 +282,39 @@
     \field{year}{2012}
   \endentry
 
-  \entry{Brogi2017}{article}{}
-    \name{author}{2}{}{%
-      {{hash=BA}{%
-         family={Brogi},
+  \entry{borthakur2008hdfs}{article}{}
+    \true{moreauthor}
+    \name{author}{1}{}{%
+      {{hash=BD}{%
+         family={Borthakur},
          familyi={B\bibinitperiod},
-         given={Antonio},
-         giveni={A\bibinitperiod},
-      }}%
-      {{hash=FS}{%
-         family={Forti},
-         familyi={F\bibinitperiod},
-         given={Stefano},
-         giveni={S\bibinitperiod},
+         given={Dhruba},
+         giveni={D\bibinitperiod},
       }}%
     }
-    \strng{namehash}{BAFS1}
-    \strng{fullhash}{BAFS1}
+    \strng{namehash}{BD+1}
+    \strng{fullhash}{BD+1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{sortinit}{B}
     \field{sortinithash}{B}
-    \field{abstract}{%
-    Fog computing aims at extending the Cloud by bringing computational power,
-  storage and communication capabilities to the edge of the network, in support
-  of the IoT. Segmentation, distribution and adaptive deployment of
-  functionalities over the continuum from Things to Cloud are challenging
-  tasks, due to the intrinsic heterogeneity, hierarchical structure and very
-  large scale infrastructure they will have to exploit. In this paper, we
-  propose a simple, yet general, model to support the QoS-aware deployment of
-  multi-component IoT applications to Fog infrastructures. The model describes
-  operational systemic qualities of the available infrastructure (latency and
-  bandwidth), interactions among software components and Things, and business
-  policies. Algorithms to determine eligible deployments for an application to
-  a Fog infrastructure are presented. A Java tool, FogTorch, based on the
-  proposed model has been prototyped.%
-    }
-    \verb{doi}
-    \verb 10.1109/JIOT.2017.2701408
+    \field{number}{1-13}
+    \field{pages}{2}
+    \field{title}{HDFS architecture guide}
+    \field{volume}{53}
+    \field{journaltitle}{Hadoop Apache Project}
+    \field{year}{2008}
+  \endentry
+
+  \entry{pokemonGo}{misc}{}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{title}{Catch Pokémon in the Real World with Pokémon GO!}
+    \verb{url}
+    \verb https://www.pokemongo.com/en-us/
     \endverb
-    \field{issn}{23274662}
-    \field{number}{5}
-    \field{pages}{1\bibrangedash 8}
-    \field{title}{{QoS-aware deployment of IoT applications through the fog}}
-    \field{volume}{4}
-    \verb{file}
-    \verb :Users/nunomorais/Documents/Developer/tese{\_}edge{\_}monitoring/rela
-    \verb ted{\_}work/144217019.pdf:pdf
-    \endverb
-    \field{journaltitle}{IEEE Internet of Things Journal}
-    \field{year}{2017}
+    \field{journaltitle}{Homepage | Pokémon Go}
   \endentry
 
   \entry{Chawathe2003}{article}{}
@@ -374,21 +357,6 @@
     \field{labeltitlesource}{title}
     \field{sortinit}{C}
     \field{sortinithash}{C}
-    \field{abstract}{%
-    Napster pioneered the idea of peer-to-peer file sharing, and supported it
-  with a centralized file search facility. Subsequent P2P systems like Gnutella
-  adopted decentralized search algorithms. However, Gnutella's notoriously poor
-  scaling led some to propose distributed hash table solutions to the wide-area
-  file search problem. Contrary to that trend, we advocate retaining Gnutella's
-  simplicity while proposing new mechanisms that greatly improve its
-  scalability. Building upon prior research [1, 12, 22], we propose several
-  modifications to Gnutella's design that dynamically adapt the overlay
-  topology and the search algorithms in order to accommodate the natural
-  heterogeneity present in most peer-to-peer systems. We test our design
-  through simulations and the results show three to five orders of magnitude
-  improvement in total system capacity. We also report on a prototype
-  implementation and its deployment on a testbed.%
-    }
     \verb{doi}
     \verb 10.1145/863997.864000
     \endverb
@@ -463,96 +431,36 @@
     \warn{\item Invalid format of field 'month'}
   \endentry
 
-  \entry{Cui2017}{article}{}
-    \name{author}{7}{}{%
-      {{hash=CY}{%
-         family={Cui},
-         familyi={C\bibinitperiod},
-         given={Yong},
-         giveni={Y\bibinitperiod},
-      }}%
-      {{hash=SJ}{%
-         family={Song},
-         familyi={S\bibinitperiod},
-         given={Jian},
+  \entry{dean2008mapreduce}{article}{}
+    \name{author}{2}{}{%
+      {{hash=DJ}{%
+         family={Dean},
+         familyi={D\bibinitperiod},
+         given={Jeffrey},
          giveni={J\bibinitperiod},
       }}%
-      {{hash=RK}{%
-         family={Ren},
-         familyi={R\bibinitperiod},
-         given={Kui},
-         giveni={K\bibinitperiod},
-      }}%
-      {{hash=LM}{%
-         family={Li},
-         familyi={L\bibinitperiod},
-         given={Minming},
-         giveni={M\bibinitperiod},
-      }}%
-      {{hash=LZ}{%
-         family={Li},
-         familyi={L\bibinitperiod},
-         given={Zongpeng},
-         giveni={Z\bibinitperiod},
-      }}%
-      {{hash=RQ}{%
-         family={Ren},
-         familyi={R\bibinitperiod},
-         given={Qingmei},
-         giveni={Q\bibinitperiod},
-      }}%
-      {{hash=ZY}{%
-         family={Zhang},
-         familyi={Z\bibinitperiod},
-         given={Yangjun},
-         giveni={Y\bibinitperiod},
+      {{hash=GS}{%
+         family={Ghemawat},
+         familyi={G\bibinitperiod},
+         given={Sanjay},
+         giveni={S\bibinitperiod},
       }}%
     }
-    \keyw{Energy-efficiency,Mobile cloudlet,Offloading,Software defined
-  networking}
-    \strng{namehash}{CY+2}
-    \strng{fullhash}{CYSJRKLMLZRQZY1}
+    \list{publisher}{1}{%
+      {ACM New York, NY, USA}%
+    }
+    \strng{namehash}{DJGS1}
+    \strng{fullhash}{DJGS1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{sortinit}{C}
-    \field{sortinithash}{C}
-    \field{abstract}{%
-    Device to Device communication enables the deployment of mobile cloudlets
-  in LTE-advanced networks. The distributed nature of mobile users and dynamic
-  task arrivals makes it challenging to schedule tasks fairly among multiple
-  devices. Leveraging the idea of software defined networking, we propose a
-  software defined cooperative offloading model (SDCOM), where the SDCOM
-  controller is deployed at the PDN gateway and schedules tasks in a
-  centralized manner to save the energy of mobile devices and reduce the
-  traffic on access links. We formulate the minimum-energy task scheduling
-  problem as a 0-1 knapsack problem and prove its NP-hardness. To compute the
-  optimal solution as a benchmark, we design the conditioned optimal algorithm
-  based on the aggregated analysis of energy consumption. The greedy algorithm
-  with a polynominal-time complexity is proposed to solve large-scale problems
-  efficiently. To address the problem without predicting future information on
-  task arrivals, we further design an online task scheduling algorithm (OTS).
-  It can minimize the energy consumption arbitrarily close to the optimal
-  solution by appropriately setting the tradeoff coefficient. Moreover, we
-  extend OTS to design a proportional fair online task scheduling algorithm to
-  achieve the fair energy consumption among mobile devices. Extensive
-  tracebased simulations demonstrate the effectiveness of SDCOM for a variety
-  of typical mobile devices and applications.%
-    }
-    \verb{doi}
-    \verb 10.1109/TNET.2017.2650964
-    \endverb
-    \field{issn}{10636692}
-    \field{number}{3}
-    \field{pages}{1746\bibrangedash 1760}
-    \field{title}{{Software defined cooperative offloading for mobile
-  cloudlets}}
-    \field{volume}{25}
-    \verb{file}
-    \verb :Users/nunomorais/Documents/Developer/tese{\_}edge{\_}monitoring/rela
-    \verb ted{\_}work/cui2017.pdf:pdf
-    \endverb
-    \field{journaltitle}{IEEE/ACM Transactions on Networking}
-    \field{year}{2017}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{number}{1}
+    \field{pages}{107\bibrangedash 113}
+    \field{title}{MapReduce: simplified data processing on large clusters}
+    \field{volume}{51}
+    \field{journaltitle}{Communications of the ACM}
+    \field{year}{2008}
   \endentry
 
   \entry{decandia2007dynamo}{inproceedings}{}
@@ -629,6 +537,19 @@
     \field{year}{2007}
   \endentry
 
+  \entry{docker_stats}{misc}{}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{title}{docker stats}
+    \verb{url}
+    \verb https://docs.docker.com/engine/reference/commandline/stats/
+    \endverb
+    \field{journaltitle}{Docker Documentation}
+    \field{year}{2020}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+
   \entry{990064}{inproceedings}{}
     \name{author}{2}{}{%
       {{hash=DP}{%
@@ -666,6 +587,17 @@
     \field{title}{PAST: a large-scale, persistent peer-to-peer storage utility}
     \field{year}{2001}
     \warn{\item Invalid format of field 'month'}
+  \endentry
+
+  \entry{docker}{misc}{}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{E}
+    \field{sortinithash}{E}
+    \field{title}{Empowering App Development for Developers}
+    \verb{url}
+    \verb https://www.docker.com/
+    \endverb
+    \field{journaltitle}{Docker}
   \endentry
 
   \entry{finnegan_2013}{misc}{}
@@ -790,6 +722,28 @@
     \field{pages}{31\bibrangedash 31}
     \field{title}{Optimizing peer relationships in a super-peer network}
     \field{year}{2007}
+  \endentry
+
+  \entry{cAdvisor}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=G}{%
+         family={Google},
+         familyi={G\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{G1}
+    \strng{fullhash}{G1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{title}{google/cadvisor}
+    \verb{url}
+    \verb https://github.com/google/cadvisor
+    \endverb
+    \field{journaltitle}{GitHub}
+    \field{year}{2020}
+    \warn{\item Invalid format of field 'month'}
   \endentry
 
   \entry{gnutella_gtk}{misc}{}
@@ -971,6 +925,78 @@
     \endverb
     \field{journaltitle}{ACM Computing Surveys}
     \field{year}{2019}
+  \endentry
+
+  \entry{hunt2010zookeeper}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=HP}{%
+         family={Hunt},
+         familyi={H\bibinitperiod},
+         given={Patrick},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=KM}{%
+         family={Konar},
+         familyi={K\bibinitperiod},
+         given={Mahadev},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=JFP}{%
+         family={Junqueira},
+         familyi={J\bibinitperiod},
+         given={Flavio\bibnamedelima Paiva},
+         giveni={F\bibinitperiod\bibinitdelim P\bibinitperiod},
+      }}%
+      {{hash=RB}{%
+         family={Reed},
+         familyi={R\bibinitperiod},
+         given={Benjamin},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HP+1}
+    \strng{fullhash}{HPKMJFPRB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{booktitle}{USENIX annual technical conference}
+    \field{number}{9}
+    \field{title}{ZooKeeper: Wait-free Coordination for Internet-scale
+  Systems.}
+    \field{volume}{8}
+    \field{year}{2010}
+  \endentry
+
+  \entry{jelasity2005t}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=JM}{%
+         family={Jelasity},
+         familyi={J\bibinitperiod},
+         given={M{\'a}rk},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=BO}{%
+         family={Babaoglu},
+         familyi={B\bibinitperiod},
+         given={Ozalp},
+         giveni={O\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {Springer}%
+    }
+    \strng{namehash}{JMBO1}
+    \strng{fullhash}{JMBO1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{J}
+    \field{sortinithash}{J}
+    \field{booktitle}{International Workshop on Engineering Self-Organising
+  Applications}
+    \field{pages}{1\bibrangedash 15}
+    \field{title}{T-Man: Gossip-based overlay topology management}
+    \field{year}{2005}
   \endentry
 
   \entry{gossip_aggregation}{article}{}
@@ -1165,6 +1191,51 @@
     \field{year}{2007}
   \endentry
 
+  \entry{leitao2012x}{article}{}
+    \name{author}{4}{}{%
+      {{hash=LJ}{%
+         family={Leit{\~a}o},
+         familyi={L\bibinitperiod},
+         given={Jo{\~a}o},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=MJP}{%
+         family={Marques},
+         familyi={M\bibinitperiod},
+         given={Jo{\~a}o\bibnamedelima Pedro},
+         giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod},
+      }}%
+      {{hash=PJ}{%
+         family={Pereira},
+         familyi={P\bibinitperiod},
+         given={Jose},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=RL}{%
+         family={Rodrigues},
+         familyi={R\bibinitperiod},
+         given={Luis},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {IEEE}%
+    }
+    \strng{namehash}{LJ+4}
+    \strng{fullhash}{LJMJPPJRL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{number}{11}
+    \field{pages}{2175\bibrangedash 2188}
+    \field{title}{X-bot: A protocol for resilient optimization of unstructured
+  overlay networks}
+    \field{volume}{23}
+    \field{journaltitle}{IEEE Transactions on Parallel and Distributed Systems}
+    \field{year}{2012}
+  \endentry
+
   \entry{Leitao2018}{article}{}
     \name{author}{4}{}{%
       {{hash=LJ}{%
@@ -1298,7 +1369,7 @@
          giveni={M\bibinitperiod},
       }}%
     }
-    \strng{namehash}{LJ+4}
+    \strng{namehash}{LJ+5}
     \strng{fullhash}{LJSJGTMRKM1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
@@ -1312,6 +1383,47 @@
     \field{journaltitle}{Lecture Notes in Computer Science}
     \field{month}{03}
     \field{year}{2004}
+  \endentry
+
+  \entry{mace2015retro}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=MJ}{%
+         family={Mace},
+         familyi={M\bibinitperiod},
+         given={Jonathan},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=BP}{%
+         family={Bodik},
+         familyi={B\bibinitperiod},
+         given={Peter},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=FR}{%
+         family={Fonseca},
+         familyi={F\bibinitperiod},
+         given={Rodrigo},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=MM}{%
+         family={Musuvathi},
+         familyi={M\bibinitperiod},
+         given={Madanlal},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MJ+1}
+    \strng{fullhash}{MJBPFRMM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{booktitle}{12th $\{$USENIX$\}$ Symposium on Networked Systems Design
+  and Implementation ($\{$NSDI$\}$ 15)}
+    \field{pages}{589\bibrangedash 603}
+    \field{title}{Retro: Targeted resource management in multi-tenant
+  distributed systems}
+    \field{year}{2015}
   \endentry
 
   \entry{Madden2002}{article}{}
@@ -1410,7 +1522,46 @@
     \field{year}{2017}
   \endentry
 
-  \entry{10.1007/3-540-45748-8_5}{inproceedings}{}
+  \entry{massie2004ganglia}{article}{}
+    \name{author}{3}{}{%
+      {{hash=MML}{%
+         family={Massie},
+         familyi={M\bibinitperiod},
+         given={Matthew\bibnamedelima L},
+         giveni={M\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+      {{hash=CBN}{%
+         family={Chun},
+         familyi={C\bibinitperiod},
+         given={Brent\bibnamedelima N},
+         giveni={B\bibinitperiod\bibinitdelim N\bibinitperiod},
+      }}%
+      {{hash=CDE}{%
+         family={Culler},
+         familyi={C\bibinitperiod},
+         given={David\bibnamedelima E},
+         giveni={D\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Elsevier}%
+    }
+    \strng{namehash}{MML+1}
+    \strng{fullhash}{MMLCBNCDE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{number}{7}
+    \field{pages}{817\bibrangedash 840}
+    \field{title}{The ganglia distributed monitoring system: design,
+  implementation, and experience}
+    \field{volume}{30}
+    \field{journaltitle}{Parallel Computing}
+    \field{year}{2004}
+  \endentry
+
+  \entry{maymounkov2002kademlia}{inproceedings}{}
     \name{author}{2}{}{%
       {{hash=MP}{%
          family={Maymounkov},
@@ -1419,34 +1570,14 @@
          giveni={P\bibinitperiod},
       }}%
       {{hash=MD}{%
-         family={Mazi{\`e}res},
+         family={Mazieres},
          familyi={M\bibinitperiod},
          given={David},
          giveni={D\bibinitperiod},
       }}%
     }
-    \name{editor}{3}{}{%
-      {{hash=DP}{%
-         family={Druschel},
-         familyi={D\bibinitperiod},
-         given={Peter},
-         giveni={P\bibinitperiod},
-      }}%
-      {{hash=KF}{%
-         family={Kaashoek},
-         familyi={K\bibinitperiod},
-         given={Frans},
-         giveni={F\bibinitperiod},
-      }}%
-      {{hash=RA}{%
-         family={Rowstron},
-         familyi={R\bibinitperiod},
-         given={Antony},
-         giveni={A\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {Springer Berlin Heidelberg}%
+    \list{organization}{1}{%
+      {Springer}%
     }
     \strng{namehash}{MPMD1}
     \strng{fullhash}{MPMD1}
@@ -1454,24 +1585,10 @@
     \field{labeltitlesource}{title}
     \field{sortinit}{M}
     \field{sortinithash}{M}
-    \field{abstract}{%
-    We describe a peer-to-peer distributed hash table with provable consistency
-  and performance in a fault-prone environment. Our system routes queries and
-  locates nodes using a novel XOR-based metric topology that simplifies the
-  algorithm and facilitates our proof. The topology has the property that every
-  message exchanged conveys or reinforces useful contact information. The
-  system exploits this information to send parallel, asynchronous query
-  messages that tolerate node failures without imposing timeout delays on
-  users.%
-    }
-    \field{booktitle}{Peer-to-Peer Systems}
-    \field{isbn}{978-3-540-45748-0}
+    \field{booktitle}{International Workshop on Peer-to-Peer Systems}
     \field{pages}{53\bibrangedash 65}
-    \field{title}{Kademlia: A Peer-to-Peer Information System Based on the XOR
-  Metric}
-    \list{location}{1}{%
-      {Berlin, Heidelberg}%
-    }
+    \field{title}{Kademlia: A peer-to-peer information system based on the xor
+  metric}
     \field{year}{2002}
   \endentry
 
@@ -1538,6 +1655,26 @@
     \field{title}{Evaluation of Docker containers based on hardware
   utilization}
     \field{year}{2015}
+  \endentry
+
+  \entry{prometheus}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=P}{%
+         family={Prometheus},
+         familyi={P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{P1}
+    \strng{fullhash}{P1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{title}{From metrics to insight}
+    \verb{url}
+    \verb https://prometheus.io/
+    \endverb
+    \field{journaltitle}{Prometheus Blog}
   \endentry
 
   \entry{Renesse2003}{article}{}
@@ -2150,6 +2287,58 @@
     \warn{\item Can't use 'location' + 'address'}
   \endentry
 
+  \entry{verma2015large}{inproceedings}{}
+    \name{author}{6}{}{%
+      {{hash=VA}{%
+         family={Verma},
+         familyi={V\bibinitperiod},
+         given={Abhishek},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=PL}{%
+         family={Pedrosa},
+         familyi={P\bibinitperiod},
+         given={Luis},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=KM}{%
+         family={Korupolu},
+         familyi={K\bibinitperiod},
+         given={Madhukar},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=OD}{%
+         family={Oppenheimer},
+         familyi={O\bibinitperiod},
+         given={David},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=TE}{%
+         family={Tune},
+         familyi={T\bibinitperiod},
+         given={Eric},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=WJ}{%
+         family={Wilkes},
+         familyi={W\bibinitperiod},
+         given={John},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{VA+1}
+    \strng{fullhash}{VAPLKMODTEWJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{V}
+    \field{sortinithash}{V}
+    \field{booktitle}{Proceedings of the Tenth European Conference on Computer
+  Systems}
+    \field{pages}{1\bibrangedash 17}
+    \field{title}{Large-scale cluster management at Google with Borg}
+    \field{year}{2015}
+  \endentry
+
   \entry{villari2016osmotic}{article}{}
     \name{author}{5}{}{%
       {{hash=VM}{%
@@ -2239,6 +2428,51 @@
     \field{title}{ENORM: A framework for edge node resource management}
     \field{journaltitle}{IEEE transactions on services computing}
     \field{year}{2017}
+  \endentry
+
+  \entry{10.1145/1030194.1015509}{article}{}
+    \name{author}{2}{}{%
+      {{hash=YP}{%
+         family={Yalagandula},
+         familyi={Y\bibinitperiod},
+         given={Praveen},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=DM}{%
+         family={Dahlin},
+         familyi={D\bibinitperiod},
+         given={Mike},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Association for Computing Machinery}%
+    }
+    \keyw{information management system, networked system monitoring,
+  distributed hash tables}
+    \strng{namehash}{YPDM1}
+    \strng{fullhash}{YPDM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Y}
+    \field{sortinithash}{Y}
+    \verb{doi}
+    \verb 10.1145/1030194.1015509
+    \endverb
+    \field{issn}{0146-4833}
+    \field{number}{4}
+    \field{pages}{379–390}
+    \field{title}{A Scalable Distributed Information Management System}
+    \verb{url}
+    \verb https://doi.org/10.1145/1030194.1015509
+    \endverb
+    \field{volume}{34}
+    \list{location}{1}{%
+      {New York, NY, USA}%
+    }
+    \field{journaltitle}{SIGCOMM Comput. Commun. Rev.}
+    \field{month}{08}
+    \field{year}{2004}
   \endentry
 
   \entry{tapestry}{article}{}

@@ -1,47 +1,123 @@
-Provided that we intend to build a robust decentralized monitoring system, it is crucial to understand how monitoring can be used towards resource management. In this section we present an overview of the taxonomy of resource management systems. We analyze resource management systems for cloud and edge systems in the literature and discuss their advantages and limitations.
 
-As in \cite{Hong2019}, we classify resource management architectures in fog/edge according to their \textit{data flow}, \textit{control} and \textit{tenancy}.
+It is paramount to understand how resource monitoring systems can be tailored in order to meet the need of resource monitoring systems. Currently, most popular resource management systems are tailored towards Cloud systems \cite{Vavilapalli2013ApacheHY} \cite{hindman2011mesos} \cite{mace2015retro} \cite{verma2015large}. 
 
-\begin{enumerate}
+We classify resource management systems as platforms which provide resources  (e.g. computing power, memory, among other) to tenants (i.e. applications, frameworks, among others) such that applications can perform their tasks. 
 
-    \item \textit{Data flow architectures}, these architectures focus on the flow of the data, i.e. from user devices to edge nodes or alternatively from the cloud to edge nodes.
-    
-    \item \textit{Control architectures}, these architectures are based on how the resources are controlled, either centralized by a single controller, or in a distributed manner.
-    
-    \item \textit{Tenancy architecture} is based on controlling wether or not multiple entities share the same resources.
+In this section we present an overview of the taxonomy of resource management architectures, along with relevant resource management systems used in Cloud and Edge environments. In each example, we analyze the type of monitoring system employed.
 
-\end{enumerate}
+\subsection{Resource Management Taxonomy}
 
-We may classify data flow as how the data or workload is transferred within a fog/edge computing environment. There are three data flow architectures, namely \textit{sharing, aggregation} and \textit{offloading}.
+A resource management system aims at controlling the distribution of resources among application(s). We may classify resource management architectures according to their \textit{control} and \textit{tenancy}. \textbf{Control} refers to how the resources are provisioned towards applications, whereas tenancy refers to how whether applications share the system resources or not.
 
+\subsubsection{Tenancy}
 
-\subsection{Sharing workload}
+As previously mentioned, tenancy refers to whether entities share system resources or not. The term tenancy in distributed systems refers to whether or not underlying hardware resources are shared among entities \cite{Hong2019}.
 
-\textit{Sharing} is usually employed whenever the workload is shared among peers. The aim of this model is to satisfy workload requirements on mobile devices without offloading the computation towards the cloud. Cooperative task distribution needs to be inherently energy-aware for this technique to be feasible, first, we describe task distribution based on \textbf{control}. \textit{Controlling} the task distribution of the system may be performed two-fold: 
+\textbf{Single tenancy} refers to an architecture in which a single instance of a software application and supporting infrastructure serves one customer. In single-tenancy architectures, a customer (tenant) has nearly full control over customization of software and infrastructure. 
 
-\textbf{Centralized control} in this technique, there is a centralized controller which manages the workloads of devices in each edge of the environment. This is the approach taken by Yarn \cite{Vavilapalli2013ApacheHY} , Mesos \cite{hindman2011mesos}, ENORM \cite{wang2017enorm} among others. However, this approach is limited in scalability due to the centralized controller computing all task distributions, and has a centralized point of failure. \textbf{Decentralized control}, in this area there is limited research done. However, a game theoretic approach was employed which is based on a decentralized  approach for achieving Nash equilibrium among cloudlets \cite{Cui2017}. \textcolor{red}{sharing é mais entre mobile devices, vale a pena escrever mais?}
+Intuitively, there are many advantages of having single-tenancy architectures, such as data security: Even if there is a data breach to one tenant with the same provider, another tenant would be safe from the breach, since the data is stored in a separate instance.
 
-\subsection{Offloading}
+However, single tenancy goes against most distributed systems today, which are inherently \emph{shared} by multiple tenants, both on private and public clouds \cite{mace2015retro}.
 
-Offloading is a technique in which a server, application and the associated data are moved onto the edge of the network. There are two variants for offloading, either from the user device to the edge, of from the cloud to the edge.
+\textbf{Multi-tenancy} consists in tenants sharing multiple resources across multiple processes and machines. This approach has clear advantages, as sharing the infrastructure leads to lower costs (e.g. electricity), and companies of all sizes like to share infrastructure and in order to achieve lower operational costs. 
 
-\subsubsection{Offloading from User device to the Edge}
+However, providing performance guarantees and isolation in multi-tenant systems is extremely hard, resource management systems must avoid mismatching the resource allocation, as tenant-generated requests compete with each other and with the system generated tasks. Furthermore, tenant workload can change in unpredictable ways depending on the input workload, the workload of other tenants in the system and the underlying topology. Given this, mismanaging the system resources may degrade tenant performance and in extreme cases even hinder the stability of the resource management system.
 
-This technique enhances computing in  mobile nodes by employing edge nodes which are usually only one or two hops away. In the literature we found two main ways of performing this, first is \textit{caching} and the second is \textit{application partitioning}
+Furthermore, in the context of edge-enabled workloads, some may have critical latency or availability requirements, which are extremely hard to ensure for a single tenant.
 
-\textit{Application partitioning} consists in partitioning applications in many different sub-components, then, application fragments are deployed across the infrastructure. There are many approaches towards deciding where to offload the computation:
+\subsubsection{Control}
 
-\begin{enumerate}
-    \item \textbf{Brute force} proposes exhaustively exploring all potential targets combinations towards offloading tasks (including the Cloud, the Edge and other user devices) and picking the one which provides the minumum execution time. This technique intuitively is not scalable enough to be applied in practice.
-    
-    \item Greedy heuristics focus on minimizing the time it takes for the task to be completed on a mobile device. FogTorch \cite{Brogi2017} employs a greedy heuristic by which reduces the search space of devices which constitute options for service deployments.
+Control refers to how resource management systems allocates tasks. There are two alternatives towards allocating resources.
 
-    \item Simulated Annealing
-    \item Fuzzy logic
-\end{enumerate}
+\textbf{Centralized control} consists of a centralized controller deciding the computations, networks and communication of devices. This means that there is a centralized component in the system which has a global view of the resource usage within both and across processes and machines.
 
-\subsubsection{Offloading from to the Cloud to the Edge}
+Intuitively, given that a centralized component generates manages all the resources in the system, this component can enforce policies that achieve the desired performance guarantees or fairness goals by identifying and only throttling the tenants or system activities responsible for resource bottlenecks. \cite{verma2015large} Additionally, centralized control ensures that the system has the potential to attribute the best possible workload scheduling which ensures the requirements of tenants while employing the available resources as efficiently as possible.
+
+Many resource management systems rely on a centralized component having a global view of the system, especially in Cloud environments, where nodes are federated in large clusters of machines with similar computing power. Cloud systems commonly employ Zookeeper \cite{hunt2010zookeeper} to maintain the component available and to transfer state in case it fails.
+
+However, we argue that centralized control is not feasible in an edge environment, as the number of devices in the system increases, so does the number of resources to track, and the harder it is for a centralized component to have an up-to-date global view of the system. This occurs either because the system is heavily decentralized which means that monitoring information takes a long time to propagate to the centralized component, or because there is not enough computing power or memory to handle all the information in a centralized component.
+
+\textbf{Decentralized control} architectures are those where the the decision-making process is distributed across multiple components \cite{Hong2019}. This topic has yet not been subject to much research, although it is of extreme relevance towards edge environments. For example, if the system is globally distributed, it may take too long for a centralized controller to identify hotspots in a certain zone and load-balance them.
+
+One of the biggest challenges of controlling the resource management in a distributed fashion is ensuring that the components which perform resource assignments do not conflict with each other. Additionally, in a multi-tenant decentralized resource control system, tenants may request resources to different resource controllers in the system, and if they do not coordinate themselves, the application may be provisioned with too many (or too little) resources.
+
+\subsection{Relevant Resource Monitoring Systems}
+
+In this subsection we will cover popular resource monitoring systems found in the literature, and discuss their advantages and / or limitations.
+
+\subsubsection{Mesos}
+
+Mesos \cite{hindman2011mesos} is a multi-tenant centralized resource sharing platform which attempts to provide fine-grained resource sharing in the  Data Center. The tenants for this platform are frameworks such as HDFS \cite{borthakur2008hdfs}, MapReduce \cite{dean2008mapreduce}, among others, which in turn support multiple applications running in the DC.
+
+In short, the Mesos resource sharing system consists of a \textit{master} process which manages \textit{slave} daemons running on each cluster node, in order to achieve faul-tolerance, Mesos employs Zookeeper \cite{hunt2010zookeeper} for fault tolerance (by electing a new master and transferring state to it if the active master crashes).
+
+The master node implements fine-grained sharing of resources across frameworks by employing \textit{resource offers}, which consist of lists of free resources distributed among slaves.
+
+Resource offers provide flexibility for frameworks operating on Mesos, given that each framework has different communication patterns, task dependencies and data placement, a centralized scheduler would need to provide an extremely expressive API to capture all frameworks' requirements. Instead, the master makes decisions about how many resources to offer to each framework, and its decision-making process is based on an arbitrary organizational policy, such as fair sharing or priority. 
+
+Each framework that wishes to use Mesos must implement \textit{scheduler} and an \textit{executor}. The scheduler registers with the Mesos master to receive resource offers, and the executor is the process that is launched on slave nodes to run the framework's tasks.
+
+A limitation of the Mesos resource sharing platform is that it is not scalable (the original authors mention the system scales up to 50000 slave daemons on 99 physical machines), which is not enough for an edge environment. Furthermore, the resource offer model forces frameworks to employ a specific programming model based on schedulers and executors, which may not be desirable by the framework author.
+
+\subsubsection{Borg}
+
+\subsubsection{Retro}
+
+\subsubsection{Yarn}
+
+Yarn (Yet Another Resource Negotiator) \cite{Vavilapalli2013ApacheHY} is a compute platform which attempts decouple the programming model from the resource management infrastructure, and delegate many scheduling functions (e.g. task fault-tolerance) to per-application components. 
+
+The architecture of YARN is as follows: the system is composed of a per-cluster Resource Manager (RM), multiple Application Masters (AM) and Node Managers (NM). 
+
+The Resource Manager (RM) tracks resource usage and node liveness, enforces allocation invariants and arbitrates contention among tenants. It matches a global model of the cluster state against the digest o resource requirements reported by the applications, which allows the RM to tightly enforce global scheduling properties such as capacity or fairness.
+
+The Application Master (AM) runs arbitrary user code, and can be written in any programing language, its duties in the system consist of managing the lifecycle aspects including dynamically increasing and decreasing resource consumption, managing the flow of execution and handling faults. 
+
+The Node Manager (NM) is the worker daemon in YARN. Its responsibilities in the system consist of managing container dependencies, monitor their execution and provide a set of services for containers. Node Managers 
+
+AMs send resource requests to the RM, these contain the number of containers to request, the resources per container, locality preferences and a priority level within the application. Resource requests are designed to capture the needs of applications, while at the same time removing specific application concerns (such as task dependencies) from the scheduler.
+
+Similar to  MESOS \cite{hindman2011mesos}, the resource attribution process is done by centralized component, however, contrasting with MESOS which uses Zookeeper to maintain secondary masters, the RM is a single point of failure and contention in the system, which males it not suitable towards edge environments.
+
+\subsubsection{ENORM}
+
+Edge NOde Resource Management \cite{wang2017enorm} (ENORM) framework aimed at employing edge resources towards applications by provisioning and auto-scaling edge node resources. It attempts to answer these two questions: "How to deploy a workload on the edge node?"\ and "How much of the workload can be deployed on the edge node?".
+
+ENORM proposes a three-tier architecture: (1) the Cloud tier, where application servers are hosted; (2) the middle tier, where the edge nodes are situated; (3) the bottom tier, where user devices (e.g. smartphones, wearables, gadgets) are situated. 
+
+To enable the use edge nodes, ENORM deploys a \textit{cloud server manager} on each application server which communicates with potential edge nodes requesting computing services, deploys partitioned servers on the edge nodes, and finally receives updates from the edge nodes to update the global view of the application server on the cloud.
+
+Each edge node is composed by the following 5 components: (1) \textit{Resource Allocator} which provides computing as a service, this is the basic service of the edge node, and cannot be compromised, which means that it has priority over offloaded computations; (2) \textit{Edge Manager} deals with the requests that are obtained by the server manager in the cloud, and once a request is successful, it initializes a container and allocates the necessary ports for communication; (3) \textit{Monitor} which periodically reports a number of metrics related to the application running on the edge server (e.g. communication latency and computing latency); (4) \textit{Auto-scaler} dynamically allocates and de-allocates hardware resources to the container executing application servers. It is responsible for scaling the process such that the application can accommodate a larger number of users. (5) \textit{Application Edge Server} the partitioned server which is hosted on the edge node.
+
+ENORM authors test the designed system using an online game based on Pokemon GO (iPokemon)\cite{pokemonGo}, the framework partitions the game server and sends  user data relevant to the geographical location of the edge node. Users from the relevant geographical zone connect to the edge server and are serviced as if they were connected to the data center. ENORM observes up to 95\% application latency reduction, and a reduction of data transferred between edge nodes and the cloud of up to 95\%.
+
+Limitations from this framework are similar to Mesos and Yarn, specifically lack of fault-tolerance and scalability, which arise from a centralized component handling all the edge nodes at the same time. 
 
 \subsection{Discussion}
 
-\subsection{Schedulers}
+Although resource management systems have been present for many years, these are often tailored towards small scale environments composed by high-capacity devices in stable environments. This environment contrasts with the edge of the network, where devices are extremely numerous, decentralized, and heterogenous.
+
+Due to their low capacity, devices in the edge of the network are very susceptible to workload changes, for example, a 5G tower which is hosting a service cannot handle a drastic increase in the number of users it is servicing. In this scenario, we argue that in order to maintain QoS, devices must autonomously take the decision to scale horizontally or vertically in order to adapt to the hotspot of users.
+
+Additionally, with the recent emergence of IoT and the increase of devices in the edge of the network, we argue that a centralized controller would not be able to process the resource management of a large scale system, especially if applications have special requirements such as real-time latency.
+
+% \subsubsection{Scheduling}
+
+% There are many approaches towards scheduling resources among edge nodes: \textbf{Brute force} proposes exhaustively exploring all potential targets combinations towards offloading tasks (including the Cloud, the Edge and other user devices) and picking the one which provides the minimum execution time. This technique intuitively is not scalable enough to be applied in practice.
+
+% \textbf{Greedy} heuristics focus on minimizing the time it takes for the task to be completed on a mobile device. FogTorch \cite{Brogi2017} employs a greedy heuristic by which reduces the search space of devices that constitute options for service deployments. 
+
+% \textbf{Simulated Annealing} employs a search space based on the utilization of edge and cloud nodes, total costs, and the completion time of the task to find the optimal solution.
+
+% \subsubsection{Offloading}
+
+%In this section we study offloading, which is technique used by edge-enabled applications to fully take advantage of edge nodes.
+
+%Offloading is a technique in which a server, application and the associated data are transferred onto another node in the network \cite{Hong2019}. There are two variants for offloading: either from the user device to the edge, or from the cloud to the edge. 
+
+%Offloading from user device to the edge enhances computing in mobile nodes by employing edge nodes which are usually only one or two hops away. While offloading from the Cloud to the edge has the potential to reduce bandwidth consumption and improve QoS of edge-enabled applications. 
+
+%\textbf{Server offloading} is a technique in which servers are offloaded to the edge via either replication or partitioning. \textbf{Replication} consists in offloading the full server state(e.g. a database or an  application server), while \textbf{partitioning} consists in offloading only a portion of the server state. 
+
+%The portion of the server to offload must take into account a set of parameters such as latency, functionality, energy efficiency, geographical distribution, among others. 
+

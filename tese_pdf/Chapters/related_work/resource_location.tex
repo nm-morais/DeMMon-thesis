@@ -56,11 +56,11 @@ Because centralized architectures have limited scalability, purely centralized a
 
 Peers maintain routing tables to forward messages in the system, such that they can contact any other participant in a bounded number of steps, where the bound (usually logarithmic) is dictated by the topology . Finally, using the same hash functions to map resources (files, multimedia, messages, among others) to the peer identifier space, and assigning a key-space interval to each peer, peers can store and find any resource in a bounded number of steps (\textbf{exact resource location}).
 
-One particular type of DHT that is commonly employed in in small to medium sized storage solutions is the One-Hop DHT, nodes in a one-hop DHT have \textbf{Full membership} of the system and consequently, can perform lookups in O(1) time and message complexity. Facebook's Cassandra \cite{lakshman2010cassandra} and Amazon's Dynamo \cite{decandia2007dynamo} are widely used implementations of one-hop DHTs. However, full membership solutions have scalability problems due to the required memory and message volume necessary to maintain the full membership information up-to-date. Finally, maintaining full membership is costly in the presence churn (participants entering and leaving the system concurrently). The accumulation of these factors make full-membership solutions impractical in Edge environments.
+One particular type of DHT that is commonly employed in in small to medium sized storage solutions is the One-Hop DHT, nodes in a one-hop DHT have \textbf{Full membership} of the system and consequently, can perform lookups in O(1) time and message complexity. Facebook's Cassandra \cite{lakshman2010cassandra} and Amazon's Dynamo \cite{decandia2007dynamo} are widely used implementations of one-hop DHTs. However, full membership solutions have scalability problems due to the required memory and message volume necessary to maintain the full membership information up-to-date, especially in the presence churn (participants entering and leaving the system concurrently). Which make full membership solutions impractical in Edge environments.
 
 Given this, the usual approach to building a DHT is through \textbf{partial membership} systems, which rely on some membership mechanism that restricts neighboring relations that are used to perform communication. DHTs with partial membership are attractive because they provide exact resource location while maintaining very little membership information (typically 1\% of the peers), . 
 
-There have been attempts to apply DHTs towards Edge Computing. Common limitations that arise from this is that the common flat design that goes against the device heterogeneity of Edge Environments. Furthermore, given that devices in those environments have lower computational power and weaker connectivity, devices in the edge may even be a bottleneck to the system. 
+There have been attempts to apply DHTs towards Edge Computing. Common limitations that arise from this is that the common flat design which goes against the device heterogeneity of Edge Environments. Furthermore, given that devices in those environments has lower computational power and weaker connectivity, devices in the edge may even be a bottleneck to the system. 
 
 Following, we present some popular implementations of relevant DHT's along with a discussion on their applicability towards Edge environments:
 
@@ -86,7 +86,7 @@ This routing technique accomplishes routing in O(log N), where N is the number o
 
 Limitations from using Pastry arise from the use of a numeric distance function towards the end of the routing process, which creates discontinuities at some node ID values, and complicates attempts at formal analysis of worst case behavior.
 
-\textbf{Kademlia} \cite{10.1007/3-540-45748-8_5} is a DHT with provable consistency and performance in a fault-prone environment. Kademlia nodes are assigned 160-bit identifiers uniformly distributed in the ID space.
+\textbf{Kademlia} \cite{maymounkov2002kademlia} is a DHT with provable consistency and performance in a fault-prone environment. Kademlia nodes are assigned 160-bit identifiers uniformly distributed in the ID space.
 
 Peers route queries and locate nodes by employing a novel \textbf{XOR-based distance} function which is symmetric and unidirectional. Each node in Kademlia is a router where its routing tables consist of shortcuts to peers whose XOR distance is between \(2^{i}\) by \(2^{i + 1}\) in the ID space. Intuitively, and similar to Pastry, "closer" nodes are those that share a longer common prefix.
 
@@ -103,7 +103,6 @@ Assuming a proportional number of files and peers in the system and a fixed view
 \textbf{Tapestry} \cite{tapestry} Is a DHT similar to pastry where messages are incrementally forwarded to the destination digit by digit (e.g. ***8 -> **98 -> *598 -> 4598). Lookups have logb(n) time complexity where b is the base of the ID space. A system with n nodes has a resulting topology composed of n spanning trees, where each node is the root of its own tree. Because nodes assume that the preceding digits all match the current node's suffix, it only needs to keep a constant size of entries at each route level. Thus, nodes contain entries for a fixed-sized neighbor map of size b.log(N). 
 
 \subsubsection{Unstructured Overlays}
-
 
 
 SOSP-Net (Self-Organizing Super-Peer Network) \cite{garbacki2007optimizing} proposes to optimize super-peer networks by organizing super-peers in a topology that reflects the semantic similarity of peers with similar interests. Super-peers maintain cache references to files which were recently requested by weak peers, while the weak peers maintain caches containing super-peers that satisfied most of its requests. This yields good cache hit ratios, and load balancing. However, the original paper does not specify how super-peers communicate among themselves, nor the election process of super-peers.

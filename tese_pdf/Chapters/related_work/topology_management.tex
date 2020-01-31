@@ -39,47 +39,60 @@ A key factor of unstructured overlays is their low maintenance cost, given that 
 
 \subsubsection{Flat unstructured Overlays}
 
-A flat unstructured overlay is an overlay where peers contribute evenly towards a common system goal. These overlays attempt to have even degree distributions while providing good connectivity. A prime example of a flat unstructured overlay which is highly resilient to churn and catastrophic failures is \textbf{Hyparview} \cite{Hyparview}. 
+A flat unstructured overlay is an overlay where peers contribute evenly towards a common system goal. These overlays attempt to have even degree distributions while providing good connectivity. A prime example of a flat unstructured overlay which is highly resilient to churn and catastrophic failures is \textit{Hyparview} \cite{Hyparview}. 
 
+\textit{Hyparview} (Hybrid Partial View) gets its name from maintaining two exclusive views: the \textit{active} and \textit{passive} view, that are distinguished by their maintenance strategy. 
 
-Hyparview (Hybrid Partial View) gets its name from maintaining two exclusive views: the \textit{active} and \textit{passive} view. What distinguishes these views is their maintenance strategy. 
+The \textit{passive view} is a larger view which consists of a random set of peers in the system, this view is maintained by a simple gossip protocol which periodically gossips a message to a random peer in the active view. This message contains a subset of the neighbors of the sending node and a time-to-live (TTL), the message is forwarded in the system until the TTL expires. In contrast, the \textit{active view} is a smaller view (around log(n) ) created during the bootstrap of the protocol, and actively maintained by monitoring peers with a TCP connection (effectively making the active view connections bidirectional and act as a failure detector). Whenever peers from the active view fail, nodes attempt to replace them with nodes in the passive view.
 
-The \textit{passive view} is a larger view which consists of a random set of peers in the system, this view is maintained by a simple gossip protocol which periodically gossips a message to a random peer in the active view. This message contains a subset of the neighbors of the sending node and a time-to-live (TTL), the message is forwarded in the system until the TTL expires. In contrast, the \textit{active view} is a smaller view (around log(n) ) created during the bootstrap of the protocol, and actively maintained by monitoring peers with a TCP connection (effectively making the active view connections bidirectional and acting as a failure detector). Whenever peers from the active view fail, nodes attempt to replace them with nodes in the passive view.
+Hyparview achieves high reliability even in the face of high percentage of high node failures (up to 80-90\% of all nodes). This is highly desirable in edge environments. However, due to battery constraints, many devices cannot actively maintain TCP connections, which limits the applicability of Hyparview towards levels 0-4 of the taxonomy described in \ref{subsec:edge_taxonomy}. Hyparview is often used as a \textit{peer sampling service} for other protocols which rely on the connections from the active view to collaborate  (e.g. PlumTree \cite{leitao2007epidemic} and X-BOT \cite{leitao2012x}).
 
-Hyparview achieves high reliability even in the face of high percentage of high node failures (up to 80-90\% of all nodes). This is highly desirable in edge environments. However, due to battery constraints, many devices cannot actively maintain TCP connections, which limits the applicability of Hyparview towards levels 0-4 of the taxonomy described in \ref{subsec:edge_taxonomy}. Hyparview is often used as a \textit{peer sampling service} for other protocols which rely on the connections from the active view to collaborate (e.g. PlumTree \cite{leitao2007epidemic}).
+\textit{T-MAN} \cite{jelasity2005t} is protocol based on a gossiping scheme, which proposes to build a wide range of overlay networks from scratch (e.g. ring, mesh, tree, etc.). To achieve this, T-MAN takes an overlay as an input to the protocol, this overlay is represented by \textit{ranking method}. The ranking method sorts a set of nodes according to a given metric, where first nodes are the most "preferable" of the list. The resulting protocol is scalable and fast, with convergence times that grow as the logarithm of the network size. Furthermore, it is completely decentralized and extremely robust. Limitations that arise from using T-Man is that it does not ensure stability of in-degree of nodes during the optimization of the overlay.
+
+\textit{X-BOT} \cite{leitao2012x} X-BOT is a protocol which constructs an unstructured overlay network where neighboring relations are biased towards a certain metric. X-BOT does so while preserving key properties of the overlay such as the node degree and consequently, the overlay connectivity.
+
+Neighboring connections are attributed a metric according to an \textit{oracle},which consists in a component which exports a function that takes a pair of peers in the system and attributes a cost to that neighboring connection. An oracle may take into account device latency, ISP distribution, stretch, among others. 
+
+The rationale X-BOT is as follows, nodes maintain active and passive views similar to Hyparview \cite{Hyparview}. Then, nodes periodically trigger optimization rounds where nodes attempt to swap one neighbor from their active active view with another neighbor which ranks higher according to the oracle. 
+
+An important factor (which contrasts with \cite{jelasity2005t}) is that nodes in the system maintain unbiased neighbors such that the overlay maintains low average path length and low clustering coefficient.
 
 \subsubsection{Unstructured Hierarchical Overlays}
 
-Unstructured hierarchical are characterized as overlays where peers have different tasks in the system, this is an easy way to accommodate device heterogeneity while potentially increasing the performance of the system. 
+Unstructured hierarchical overlays are characterized as overlays where peers have different tasks in the system, which easily accommodates device heterogeneity while potentially increasing the performance of the system. 
 
-The canonical example is \textbf{super-peers}, which are peers that have increased capacity and stability, that are commonly assigned towards disseminating queries throughout the system or caching file locations.
+An example is \textbf{super-peers}, which are peers that have increased capacity and stability, that are commonly assigned towards disseminating queries throughout the system or caching file locations.
+
+\textcolor{red}{ should i do trees here?}
 
 Super-peers have proven their effectiveness in reducing the number of peers that have to exchange messages, which by consequence raises system scalability. This is the approach taken by Gia \cite{Chawathe2003} to improve the scalability of Gnutella \cite{gnutella_gtk}. However, this approach is inefficient when finding rare resources in the system.
 
-\textbf{Overnesia} \cite{leitao2014overnesia} creates virtual super-peers by maintaining fully connected groups of nodes with the same identifier which is known by all elements in the group. Nodes join the system by sending a JOIN request to a bootstrap node which triggers a random walk, the requesting node joins the group where random walk finishes (either because it finds an underpopulated group or because the TTL expires). 
+\textbf{Overnesia} \cite{leitao2014overnesia} is a protocol which creates virtual super-peers by maintaining fully connected groups of nodes with the same identifier known by all elements in the group. Nodes join the system by sending a JOIN request to a bootstrap node which triggers a random walk, the requesting node joins the group where random walk finishes (either because it finds an underpopulated group or because the TTL expires). 
 
 Then, in order to promote intra-group membership consistency, nodes employ an anti-entropy mechanism where they periodically exchange messages containing their own view of the group. 
 
 When a group detects that its size has become too large, it triggers a dividing procedure which splits the groups in two halves. This division reduces the costs of replicating data among its members, but also promotes good load-balancing of the system. 
 
-When group size has fallen bellow a certain threshold, Overnesia triggers a collapse procedure, where each node takes the initiative to relocate itself to another group, resulting in the collaps of the group. Finally, nodes perform walks along the overlay in order to establish inter-group links.
+When group size has fallen bellow a certain threshold, Overnesia triggers a collapse procedure, where each node takes the initiative to relocate itself to another group, resulting in the collapse of the group. 
 
+Finally, nodes perform walks along the overlay in order to establish inter-group links which in turn use to perform efficient broadcasts.
 
 \subsection{Structured overlays} 
 
-\textbf{Structured overlays} enforce stronger rules towards neighbor selection (generally based on identifiers of peers). As a result, the overlay generally converges to a topology known a priori, where the target topologies are normally tailored towards applicational requirements. 
+\textbf{Structured overlays} enforce stronger rules towards neighbor selection (generally based on identifiers of peers). As a result, the overlay generally converges to a topology known a priori, where the target topologies are tailored towards applicational requirements. 
 
-DHTs offer efficient routing capabilities over the identifier space (usually routing procedures take a logarithmic number of steps), DHTs have been extensibly used to support many large scale services (publish-subscribe, file sharing, among others) and are especially used in Cloud-based environments. 
+A canonical example of a structured overlay is a distributed hash table (DHT)DHTs offer efficient routing capabilities over the identifier space (usually routing procedures take a logarithmic number of steps), DHTs have been extensibly used to support many large scale services (publish-subscribe, file sharing, among others) and are especially used in Cloud-based environments. 
 
 \subsubsection{Flat structured overlays}
 
-A canonical example of a type structured overlay is a distributed hash table (DHT), peers in a DHT use consistent hashing functions to select random identifiers that are uniformly distributed over the identifier space. 
+In a flat DHT, peers use consistent hashing functions to select random identifiers which are uniformly distributed over the identifier space. We will cover distributed hash tables with a bigger emphasis in section \ref{sec:res_location}
 
 \subsubsection{Hierarchical structured overlays}
 
 The second approach to building a hierarchical topology is to employ a DHT, hierarchical DHTS usually form contained DHTS within other DHTS (e.g. a ring within a ring). This offers several important advantages over a flat DHT: first, lookups take less hops and messages to reach the target, second, organizing nodes in disjoint groups allows traffic locality if groups of nodes are close in the underlay, finally, churn events within a group stay contained within that group. However, many of these systems either employ more memory to accommodate the many levels hierarchical DHT, or tradeoff reliability (by shortening the number of connections) for memory and communication efficiency.
 
-
 \subsection{Discussion}
 
-Unstructured overlays are an attractive option to federate edge devices, as they can easily adapt to dynamic environments, this facilitates employing resource-constrained devices towards the system.
+Unstructured overlays are an attractive option to federate large amounts of devices in heavily dynamic environments. They provide a low clustering coefficient and good connectivity even in the face of churn, which makes them appealing towards the edge environments. 
+
+Conversely, structured overlays enable efficient routing procedures with very low message overhead, which makes them suitable for resource location systems. However, given the strict neighboring rules, nodes cannot replace neighbors easily, which hinders the fault-tolerance of these types of topologies.

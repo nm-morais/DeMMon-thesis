@@ -557,6 +557,8 @@ INPUT /usr/local/texlive/2019/texmf-dist/fonts/vf/adobe/helvetic/phvr8t.vf
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/adobe/helvetic/phvr8r.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/vf/adobe/helvetic/phvb8t.vf
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/adobe/helvetic/phvb8r.tfm
+INPUT /usr/local/texlive/2019/texmf-dist/fonts/vf/adobe/helvetic/phvb8t.vf
+INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/adobe/helvetic/phvb8r.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/vf/adobe/helvetic/phvr8t.vf
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/adobe/helvetic/phvr8r.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/vf/adobe/helvetic/phvr8t.vf
@@ -649,8 +651,8 @@ INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/kpfonts/jkpmit8t.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/vf/public/kpfonts/jkpmit8t.vf
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/kpfonts/jkpmit8r.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/kpfonts/jkpmite.tfm
-INPUT /Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work/offloading_computation.tex
-INPUT /Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work/offloading_computation.tex
+INPUT /Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work/edge_computing.tex
+INPUT /Users/nunomorais/Documents/Developer/tese_edge_monitoring/tese_pdf/Chapters/related_work/edge_computing.tex
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/kpfonts/jkpmn8t.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/kpfonts/jkpbn8t.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/vf/public/kpfonts/jkpbn8t.vf

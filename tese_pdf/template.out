@@ -22,15 +22,15 @@
 \BOOKMARK [1][-]{section.2.4}{Resource monitoring}{chapter.2}% 22
 \BOOKMARK [2][-]{subsection.2.4.1}{Device monitoring}{section.2.4}% 23
 \BOOKMARK [2][-]{subsection.2.4.2}{End-to-end link monitoring}{section.2.4}% 24
-\BOOKMARK [2][-]{subsection.2.4.3}{Aggregation}{section.2.4}% 25
+\BOOKMARK [2][-]{subsection.2.4.3}{Aggregation techniques}{section.2.4}% 25
 \BOOKMARK [2][-]{subsection.2.4.4}{Relevant aggregation protocols}{section.2.4}% 26
-\BOOKMARK [1][-]{section.2.5}{Resource management}{chapter.2}% 27
-\BOOKMARK [2][-]{subsection.2.5.1}{Sharing workload}{section.2.5}% 28
-\BOOKMARK [2][-]{subsection.2.5.2}{Offloading}{section.2.5}% 29
-\BOOKMARK [2][-]{subsection.2.5.3}{Discussion}{section.2.5}% 30
-\BOOKMARK [2][-]{subsection.2.5.4}{Schedulers}{section.2.5}% 31
-\BOOKMARK [0][-]{chapter.3}{Proposed Solution}{}% 32
-\BOOKMARK [0][-]{chapter.4}{Planning}{}% 33
-\BOOKMARK [1][-]{section.4.1}{Proposed solution}{chapter.4}% 34
-\BOOKMARK [1][-]{section.4.2}{Scheduling}{chapter.4}% 35
+\BOOKMARK [2][-]{subsection.2.4.5}{Monitoring systems}{section.2.4}% 27
+\BOOKMARK [2][-]{subsection.2.4.6}{Discussion}{section.2.4}% 28
+\BOOKMARK [1][-]{section.2.5}{Resource management}{chapter.2}% 29
+\BOOKMARK [2][-]{subsection.2.5.1}{Resource Management Taxonomy}{section.2.5}% 30
+\BOOKMARK [2][-]{subsection.2.5.2}{Relevant Resource Monitoring Systems}{section.2.5}% 31
+\BOOKMARK [2][-]{subsection.2.5.3}{Discussion}{section.2.5}% 32
+\BOOKMARK [0][-]{chapter.3}{Planning}{}% 33
+\BOOKMARK [1][-]{section.3.1}{Proposed Solution}{chapter.3}% 34
+\BOOKMARK [1][-]{section.3.2}{Scheduling}{chapter.3}% 35
 \BOOKMARK [0][-]{section*.6}{Bibliografia}{}% 36
