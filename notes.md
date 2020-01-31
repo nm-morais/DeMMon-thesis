@@ -119,9 +119,6 @@ Every destination node is the root node of its own tree, which is a unique spann
 tree across all nodes. Any leaf can transverse a number of intermediate nodes en route 
 to the root node.
 
-
-
-
 ### DECA:
 
 Introduces a Hierarchical methodology based on cayley graphs that produces hierarchical
@@ -133,6 +130,75 @@ Pros : Good for locality in DHTS (heavily outperforms chord)
 Cons :
 * Does not compare with more sophisticated DHTs like Kademlia, Pastry or Tapestry 
 * Not applicable for heterogenous devices (keeps similar in-degree per )
+
+## Mesos:
+
+### Summary
+
+* a platform for sharing commodity clusters between multiple diverse cluster computing frameworks, such as Hadoop and MPI
+* Proposes solving fine-grained resource sharing across frameworks
+* Uses Zookeeper for fault-tolerance
+
+### Notes
+
+* Facebook uses a 2000 node cluster
+* Emulation results w/ 50000 slave daemons on 99 amazon machines, 200 frameworks w/ 20-second tasks, and two mesos masters connected to a 5-node Zookeeper quorum
+* Resource offers force a type of programming model on frameworks that may not be desirable
+* Uses Linux Containers for isolating CPU usage
+* Frameworks can filter proposals by providing pre-established filters.
+* Centralized scheduler
+
+
+### Behavior
+
+* Mesos decices how many resources to offer to each framework, and 
+frameworks then decide which resources to accept and which computations to run on them
+* Each resource offer consists in a list of free resources on multiple slaves 
+* Consists of a master process that manages slave daemons running on each cluster node
+ 
+1. Slave reports to master that has 4 CPUs and 4 GB RAM free
+2. Master sends resource offer to framework
+3. Framework scheduler replies to master with tasks to execute
+4. Master sends tasks to slave, which allocates appropriate resources to framework's executor
+
+### Limitations
+
+* Centralized
+* Resource offers limit programming model
+
+## ENORM:
+
+* Framework for deploying partitioned servers on edge nodes
+* Uses geographical data relevant to the edge node's location to partition the application (e.g. edge server in Lisbon holds information form users in Lisbon)
+* Uses an auto-scaling, amd a mechanism to manage the workload for maximizing the performance of containers that are hosted on the edge by periodically monitoring resource utilization.
+* Achieves up to 95% reduction traffic and communication frequency and latency from 20%-80%
+
+## Astrolabe 
+
+- Establishes a tree hierarchy among nodes 
+- Each zone has a unique identifier, unique within the parent zone
+- Hierarchy is defined by the zones (e.g. USA/Cornel/pc3)
+- Information is aggregated up the hierarchy  using aggregation functions
+- Each zone has an MIB of child zones which has a summary of their attributes
+- Leafs zones of the tree have sets of virtual child zones, which produce a summary of attributes
+- aggregation functions which aggregate these MIBs are programmable, and are added to the correspondent MiB with a reserved name, learned by a gossip protocol
+- Use cases include: File system, PubSub , Peer-to-peer diffusion and Synchronization
+
+Implementation
+
+- all nodes run an astrolabe agent
+- each agent has access to only a subset of all the MIBs in the astrolabe zone tree (all the zones on the path to the root as well as the sibling zones of each of those)
+- MIBs from different agents in a zone may be different even if queried at the same time
+- Utilizes a probabilistic consistency model
+
+
+- intra zone consistency is achieved by employing a gossip algorithm which consists in selecting another agent at random and exhanging state with it. If agents are within the same zone, they exchange state refering to the MIB of their zone, if agents are in different zones, they exchange information related to their least common ancestor in the tree.
+
+
+
+
+
+
 
 
 
@@ -154,6 +220,7 @@ Cons :
   * T-Man
   * Scatter
   * Pastry
+  * Kelips
 
 ### Monitoring systems
 
@@ -171,11 +238,17 @@ Cons :
 
 ### need reviewing
 
-  * Kelips
-  * Astrolabe (some)
-
 
 ## Notes
+
+Mobile-edge computing (Multi-access edge computing) 
+
+- Monitoring
+
+Borg, Omega, Kubernetes
+Yarn 
+Mesos
+
 
 ### Simulators for edge networks
   * PeerSim
@@ -183,4 +256,5 @@ Cons :
   * ModelNet
   * GT-ITM (Topology generator)
   * SIMPSON
- 
+  * iFogSim (https://onlinelibrary.wiley.com/doi/full/10.1002/spe.2509)
+  * EdgeCloudSim
