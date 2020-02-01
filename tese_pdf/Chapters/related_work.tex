@@ -2,6 +2,8 @@
 
 The goal of this chapter is to further identify the challenges that arise from creating a device monitoring infrastructure which enables efficient scheduling/offloading of tasks across edge environments, and to study related work towards the identified challenges.
 
+\missingfigure{Proposed Architecture}
+
 Computing platforms (e.g. Mesos \cite{hindman2011mesos}, Yarn \cite{Vavilapalli2013ApacheHY}) are usually tailored towards cloud computing systems. As such, they are usually centralized and tailored towards clusters of homogeneous devices which have very different monitoring requirements as those in edge environments. Given this, we identify a set of requirements which we believe to be important towards monitoring systems in general, and critical in an edge environment:
 
 \begin{enumerate}
@@ -26,7 +28,7 @@ Furthermore, nodes must employ the aforementioned topology in order to efficient
 
 Next, we study how to \textbf{monitor} the state of the devices and the tasks running on them, we study popular techniques of monitoring device and task status, and how to aggregate those values (Section \ref{sec:res_monitoring}). Lastly, we briefly study how the monitoring data can be used to distribute and offload tasks (Section \ref{sec:res_management}). 
 
-\section{Offloading computation to the Edge} \label{sec:edge_computing} \input{Chapters/related_work/edge_computing.tex}
+\section{Edge Environment} \label{sec:edge_computing} \input{Chapters/related_work/edge_computing.tex}
 
 \section{Topology Management} \label{sec:topology_management} \input{Chapters/related_work/topology_management.tex}
 

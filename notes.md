@@ -192,11 +192,30 @@ Implementation
 - Utilizes a probabilistic consistency model
 
 
-- intra zone consistency is achieved by employing a gossip algorithm which consists in selecting another agent at random and exhanging state with it. If agents are within the same zone, they exchange state refering to the MIB of their zone, if agents are in different zones, they exchange information related to their least common ancestor in the tree.
+- intra zone consistency is achieved by employing a gossip algorithm which consists in selecting another agent at random and exchanging state with it. If agents are within the same zone, they exchange state refering to the MIB of their zone, if agents are in different zones, they exchange information related to their least common ancestor in the tree.
+
+## OMEGA:
+
+* Scheduler for grid computing systems
+* uses parallelism, shared state and lock-free optimistic concurrency control
+
+* Classifies schedulers as: Monolithic, single scheduling algorithm for all jobs
+* Two-level schedulers : single active resource manager which offers compute resource to multiple scheduler frameworks
+
+* Monolithic schedulers are not  scalable enough nor extensible enough
+* Two-level schedulers have difficulty placing "picky" jobs which require access to state of the entire cluster
 
 
+Omega has N schedulers per cluster, each with shared state of the cluster state
+schedulers receive massive amounts of jobs composed by N tasks 
 
+Omega schedulers make scheduling decisions according to the cluster state and according to their scheduling policy. If 2 or more schedulers attempt to schedule a task to the the same worker, the worker tries to accommodate both tasks, if it cant, it rejects the least important one.
 
+Omega demonstrates that by employing 3 schedulers, one for batch jobs, other for services and other for utilizing the remaining space for mapreduce jobs, they achieved massive improvements in mapreduce job times and cluster utilization, this could not be doable w/ a YARN cluster, given that resource attributions "lock" the resources to the corresponding framework.
+
+MESOS is tailored for short-lived tasks, which does not go in hand with Google's workload. A disadvantage of the two-level scheduler is that because only one framework is examining a resource at a time, it effectively holds a lock on that resource for the duration of a scheduling decision. In other words, concurrency control is pessimistic. A framework simply does not have any knowledge of resources that have been allocated to other schedulers, which limits potentially more efficient task scheduling. Mesos uses resource hoarding to achieve gang scheduling, and can potentially deadlock as a result.
+
+## SDIMS
 
 
 
