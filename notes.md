@@ -215,9 +215,23 @@ Omega demonstrates that by employing 3 schedulers, one for batch jobs, other for
 
 MESOS is tailored for short-lived tasks, which does not go in hand with Google's workload. A disadvantage of the two-level scheduler is that because only one framework is examining a resource at a time, it effectively holds a lock on that resource for the duration of a scheduling decision. In other words, concurrency control is pessimistic. A framework simply does not have any knowledge of resources that have been allocated to other schedulers, which limits potentially more efficient task scheduling. Mesos uses resource hoarding to achieve gang scheduling, and can potentially deadlock as a result.
 
-## SDIMS
+## Scalable Distributed Information Management System
+
+SDIMS satisfies four properties: scalability, flexibility in API, administrative isolation and robustness to node and network reconfigurations. Inspired in Astrolabe and DHTs
+
+* Administrative isolation : queries about an administrative domain's information can be satisfied within the domain, so the system can operate during disconnections from other domains, so that an external observer cannot monitor or affect intra-domain queries, and to support domain-scoped queries efficiently.
+
+Each data entry is a tuple (attrType, attrName, value), and the system associates aggregation functions with attribute types, and for each level-i subtree in the system, the system defines an aggregate value for each (attrType, attrName).
+
+Makes simple modifications to Pastry routing tables to yield an Autonomous DHT w/ path locality and path convergence. Whenever two nodes in a domain share the same prefix with respect to a key and no node in the domain has a longer prefix, SDIMS introduces a virtual node at the boundary of the domain corresponding to that prefix plus the next digit of the key. This node is simulated by the existing  node whose id is numerically closest to the virtual node's id. (this is weird)
+
+Very strict aggregation rules, load is homogeneous among nodes, reconfigurations are expensive. Does not handle composite queries, because attributes are aggregated along different trees.
+
+Not very applicable to monitoring systems because in a monitoring system all nodes communicate all values, therefore, there will be a short amount of attributes in the system. However, it is interesting as a building block for a cloud system (or a platform which servers as support for edge nodes).
 
 
+
+ 
 
 
 
