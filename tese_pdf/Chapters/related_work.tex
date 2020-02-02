@@ -1,10 +1,20 @@
 \chapter{Related Work} \label{cha:related_work}
 
-The goal of this chapter is to further identify the challenges that arise from creating a scalable distributed resource  for resource for the edge environment, we will mainly study techniques for federating devices in a scalable infrastructure 
+The goal of this chapter is to further identify the challenges which arise from creating a scalable distributed infrastructure for tracking and aggregating monitoring information in the edge. This solution, in turn, can be used towards scheduling the deployment of services or perform batch computations on the federated devices. 
 
-which enables efficient scheduling/offloading of tasks across edge environments, and to study related work towards the identified challenges. From the re
+We begin by identifying the 4 identified high-level components of resource sharing platforms, as observable in \ref{fig:proposed_architecture}:
 
+\begin{enumerate}
 
+    \item \textit{Topology Management} consists in the study of how to organize multiple devices in a logical network such that they can cooperatively solve tasks. Efficiently managing the topology is an essential building block for the efficient functioning of the remaining component,
+    
+    \item \textit{Resource Location and Discovery} focuses on how to perform queries in distributed systems. Specifically how to locate peers which control certain resources in the system, or how to efficiently find a specific resource in a limited number of steps.
+    
+    \item \textit{Resource Monitoring} studies which metrics to track per device, how to efficiently compress the size of those metrics through aggregation to reduce the size of the collected data.
+
+    \item \textit{Resource Scheduling} addresses how to efficiently schedule jobs among peers such that the system remains load-balanced, jobs have data locality and resources are not wasted.
+
+\end{enumerate}
 
 \begin{figure}[h]
     \centering
