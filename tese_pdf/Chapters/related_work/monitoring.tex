@@ -1,13 +1,13 @@
 
-Monitoring is key to the effective management of applications. 
+In this section we will cover \textbf{resource monitoring}, we classify resource monitoring as tracking the state of a certain aspect of the system, either device state, the links between devices, or the available computing power in a certain area of the network. Monitoring is key to the effective management of the topology as well the applications running on it.
 
 \subsection{Device monitoring}
 
 In order to adapt edge computing applications to changes in the environment and ensure that the above requirements can be met, it is necessary to tailor the monitoring system to support the whole spectrum of underlying infrastructures (section \ref{sec:edge_computing}). 
 
-A modern approach towards deploying systems is to deploy them in loosely coupled independent components running some form of virtualization software, as it enables co-deployment of logical machines in the same physical node.
+A modern approach towards deploying systems is to deploy them in loosely coupled independent components running some form of virtualization software, as it enables co-deployment of logical machines in the same physical node. As such,for we study the two most common types of virtualization (Containers and Virtual Machines (VMs)). 
 
-\subsubsection{VM monitoring}
+\subsubsection{Virtual Machines}
 
 In virtual machines (VMs), all the physical resources can be virtualized (CPU, memory, disk and network). Multiple VMs can co-deployed in the same physical node and thus share resources among each other. 
 
@@ -27,7 +27,7 @@ In order to have efficient resource utilization and prevent any problems in the 
 
 Although VMs are widely present in the cloud infrastructure, we believe their applicability towards edge scenarios is limited, due to the fact that they have significant start up time (having to start-up an OS).  
 
-\subsubsection{Container monitoring}
+\subsubsection{Containers}
 
 Containers are the recent alternative to VMs, as previously mentioned, containers do not require an OS to boot up \cite{}, and the images that compose them are significantly smaller. Container-based virtualization can be compared to an OS running on bare-metal in terms of memory, CPU and disk usage, however at a cost of network utilization \cite{preeth2015evaluation}, which makes them an attractive options towards resource-constrained devices.
 
@@ -52,18 +52,17 @@ It is paramount to analyze how to monitor and improve link quality, for providin
     
     \item Packet loss, which consists in how many packets are lost when traveling towards their destination.
     
-    \item Jitter is the variation in latency of sequential received packets. 
+    \item Jitter, which is the variation in latency of packets received sequentially. 
+    
 \end{enumerate}
 
 \subsection{Aggregation techniques}
 
-\textbf{Aggregation} is an essential building block towards monitoring distributed systems, it enables the determination of important system wide properties in a decentralized manner \cite{DBLP:journals/corr/abs-1110-0725}. 
+Provided that we need to continuously monitor the aforementioned metrics, if we were to store and transmit them directly, the amount of communication and processing needed to do this would make the system unscalable, consequently, in this section study ways to perform \textit{aggregation} over these metrics.
 
-Aggregation consists in computing an aggregation function over a set of input values where each node has one input value. Common aggregation functions consist in sum, count, average, min, max.
+Aggregation consists in the determination of important system wide properties in a decentralized manner \cite{DBLP:journals/corr/abs-1110-0725}, and it is an essential building block towards monitoring distributed systems. Towards monitoring edge devices and tasks running on them, aggregation is paramount, examples of usages are (e.g. computing the average latency of the closest available  service that meets a certain criteria; counting nearby available computing resources that can be used to offload services, or identify hotspots by aggregating the average system load in certain areas).
 
-Towards monitoring edge devices and tasks running on them, aggregation is paramount, examples of usages are (e.g. computing the average latency of the closest available  service that meets a certain criteria; counting nearby available computing resources that can be used to offload services, or identify hotspots by aggregating the average system load in certain areas).
-
-Given this, it is important to understand the taxonomy of aggregation functions. There are two properties of aggregation functions: \textit{decomposability} and \textit{duplicate sensitiveness}.
+There are two properties of aggregation functions: \textit{decomposability} and \textit{duplicate sensitiveness}.
 
 \textbf{Decomposability}
 
@@ -141,6 +140,8 @@ In this subsection we will analyze relevant aggregation protocols that illustrat
 
 \subsection{Monitoring systems}
 
+Following, we study monitoring systems found in the literature, for each system we analyze its advantages and drawbacks followed by a discussion with the system's applicability in an Edge environment,
+
 \subsubsection{Astrolabe}
 
 \textbf{Astrolabe} \cite{Renesse2003} is a platform which aims at monitoring the dynamically changing state of a collection of distributed resources. 
@@ -189,3 +190,10 @@ Prometheus employs a variety of service discovery options for discovering and sc
 \subsubsection{\textcolor{red}{Mais papers sobre monitoring, especialmente na edge}}
 
 \subsection{Discussion}
+
+We believe there is a lack of monitoring systems targeted towards edge environments, in our study of the literature, we did not find many resources regarding monitoring large numbers of heterogenous nodes at a large scale.
+
+Most studied large scale information systems are targeted towards cloud environments, which as previously mentioned contrast immensely with the edge environment. These solutions often rely on techniques such as IP multicast \cite{massie2004ganglia} to perform efficiently.
+
+Furthermore, we argue that large-scale monitoring systems purely based on distributed hash tables \cite{10.1145/1030194.1015509} are unsuitable for edge environments, as  devices are heavily constrained in memory and often are unreliable routers (which a DHT assumes all nodes can reliably do).  Conversely,existing pure gossip systems such as Astrolabe \cite{Renesse2003} require heavy amounts of message exchanges to keep information up-to-date, and require manual configuration of the hierarchical tree.
+
