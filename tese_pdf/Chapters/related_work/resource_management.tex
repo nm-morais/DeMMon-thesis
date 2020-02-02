@@ -59,10 +59,6 @@ Each framework that wishes to use Mesos must implement \textit{scheduler} and an
 
 A limitation of the Mesos resource sharing platform is that it is not scalable (the original authors mention the system scales up to 50000 slave daemons on 99 physical machines), which is not enough for an edge environment. Furthermore, the resource offer model forces frameworks to employ a specific programming model based on schedulers and executors, which may not be desirable by the framework author.
 
-\subsubsection{Borg}
-
-\subsubsection{Retro}
-
 \subsubsection{Yarn}
 
 Yarn (Yet Another Resource Negotiator) \cite{Vavilapalli2013ApacheHY} is a compute platform which attempts decouple the programming model from the resource management infrastructure, and delegate many scheduling functions (e.g. task fault-tolerance) to per-application components. 
@@ -73,11 +69,15 @@ The Resource Manager (RM) tracks resource usage and node liveness, enforces allo
 
 The Application Master (AM) runs arbitrary user code, and can be written in any programing language, its duties in the system consist of managing the lifecycle aspects including dynamically increasing and decreasing resource consumption, managing the flow of execution and handling faults. 
 
-The Node Manager (NM) is the worker daemon in YARN. Its responsibilities in the system consist of managing container dependencies, monitor their execution and provide a set of services for containers. Node Managers 
+The Node Manager (NM) is the worker daemon in YARN. Its responsibilities in the system consist of managing container dependencies, monitor their execution and provide a set of services for containers. 
 
 AMs send resource requests to the RM, these contain the number of containers to request, the resources per container, locality preferences and a priority level within the application. Resource requests are designed to capture the needs of applications, while at the same time removing specific application concerns (such as task dependencies) from the scheduler.
 
-Similar to  MESOS \cite{hindman2011mesos}, the resource attribution process is done by centralized component, however, contrasting with MESOS which uses Zookeeper to maintain secondary masters, the RM is a single point of failure and contention in the system, which males it not suitable towards edge environments.
+The resource request model effectively makes YARN RM a \textit{monolithic} scheduler, because the RM is in charge of processing and scheduling all task distributions for each request made by AMs. This contrasts with MESOS \cite{hindman2011mesos}, which delegates task scheduling for the frameworks. 
+
+However, similar to Mesos, both the , the RM is a single point of failure and contention in the system, which males it not suitable towards edge environments.
+
+\subsubsection{Omega}
 
 \subsubsection{ENORM}
 

@@ -27,27 +27,27 @@ Additionally, systems that require real-time processing of data may be not be fe
 
 When accounting for all the devices that are external to the DC, we are met by a huge increase in heterogeneity of devices: from Data Centers to private servers, desktops and mobile devices to 5G towers and ISP servers, among others.  Contrary to the cloud, edge environments tend to be highly dynamic, devices have constrained computational power and their connections are often limited in capacity and reliability. 
 
-Developing an efficient general compute platform for edge environments is still an open challenge in Edge Computing. A crucial requirement towards this is performing efficient \textbf{resource management}, which consists of keeping track of the tasks to perform and manage the utilization of computational resources of each device. General compute platforms are extensibly used in Cloud systems (e.g. Mesos \cite{hindman2011mesos}, Yarn \cite{Vavilapalli2013ApacheHY}), however, those solutions are tailored towards small numbers of homogenous resource-heavy devices, which mismatches the edge environment.
+Developing an efficient resource sharing platform for edge environments is still an open challenge in Edge Computing. A crucial requirement towards this is performing efficient \textbf{resource management}, which consists of keeping track of the tasks to perform and manage the utilization of computational resources of each device. General compute platforms are extensibly used in Cloud systems (e.g. Mesos \cite{hindman2011mesos}, Yarn \cite{Vavilapalli2013ApacheHY}), however, those solutions are tailored towards small numbers of homogenous resource-heavy devices, which mismatches the edge environment.
 
-To overcome this, a resource management solution for the edge must be capable of managing very large numbers of heterogenous devices and tasks. An infrastructure capable of performing the aforementioned tasks successfully has strong applicability in todays world (e.g. Cloud providers, Smart Cities, among others). 
+To overcome this, a resource sharing solution for the edge must be capable of managing very large numbers of heterogenous devices and tasks. An infrastructure capable of performing the aforementioned tasks successfully has strong applicability in todays world (e.g. Cloud providers, Smart Cities, among others). 
 
-A particularly hard task in resource management is \textbf{scheduling}, which consists in distributing tasks among nodes in the system, ideally, the task distribution must promote a balanced resource usage among nodes in the system. One of the popular solutions is transporting all the monitoring data towards a centralized point and redistribute the tasks among nodes. However, this presents a centralized point of failure and a point of contention in a large scale system. 
+A particularly hard task in resource sharing is \textbf{scheduling}, which consists in distributing tasks among nodes in the system, ideally, the task distribution must promote a balanced resource usage among nodes in the system. One of the popular solutions is transporting all the monitoring data towards a centralized point and redistribute the tasks among nodes. However, this presents a centralized point of failure and a point of contention in a large scale system. 
 
 Alternatively, nodes with only partial knowledge of the system (ideally even without sending any additional messages) must be able to autonomously offload tasks towards neighbors. However, offloading tasks of varied complexity in heterogeneous nodes is not an easy task. The accuracy and freshness of the \textbf{monitoring information} each peer has dictates how efficiently they can offload tasks such that the system remains balanced, and applications running on it maintain (and possibly improve) quality of service. All of this while adapting to environment changes. 
 
-Given this, peers must integrate a robust decentralized \textbf{resource monitoring system} which tracks device and service metrics. This system must federate peers such that they leverage on heterogeneity to build a hierarchical infrastructure, which combines naturally with the device taxonomy. Finally, resource monitoring systems must provide 
+Given this, it is paramount that peers must integrate a robust decentralized \textbf{resource monitoring system} which tracks device and service metrics. This system must federate peers such that they leverage on heterogeneity to build a hierarchical infrastructure, which combines naturally with the device taxonomy and adapts to the environment changes. 
 
 \section{Expected Contributions}
 
-The expected contributions, as will be further detailed in chapter \ref{cha:planning}, derive from the aforementioned challenges:
+The expected contributions, as will be further detailed in chapter \ref{cha:planning}, derive from the aforementioned challenges. In the context of this thesis, we will focus on establishing a scalable distributed information management system tailored for monitoring edge devices:
 
 \begin{itemize}
 
-    \item Devise a decentralized monitoring infrastructure for edge devices which employs a topology tailored towards edge environments, and a combination of monitoring and aggregation techniques in a natural way which promotes load-balancing and networking locality.
+    \item Employ a combination of techniques to devise an algorithm which constructs an infrastructure tailored towards monitoring edge environments.
     
-    \item Evaluate the designed infrastructure through simulation (e.g. iFogSim or PeerSim) and compare the performance with similar systems.
+    \item Evaluate the designed infrastructure through simulation (e.g. iFogSim or PeerSim) and evaluate the performance of the system.
 
-    \item Design an experimental scenario to test the system under various scenarios. For this, we must design or adapt an existing scheduler and test the feasibility of the solution by deploying applications and collecting metrics about the overlay, the potential reduction in cost and the quality of service.
+    \item Design an experimental scenario to test the system under various scenarios. For this, we must design or adapt an existing scheduler and test the feasibility of the solution by deploying applications and collecting metrics about the overlay and the quality of service.
     
 \end{itemize}
 
@@ -55,7 +55,7 @@ The expected contributions, as will be further detailed in chapter \ref{cha:plan
 
 This document is structured in the following manner:
 
-\textbf{Chapter 2} focuses on the related work, first section covers edge computing in further detail, next we cover P2P systems and the different types of topology management protocols. Third section studies the different types of resource location architectures, namely how to efficiently find a specific peer in the system and common techniques towards performing efficient searches over networks composed by a large number of devices. Fourth section covers aggregation techniques and popular implementations of these systems \textcolor{red}{era para meter isto em monitoring?}. Finally, last section covers popular resource monitoring systems.
+\textbf{Chapter 2} focuses on the related work, first section covers edge computing in further detail, next we cover P2P systems and the different types of topology management protocols. Third section studies the different types of resource location architectures, namely how to efficiently find a specific peer in the system and common techniques towards performing efficient searches over networks composed by a large number of devices. Fourth section covers resource monitoring systems and aggregation techniques. Finally, last section covers resource sharing systems.
 
 \textbf{Chapter 3} further explains the proposed contribution and proposes the work plan for the remainder of the thesis. 
 

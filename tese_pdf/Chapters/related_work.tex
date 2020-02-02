@@ -1,8 +1,17 @@
 \chapter{Related Work} \label{cha:related_work}
 
-The goal of this chapter is to further identify the challenges that arise from creating a device monitoring infrastructure which enables efficient scheduling/offloading of tasks across edge environments, and to study related work towards the identified challenges.
+The goal of this chapter is to further identify the challenges that arise from creating a scalable distributed resource  for resource for the edge environment, we will mainly study techniques for federating devices in a scalable infrastructure 
 
-\includegraphics{Figures/proposed_architecture.pdf}
+which enables efficient scheduling/offloading of tasks across edge environments, and to study related work towards the identified challenges. From the re
+
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{Figures/proposed_architecture.pdf}
+    \caption{High-level architecture for an Edge resource sharing platform}
+    \label{fig:proposed_architecture}
+\end{figure}
 
 Resource sharing platforms (e.g. Mesos \cite{hindman2011mesos}, Yarn \cite{Vavilapalli2013ApacheHY}) are usually tailored towards Cloud computing systems. As such, they are usually centralized and tailored towards clusters of homogeneous devices which have very different monitoring requirements as those in edge environments. Given this, we identify a set of requirements which we believe to be important towards monitoring systems in general, and critical in an edge environment:
 
