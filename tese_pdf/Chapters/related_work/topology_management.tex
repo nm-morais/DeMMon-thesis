@@ -27,9 +27,7 @@ If we look at neighboring connections as edges in a graph, we can define a set o
     
 \end{enumerate}
 
-\subsection{Taxonomy of overlay networks}
-
-There are two main approaches to build decentralized P2P systems, which are split in two categories: structured and unstructured. Within those categories we have identified the following sub-categories: flat and hierarchical. 
+There are two main approaches to build decentralized P2P systems, which are split in two categories: unstructured and structured. 
 
 \subsection{Unstructured Overlays}
 
@@ -37,9 +35,7 @@ There are two main approaches to build decentralized P2P systems, which are spli
 
 A key factor of unstructured overlays is their low maintenance cost, given that nodes can easily create neighboring relations and replace failed ones. Consequently, this is the type of overlay which offers better resilience to churn \cite{stutzbach2006understanding} (participants concurrently entering and leaving the system).
 
-\subsubsection{Flat unstructured Overlays}
-
-A flat unstructured overlay is an overlay where peers contribute evenly towards a common system goal. These overlays attempt to have even degree distributions while providing good connectivity. A prime example of a flat unstructured overlay which is highly resilient to churn and catastrophic failures is \textit{Hyparview} \cite{Hyparview}. 
+These overlays attempt to have even degree distributions while providing good connectivity. A prime example of a flat unstructured overlay which is highly resilient to churn and catastrophic failures is \textit{Hyparview} \cite{Hyparview}. 
 
 \textit{Hyparview} (Hybrid Partial View) gets its name from maintaining two exclusive views: the \textit{active} and \textit{passive} view, that are distinguished by their maintenance strategy. 
 
@@ -57,42 +53,18 @@ The rationale X-BOT is as follows, nodes maintain active and passive views simil
 
 An important factor (which contrasts with \cite{jelasity2005t}) is that nodes in the system maintain unbiased neighbors such that the overlay maintains low average path length and low clustering coefficient.
 
-\subsubsection{Unstructured Hierarchical Overlays}
-
-Unstructured hierarchical overlays are characterized as overlays where peers have different tasks in the system, which easily accommodates device heterogeneity while potentially increasing the performance of the system. 
-
-An example is \textbf{super-peers}, which are peers that have increased capacity and stability, that are commonly assigned towards disseminating queries throughout the system or caching file locations.
-
-\textcolor{red}{ should i do trees here?}
-
-Super-peers have proven their effectiveness in reducing the number of peers that have to exchange messages, which by consequence raises system scalability. This is the approach taken by Gia \cite{Chawathe2003} to improve the scalability of Gnutella \cite{gnutella_gtk}. However, this approach is inefficient when finding rare resources in the system.
-
-\textbf{Overnesia} \cite{leitao2014overnesia} is a protocol which creates virtual super-peers by maintaining fully connected groups of nodes with the same identifier known by all elements in the group. Nodes join the system by sending a JOIN request to a bootstrap node which triggers a random walk, the requesting node joins the group where random walk finishes (either because it finds an underpopulated group or because the TTL expires). 
-
-Then, in order to promote intra-group membership consistency, nodes employ an anti-entropy mechanism where they periodically exchange messages containing their own view of the group. 
-
-When a group detects that its size has become too large, it triggers a dividing procedure which splits the groups in two halves. This division reduces the costs of replicating data among its members, but also promotes good load-balancing of the system. 
-
-When group size has fallen bellow a certain threshold, Overnesia triggers a collapse procedure, where each node takes the initiative to relocate itself to another group, resulting in the collapse of the group. 
-
-Finally, nodes perform walks along the overlay in order to establish inter-group links which in turn use to perform efficient broadcasts.
-
-\subsection{Structured overlays} 
+\subsection{Structured Overlays} 
 
 \textbf{Structured overlays} enforce stronger rules towards neighbor selection (generally based on identifiers of peers). As a result, the overlay generally converges to a topology known a priori, where the target topologies are tailored towards applicational requirements. 
 
 A canonical example of a structured overlay is a distributed hash table (DHT)DHTs offer efficient routing capabilities over the identifier space (usually routing procedures take a logarithmic number of steps), DHTs have been extensibly used to support many large scale services (publish-subscribe, file sharing, among others) and are especially used in Cloud-based environments. 
 
-\subsubsection{Flat structured overlays}
+In a DHT, peers use consistent hashing functions to select random identifiers which are uniformly distributed over the identifier space. We will cover distributed hash tables with a bigger emphasis in section \ref{sec:res_location}
 
-In a flat DHT, peers use consistent hashing functions to select random identifiers which are uniformly distributed over the identifier space. We will cover distributed hash tables with a bigger emphasis in section \ref{sec:res_location}
-
-\subsubsection{Hierarchical structured overlays}
-
-The second approach to building a hierarchical topology is to employ a DHT, hierarchical DHTS usually form contained DHTS within other DHTS (e.g. a ring within a ring). This offers several important advantages over a flat DHT: first, lookups take less hops and messages to reach the target, second, organizing nodes in disjoint groups allows traffic locality if groups of nodes are close in the underlay, finally, churn events within a group stay contained within that group. However, many of these systems either employ more memory to accommodate the many levels hierarchical DHT, or tradeoff reliability (by shortening the number of connections) for memory and communication efficiency.
+\textcolor{red}{trees...}
 
 \subsection{Discussion}
 
-Unstructured overlays are an attractive option to federate large amounts of devices in heavily dynamic environments. They provide a low clustering coefficient and good connectivity even in the face of churn, which makes them appealing towards the edge environments. 
+Unstructured overlays are an attractive option towards federating large amounts of devices in heavily dynamic environments. They provide a low clustering coefficient and good connectivity even in the face of churn, which makes them appealing towards the edge environment. 
 
 Conversely, structured overlays enable efficient routing procedures with very low message overhead, which makes them suitable for resource location systems. However, given the strict neighboring rules, nodes cannot replace neighbors easily, which hinders the fault-tolerance of these types of topologies.
