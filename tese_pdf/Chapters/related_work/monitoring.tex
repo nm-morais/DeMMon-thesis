@@ -68,9 +68,7 @@ There are two properties of aggregation functions: \textit{decomposability} and 
 
 For some aggregation functions, we may need to involve all elements in the multiset, however, for memory and bandwidth issues, it is impractical to perform a centralized computation, hence, the aim is to employ \textit{in-transit computation}. In order to enable this, it is required that the aggregation function is \textbf{decomposable}. 
 
-Intuitively, a decomposable aggregation function is one where a function may be composed defined as a composition of other functions. Decomposable functions may \textit{self-decomposable}, which intuitively means that the aggregated value is the same for all possible combinations of all sub-multisets partitioned in the multiset. This happens whenever the applied function is commutative and associative (e.g. min, max, sum, count).
-
-A canonical example of a decomposable function that is not self-decomposable is average, which consists in the sum of all pairs divided by the count of peers that contributed to the aggregation.
+Intuitively, a decomposable aggregation function is one where a function may be composed defined as a composition of other functions. Decomposable functions may \textit{self-decomposable}, which intuitively means that the aggregated value is the same for all possible combinations of all sub-multisets partitioned in the multiset. This happens whenever the applied function is commutative and associative (e.g. min, max, sum, count). A canonical example of a decomposable function that is not self-decomposable is average, which consists in the sum of all pairs divided by the count of peers that contributed to the aggregation.
 
 The second property of aggregation is \textbf{duplicate sensitiveness}, and it is related to wether a given value occurs several times in a multiset. Depending on the aggregation function used, the presence of repeated values may influence the result, it is said that a function is \textbf{duplicate sensitive} if the result of the aggregation function is influenced by the repeated values (e.g. SUM). Conversely, if the aggregation function is \textbf{duplicate insensitive}, it can be successfully repeated any number of times to the same multiset without affecting the result (e.g. MIN and MAX).
 
@@ -128,15 +126,15 @@ In this subsection we will analyze relevant aggregation protocols that illustrat
 
 \textbf{TAG: Tiny AGgregation}\cite{Madden2002} is a service for aggregation in low-power, distributed, wireless sensor networks. TAG distributes queries in the network in a time and power-efficient manner by employing a hierarchical aggregation pattern. For each aggregation procedure, there is a \textit{root} nodes which broadcasts a message to start the tree-building process, each message contains two fields: a level and a an ID. Whenever a node without an assigned level receives a tree-building message, it assigns its own level as the message level plus one, and its own parent as the message sender. Then, it reassigns the level and ID to its own and forwards the message to other nodes. Then, whenever a node wishes to send a message to the root, it simply forwards the message bottom-up in the tree. The formed topology allows the computation of Count, Maximum, Minimum, Sum and Average. It is important to notice that the formed tree will be unbalanced as a function of the underlay latency and processing time.
 
-\subsubsection{SingleTree} 
+%\subsubsection{SingleTree} 
 
-\textbf{SingleTree} \cite{} \textcolor{red}{//TODO}
+%\textbf{SingleTree} \cite{} \textcolor{red}{//TODO}
 
-\subsubsection{MultipleTree} 
+%\subsubsection{MultipleTree} 
 
-\textbf{MultipleTree} \cite{} \textcolor{red}{//TODO}
+%\textbf{MultipleTree} \cite{} \textcolor{red}{//TODO}
 
-\subsubsection{DECA} \textbf{DECA} \cite{Artigas2006} \textcolor{red}{//TODO}
+%\subsubsection{DECA} \textbf{DECA} \cite{Artigas2006} \textcolor{red}{//TODO}
 
 \subsection{Monitoring systems}
 
@@ -169,7 +167,7 @@ A agents' zone is defined by the system administrator, which is a potential limi
 Ganglia relies on IP multicast to perform intra-cluster aggregation, it is mainly designed to monitor infrastructure monitoring data about machines in a high-performance computing cluster. Then, it displays the time series data in a Web interface.
 
 As previously mentioned, Ganglia is aimed towards monitoring high-performance 
-grids. And its applicability is limited towards edge environments: (1) clusters are situated in stable environments, which contrasts with the edge environment; (2) it relies on IP multicast (which has been proven not to hold in a number of cases) to perform automatic discovery of nodes as they are added and removed within clusters; (3) has no mechanism to prevent network congestion 
+grids. And its applicability is limited towards edge environments: (1) clusters are situated in stable environments, which contrasts with the edge environment; (2) it relies on IP multicast (which has been proven not to hold in a number of cases); (3) has no mechanism to prevent network congestion 
 
 \subsubsection{SDIMS}
 
@@ -185,7 +183,7 @@ Prometheus allows a prometheus server to scrape selected time-series from anothe
 
 In \textit{hierarchical federation}, prometheus servers are organized into a topology which resembles a tree, where each server aggregates aggregated time series data from a larger number of subordinated servers. Alternatively,  \textit{cross-service federation} enables scraping selected data from another service's prometheus server to enable alerting and queries against both datasets within a single server. 
 
-Prometheus employs a variety of service discovery options for discovering and scraping targets, including Kubernetes, Consul, among others. A key feature which improves its flexibility is the option to use file-based discovery,  which enables the use of customized service discovery. This is achieved by programmers by providing a custom file with list of targets (and target metadata) which prometheus will scrape.
+Prometheus employs a variety of service discovery options for discovering and scraping targets, including Kubernetes, Consul, among others. A key feature which improves its flexibility is the option to use file-based discovery,  which enables the use of customized service discovery. This is achieved by programmers by providing a custom file with list of targets (and target metadata) which Prometheus will scrape.
 
 \subsubsection{\textcolor{red}{Mais papers sobre monitoring, especialmente na edge}}
 

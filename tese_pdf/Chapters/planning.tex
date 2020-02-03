@@ -7,7 +7,19 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Planning} \label{cha:planning}
 
-In this Chapter we start by briefly pr
+In this Chapter we begin by further describing the challenges we plan to address, following we outline the system model and the intuition for the proposed solution followed by the plan to evaluate it. Finally, in the last section we present the work plan for the remaining of the thesis. 
+
+As previously mentioned, the challenge we propose to address is to create a large-scale decentralized monitoring infrastructure tailored for heterogenous edge devices. This infrastructure, in turn, may be used to track the state of  applications, discover nearby devices to offload tasks, or find a set of devices to deploy a new application in a strategic location.
+
+\section{System Model \& Challenges}
+
+In this section we outline the system model for our solution, given that the edge environment is so vast and composed by devices in different mediums, we restrict the system model in order to ease the development of the proposed system. Our system model considers two types of devices:
+
+\textbf{Stable devices} consist of devices ranging from levels 0-5 in the taxonomy defined in Section \ref{sec:edge_computing}, these are the devices that are intend to employ to establish the overlay. 
+
+\textbf{Mobile devices and things} are comprised by devices in levels 6 and 7. Devices in these levels either change location too fast or would not have enough computational power to contribute to the infrastructure effectively. Instead, we propose that devices in this level may act as a client to the monitoring system, or instead perform only selective tasks such as routing. 
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Proposed Solution}
@@ -20,14 +32,16 @@ The levels of the tree will be determined by \textcolor{red}{...undecided...} an
 The purpose of this algorithm is to allow:
 
 \begin{enumerate} 
-    \item Efficient resource monitoring to deploy services on.
-    \item Offloading computation from the cloud to the Edge and vice-versa through elastic management of deployed services.
-    \item Efficient service discovery
-    \item Federate large amount of heterogeneous devices and use heterogeneity as an advantage for building the topology.
+
+    \item Federate large amount of heterogeneous devices and use heterogeneity as an advantage for building the topology. 
+    
+    \item Use the topology to perform efficient resource monitoring.
+    
+    \item Use the resource monitoring information to offload computation from the cloud to the Edge and vice-versa through elastic management of deployed services.
+    
+    
 \end{enumerate}
 
-We plan to research existing protocols (both for topology management and aggregation) and enumerate their trade-offs along with how they behave across different environments. Then, employ a combination of different techniques in a unique way to monitor the topology.
+\section{Evaluation}
 
-% \cite{DBLP:journals/corr/abs-1805-06989}
-
-\section{Scheduling}
+\section{Work Plan}
