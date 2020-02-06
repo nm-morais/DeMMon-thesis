@@ -1,64 +1,42 @@
 
-In this section we will cover \textbf{resource monitoring}, we classify resource monitoring as tracking the state of a certain aspect of the system, either device state, the links between devices, or the available computing power in a certain area of the network. Monitoring is key to the effective management of the topology as well the applications running on it.
+In this section we will cover \textbf{monitoring}, we classify monitoring as tracking the state of a certain aspect of the system, either device state, the links between devices, the status of available resources in a given zone of the system, among others. Monitoring is key to the effective management of the topology as well the applications running on it.
 
 \subsection{Device monitoring}
 
-In order to adapt edge computing applications to changes in the environment and ensure that the above requirements can be met, it is necessary to tailor the monitoring system to support the whole spectrum of underlying infrastructures (section \ref{sec:edge_computing}). 
+Device monitoring consists in tracking the status of the device itself. One of the key aspects device monitoring is the issue of fault detection, which consists in detecting failures among devices in the system. This is particularly challenging in large-scale dynamic systems, given the need to ensure that each component is monitored by at least one non-faulty component. Even in the face of joins, leaves and failures of both nodes and network infrastructure. 
 
-A modern approach towards deploying systems is to deploy them in loosely coupled independent components running some form of virtualization software, as it enables co-deployment of logical machines in the same physical node. As such,for we study the two most common types of virtualization (Containers and Virtual Machines (VMs)). 
+\textcite{leitao2008large} proposes solving the aforementioned problems by employing Hyparview \cite{Hyparview} towards detecting failures in a large scale decentralized system. The effectiveness of the monitoring system relies on the fixed number of active connections, which ensures that each component has at least another non-faulty component monitoring it. The detection of failures by tracking the status of the TCP connection.
 
-\subsubsection{Virtual Machines}
-
-In virtual machines (VMs), all the physical resources can be virtualized (CPU, memory, disk and network). Multiple VMs can co-deployed in the same physical node and thus share resources among each other. 
-
-In order to have efficient resource utilization and prevent any problems in the virtualized resources, monitoring of VMs is critical. This can be best achieved by tracking the utilization of the virtualized resources, mainly usage of CPU, memory, storage and network.
-
-\begin{itemize}
-
-    \item \textbf{CPU} usage tracks the amount of usage of the CPU as a percentage of all available CPU to the machine. It is never desirable that the CPU usage reaches 100\%, as queues start filling up and it means that the device has run out of capacity for processing tasks.
-    
-    \item \textbf{Memory} indicates the amount of virtualized memory left.
-    
-    \item \textbf{Disk usage} tracks the amount of data read or written by a VM. Alternatively, it can indicate the percentage of used space.
-
-    \item \textbf{Network usage} consists in the volume of traffic on a specific network interface of the VM, either external or internal traffic.
-
-\end{itemize}
-
-Although VMs are widely present in the cloud infrastructure, we believe their applicability towards edge scenarios is limited, due to the fact that they have significant start up time (having to start-up an OS).  
-
-\subsubsection{Containers}
-
-Containers are the recent alternative to VMs, as previously mentioned, containers do not require an OS to boot up \cite{}, and the images that compose them are significantly smaller. Container-based virtualization can be compared to an OS running on bare-metal in terms of memory, CPU and disk usage, however at a cost of network utilization \cite{preeth2015evaluation}, which makes them an attractive options towards resource-constrained devices.
-
-Due to their lightweight nature, it is possible to deploy container-based applications (e.g. microservices), which can perform fast migration across nodes in the edge environment in order to improve QoS. This flexibility towards the migration process is an efficient tool to deal with many challenges such as load balancing, scaling, resource reallocation and fault-tolerance. 
-
-There are many container-specific tools which provide statistics about a given container, most use REST APIs to expose this functionality to external entities. Docker \cite{docker}, which is a container provider, \textcolor{red}{citação?} has a built tool called \textit{docker stats} \cite{docker_stats} which provides runtime metrics for a given container.
-
-\textit{Container Advisor} \cite{cAdvisor} (cAdvisor) is a service which analyzes and exposes resource usage and performance data from running containers. Simply put, cAdvisor consists of a daemon which collects, aggregates and exports information. The information it collects resource isolation parameters, historical resource usage and network statistics. cAdvisor includes native support for Docker containers and supports a wide variety of other container implementations.
-
-
-\subsection{End-to-end link monitoring}
-
-Given that the edge infrastructure envisions cooperation from all devices in the path from the origin of the data to the DC, devices need to be interconnected across an underlying infrastructure which is continuously changing. This raises concerns about the network quality of links between devices across the system, especially if they are running time-critical services. 
-
-It is paramount to analyze how to monitor and improve link quality, for providing traffic locality, latency, among others. According to the literature \cite{}, the most popular metrics to analyze are:
+Another key aspect in device monitoring is tracking the available resources in a device, according to the literature \cite{7013000}, information deemed important to obtain in a system-wide in order to gain insight into system and task performance consists of:
 
 \begin{enumerate}
 
-    \item Network throughput, which is the average rate of successful data transfer through a network connection.
+    \item Network related information: In the envisioned system, devices need to be interconnected across an underlying infrastructure which is continuously changing. This raises concerns about the network quality of links between devices across the system, especially if they are running time-critical services. Given this, it is paramount to track network related information such as congestion, latency and link status.
     
-    \item Latency, which consists in how long a packet takes to travel across a link from one endpoint to another
+    \item Memory related information: either related to volatile memory or persistent memory, it is important to track how  much of it is currently free and how much memory is actively being used.
     
-    \item Packet loss, which consists in how many packets are lost when traveling towards their destination.
-    
-    \item Jitter, which is the variation in latency of packets received sequentially. 
+    \item CPU information: the utilization of the CPU (user, sys, idle, wait).
     
 \end{enumerate}
 
-\subsection{Aggregation techniques}
 
-Provided that we need to continuously monitor the aforementioned metrics, if we were to store and transmit them directly, the amount of communication and processing needed to do this would make the system unscalable, consequently, in this section study ways to perform \textit{aggregation} over these metrics.
+\subsection{Resource Monitoring}
+
+It is paramount to obtain insight about the tasks that are running atop the resource sharing platform. As previously mentioned, containers are the solution which incurs less overhead when it comes to sharing resources in the same node. 
+
+Furthermore, given the intensive study containers have been subject to in the latest years, many monitoring tools for containers have emerged which provide insight over the status of the container and the tasks executing inside it.
+
+There are many container-specific tools which provide statistics about a given container, most use REST APIs to expose this functionality to external entities:
+
+Docker \cite{docker} has a built tool called \textit{docker stats} \cite{docker_stats} which provides a live data stream of metrics related to running containers. It provides information about the network I/O, cpu and memory usage, among others. 
+
+\textit{Container Advisor} \cite{cAdvisor} (cAdvisor) is a service which analyzes and exposes resource usage and performance data from running containers. Simply put, cAdvisor consists of a daemon which collects, aggregates and exports information. The information it collects resource isolation parameters, historical resource usage and network statistics. cAdvisor includes native support for Docker containers and supports a wide variety of other container implementations.
+
+\textit{Agentless System Crawler}  (ASC) \cite{cloudviz_2019} is a monitoring tool with support for containers. It collects monitoring information from running containers including metrics, system state and configuration information. It provides the ability to build two types of plugins, function  plugins for on-the-fly data aggregation or analysis, and output plugins for target monitoring and analytics endpoints.
+
+There are many tools which offer the ability to continuously track metrics about running containers, however, if we were to continuously store and transmit them between server, the amount of communication and processing needed to do this would quickly overload the system. Consequently, there is the need  to compress the data in a decentralized manner, this process is called \textit{aggregation}.
+
+\subsection{Aggregation}
 
 Aggregation consists in the determination of important system wide properties in a decentralized manner \cite{DBLP:journals/corr/abs-1110-0725}, and it is an essential building block towards monitoring distributed systems. Towards monitoring edge devices and tasks running on them, aggregation is paramount, examples of usages are (e.g. computing the average latency of the closest available  service that meets a certain criteria; counting nearby available computing resources that can be used to offload services, or identify hotspots by aggregating the average system load in certain areas).
 
@@ -92,7 +70,7 @@ Building on the concepts of duplicate sensitiveness and decomposability, we show
 
 Following, we present a taxonomy of aggregation techniques for edge devices, for each technique, we provide context and discuss its possible advantages and limitations in the edge environment.
 
-\subsubsection{Hierarchical}
+\subsubsection{Hierarchical aggregation}
 
 \textbf{Tree-based} approaches leverage directly on the decomposability of aggregation functions. Aggregations from this class depend on the existence of a hierarchical communication structure, (e.g. a spanning tree) with one root (sink node). Aggregations take place by splitting inputs into groups and aggregating values bottom-up in the hierarchy. 
 
@@ -102,29 +80,27 @@ Commonly, hierarchical aggregation systems have nodes whose roles are \textit{ag
 
 Hierarchical approaches, due to taking advantage of device heterogeneity, are attractive in edge environments. However, due to the low computational power of devices, not all nodes may be able to handle the additional overhead of maintaining the hierarchical topology.
 
-\subsubsection{Averaging}
+\subsubsection{Continuous aggregation}
 
-Averaging aggregation consists in the continuous computation and exchanging of partial averages data among all active nodes in the aggregation process. In this type of systems, after a few rounds, all nodes usually converge to the correct value with high accuracy, as shown in \cite{gossip_aggregation}.
+Continuous aggregation consists in the continuous computation and exchanging of partial averages data among all active nodes in the aggregation process. In this type of systems, after a few rounds, all nodes usually converge to the correct value with high accuracy, as shown in \cite{gossip_aggregation}.
 
 This type of aggregation is attractive for gossip protocols, where nodes may employ varied gossip techniques to continuously share and update their values with random neighbors.
 
 Algorithms from this category are also attractive to use in edge environments, because they are accurate while employing random unstructured overlays, which retain their fault-tolerance and resilience to churn.
 
-\textbf{Sketches} are fixed-size data structures that hold a \textit{sketch} of all network values. Multiple sketches are usually forwarded throughout the system, and nodes who forward sketches apply (usually commutative and associative) operations to update and merge them. \textcolor{red}{functioning and edge discussion}
+\textbf{Sketches} are fixed-size data structures that hold a \textit{sketch} of all network values. Multiple sketches are usually forwarded throughout the system, and nodes who forward sketches apply (usually commutative and associative) operations to update and merge them.
 
-% completar funcionamento
+\textbf{Digests} are an aggregation technique that gathers a representation of all system values, it supports complex aggregation functions such as Median and Mode. In short, algorithms employ a fixed-size data structures commonly composed of a set of values and associated counters) which compacts the data distribution (e.g. into a histogram).
 
-\textbf{Digests} are an aggregation technique that gathers a representation of all system values, it supports complex aggregation functions such as Median and Mode. In short, algorithms employ a fixed-size data structures commonly composed of a set of values and associated counters) which compacts the data distribution (e.g. into a histogram). \textcolor{red}{edge discussion}
+%\textbf{Counting} algorithms target the same aggregation function: Count, algorithms from this class usually employ some randomized procedure to achieve a probabilistic approximation of the population size.
 
-\textbf{Counting} algorithms target the same aggregation function: Count, algorithms from this class usually employ some randomized procedure to achieve a probabilistic approximation of the population size.
+%\subsection{Relevant aggregation protocols}
 
-\subsection{Relevant aggregation protocols}
+%In this subsection we will analyze relevant aggregation protocols that illustrate some techniques discussed above.
 
-In this subsection we will analyze relevant aggregation protocols that illustrate some techniques discussed above.
+%\subsubsection{TAG: Tiny AGgregation}
 
-\subsubsection{TAG: Tiny AGgregation}
-
-\textbf{TAG: Tiny AGgregation}\cite{Madden2002} is a service for aggregation in low-power, distributed, wireless sensor networks. TAG distributes queries in the network in a time and power-efficient manner by employing a hierarchical aggregation pattern. For each aggregation procedure, there is a \textit{root} nodes which broadcasts a message to start the tree-building process, each message contains two fields: a level and a an ID. Whenever a node without an assigned level receives a tree-building message, it assigns its own level as the message level plus one, and its own parent as the message sender. Then, it reassigns the level and ID to its own and forwards the message to other nodes. Then, whenever a node wishes to send a message to the root, it simply forwards the message bottom-up in the tree. The formed topology allows the computation of Count, Maximum, Minimum, Sum and Average. It is important to notice that the formed tree will be unbalanced as a function of the underlay latency and processing time.
+%\textbf{TAG: Tiny AGgregation}\cite{Madden2002} is a service for aggregation in low-power, distributed, wireless sensor networks. TAG distributes queries in the network in a time and power-efficient manner by employing a hierarchical aggregation pattern. For each aggregation procedure, there is a \textit{root} nodes which broadcasts a message to start the tree-building process, each message contains two fields: a level and a an ID. Whenever a node without an assigned level receives a tree-building message, it assigns its own level as the message level plus one, and its own parent as the message sender. Then, it reassigns the level and ID to its own and forwards the message to other nodes. Then, whenever a node wishes to send a message to the root, it simply forwards the message bottom-up in the tree. The formed topology allows the computation of Count, Maximum, Minimum, Sum and Average. It is important to notice that the formed tree will be unbalanced as a function of the underlay latency and processing time.
 
 %\subsubsection{SingleTree} 
 
@@ -142,7 +118,7 @@ Following, we study monitoring systems found in the literature, for each system 
 
 \subsubsection{Astrolabe}
 
-\textbf{Astrolabe} \cite{Renesse2003} is a platform which aims at monitoring the dynamically changing state of a collection of distributed resources. 
+\textbf{Astrolabe} \cite{Renesse2003} is a distributed information management platform which aims at monitoring the dynamically changing state of a collection of distributed resources. 
 
 Astrolabe introduces a hierarchical architecture defined by zones, a zone is recursively defined to be either a host or a set of non-overlapping zones. Each zone (minus the root zone) has a local identifier, which is unique within the zone where it is contained, zones are globally identified by their \textit{zone name}, which consists of the concatenation of all zone identifiers within the path from the root to the zone.
 
@@ -162,30 +138,32 @@ A agents' zone is defined by the system administrator, which is a potential limi
 
 \subsubsection{Ganglia}
 
-\textbf{Ganglia} is a scalable distributed monitoring system \cite{massie2004ganglia} for high performance computing systems, namely clusters and grids. In short, Ganglia groups nodes in clusters, in each cluster, there are representative cluster nodes which federate devices and aggregate internal cluster state.
+\textbf{Ganglia} is a scalable distributed monitoring system \cite{massie2004ganglia} for high performance computing systems, namely clusters and grids. In short, Ganglia groups nodes in clusters, in each cluster, there are representative cluster nodes which federate devices and aggregate internal cluster state. Then, representatives aggregate information in a tree of point-to-point connections.
 
-Ganglia relies on IP multicast to perform intra-cluster aggregation, it is mainly designed to monitor infrastructure monitoring data about machines in a high-performance computing cluster. Then, it displays the time series data in a Web interface.
-
-As previously mentioned, Ganglia is aimed towards monitoring high-performance 
-grids. And its applicability is limited towards edge environments: (1) clusters are situated in stable environments, which contrasts with the edge environment; (2) it relies on IP multicast (which has been proven not to hold in a number of cases); (3) has no mechanism to prevent network congestion 
+Ganglia relies on IP multicast to perform intra-cluster aggregation, it is mainly designed to monitor infrastructure monitoring data about machines in a high-performance computing cluster. Given this, its applicability is limited towards edge environments: (1) clusters are situated in stable environments, which contrasts with the edge environment; (2) it relies on IP multicast, which has been proven not to hold in a number of cases; (3) has no mechanism to prevent network congestion; (4) the project info page only claims scalability up to 2000 nodes.
 
 \subsubsection{SDIMS}
 
-\cite{10.1145/1030194.1015509} proposes a scalable distributed information management system (SDIMS) which leverages on distributed hash tables to create scalable aggregation trees. \textcolor{red}{completar...}
+\cite{SDIMS} proposes a scalable distributed information management system (SDIMS) which combines techniques originated in Astrolabe \cite{Renesse2003} and distributed hash tables (in this case, Pastry \cite{rowstron2001pastry}). It proposes to solve the following requirements: (1) map different attributes to different aggregation trees; (2) provide flexibility in the aggregation to accommodate different application requirements; (3) attain administrative isolation; (4) provide robustness without unstructured gossip and total replication.
+
+The aggregation abstraction in SDIMS specifies an attribute type and attribute name and associates an aggregation function with a type rather than just specifying and associating a function with a name (contrasting with Astrolabe), then, by aggregating an attribute along the aggregation tree corresponding to \textit{hash(attribute type, attribute name)}, multiple attributes are aggregated along multiple trees, which enables load-balancing.
+
+Each virtual node at the root of a level-i subtree maintains several Management Information Bases (MIBs) that store: \textbf{child MIBs} containing raw aggregate values; \textbf{reduction MIBs} containing locally aggregated values scattered down from ancestors, and finally an \textbf{ancestor MIBs} which contains aggregate values scattered down from ancestors.
+
+SDIMS provides efficiency when compared to gossip-based approaches
+Limitations which arise from employing SDIMS is that each node acts as an intermediate aggregation point for some attributes and as a leaf node for other attributes, which could potentially be a problem in the edge environment, due to the fact that low-capacity nodes may become overloaded if they are present in multiple aggregation trees. 
 
 \subsubsection{Prometheus}
 
 \textbf{Prometheus} \cite{prometheus} is an open-source monitoring and alerting toolkit originally built at SoundCloud. Prometheus works well for recording any purely numeric time series. It supports machine-centric monitoring as well as monitoring of highly dynamic service-oriented architectures. 
 
-Prometheus is especially useful towards querying and collecting multi-dimensional data collections. Furthermore, it offers a platform towards configuring alerts, which are triggered whenever a certain criteria is met.
+Prometheus is especially useful towards querying and collecting multi-dimensional data collections. It offers a platform towards configuring alerts, which are triggered whenever a certain criteria is met.
 
-Prometheus allows a prometheus server to scrape selected time-series from another Prometheus server. This allows deploying scalable monitoring setups or scraping related metrics from another service's Prometheus into another. Prometheus federation is split in two categories, \textit{hierarchical federation} and \textit{cross-service federation} 
+Prometheus allows federation, which consists in a prometheus server scraping selected time-series from another Prometheus server. Federation is split in two categories, \textit{hierarchical federation} and \textit{cross-service federation} 
 
 In \textit{hierarchical federation}, prometheus servers are organized into a topology which resembles a tree, where each server aggregates aggregated time series data from a larger number of subordinated servers. Alternatively,  \textit{cross-service federation} enables scraping selected data from another service's prometheus server to enable alerting and queries against both datasets within a single server. 
 
-Prometheus employs a variety of service discovery options for discovering and scraping targets, including Kubernetes, Consul, among others. A key feature which improves its flexibility is the option to use file-based discovery,  which enables the use of customized service discovery. This is achieved by programmers by providing a custom file with list of targets (and target metadata) which Prometheus will scrape.
-
-\subsubsection{\textcolor{red}{Mais papers sobre monitoring, especialmente na edge}}
+Prometheus employs a variety of service discovery options for discovering and scraping targets. A key feature which improves its flexibility is the option to use file-based discovery, which enables the use of customized service discovery. This is achieved by programmers by providing a custom file with list of targets (and target metadata) which Prometheus will scrape.
 
 \subsection{Discussion}
 
@@ -193,5 +171,29 @@ We believe there is a lack of monitoring systems targeted towards edge environme
 
 Most studied large scale information systems are targeted towards cloud environments, which as previously mentioned contrast immensely with the edge environment. These solutions often rely on techniques such as IP multicast \cite{massie2004ganglia} to perform efficiently.
 
-Furthermore, we argue that large-scale monitoring systems purely based on distributed hash tables \cite{10.1145/1030194.1015509} are unsuitable for edge environments, as  devices are heavily constrained in memory and often are unreliable routers (which a DHT assumes all nodes can reliably do).  Conversely,existing pure gossip systems such as Astrolabe \cite{Renesse2003} require heavy amounts of message exchanges to keep information up-to-date, and require manual configuration of the hierarchical tree.
+Furthermore, we argue that large-scale monitoring systems purely based on distributed hash tables \cite{SDIMS} are unsuitable for edge environments, as  devices are heavily constrained in memory and often are unreliable routers (which a DHT assumes all nodes can reliably do).  Conversely,existing pure gossip systems such as Astrolabe \cite{Renesse2003} require heavy amounts of message exchanges to keep information up-to-date, and require manual configuration of the hierarchical tree.
 
+
+
+
+
+
+
+
+
+
+
+%\subsection{End-to-end link monitoring}
+
+%Given that the edge infrastructure envisions cooperation from all devices in the path from the origin of the data to the DC, devices need to be interconnected across an underlying infrastructure which is continuously changing. This raises concerns about the network quality of links between devices across the system, especially if they are running time-critical services. 
+
+%It is paramount to analyze how to monitor and improve link quality, for providing traffic locality, latency, among others. According to the literature \cite{}, the most popular metrics to analyze are:
+
+%\begin{enumerate}
+
+    %\item Network throughput, which is the average rate of successful data transfer through a network connection.
+    
+    %\item Latency, which consists in how long a packet takes to travel across a link from one endpoint to another
+    
+    %\item Packet loss, which consists in how many packets are lost when traveling towards their destination.
+%\end{enumerate}

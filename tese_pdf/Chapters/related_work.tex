@@ -1,8 +1,7 @@
-\chapter{Related Work} \label{cha:related_work}
+\chapter{Related Work} 
+\label{cha:related_work}
 
-The goal of this chapter is to further identify the challenges which arise from creating a scalable distributed infrastructure for tracking and aggregating monitoring information in the edge. This solution, in turn, can be used towards scheduling the deployment of services or perform batch computations on the federated devices. 
-
-We begin by identifying the 4 identified high-level components of resource sharing platforms, as observable in \ref{fig:proposed_architecture}:
+The goal of this chapter is to present the related work studied towards our objectives. We begin by identifying the 4 high-level components of resource sharing platforms, as observable in \ref{fig:proposed_architecture}:
 
 \begin{enumerate}
 
@@ -10,7 +9,7 @@ We begin by identifying the 4 identified high-level components of resource shari
     
     \item \textit{Resource Location and Discovery} focuses on how to perform queries in distributed systems. Specifically how to locate peers which control certain resources in the system, or how to efficiently find a specific resource in a limited number of steps.
     
-    \item \textit{Resource Monitoring} studies which metrics to track per device, how to efficiently compress the size of those metrics through aggregation to reduce the size of the collected data.
+    \item \textit{Resource Monitoring} studies which metrics to track per device, and how to efficiently compress the size of those metrics through aggregation to reduce the size of the collected data.
 
     \item \textit{Resource Scheduling} addresses how to efficiently schedule jobs among peers such that the system remains load-balanced, jobs have data locality and resources are not wasted.
 
@@ -39,35 +38,34 @@ Resource sharing platforms (e.g. Mesos \cite{hindman2011mesos}, Yarn \cite{Vavil
 
 \end{enumerate}
 
-Now that we have identified the main requirements of such a system, we study related work towards solving these challenges. First, we study the taxonomy of resources in the edge of the network, and discuss how they can be employed towards the proposed solution (Section \ref{sec:edge_computing}).
+Now that we have identified the high-level requirements of such a system, we study related work towards solving these challenges. First, we study the taxonomy of resources in the edge of the network, and discuss how they can be employed towards the proposed solution (Section \ref{sec:edge_computing}).
 
-After understanding the environment taxonomy, we need to federate devices and sub-networks in an efficient abstraction layer (to ensure interoperability), it is paramount that such layer provides efficient communication patterns, traffic locality and load balancing (according to device heterogeneity) (Section \ref{sec:topology_management}).
+After understanding the environment taxonomy, we study how to federate devices and sub-networks in an efficient abstraction layer that ensures interoperability(Section \ref{sec:overlay_networks}).
 
-Furthermore, nodes must employ the aforementioned topology in order to efficiently find resources (e.g. other peers, services or even computing power) in the system, and to keep track of which tasks are running and where. For this, we cover different types of queries employed in resource location systems, how to disseminate them, and finally study related resource location systems in the state of the art (Section \ref{sec:res_location}).
+Furthermore, nodes must employ the aforementioned layers in order to efficiently find resources (e.g. other peers, services or even computing power) in the system, and to keep track of which tasks are running and where. For this, we cover different types of queries employed in resource location systems, how to disseminate them, and finally study related resource location systems in the  literature (Section \ref{sec:res_location}).
 
-Next, we study how to track the state of the devices and the status of the services or tasks running on them, after, we study how to aggregate those values (Section \ref{sec:res_monitoring}). 
-
-Lastly, we briefly study common solutions to distribute and offload tasks (Section \ref{sec:res_management}). 
+Next, we study how to track the status of the devices and the status of the services or tasks running on them, after, we study how to aggregate those values (Section \ref{sec:res_monitoring}).  Lastly, we briefly study the taxonomy of resource sharing solutions in order to understand the monitoring requirements of such systems (Section \ref{sec:res_management}). 
 
 \section{Edge Environment} \label{sec:edge_computing} \input{Chapters/related_work/edge_computing.tex}
 
-\section{Topology Management} \label{sec:topology_management} \input{Chapters/related_work/topology_management.tex}
+\section{Overlay Networks} \label{sec:overlay_networks} \input{Chapters/related_work/overlay_networks.tex}
 
 \section{Resource Location and Discovery} \label{sec:res_location} \input{Chapters/related_work/resource_location.tex}
 
-\section{Resource monitoring} \label{sec:res_monitoring} \input{Chapters/related_work/monitoring.tex}
+\section{Runtime Environments} \label{sec:runtime_environments} \input{Chapters/related_work/runtime_environments.tex}
 
-\section{Resource management} \label{sec:res_management} \input{Chapters/related_work/resource_management.tex}
+\section{Resource Monitoring} \label{sec:res_monitoring} \input{Chapters/related_work/monitoring.tex}
+
+\section{Resource Management} \label{sec:res_management} \input{Chapters/related_work/resource_management.tex}
 
 \section{Summary}
 
 In this section we covered topics related to sharing resources in edge environments. We started by describing the edge environment and identifying which resources are present in these environments and rating them according to their capacity and availability. 
 
-After classifying the devices which compose the system, we study related work related to building an infrastructure such that multiple devices can cooperatively solve tasks. We cover overlay architectures, how to evaluate them,and cover popular peer sampling algorithms in the literature. 
+After classifying the devices which compose the system, we study related work related to building an overlay network such that multiple devices can cooperatively solve tasks. We cover overlay architectures, how to evaluate them,and cover popular implementations in the literature. 
 
 Next, we study how a participant can query the system to find resources (e.g. other participants, computing resources, among others) by studying resource location systems.
 
 We continued by studying monitoring systems, after a brief enumeration of important metrics to collect in resource monitoring systems, we study how to efficiently aggregate them such that we may track system-wide properties in a decentralized manner. Following, we cover popular resource monitoring systems, and discuss their applicability towards edge environments. 
 
 Finally, we briefly cover resource sharing systems, our understanding from the study of the literature is that there is a lack of related work towards performing task scheduling in a decentralized environment. We believe this is caused by the aforementioned lack of decentralized monitoring infrastructure, which we propose to address.
-

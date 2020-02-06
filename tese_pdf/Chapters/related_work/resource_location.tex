@@ -4,23 +4,13 @@
 % Resource Management
 % -------------------
 
-Given that the main challenge to solve is to provide a platform which enables monitoring of edge devices and tasks running on them, it is imperative that peers are able to find the resources they need (e.g. services, peers or computing power) to meet their requests. For this, peers need implement a \textbf{resource location system}.
+Given that the main challenge to solve is to provide a platform which enables monitoring of edge devices and tasks running on them, it is imperative that peers are able to find the resources they need (e.g. services, peers or computing power) to meet their requests. For this, peers require a \textbf{resource location system}.
 
-Resource location systems are one of the most common applications of the P2P paradigm. In these systems, a participant provided with a resource descriptor is able to query peers and obtain an answer to the location (or absence) of that resource in the system within a reasonable amount of time. There are two main types of resource location systems, \textit{centralized} and \textit{decentralized}
+In this section we cover resource location systems, starting by discussing the types of queries that can be supported by resource location systems, then we cover the query dissemination strategies that are commonly employed when implementing this type of service, and finally cover the different types of architectures for these services.
 
-\textbf{Centralized architectures} rely on one (or a group of) centralized peers that index all resources in the system. This type of architecture greatly reduces the complexity of systems, as peers only need to contact a subset of nodes to locate resources. However, their scalability is limited, due to the centralized point of failure. 
+\subsection{Types of queries}
 
-It is important to notice that in a centralized architecture, while the indexation of resources is centralized, the resource access may still be distributed (e.g. a centralized server provides the addresses of peers who have the files, and files are obtained in a pure P2P fashion). A system which employs this architecture with success is BitTorrent \cite{cohen2003incentives}.
-
-Because centralized architectures have limited scalability, purely centralized architectures cannot be applied in large scale Edge environments. However, there are many ways that a hybrid architecture can be applied to Edge computing: since the failure rate of a single DC is low, if we assume a system composed by multiple DCs, they may act as a reliable failover for whenever edge devices are partitioned of fail. 
-
-One particular type of centralized system that is commonly employed in in small to medium sized storage solutions is the One-Hop DHT, nodes in a one-hop DHT have \textbf{Full membership} of the system and consequently, can perform lookups in O(1) time and message complexity. Facebook's Cassandra \cite{lakshman2010cassandra} and Amazon's Dynamo \cite{decandia2007dynamo} are widely used implementations of one-hop DHTs. However, full membership solutions have scalability problems due to the required memory and message volume necessary to maintain the full membership information up-to-date, especially in the presence churn (participants entering and leaving the system concurrently), which make full membership solutions impractical in Edge environments.
-
-To circumvent the aforementioned problems, peers only know a partial set of the peers, which is called \textbf{partial membership}. Partial membership solutions rely on some membership mechanism that restricts neighboring relations that are used to perform communication. These systems are attractive because they provide similar functionality to centralized systems, however they are much more scalable. However, given that peers do not know all other peers in the system, they must \textit{query} neighbors to cooperatively find resources in the system. 
-
-\subsection{Query taxonomy}
-
-Following, we provide a brief taxonomy of common querying techniques employed in resource location systems:
+Resource location systems are one of the most common applications of the P2P paradigm. In these systems, a participant provided with a resource descriptor is able to query peers and obtain an answer to the location (or absence) of that resource in the system within a reasonable amount of time. Following, we provide a brief taxonomy of common querying techniques employed in resource location systems:
 
 \begin{enumerate}
     \item \textbf{Exact Match queries} specify the resource to search by the value of a specific attribute (for example, a hash of the value).
@@ -30,118 +20,68 @@ Following, we provide a brief taxonomy of common querying techniques employed in
     \item \textbf{Range queries} retrieve all resources whose value is contained in a given interval (e.g. "movies with 100 to 300 minutes of duration"). These queries are especially applied in databases.
     
     \item \textbf{Arbitrary queries} are queries that aim to find a set of nodes or resources that satisfy one or more arbitrary conditions, a possible example of an arbitrary query is looking for a set resources with a certain size or format.
-    \item 
+    
 \end{enumerate}
 
-\subsubsection{Query dissemination}
+\subsection{Query Dissemination Techniques}
 
-\textbf{Disseminating} the previously mentioned queries in an efficient manner throughout the overlay is a challenge in P2P resource location systems, there have been devised many \textbf{dissemination strategies} whose applicability depends on the applicational requirements and system capabilities. There are two main types of dissemination of queries, \textbf{flooding} and \textbf{random walks}.
+When \textbf{flooding}, peers eagerly forward queries to other peers in the system, the objective of flooding is to contact a certain number of distinct peers in the system that may have the queried resource.
 
-When \textbf{flooding}, peers eagerly forward queries to other peers in the system , the objective of flooding is to contact a certain number of distinct peers in the system that may have the desired resource.
-
-One approach is \textbf{complete flooding} which consists in contacting every node in the system, this guarantees that if the resource exists, it will be found (this is the only way to provide exact resource location in a decentralized resource location system), however, complete flooding is not scalable and incurs lots of message redundancy. 
+One approach is \textbf{complete flooding}, which consists in contacting every node in the system, this guarantees that if the resource exists, it will be found (this is the only way to provide exact resource location in a decentralized resource location system), however, complete flooding is not scalable and incurs lots of message redundancy. 
 
 \textbf{Flooding with limited horizon} minimizes the message redundancy overhead by attaching a TTL to messages that limits the number of times a message can be retransmitted. However, there is a trade-off for efficiency: flooding with limited horizon does not provide exact resource location. There are many other dissemination techniques, often tailored towards specific application requirements.
 
-\textbf{Random Walks} are a dissemination strategy that attempts to minimize the communication overhead that accompanies flooding. Instead of flooding, a random walk consists of a message with a TTL that is randomly forwarded one peer at a time throughout the network. Walks may also take a biased paths in the system based on information accumulated by peers, through aggregation, this is called a \textbf{random guided walk}. Random guided walks  forward queries to neighbors that are more likely to have answers \cite{1022239}. 
+\textbf{Random Walks} are a dissemination strategy that attempts to minimize the communication overhead that accompanies flooding. Instead of flooding, a random walk consists of a message with a TTL that is randomly forwarded one peer at a time throughout the network. Walks may also attempt to forward queries to neighbors which are more likely to have answers \cite{1022239}, this technique called a \textbf{random guided walk}. A common approach to bias random walks is to use bloom filters \cite{5751342}, which are space-efficient probabilistic data structures that support set membership queries.
 
-A common approach to bias walks is to use bloom filters \cite{5751342}, which are space-efficient probabilistic data structures that support set membership queries. There are many other techniques of performing guided walks, often tailored for application needs.
+\subsection{Resource Location architectures}
 
-\subsection{Unstructured Resource Location}
+There are three main architectures to distribute resources in a system, \textbf{centralized}, \textbf{distributed over a Distributed Hash Table (DHT)} and \textbf{Distributed over an Unstructured Overlay} \todo[]{meter mais pomposo}
 
-First generation resource location systems like Gnutella \cite{gnutella_gtk} employed random overlays which in turn were used to flood queries in the system. Simple flooding lacked the required scalability for a large-scale system, which triggered the emergence of new techniques to improve the scalability of resource location system. 
+\subsubsection{Centralized Resource Location}
 
-An example is \textbf{super-peers}, which are peers that have increased capacity and stability, that are commonly assigned towards disseminating queries throughout the system or caching file locations. Super-peers have proven their effectiveness in reducing the number of peers that have to exchange messages, which by consequence raises system scalability. This is the approach taken by Gia \cite{Chawathe2003} to improve the scalability of Gnutella \cite{gnutella_gtk}. Following we present popular super-peer systems:
+\textbf{Centralized resource location} relies on one (or a group of) centralized peers that index all resources in the system. This type of architecture greatly reduces the complexity of systems, as peers only need to contact a subset of nodes to locate resources. 
 
-\subsubsection{Overnesia}
+It is important to notice that in a centralized architecture, while the indexation of resources is centralized, the resource access may still be distributed (e.g. a centralized server provides the addresses of peers who have the files, and files are obtained in a pure P2P fashion), a system which employs this architecture with success is BitTorrent \cite{cohen2003incentives}.
 
-\textbf{Overnesia} \cite{leitao2014overnesia} is a protocol which creates virtual super-peers by maintaining fully connected groups of nodes with the same identifier known by all elements in the group. Nodes join the system by sending a JOIN request to a bootstrap node which triggers a random walk, the requesting node joins the group where random walk finishes (either because it finds an underpopulated group or because the TTL expires). 
+Although centralized architectures are widely used nowadays, their lack of scalability and tolerance to failures makes them unsuited for edge environments.
 
-Then, in order to promote intra-group membership consistency, nodes employ an anti-entropy mechanism where they periodically exchange messages containing their own view of the group. 
+However, there are many ways that a hybrid architecture can be applied to Edge computing: since the failure rate of a single data center (DC) is low, if we assume a system composed by multiple DCs, they may act as a reliable failover for whenever edge devices are partitioned of fail. 
 
-When a group detects that its size has become too large, it triggers a dividing procedure which splits the groups in two halves. This division reduces the costs of replicating data among its members, but also promotes good load-balancing of the system. 
+\subsubsection{Resource Location on Unstructured Overlays}
 
-When group size has fallen bellow a certain threshold, Overnesia triggers a collapse procedure, where each node takes the initiative to relocate itself to another group, resulting in the collapse of the group. 
+First generation of decentralized resource location systems like Gnutella \cite{gnutella_gtk} employed unstructured flat overlays, and peers relied on simple broadcasts with limited horizon to query other peers in the system. However, as the size of the system grew, simple flooding techniques lacked the required scalability for satisfying the rising number of queries, which triggered the emergence of new techniques to reduce the number of messages per query, called \textbf{super-peers}. 
 
-Finally, nodes perform walks along the overlay in order to establish inter-group links which in turn use to perform efficient broadcasts.
+\textbf{Super-peers}, which are peers that have increased capacity and stability, these are assigned special roles in the system, in the case of resource location systems, super-peers disseminate queries throughout the system or cache file locations. This is the approach taken by Gia \cite{Chawathe2003} towards effectively reducing the number of peers that have to disseminate queries in Gnutella \cite{gnutella_gtk}. Following, we study super-peer systems in the literature.
 
-\subsubsection{SOSP-net}
+\subsubsection*{Overnesia}
 
-SOSP-Net \cite{garbacki2007optimizing}  (Self-Organizing Super-Peer Network) proposes to optimize super-peer networks by organizing super-peers in a topology that reflects the semantic similarity of peers with similar interests. Super-peers maintain cache references to files which were recently requested by weak peers, while the weak peers maintain caches containing super-peers that satisfied most of its requests. This yields good cache hit ratios, and load balancing. However, the original paper does not specify how super-peers communicate among themselves, nor the election process of super-peers.
+\textbf{Overnesia} \cite{leitao2014overnesia} is a protocol which creates virtual super-peers by maintaining fully connected groups of nodes with the same identifier known by all elements in the group. Nodes join the system by sending a JOIN request to a bootstrap node which triggers a random walk, the requesting node joins the group where random walk finishes (either because it finds an underpopulated group or because the TTL expires). Then, in order to promote intra-group membership consistency, nodes employ an anti-entropy mechanism where they periodically exchange messages containing their own view of the group. 
 
-\subsubsection{Discussion}
+When a group detects that its size has become too large, it triggers a dividing procedure which splits the groups in two halves. This division reduces the costs of replicating data among its members, but also promotes good load-balancing of the system. Conversely, when the group size has fallen bellow a certain threshold, Overnesia triggers a collapse procedure, where each node takes the initiative to relocate itself to another group, resulting in the collapse of the group. Finally, nodes perform random walks along the overlay in order to establish inter-group links which in turn use to perform efficient broadcasts.
 
-Unstructured resource location systems are great tools to perform queries that search for resources which are abundant in the system. However, this approach is inefficient when performing exact match queries, as a finding the exact resource in an unstructured resource location system requires flooding the entire system with messages.
+\subsubsection*{SOSP-net}
 
-This triggered the development of resource location systems, these aim at satisfying exact match queries in a bounded amount of steps without flooding the system.
+SOSP-Net \cite{garbacki2007optimizing}  (Self-Organizing Super-Peer Network) proposes a resource location system composed by weak peers and super-peers that effectively employs feedback concerning previous queries to improve the overlay network. 
 
-\subsection{Distributed Hash tables}
+Weak peers maintain links to super-peers which are biased based on the success of previous queries, and super peers bias the routing of queries by taking into account the semantic content of each query. The original work does not specify how s
 
-\textbf{Distributed Hash Tables} (DHTs) contrast with centralized servers, where the index distribution is split among peers in the system. In a DHT, peers are assigned uniformly distributed IDs using hash functions, then, peers employ a global coordination mechanism that restricts their neighboring relations (usually called routing tables) such that the resulting overlays commonly consist in low-diameter geometric structures like rings, hypercubes, among others. % rever definicao, meter citacao
+\subsubsection{Resource Location on Structured Overlays}
 
-Peers maintain routing tables to forward messages in the system, such that they can contact any other participant in a bounded number of steps, where the bound (usually logarithmic) is dictated by the topology . Finally, using the same hash functions to map resources (files, multimedia, messages, among others) to the peer identifier space, and assigning a key-space interval to each peer, peers can store and find any resource in a bounded number of steps, which makes them suitable for (\textbf{exact match queries}).
+\textbf{Distributed Hash Tables} (DHTs) are a form of structured overlay that is very popular in resource location systems. As previously mentioned, in a DHT, peers use consistent hash functions to generate node IDs which are uniformly distributed over the id space. By employing the same hash function to generate resource IDs, peers are able to map resources to specific peers in the system, which makes them suitable for (\textbf{exact match queries}).
 
-Following, we present some popular implementations of relevant DHT's along with a discussion on their applicability towards Edge environments:
+One particular type of DHT that is commonly employed in small sized resource location systems is the One-Hop Distributed Hash Table (DHT), nodes in a one-hop DHT have full membership of the system and, consequently, they can locally map resources to known peers and perform lookups in O(1) time and message complexity. Facebook's Cassandra \cite{lakshman2010cassandra} and Amazon's Dynamo \cite{decandia2007dynamo} are widely used implementations of one-hop DHTs. 
 
-\subsubsection{Chord}
-
-\textbf{Chord} \cite{stoica2003chord} is a distributed lookup protocol that addresses the need to locate the node that stores a particular data item, it specifies how to find the locations of keys, how nodes recover from failures, and how nodes join the system. Chord assigns each node and key an m-bit identifier that is uniformly distributed in the id space (peers receive roughly the same number of keys). Peers are ordered by identifier in a clockwise circle, then, any key \(k\) is assigned to the first peer whose identifier is equal or follows k in the identifier space. 
-
-Chord implements a system of "shortcuts"\ called the \textbf{finger table}. The finger table contains at most \(m\) entries, each $ith$ entry of this table corresponds to the first peer that succeeds a certain peer \(n\) by \(2^{ith}\) in the circle. This means that whenever the finger table is up-to-date, lookups only take logarithmic time to finish. 
-
-Chord, although provides the best trade-off between bandwidth and lookup latency \cite{dht_performance_churn}, however, chord presents some limitations: peers do not learn routing information from incoming requests and links have no correlation to latency or traffic locality.
-
-Chord is a basis for lots of work: Cyclone \cite{Artigas2005} is a hierarchical version of Chord provides that constructs a hierarchy by splitting the ID space into a PREFIX and SUFIX. The PREFIX provides intra-cluster identity, whereas the SUFIX is used towards creating clusters of nodes. Routing procedures are executed in lower rings and move up the hierarchy.  
-
-Hieras \cite{1240580} uses a binning scheme according the underlay topology to group peers into smaller rings. The lower the ring, the smaller the average link latency. Routing is similar to Cyclone.
-
-Crescendo \cite{Ganesan2004} splits the ID range into domains (similar to DNS), where nodes in leaf-domains form Chord rings, then nodes merge rings by applying rules such that rings in different domains can communicate. The resulting routing table and the routing procedures in Crescendo are similar to chord.
-
-\subsubsection{Pastry}
-
-\textbf{Pastry} \cite{rowstron2001pastry} is a DHT that assigns a 128-bit node identifier (nodeId) to each peer in the system. The nodes are randomly generated thus uniformly distributed in the 128-bit nodeId space. 
-
-Nodes store values whose keys are also distributed in the nodeId space, and Key-value pairs are stored among nodes which are numerically closest to the key. 
-
-The routing procedure is as follows: in each routing step, messages are forwarded to nodes whose nodeId shares a prefix that is at least one bit closer to the key. If there are no nodes available, Pastry routes messages towards the numerically closest nodeId. 
-
-This routing technique accomplishes routing in O(log N), where N is the number of Pastry nodes in the system. This protocol has been widely used and tested in applications such as Scribe \cite{10.1007/3-540-45546-9_3} and PAST \cite{990064}. 
-
-Limitations from using Pastry arise from the use of a numeric distance function towards the end of the routing process, which creates discontinuities at some node ID values, and complicates attempts at formal analysis of worst case behavior.
-
-\subsubsection{Kademlia}
-
-\textbf{Kademlia} \cite{maymounkov2002kademlia} is a DHT with provable consistency and performance in a fault-prone environment. Kademlia nodes are assigned 160-bit identifiers uniformly distributed in the ID space.
-
-Peers route queries and locate nodes by employing a novel \textbf{XOR-based distance} function which is symmetric and unidirectional. Each node in Kademlia is a router where its routing tables consist of shortcuts to peers whose XOR distance is between \(2^{i}\) by \(2^{i + 1}\) in the ID space. Intuitively, and similar to Pastry, "closer" nodes are those that share a longer common prefix.
-
-The main benefits that Kademlia draws from this approach are: nodes learn routing information from receiving messages, there is a single routing algorithm for the whole routing process (unlike Pastry) which eases formal analysis of worst-case behavior. 
-
-Finally, Kademlia exploits the fact that node failures are inversely related to uptime by prioritizing nodes that are already present in the routing table.
-
-\subsubsection{Kelips}
-
-\textbf{Kelips} \cite{gupta2003kelips} exploits increased memory usage and constant background communication to achieve O(1) lookup time and message complexity. 
-
-Kelips nodes are split in $k$ affinity groups split in the intervals [0,$k-1$] of the ID space, thus, with $n$ nodes in the system, each affinity group contains $\frac{n}{k}$ peers.  Each node stores a partial set of nodes contained in the same affinity group and a small set of nodes lying in foreign affinity groups.
-
-Assuming a proportional number of files and peers in the system and a fixed view of nodes in foreign affinity groups, Kelips achieves O(1) time and message complexity in lookups at the cost of increased memory consumption (O($\sqrt{n}$). Due to this, system scalability is limited when compared to Pastry, Chord or Kademlia. 
-
-\subsubsection{Tapestry}
-
-\textbf{Tapestry} \cite{tapestry} Is a DHT similar to pastry where messages are incrementally forwarded to the destination digit by digit (e.g. ***8 -> **98 -> *598 -> 4598). Lookups have logb(n) time complexity where b is the base of the ID space. A system with n nodes has a resulting topology composed of n spanning trees, where each node is the root of its own tree. Because nodes assume that the preceding digits all match the current node's suffix, it only needs to keep a constant size of entries at each route level. Thus, nodes contain entries for a fixed-sized neighbor map of size b.log(N). 
-
-\subsubsection{Discussion}
-
-We argue that DHTs which promote a flat design are not suitable for edge environments because devices in those environments are heterogenous, which means that they have varied computational power and connectivity. 
-
-The second approach is to build a hierarchical DHT, which consist of DHTS contained within other DHTS (e.g. a ring within a ring). This offers several important advantages over a flat DHT: first, lookups take less hops and messages to reach the target, second, organizing nodes in disjoint groups allows traffic locality if groups of nodes are close in the underlay, finally, churn events within a group stay contained within that group. However, many of these systems either employ more memory to accommodate the many levels hierarchical DHT, or tradeoff reliability (by shortening the number of connections) for memory and communication efficiency.
-
-\subsection{Hybrid approaches}
-
-\textbf{Curiata} \& \textbf{Build One Get One Free}
+\todo[]{elaborar}
 
 \subsection{Discussion}
+
+Unstructured resource location systems are attractive to perform queries that search for resources which are abundant in the system. However, this approach is inefficient when performing exact match queries, as a finding the exact resource in an unstructured resource location system requires flooding the entire system with messages.
+
+Conversely, structured resource location systems are specially tailored towards exact match queries, but are less robust to churn and subject to low-capacity nodes being a bottleneck in routing procedures.   
+
+%\subsection{Hybrid approaches}
+
+%\textbf{Curiata} \& \textbf{Build One Get One Free}
 
 % TODO falar de surrogate routing
 %\textcolor{red}{surrogate routing}
@@ -159,4 +99,3 @@ The second approach is to build a hierarchical DHT, which consist of DHTS contai
 % Xor-distance vs numeric distance (unidirectionality)
 % Pedidos assincronos para fazer queries mais rapidas
 % usar um algoritmo para dar "feed" ao outro (gossip + dht)
-

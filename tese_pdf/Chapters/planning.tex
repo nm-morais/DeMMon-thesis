@@ -7,41 +7,45 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Planning} \label{cha:planning}
 
-In this Chapter we begin by further describing the challenges we plan to address, following we outline the system model and the intuition for the proposed solution followed by the plan to evaluate it. Finally, in the last section we present the work plan for the remaining of the thesis. 
+In this Chapter we begin by further describing the challenges we plan to address, we outline the system model and the intuition for the proposed solution followed by defining a set of metrics to evaluate it. Finally, in the last section we present the work plan for the remaining of the thesis. 
 
-As previously mentioned, the challenge we propose to address is to create a large-scale decentralized monitoring infrastructure tailored for heterogenous edge devices. This infrastructure, in turn, may be used to track the state of  applications, discover nearby devices to offload tasks, or find a set of devices to deploy a new application in a strategic location.
+As previously mentioned, the challenge we propose to address is to create a large-scale decentralized monitoring infrastructure tailored for heterogenous edge devices, which in turn may be used to track the state of applications (for load balancing), discover nearby devices to offload tasks, or find a set of devices to deploy a new application in a strategic location. 
 
-\section{System Model \& Challenges}
+\section{System Model}
 
-In this section we outline the system model for our solution, given that the edge environment is so vast and composed by devices in different mediums, we restrict the system model in order to ease the development of the proposed system. Our system model considers two types of devices:
+In this section we outline the system model for our solution, as previously mentioned, the edge environment is composed by devices classified in levels ranging from [0-7].  
 
-\textbf{Stable devices} consist of devices ranging from levels 0-5 in the taxonomy defined in Section \ref{sec:edge_computing}, these are the devices that are intend to employ to establish the overlay. 
+\textbf{Stable devices} consist of devices ranging from levels [0-5] in the taxonomy as defined in Section \ref{sec:edge_computing}. We consider devices in these levels "stable" because they are usually connected across a wired medium (except in the case of laptops) which makes their connections more stable, and have enough computational capacity to perform monitoring tasks.
 
-\textbf{Mobile devices and things} are comprised by devices in levels 6 and 7. Devices in these levels either change location too fast or would not have enough computational power to contribute to the infrastructure effectively. Instead, we propose that devices in this level may act as a client to the monitoring system, or instead perform only selective tasks such as routing. 
+\textbf{Unstable devices} are comprised by devices in levels 6 and 7. In the case of mobile devices (level 6), we consider them unstable due to their low computational power and the fact that their physical location may change rapidly, which may lead to topology mismatch. Furthermore, both devices in levels 6 and 7 are connected across a wireless medium which raises a large number of concerns we will not address in the context of our work.
 
-
+Given this, we propose utilizing stable devices towards materializing the proposed overlay. In order to fully utilize the resources, devices that are unstable can act as a client to the system and perform selective tasks (e.g. routing). 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Proposed Solution}
 \label{cha:proposed_sol}
 
-To achieve this, we propose to create a new novel algorithm which employs a hierarchical topology that resembles the device distribution of the Edge Infrastructure. This topology is created by assigning a level to each device and leveraging on gossip mechanisms to build a structure resembling a FAT-tree 
+As previously mentioned, the challenge we propose to address is to create a large-scale decentralized monitoring infrastructure tailored for heterogenous edge devices, which in turn may be used to track the status of applications, discover nearby devices to offload tasks, or find devices to deploy a set of services given certain constraints. 
 
-The levels of the tree will be determined by \textcolor{red}{...undecided...} and will the tree be used to employ efficient aggregation and search algorithms. Each level of the tree will be composed by many devices that form groups among themselves, the topology of the groups \textcolor{red}{...undecided...} 
+We plan to accomplish this by designing a novel algorithm materializes a hierarchical overlay inspired in the taxonomy of the edge environment. This overlay, in turn, will be used to establish the aforementioned fully decentralized monitoring solution. 
 
-The purpose of this algorithm is to allow:
+\todo[inline]{i have no idea}
 
-\begin{enumerate} 
+\section{Evaluation}  
 
-    \item Federate large amount of heterogeneous devices and use heterogeneity as an advantage for building the topology. 
-    
-    \item Use the topology to perform efficient resource monitoring.
-    
-    \item Use the resource monitoring information to offload computation from the cloud to the Edge and vice-versa through elastic management of deployed services.
-    
-    
-\end{enumerate}
+In order to evaluate our work, we will employ a real-world scenario composed by devices ranging across the different levels of capacity and availability. The devices composing the test scenario consist of: devices in Cloud Environments (e.g. AWS or azure), devices in the Grid5000 cluster and around 20 Raspberry Pis.
 
-\section{Evaluation}
+In order to evaluate the implemented solution, and the advantages and disadvantages of the decentralized hierarchical model, we intend to develop two variants of monitoring systems. The first and most popular approach consists of a centralized controller tracking the state of devices and applications running on them. The second approach consists of a flat decentralized model, in this model, peers are not organized into a hierarchy and simply exchange monitoring information with other peers in the system. 
 
-\section{Work Plan}
+The objective of these comparisons is to analyze the advantages and drawbacks of decentralizing the task of monitoring device and application data, and to analyze the performance of our solution when compared to other approaches similar to the ones found in the literature. \todo{rever}
+
+We define a set of system and applicational-related metrics in order to compare the aforementioned implementations. The \textbf{overlay metrics} consist of the usage of system resources such as cpu, memory and bandwidth in each node of the system, followed by the number of required messages to maintain the overlay.
+
+\textbf{Application metrics} \todo{Application Metrics?} consist in metrics related to the monitoring infrastructure running atop the overlay. The first metric to consider is cost, which consists in the relation between the \textcolor{red}{number of messages sent and the value of the information}. Following, we have information freshness, which consists in the timeliness of the information each node has of the system. Finally, we have information precision, which represents the difference between the obtained monitoring data and the real status of the device / applications running on it.  
+
+\section{Scheduling}
+
+In this section we outline the identified tasks and present the work plan in order to accomplish the established objectives. We identify four main tasks: first task is to devise, implement and validate the hierarchical overlay network. The second task is to implement the decentralized monitoring system atop the previously mentioned overlay. The third task is to perform the experimental evaluation of the system, and finally, the final task consists in writing the thesis document.
+
+
+
