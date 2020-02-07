@@ -4,11 +4,11 @@
 % Resource Management
 % -------------------
 
-Given that the main challenge to solve is to provide a platform which enables monitoring of edge devices and tasks running on them, it is imperative that peers are able to find the resources they need (e.g. services, peers or computing power) to meet their requests. For this, peers require a \textbf{resource location system}.
-
 In this section we cover resource location systems, starting by discussing the types of queries that can be supported by resource location systems, then we cover the query dissemination strategies that are commonly employed when implementing this type of service, and finally cover the different types of architectures for these services.
 
-Resource location systems are one of the most common applications of the P2P paradigm. In these systems, a participant provided with a resource descriptor is able to query peers and obtain an answer to the location (or absence) of that resource in the system within a reasonable amount of time. Following, we provide a brief taxonomy of common querying techniques employed in resource location systems:
+Given that the main challenge to solve is to provide a platform which enables monitoring of edge devices and tasks running on them, it is imperative that peers are able to find the resources they need (e.g. services, peers or computing power) to meet their requests. For this, peers require a \textbf{resource location system}.
+
+Resource location systems are one of the most common applications of the P2P paradigm. In these systems, a participant provided with a resource descriptor is able to query peers and obtain an answer to the location (or absence) of that resource in the system within a reasonable amount of time. Following, we providing a brief taxonomy of common querying techniques employed in resource location systems:
 
 \begin{enumerate}
     \item \textbf{Exact Match queries} specify the resource to search by the value of a specific attribute (for example, a hash of the value).
@@ -21,11 +21,7 @@ Resource location systems are one of the most common applications of the P2P par
     
 \end{enumerate}
 
-\subsection{Resource Location architectures}
-
-There are two main architectures used to distribute resources in a system, \textbf{centralized} and \textbf{decentralized}. \todo{preciso de inventar chacho para nao ficar uma frase}
-
-\subsubsection{Centralized Resource Location}
+\subsection{Centralized Resource Location}
 
 \textbf{Centralized resource location} relies on one (or a group of) centralized peers that index all resources in the system. This type of architecture greatly reduces the complexity of systems, as peers only need to contact a subset of nodes to locate resources. 
 
@@ -37,9 +33,7 @@ Although centralized architectures are widely used nowadays, they lack the neces
 
 \subsection{Decentralized Resource Location}
 
-There are two architectures of decentralized resource location systems, \textbf{distributed over a Distributed Hash Table (DHT)} and \textbf{distributed over an Unstructured Overlay}. 
-
-In these systems, the resources (or their indexes) are scattered among all peers in the system, by consequence, peers in these systems search for the resources they need by disseminating queries, we now study popular techniques in the literature.
+In decentralized resource location systems, the resources (or their indexes) are scattered among all peers in the system, by consequence, peers in these systems search for the resources they need by disseminating queries, we now study popular techniques in the literature.
 
 \subsubsection{Query Dissemination Techniques}
 
@@ -71,17 +65,15 @@ Weak peers maintain links to super-peers which are biased based on the success o
 
 \subsubsection{Resource Location on Structured Overlays}
 
-\textbf{Distributed Hash Tables} (DHTs) are a form of structured overlay that is very popular in resource location systems. As previously mentioned, in a DHT, peers use consistent hash functions to generate node IDs which are uniformly distributed over the id space. By employing the same hash function to generate resource IDs, peers are able to map resources to specific peers in the system, which makes them suitable for (\textbf{exact match queries}).
+\textbf{Distributed Hash Tables} (DHTs) are a form of structured overlay that is very popular in resource location systems. As previously mentioned, in a DHT, peers use consistent hash functions to generate node IDs which are uniformly distributed over the id space. Intuitively, employing the same hash function to generate resource IDs, peers are able to map resources to specific peers in the system, which makes them suitable for (\textbf{exact match queries}).
 
 One particular type of DHT that is commonly employed in small sized resource location systems is the One-Hop Distributed Hash Table (DHT), nodes in a one-hop DHT have full membership of the system and, consequently, they can locally map resources to known peers and perform lookups in O(1) time and message complexity. Facebook's Cassandra \cite{lakshman2010cassandra} and Amazon's Dynamo \cite{decandia2007dynamo} are widely used implementations of one-hop DHTs. 
 
 \subsection{Discussion}
 
-As previously mentioned, centralized resource location systems are unsuited for edge environments, as such, we focused on the two variants of decentralized resource location systems.
+As previously mentioned, centralized resource location systems are unsuited for edge environments due to their lack of scalability and fault-tolerance.
 
-Unstructured resource location systems are attractive to perform queries that search for resources which are abundant in the system, however, this approach is inefficient when performing exact match queries, as a finding the exact resource in an unstructured resource location system requires flooding the entire system with messages.
-
-Conversely, structured resource location systems are specially tailored towards exact match queries, but are less robust to churn and subject to low-capacity nodes being a bottleneck in routing procedures. 
+Unstructured resource location systems are attractive to perform queries that search for resources which are abundant in the system, however, this approach is inefficient when performing exact match queries, as a finding the exact resource in an unstructured resource location system requires flooding the entire system with messages. Conversely, structured resource location systems are specially tailored towards exact match queries, but are less robust to churn and subject to low-capacity nodes being a bottleneck in routing procedures. 
 
 %\subsection{Hybrid approaches}
 
