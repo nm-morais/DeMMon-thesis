@@ -5,29 +5,27 @@
 
 As previously mentioned, a challenge towards solving the proposed solution is to federate all peers in an abstraction layer (an overlay network) that allows intercommunication and efficient resource discovery. Given that this is a classic Peer to Peer (P2P) problem, this section provides context about P2P systems and the taxonomy of overlay networks.
 
-In P2P, participants (peers) contribute to the system with a portion of their resources, so that that the overall system can accomplish tasks which would otherwise be impossible for a single peer to solve. Collaboration in a P2P system is achieved in a decentralized way, which means peers establish neighboring connections among themselves to enable information exchange which, in turn, leads to progress towards the system goals. 
+In P2P, participants (peers) contribute to the system with a portion of their resources, so that the overall system can accomplish tasks which would otherwise be impossible for a single peer to solve. This is done in a decentralized way, which means peers must establish neighboring connections among themselves to enable information exchange which, in turn, leads to progress towards the system goals. 
 
-Participants in a P2P system may know all other peers in the system, this is called having \textbf{full membership} knowledge, which is a popular approach in Cloud systems. However, as the system scales in size and peers concurrently enter and leave the system (a phenomenon called churn \cite{stutzbach2006understanding}), this information may be costly to maintain up-to-date. 
+Participants in a P2P system may know all other peers in the system, which is called having \textbf{full membership} knowledge, this is a popular approach in Cloud systems. However, as the system scales in size and peers concurrently enter and leave the system (a phenomenon called churn \cite{stutzbach2006understanding}), this information may be costly to maintain up-to-date. 
 
-To circumvent the aforementioned problems, peers only maintain a view of a subset of all peers in the system, which is called \textbf{partial membership}. Partial membership systems rely on some membership algorithm which restricts neighboring relations among peers. Partial membership systems are attractive because they provide similar functionality to full membership systems, but are much more scalable and resilient to churn. The accumulation of the aforementioned neighboring relations is what constitutes an \textbf{overlay network}. 
+In order to circumvent the aforementioned problems, peers only maintain a view of a subset of all peers in the system, which is called \textbf{partial membership}, which is maintained by some membership algorithm which restricts neighboring relations among peers. Partial membership solutions are attractive because they offer similar functionality to full membership systems, while achieving more scalability and resiliency to churn. 
 
-\subsection{Architectures}
+The accumulation of the aforementioned neighboring relations between peers is what materializes an \textbf{overlay network}.
 
-Overlays are commonly designed towards specific applicational needs, as such, their neighboring relations may or may not follow some form of logic. There are two categories of overlays, \textbf{structured} and \textbf{unstructured}.
+\subsection{Taxonomy of Overlay Networks}
 
-\subsubsection{Unstructured Overlays}
+Overlays are commonly designed towards specific applicational needs, as such, their neighboring relations may or may not follow some form of logic. There are two categories of overlays, \textbf{structured} and \textbf{unstructured}:
 
-\textbf{Unstructured overlays} usually impose little to no rules in neighboring relations, peers may pick random peers to be their neighbors, or alternatively employ strategies to "rank"\ neighbors and selectively pick the "best". 
+\subsubsection*{Unstructured Overlays}
 
-A key factor of unstructured overlays is their low maintenance cost, given that nodes can easily create neighboring relations and replace failed ones. 
+Unstructured overlays usually impose little to no rules in neighboring relations, peers may pick random peers to be their neighbors, or alternatively employ strategies to "rank"\ neighbors and selectively pick the "best". A key factor of unstructured overlays is their low maintenance cost, given that nodes can easily create neighboring relations and replace failed ones, consequently, this is the type of overlay which offers better resilience to churn.
 
-Consequently, this is the type of overlay which offers better resilience to churn \cite{stutzbach2006understanding} (participants concurrently entering and leaving the system).
+\subsubsection*{Structured Overlays}
 
-\subsubsection{Structured Overlays} 
+Structured overlays enforce stronger rules towards neighbor selection (generally based on identifiers of peers). As a result, the overlay generally converges to a topology known a priori (e.g. a circle, tree, hypercube, among others). For example, an application which requires efficient routing may require some form of routing infrastructure which can be transversed efficiently, or a structure to perform aggregation. 
 
-\textbf{Structured overlays} enforce stronger rules towards neighbor selection (generally based on identifiers of peers). As a result, the overlay generally converges to a topology known a priori (e.g. a circle, tree, hypercube, among others). For example, an application which requires efficient routing may require some form of routing infrastructure which can be transversed efficiently, or a structure to perform aggregation. 
-
-The most popular example of a structured overlay is the distributed hash table (DHT). In a DHT, peers are assigned uniformly distributed IDs using hash functions. Following, peers employ a global coordination mechanism which restricts their neighboring relations such that can find  any peer \textit{responsible} for any given key in a small (usually bounded) number of steps, where the bound is commonly logarithmic.
+The most popular example of a structured overlay is the distributed hash table (DHT) due to its effective applicational-level routing capabilities. In a DHT, peers employ a global coordination mechanism which restricts their neighboring relations such that can find  any peer \textit{responsible} for any given key in a small (usually bounded) number of steps, where the bound is commonly logarithmic.
 
 DHTs have been extensibly studied, and there has been a proliferation of DHT designs, such as Chord \cite{stoica2003chord}, Pastry \cite{rowstron2001pastry}, Kademlia \cite{maymounkov2002kademlia}, Tapestry \cite{tapestry}, among others.
 
@@ -39,13 +37,13 @@ If we look at an overlay network where connections between nodes represent edges
     
     \item \textbf{Connectivity}. A connected graph is one where there is at least one path from each node to all other nodes in the system. The absence of this property means that there are nodes in the system that are isolated, thus will not be able to cooperate towards the overall behavior of the system. This property is usually measured as a percentage, corresponding to the largest portion of the system that is connected. Intuitively, a  connected overlay has 100\% connectivity.
     
-    \item \textbf{Degree Distribution}. The degree of a node consists in the number of arcs that are connected to it. Depending on the type of system, the connections may be directed or indirected, in a directed graph there is a distinction between \textbf{in-degree} and \textbf{out-degree} of a node. Intuitively, nodes with a high in-degree have higher reachability in the system, and nodes with 0 in-degree cannot be reached. In flat overlays, where load distribution is desired, degree distribution should be as similar as possible in all nodes. By contrast, in hierarchical overlays,  designs take advantage of device heterogeneity to differentiate between peers and promote scalability.
+    \item \textbf{Degree Distribution}. The degree of a node consists in the number of arcs that are connected to it. Depending on the type of system, the connections may be directed or indirected, in a directed graph there is a distinction between \textbf{in-degree} and \textbf{out-degree} of a node. Intuitively, nodes with a high in-degree have higher reachability in the system, and nodes with 0 in-degree cannot be reached.
     
     \item \textbf{Average Shortest Path}. A path is composed by the edges of the graph that a message would have to cross to get from one node to other. The average shortest path consists in the average of all those paths, to promote efficient communication patterns, is desirable that this value is as low as possible.
     
-    \item \textbf{Clustering Coefficient}. The clustering coefficient provides a measure of the density of neighboring relations across the neighbors of a given node. It consists in the number of a node's neighbors divided by the maximum number of links between those neighbors. Similar to the average shortest path, the clustering coefficient of an overlay consists in the average of the clustering coefficient of all the peers. A high value of clustering coefficients will result in a higher number of redundant messages, and by consequence, additional localized traffic. Finally, areas of an overlay with a higher clustering coefficient tend to be more easily isolated from the remaining system.
+    \item \textbf{Clustering Coefficient}. The clustering coefficient provides a measure of the density of neighboring relations across the neighbors of a given node. It consists in the number of a node's neighbors divided by the maximum number of links between those neighbors. A high value of clustering coefficient means that there is a higher amount of redundant messages.
     
-    \item \textbf{Overlay Cost}. If we assume that a link in the overlay has a \textit{cost}, then the overlay cost is the sum of all the links that form the overlay. Link cost can derive from overlay metrics (numeric distance, XOR distance, etc), or external metrics such as latency.
+    \item \textbf{Overlay Cost}. If we assume that a link in the overlay has a \textit{cost}, then the overlay cost is the sum of all the links that form the overlay. Link cost can derive from distance metrics (numeric distance, XOR distance, etc), or external metrics such as latency.
     
 \end{enumerate}
 
@@ -55,7 +53,7 @@ If we look at an overlay network where connections between nodes represent edges
 
 \textit{T-MAN} \cite{jelasity2005t} is protocol based on a gossiping scheme, which proposes to build a wide range of structured overlay networks from scratch (e.g. ring, mesh, tree, etc.). To achieve this, T-MAN takes an overlay as an input to the protocol, this overlay is represented by \textit{ranking method}. 
 
-Nodes periodically exchange their neighboring sets with peers in the system and keep the nodes which rank higher according to the ranking method.  T-Man does not ensure stability of the in-degree of nodes during the optimization of the overlay, and consequently, the overlay may not remain connected. 
+Nodes periodically exchange their neighboring sets with peers in the system and keep the nodes which rank higher according to the ranking method. A limitation of T-Man is that it does not ensure stability of the in-degree of nodes during the optimization of the overlay, and consequently, the overlay may not remain connected. 
 
 \subsubsection*{Hyparview}
 
@@ -83,13 +81,19 @@ Chord implements a system of "shortcuts"\ called the \textbf{finger table}. The 
 
 Although Chord provides the best trade-off between bandwidth and lookup latency \cite{dht_performance_churn}, it has its limitations: peers do not learn routing information from incoming requests, links have no correlation to latency or traffic locality, and the overlay is highly susceptible to churn. Finally, the ring topology is flat, which means that lower capacity nodes in the ring may quickly become a bottleneck in in routing procedures.
 
+\subsubsection*{Kademlia}
+
+\textbf{Kademlia} \cite{maymounkov2002kademlia} is a DHT with provable consistency and performance in a fault-prone environment. Kademlia nodes are assigned 160-bit identifiers uniformly distributed in the ID space.
+
+Peers route queries and locate nodes by employing a novel \textbf{XOR-based distance} function which is symmetric and unidirectional. Each node in Kademlia is a router where its routing tables consist of shortcuts to peers whose XOR distance is between \(2^{i}\) by \(2^{i + 1}\) in the ID space. Similar to Pastry, "closer"\ nodes are those that share a longer common prefix.
+
+The main benefits that Kademlia draws from this approach are: nodes learn routing information from receiving messages, there is a single routing algorithm for the whole routing process (unlike Pastry) which eases formal analysis of worst-case behavior. Finally, Kademlia exploits the fact that node failures are inversely related to uptime by prioritizing nodes that are already present in the routing table.
+
 \subsubsection*{Pastry}
 
-\textbf{Pastry} \cite{rowstron2001pastry} is a DHT that assigns a 128-bit node identifier (nodeId) to each peer in the system. The nodes are randomly generated thus uniformly distributed in the 128-bit nodeId space. 
+\textbf{Pastry} \cite{rowstron2001pastry} is a DHT that assigns a 128-bit node identifier (nodeId) to each peer in the system. The nodes are randomly generated, and consequently are uniformly distributed in the 128-bit nodeId space. 
 
-The routing procedure is as follows: in each routing step, messages are forwarded to nodes whose nodeId shares a prefix that is at least one bit closer to the key. If there are no nodes available, Pastry routes messages towards the numerically closest nodeId. 
-
-This routing technique accomplishes routing in O(log N), where N is the number of Pastry nodes in the system. This protocol has been widely used and tested in applications such as Scribe \cite{10.1007/3-540-45546-9_3} and PAST \cite{990064}. 
+The routing procedure is as follows: in each routing step, messages are forwarded to nodes whose nodeId shares a prefix that is at least one bit closer to the key. If there are no nodes available, Pastry routes messages towards the numerically closest nodeId. This routing technique accomplishes routing in O(log N), where N is the number of Pastry nodes in the system. Pastry has been widely used and tested in applications such as Scribe \cite{10.1007/3-540-45546-9_3} and PAST \cite{990064}. 
 
 Limitations from using Pastry arise from the use of a numeric distance function towards the end of the routing process, which creates discontinuities at some node ID values, and complicates attempts at formal analysis of worst case behavior, in addition to the flat topology which mismatches the edge device taxonomy.
 
@@ -99,13 +103,6 @@ Limitations from using Pastry arise from the use of a numeric distance function 
 
 Because nodes assume that the preceding digits all match the current node's suffix, it only needs to keep a constant size of entries at each route level, consequently, nodes contain entries for a fixed-sized neighbor map of size b.log(N). 
 
-\subsubsection*{Kademlia}
-
-\textbf{Kademlia} \cite{maymounkov2002kademlia} is a DHT with provable consistency and performance in a fault-prone environment. Kademlia nodes are assigned 160-bit identifiers uniformly distributed in the ID space.
-
-Peers route queries and locate nodes by employing a novel \textbf{XOR-based distance} function which is symmetric and unidirectional. Each node in Kademlia is a router where its routing tables consist of shortcuts to peers whose XOR distance is between \(2^{i}\) by \(2^{i + 1}\) in the ID space. Intuitively, and similar to Pastry, "closer" nodes are those that share a longer common prefix.
-
-The main benefits that Kademlia draws from this approach are: nodes learn routing information from receiving messages, there is a single routing algorithm for the whole routing process (unlike Pastry) which eases formal analysis of worst-case behavior. Finally, Kademlia exploits the fact that node failures are inversely related to uptime by prioritizing nodes that are already present in the routing table.
 
 \subsubsection*{Kelips}
 
@@ -128,9 +125,9 @@ Unstructured overlays are an attractive option towards federating large amounts 
 
 Conversely, distributed hash tables enable efficient routing procedures with very low message overhead, which makes them suitable for application-level routing. However, given their strict neighboring rules, participating nodes cannot replace neighbors easily, which hinders the fault-tolerance of these types of topologies.
 
-We believe that structured overlays which promote a flat design are not suitable for edge environments, due to the fact that devices in those environments have varied computational power and connectivity, and consequently may become a limitation instead of an asset in the context of routing procedures. 
+%We believe that structured overlays which promote a flat design are not suitable for edge environments, due to the fact that devices in those environments have varied computational power and connectivity, and consequently may become a limitation instead of an asset in the context of routing procedures. 
 
-Hierarchical DHTS consisting of DHTS contained within other DHTS (e.g. a ring within a ring) offer several advantages over a flat DHT: first, lookups take less hops and messages to reach the target, second, organizing nodes in disjoint groups allows traffic locality if groups of nodes are close within the underlay, and churn events within a group stay contained within that group. 
+%Hierarchical DHTS consisting of DHTS contained within other DHTS (e.g. a ring within a ring) offer several advantages over a flat DHT: first, lookups take less hops and messages to reach the target, second, organizing nodes in disjoint groups allows traffic locality if groups of nodes are close within the underlay, and churn events within a group stay contained within that group. 
 
-However, many of these systems either employ more memory to accommodate the many levels of the hierarchy, or tradeoff reliability (by shortening the number of connections) for memory and communication efficiency. 
+%However, many of these systems either employ more memory to accommodate the many levels of the hierarchy, or tradeoff reliability (by shortening the number of connections) for memory and communication efficiency. 
 

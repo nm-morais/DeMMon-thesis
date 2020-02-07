@@ -18,41 +18,23 @@ The goal of this chapter is to present the related work studied towards our obje
 \begin{figure}[h]
     \centering
     \includegraphics[width=\linewidth]{Figures/proposed_architecture.pdf}
-    \caption{High-level architecture for an Edge resource sharing platform}
+    \caption{High-level architecture for a resource sharing platform}
     \label{fig:proposed_architecture}
 \end{figure}
 
-Resource sharing platforms (e.g. Mesos \cite{hindman2011mesos}, Yarn \cite{Vavilapalli2013ApacheHY}) are usually tailored towards Cloud computing systems. As such, they are usually centralized and tailored towards clusters of homogeneous devices which have very different monitoring requirements as those in edge environments. Given this, we identify a set of requirements which we believe to be important towards monitoring systems in general, and critical in an edge environment:
+Now that we have identified the high-level components of such a system, we study related work in these areas. First, we study the taxonomy of resources in the edge of the network, and discuss how they can be employed towards the proposed solution (Section \ref{sec:edge_computing}). After understanding the environment taxonomy, we study how to federate devices and sub-networks in an efficient abstraction layer that ensures interoperability (Section \ref{sec:topology_management}).
 
-\begin{enumerate}
+Following, nodes must employ the aforementioned layers in order to efficiently find resources (e.g. other peers, services or even computing power) in the system, and to keep track of which tasks are running and where. For this, we cover different types of queries employed in resource location systems, how to disseminate them, and finally study related resource location systems in the  literature (Section \ref{sec:res_location}).
 
-    \item  \textit{Scalability}, a scalable monitoring system can handle a remarkable number of monitored devices and services. This property is paramount towards edge computing environments because of the necessity of managing a wide variety of parameters which needs to be monitored across a largely decentralized and fault-prone environment. Existing cloud monitoring tools fail to distribute the monitoring load, which in turn leads to a single point of failure and lack of scalability.
-
-    \item  \textit{Non-intrusiveness}, following the edge computing viewpoint of performing simple lightweight tasks, the monitoring solution should follow this approach. Given this, a monitoring tool which adopts minimal processing, consumes low memory and generates low amounts of traffic is essential.
-
-    \item  \textit{Interoperability}, edge computing aims at a cooperative deployment of applications interconnected over both cloud and edge infrastructures. Ideally, companies should be able to deploy components across a wide range of infrastructures owned by different providers.
-
-    \item \textit{Robustness}, the monitoring system must be robust in the face of failures or network partitions. Especially in the edge environment, where devices are scattered and restricted in capacity. 
-    
-    \item \textit{Live Migration Support}, with the current offers of virtualization technologies, such as VMs or containers, there is a wide variety of migration tools for resource management systems. For edge-enabled applications, live migration is a highly desirable feature, as it is a crucial tool towards enabling the self-adaptation to the environment (e.g. dealing with failures, or scaling systems).
-
-\end{enumerate}
-
-Now that we have identified the high-level requirements of such a system, we study related work towards solving these challenges. First, we study the taxonomy of resources in the edge of the network, and discuss how they can be employed towards the proposed solution (Section \ref{sec:edge_computing}).
-
-After understanding the environment taxonomy, we study how to federate devices and sub-networks in an efficient abstraction layer that ensures interoperability(Section \ref{sec:overlay_networks}).
-
-Furthermore, nodes must employ the aforementioned layers in order to efficiently find resources (e.g. other peers, services or even computing power) in the system, and to keep track of which tasks are running and where. For this, we cover different types of queries employed in resource location systems, how to disseminate them, and finally study related resource location systems in the  literature (Section \ref{sec:res_location}).
-
-Next, we study how to track the status of the devices and the status of the services or tasks running on them, after, we study how to aggregate those values (Section \ref{sec:res_monitoring}).  Lastly, we briefly study the taxonomy of resource sharing solutions in order to understand the monitoring requirements of such systems (Section \ref{sec:res_management}). 
+Next, we study popular execution environments for applications and discuss which is more applicable towards edge environments (Section \ref{sec:runtime_environments}). After, we study how to track the status of the devices and the status of the aforementioned execution environments, and how to aggregate those values (Section \ref{sec:res_monitoring}).  Lastly, we study the taxonomy of resource sharing solutions and present popular systems in the literature (Section \ref{sec:res_management}). 
 
 \section{Edge Environment} \label{sec:edge_computing} \input{Chapters/related_work/edge_computing.tex}
 
-\section{Overlay Networks} \label{sec:overlay_networks} \input{Chapters/related_work/overlay_networks.tex}
+\section{Topology Management} \label{sec:topology_management} \input{Chapters/related_work/topology_management.tex}
 
 \section{Resource Location and Discovery} \label{sec:res_location} \input{Chapters/related_work/resource_location.tex}
 
-\section{Runtime Environments} \label{sec:runtime_environments} \input{Chapters/related_work/runtime_environments.tex}
+\section{Execution Environments} \label{sec:runtime_environments} \input{Chapters/related_work/runtime_environments.tex}
 
 \section{Resource Monitoring} \label{sec:res_monitoring} \input{Chapters/related_work/monitoring.tex}
 
@@ -60,12 +42,10 @@ Next, we study how to track the status of the devices and the status of the serv
 
 \section{Summary}
 
-In this section we covered topics related to sharing resources in edge environments. We started by describing the edge environment and identifying which resources are present in these environments and rating them according to their capacity and availability. 
+In this section we related work towards devising a resource sharing platform for edge environments. We started by describing the edge environment and identifying which resources are present in these environments and classifying them in categories according to their capacity and availability. 
 
-After classifying the devices which compose the system, we study related work related to building an overlay network such that multiple devices can cooperatively solve tasks. We cover overlay architectures, how to evaluate them,and cover popular implementations in the literature. 
+After classifying the devices which compose the system, we study related work related to building an overlay network such that these devices can cooperatively solve tasks. We cover overlay architectures, how to evaluate them,and cover popular implementations in the literature. Next, we study how a participant can query the system to find resources (e.g. other participants, computing resources, among others) by studying resource location systems.
 
-Next, we study how a participant can query the system to find resources (e.g. other participants, computing resources, among others) by studying resource location systems.
+We continued by studying execution environments for edge-enabled applications and how to monitor said execution environments, after an enumeration of important metrics to collect in resource monitoring systems, we study how to efficiently aggregate them in order to track system-wide properties in a decentralized manner. Following, we covered popular resource monitoring systems, and discuss their limitations in edge environments. 
 
-We continued by studying monitoring systems, after a brief enumeration of important metrics to collect in resource monitoring systems, we study how to efficiently aggregate them such that we may track system-wide properties in a decentralized manner. Following, we cover popular resource monitoring systems, and discuss their applicability towards edge environments. 
-
-Finally, we briefly cover resource sharing systems, our understanding from the study of the literature is that there is a lack of related work towards performing task scheduling in a decentralized environment. We believe this is caused by the aforementioned lack of decentralized monitoring infrastructure, which we propose to address.
+Finally, we briefly covered popular resource sharing systems, and conclude from the study of the literature that there is a lack of related work towards performing task scheduling in a decentralized, heterogenous environment. 

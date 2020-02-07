@@ -1,37 +1,30 @@
 
-It is paramount to understand how resource monitoring systems can be tailored in order to meet the need of resource monitoring systems. Currently, most popular resource management systems are tailored towards Cloud systems \cite{Vavilapalli2013ApacheHY} \cite{hindman2011mesos} \cite{mace2015retro} \cite{verma2015large}. 
 
-We classify resource management systems as platforms which provide resources  (e.g. computing power, memory, among other) to tenants (i.e. applications, frameworks, among others) such that applications can perform their tasks. 
+It is paramount to understand how resource monitoring systems can be tailored in order to meet the need of resource monitoring systems. Given this, in this section we study the different types of resource management solutions and study popular implementations in the literature.
 
-In this section we present an overview of the taxonomy of resource management architectures, along with relevant resource management systems used in Cloud and Edge environments. In each example, we analyze the type of monitoring system employed.
+The objective of a resource management system is provide resources (e.g. computing power, memory, among other) to tenants (i.e. applications, frameworks, among others) such that tenants can perform their tasks. Following, we study the taxonomy of resource management solutions.
 
 \subsection{Resource Management Taxonomy}
 
-A resource management system aims at controlling the distribution of resources among application(s). We may classify resource management architectures according to their \textit{control} and \textit{tenancy}. \textbf{Control} refers to how the resources are provisioned towards applications, whereas tenancy refers to how whether applications share the system resources or not.
+A resource management system aims at controlling the distribution of resources among application(s). We may classify resource management architectures according to their \textit{control} and \textit{tenancy}. \textbf{Control} refers to how the resources are provisioned towards applications, whereas \textbf{tenancy} refers to how whether applications share the system resources or not.
 
 \subsubsection{Tenancy}
 
 As previously mentioned, tenancy refers to whether entities share system resources or not. The term tenancy in distributed systems refers to whether or not underlying hardware resources are shared among entities \cite{Hong2019}.
 
-\textbf{Single tenancy} refers to an architecture in which a single instance of a software application and supporting infrastructure serves one customer. In single-tenancy architectures, a customer (tenant) has nearly full control over customization of software and infrastructure. 
+\textbf{Single tenancy} refers to an architecture in which a single instance of a software application and supporting infrastructure serves one customer. In single-tenancy architectures, a customer (tenant) has nearly full control over customization of software and infrastructure. There are many advantages of having single-tenancy architectures such as data security: Even if there is a data breach to one tenant with the same provider, another tenant would be safe from the breach, since the data is stored in a separate instance. However, single tenancy goes against most distributed systems today, which are shared by multiple tenants, both on private and public clouds \cite{mace2015retro}.
 
-Intuitively, there are many advantages of having single-tenancy architectures, such as data security: Even if there is a data breach to one tenant with the same provider, another tenant would be safe from the breach, since the data is stored in a separate instance.
-
-However, single tenancy goes against most distributed systems today, which are inherently \emph{shared} by multiple tenants, both on private and public clouds \cite{mace2015retro}.
-
-\textbf{Multi-tenancy} consists in tenants sharing multiple resources across multiple processes and machines. This approach has clear advantages, as sharing the infrastructure leads to lower costs (e.g. electricity), and companies of all sizes like to share infrastructure and in order to achieve lower operational costs. 
+\textbf{Multi-tenancy} consists in tenants sharing multiple resources across multiple processes and machines. This approach has clear advantages, as sharing the infrastructure leads to lower costs (e.g. electricity), and companies of all sizes like to share infrastructure in order to achieve lower operational costs. 
 
 However, providing performance guarantees and isolation in multi-tenant systems is extremely hard, resource management systems must avoid mismatching the resource allocation, as tenant-generated requests compete with each other and with the system generated tasks. Furthermore, tenant workload can change in unpredictable ways depending on the input workload, the workload of other tenants in the system and the underlying topology. Given this, mismanaging the system resources may degrade tenant performance and in extreme cases even hinder the stability of the resource management system.
-
-Furthermore, in the context of edge-enabled workloads, some may have critical latency or availability requirements, which are extremely hard to ensure for a single tenant.
 
 \subsubsection{Control}
 
 Control refers to how resource management systems allocates tasks. There are two alternatives towards allocating resources.
 
-\textbf{Centralized control} consists of a centralized controller deciding the computations, networks and communication of devices. This means that there is a centralized component in the system which has a global view of the resource usage within both and across processes and machines.
+\textbf{Centralized control} consists of a centralized controller deciding the resource allocations. This means that there is a centralized component in the system which has a global view of the resource usage within both and across processes and machines.
 
-Intuitively, given that a centralized component generates manages all the resources in the system, this component can enforce policies that achieve the desired performance guarantees or fairness goals by identifying and only throttling the tenants or system activities responsible for resource bottlenecks. \cite{verma2015large} Additionally, centralized control ensures that the system has the potential to attribute the best possible workload scheduling which ensures the requirements of tenants while employing the available resources as efficiently as possible.
+Intuitively, given that a centralized component generates manages all the resources in the system, this component can enforce policies that achieve the desired performance guarantees or fairness goals by identifying and only throttling the tenants or system activities responsible for resource bottlenecks \cite{verma2015large}. Additionally, centralized control ensures that the system has the potential to attribute the best possible workload scheduling which ensures the requirements of tenants while employing the available resources as efficiently as possible.
 
 Many resource management systems rely on a centralized component having a global view of the system, especially in Cloud environments, where nodes are federated in large clusters of machines with similar computing power. Cloud systems commonly employ Zookeeper \cite{hunt2010zookeeper} to maintain the component available and to transfer state in case it fails.
 
@@ -47,21 +40,19 @@ In this subsection we will cover popular resource monitoring systems found in th
 
 \subsubsection{Mesos}
 
-Mesos \cite{hindman2011mesos} is a multi-tenant centralized resource sharing platform which attempts to provide fine-grained resource sharing in the  Data Center. The tenants for this platform are frameworks such as HDFS \cite{borthakur2008hdfs}, MapReduce \cite{dean2008mapreduce}, among others, which in turn support multiple applications running in the DC.
+Mesos \cite{hindman2011mesos} is a multi-tenant centralized resource sharing platform which attempts to provide fine-grained resource sharing in the Data Center. The tenants for this platform are frameworks such as HDFS \cite{borthakur2008hdfs}, MapReduce \cite{dean2008mapreduce}, among others, which in turn support multiple applications running in the DC.
 
-In short, the Mesos resource sharing system consists of a \textit{master} process which manages \textit{slave} daemons running on each cluster node, in order to achieve faul-tolerance, Mesos employs Zookeeper \cite{hunt2010zookeeper} for fault tolerance (by electing a new master and transferring state to it if the active master crashes).
+In short, the Mesos resource sharing system consists of a \textit{master} process which manages \textit{slave} daemons running on each cluster node, in order to achieve fault-tolerance for the master component, Mesos employs Zookeeper \cite{hunt2010zookeeper} to elect a new master and transfer state to a new master if the active master crashes.
 
-The master node implements fine-grained sharing of resources across frameworks by employing \textit{resource offers}, which consist of lists of free resources distributed among slaves.
+The master node implements fine-grained sharing of resources across frameworks by employing \textit{resource offers}, which consist of lists of free resources distributed among slaves. Resource offers provide flexibility for frameworks operating on Mesos, given that each framework has different communication patterns, task dependencies and data placement, a centralized scheduler would need to provide an extremely expressive API to capture all frameworks' requirements. 
 
-Resource offers provide flexibility for frameworks operating on Mesos, given that each framework has different communication patterns, task dependencies and data placement, a centralized scheduler would need to provide an extremely expressive API to capture all frameworks' requirements. Instead, the master makes decisions about how many resources to offer to each framework, and its decision-making process is based on an arbitrary organizational policy, such as fair sharing or priority. 
+Instead, the master makes decisions about how many resources to offer to each framework, and its decision-making process is based on an arbitrary organizational policy, such as fair sharing or priority. Each framework that wishes to use Mesos must implement \textit{scheduler} and an \textit{executor}, the scheduler registers with the Mesos master to receive resource offers, and the executor is the process that is launched on slave nodes to run the framework's tasks.
 
-Each framework that wishes to use Mesos must implement \textit{scheduler} and an \textit{executor}. The scheduler registers with the Mesos master to receive resource offers, and the executor is the process that is launched on slave nodes to run the framework's tasks.
-
-A limitation of the Mesos resource sharing platform is that it is not scalable (the original authors mention the system scales up to 50000 slave daemons on 99 physical machines), which is not enough for an edge environment. Furthermore, the resource offer model forces frameworks to employ a specific programming model based on schedulers and executors, which may not be desirable by the framework author.
+A limitation of the Mesos resource sharing platform is that it is not scalable (the original authors mention the system scales up to 50000 slave daemons on 99 physical machines), which is not enough for an edge environment. Furthermore, the resource offer model forces frameworks to employ a specific programming model based on schedulers and executors, which may not be desirable by the framework author, and finally, we argue that in an edge environment, the centralized master would not be able to process all resource requests and provide timely resource offers in a large-scale system.
 
 \subsubsection{Yarn}
 
-Yarn (Yet Another Resource Negotiator) \cite{Vavilapalli2013ApacheHY} is a compute platform which attempts decouple the programming model from the resource management infrastructure, and delegate many scheduling functions (e.g. task fault-tolerance) to per-application components. 
+Yarn (Yet Another Resource Negotiator) \cite{Vavilapalli2013ApacheHY} is a centralized multi-tenant resource sharing platform which attempts decouple the programming model from the resource management infrastructure, and delegate many scheduling functions (e.g. task fault-tolerance) to per-application components. 
 
 The architecture of YARN is as follows: the system is composed of a per-cluster Resource Manager (RM), multiple Application Masters (AM) and Node Managers (NM). 
 
@@ -73,9 +64,7 @@ The Node Manager (NM) is the worker daemon in YARN. Its responsibilities in the 
 
 AMs send resource requests to the RM, these contain the number of containers to request, the resources per container, locality preferences and a priority level within the application. Resource requests are designed to capture the needs of applications, while at the same time removing specific application concerns (such as task dependencies) from the scheduler.
 
-The resource request model effectively makes YARN RM a \textit{monolithic} scheduler, because the RM is in charge of processing and scheduling all task distributions for each request made by AMs. This contrasts with MESOS \cite{hindman2011mesos}, which delegates task scheduling for the frameworks. 
-
-However, similar to Mesos, both the , the RM is a single point of failure and contention in the system, which males it not suitable towards edge environments.
+The resource request model effectively makes YARN RM a \textit{monolithic} scheduler, because the RM is in charge of processing and scheduling all task distributions for each request made by AMs. This contrasts with MESOS \cite{hindman2011mesos}, which delegates task scheduling for the frameworks. Given this, its limitations are similar to Mesos, given the centralized point of failure.
 
 %\subsubsection{Omega}
 
@@ -89,15 +78,15 @@ To enable the use edge nodes, ENORM deploys a \textit{cloud server manager} on e
 
 Each edge node is composed by the following 5 components: (1) \textit{Resource Allocator} which provides computing as a service, this is the basic service of the edge node, and cannot be compromised, which means that it has priority over offloaded computations; (2) \textit{Edge Manager} deals with the requests that are obtained by the server manager in the cloud, and once a request is successful, it initializes a container and allocates the necessary ports for communication; (3) \textit{Monitor} which periodically reports a number of metrics related to the application running on the edge server (e.g. communication latency and computing latency); (4) \textit{Auto-scaler} dynamically allocates and de-allocates hardware resources to the container executing application servers. It is responsible for scaling the process such that the application can accommodate a larger number of users. (5) \textit{Application Edge Server} the partitioned server which is hosted on the edge node.
 
-ENORM authors test the designed system using an online game based on Pokemon GO (iPokemon)\cite{pokemonGo}, the framework partitions the game server and sends  user data relevant to the geographical location of the edge node. Users from the relevant geographical zone connect to the edge server and are serviced as if they were connected to the data center. ENORM observes up to 95\% application latency reduction, and a reduction of data transferred between edge nodes and the cloud of up to 95\%.
+ENORM authors test the designed system using an online game based on Pokemon GO (iPokemon)\cite{pokemonGo}, the framework partitions the game server and sends  user data relevant to the geographical location of the edge node. Users from the relevant geographical zone connect to the edge server and are serviced as if they were connected to the data center. 
 
-Limitations from this framework are similar to Mesos and Yarn, specifically lack of fault-tolerance and scalability, which arise from a centralized component handling all the edge nodes at the same time. 
+Limitations from this framework are similar to Mesos and Yarn, specifically lack of fault-tolerance and scalability, which arise from a centralized component monitoring and managing all the edge nodes at the same time. 
 
 \subsection{Discussion}
 
-Although resource management systems have been present for many years, these are often tailored towards small scale environments composed by high-capacity devices in stable environments. This environment contrasts with the edge of the network, where devices are extremely numerous, decentralized, and heterogenous.
+Although resource management systems have been present for many years, these are often tailored towards small scale environments composed by high-capacity devices in stable environments, which contrast with the edge of the network, where devices are extremely numerous, decentralized, and heterogenous.
 
-Due to their low capacity, devices in the edge of the network are very susceptible to workload changes, for example, a 5G tower which is hosting a service cannot handle a drastic increase in the number of users it is servicing. In this scenario, we argue that in order to maintain QoS, devices must autonomously take the decision to scale horizontally or vertically in order to adapt to the hotspot of users.
+Due to their low capacity, devices in the edge of the network are very susceptible to workload changes, for example, a 5G tower which is hosting a service cannot handle a drastic increase in the number of users it is servicing. In this scenario, we argue that in order to maintain QoS, devices must autonomously make decisions to scale horizontally or vertically in order quickly meet the demands of users.
 
 Additionally, with the recent emergence of IoT and the increase of devices in the edge of the network, we argue that a centralized controller would not be able to process the resource management of a large scale system, especially if applications have special requirements such as real-time latency.
 

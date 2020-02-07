@@ -1,25 +1,25 @@
 
-As previously mentioned, an important requirement of the system that we intend to develop is that devices need to be able to share resources with other nodes in the system such that they can be issued tasks (e.g. services, monitoring tasks, among others). However, it is paramount that the issued tasks interfere as little as possible with other running tasks and the core behavior of the system.
+As previously mentioned, an important requirement of the system that we intend to develop is that devices are able to be issued multiple tasks (e.g. services, monitoring tasks, among others), and that the issued tasks interfere as little as possible with other running tasks and the core behavior of the system.
 
 A popular approach towards solving the aforementioned challenges is perform tasks in loosely coupled independent components running some form of virtualization software, as it enables co-deployment tasks in the same physical node. The main benefits of employing virtualization include hardware independence, isolation, secure user environments, and increased scalability. 
 
-The two most common types of virtualization are containers and virtual machines (VMs), we now present a brief description of both technologies and study their advantages and limitations towards edge environments. 
+The two most common types of virtualization used nowadays are containers and virtual machines (VMs), we now present a brief description of both technologies, study their advantages and limitations towards edge environments and explain why we believe containers are better suited for edge environments. 
 
-\subsubsection{Virtual Machines}
+\subsection{Virtual Machines}
 
 A VM provides a complete environment in which an operating system and many processes, possibly belonging to multiple users, can coexist. By using VMs, a single-host hardware platform can support multiple, isolated guest operating system environments simultaneously \cite{1430629}. 
 
-Virtual machines rely on a type of software called a \textit{hypervisor}, the role of the hypervisor is to abstract hardware to support the concurrent execution of full-fledged operating systems (e.g. Linux). 
+Virtual machines rely on a type of software called a \textit{hypervisor}, the role of the hypervisor is to abstract hardware to support the concurrent execution of full-fledged operating systems (e.g. Linux). This abstraction layer provides great isolation between virtual machines, in addition to the security benefits that arise from not exposing the host kernel to applications. 
 
-This abstraction layer provides great isolation between virtual machines, in addition to the security benefits that arise from not exposing the host kernel to applications. However, virtualizing the hardware and the device drivers incurs overhead, and the large image sizes of operating systems limit the applicability of VMs in edge environments.
+However, virtualizing the hardware and the device drivers incurs overhead, and the large image sizes of operating systems makes live migrations harder to accomplish, which we believe to be crucial in edge environments. Given the aforementioned reasons, we believe that virtual machines are unsuited for edge environments.
 
-\subsubsection{Containers}
+\subsection{Containers}
 
-Containers can be considered as a lightweight alternative to hypervisor-based virtualization, when using containers, applications share an OS (and maybe binaries and libraries), and implement isolation of processes at the operating system level. Several container-based solutions exist, e.g., Docker \cite{docker}, Linux Containers (LXC) \cite{lxc}, among others. 
+Containers (Docker \cite{docker}, Linux Containers (LXC) \cite{lxc}, among others) can be considered as a lightweight alternative to hypervisor-based virtualization, when using containers, applications share an OS (and maybe binaries and libraries), and implement isolation of processes at the operating system level. As a result, these deployments are significantly smaller in size than hypervisor deployments, for comparison, a physical machine may store hundreds of containers versus a limited number of VMs \cite{7036275}.  
 
-As a result, these deployments are significantly smaller in size than hypervisor deployments, for comparison, a physical machine may store hundreds of containers versus a limited number of VMs \cite{7036275}. Additionally, in terms of performance, container-based virtualization can be compared to an OS running on bare-metal in terms of memory, CPU and disk usage, however at a cost of network utilization \cite{preeth2015evaluation}.
+In terms of performance, container-based virtualization can be compared to an OS running on bare-metal in terms of memory, CPU and disk usage, however at a cost of network utilization \cite{preeth2015evaluation}, however, an important detail which contrasts with VMs is that restarting a container doesn't mean rebooting the OS \cite{7036275}.
 
-In addition, because containers use the host OS, restarting a container doesn't mean rebooting the OS \cite{7036275}. Consequently, given their lightweight nature, it is possible to deploy container-based applications (e.g. microservices), which can perform fast migration across nodes in the edge environment (e.g. in order to improve QoS). This flexibility towards the migration process is an effective tool to deal with many challenges such as load balancing, scaling, resource reallocation and fault-tolerance. 
+Consequently, given their lightweight nature, it is possible to deploy container-based applications (e.g. microservices), which can perform fast migration across nodes in the edge environment (e.g. in order to improve QoS). This flexibility towards the migration process is an effective tool to deal with many challenges such as load balancing, scaling, resource reallocation and fault-tolerance. 
 
 \subsection{Discussion}
 

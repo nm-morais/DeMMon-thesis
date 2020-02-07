@@ -8,8 +8,6 @@ Given that the main challenge to solve is to provide a platform which enables mo
 
 In this section we cover resource location systems, starting by discussing the types of queries that can be supported by resource location systems, then we cover the query dissemination strategies that are commonly employed when implementing this type of service, and finally cover the different types of architectures for these services.
 
-\subsection{Types of queries}
-
 Resource location systems are one of the most common applications of the P2P paradigm. In these systems, a participant provided with a resource descriptor is able to query peers and obtain an answer to the location (or absence) of that resource in the system within a reasonable amount of time. Following, we provide a brief taxonomy of common querying techniques employed in resource location systems:
 
 \begin{enumerate}
@@ -23,19 +21,9 @@ Resource location systems are one of the most common applications of the P2P par
     
 \end{enumerate}
 
-\subsection{Query Dissemination Techniques}
-
-When \textbf{flooding}, peers eagerly forward queries to other peers in the system, the objective of flooding is to contact a certain number of distinct peers in the system that may have the queried resource.
-
-One approach is \textbf{complete flooding}, which consists in contacting every node in the system, this guarantees that if the resource exists, it will be found (this is the only way to provide exact resource location in a decentralized resource location system), however, complete flooding is not scalable and incurs lots of message redundancy. 
-
-\textbf{Flooding with limited horizon} minimizes the message redundancy overhead by attaching a TTL to messages that limits the number of times a message can be retransmitted. However, there is a trade-off for efficiency: flooding with limited horizon does not provide exact resource location. There are many other dissemination techniques, often tailored towards specific application requirements.
-
-\textbf{Random Walks} are a dissemination strategy that attempts to minimize the communication overhead that accompanies flooding. Instead of flooding, a random walk consists of a message with a TTL that is randomly forwarded one peer at a time throughout the network. Walks may also attempt to forward queries to neighbors which are more likely to have answers \cite{1022239}, this technique called a \textbf{random guided walk}. A common approach to bias random walks is to use bloom filters \cite{5751342}, which are space-efficient probabilistic data structures that support set membership queries.
-
 \subsection{Resource Location architectures}
 
-There are three main architectures to distribute resources in a system, \textbf{centralized}, \textbf{distributed over a Distributed Hash Table (DHT)} and \textbf{Distributed over an Unstructured Overlay} \todo[]{meter mais pomposo}
+There are two main architectures used to distribute resources in a system, \textbf{centralized} and \textbf{decentralized}. \todo{preciso de inventar chacho para nao ficar uma frase}
 
 \subsubsection{Centralized Resource Location}
 
@@ -43,9 +31,25 @@ There are three main architectures to distribute resources in a system, \textbf{
 
 It is important to notice that in a centralized architecture, while the indexation of resources is centralized, the resource access may still be distributed (e.g. a centralized server provides the addresses of peers who have the files, and files are obtained in a pure P2P fashion), a system which employs this architecture with success is BitTorrent \cite{cohen2003incentives}.
 
-Although centralized architectures are widely used nowadays, their lack of scalability and tolerance to failures makes them unsuited for edge environments.
+Although centralized architectures are widely used nowadays, they lack the necessary scalability to index the large number of resources we intend to manage, and have limited fault tolerance to failures, which makes centralized resource location systems unsuited for edge environments. 
 
-However, there are many ways that a hybrid architecture can be applied to Edge computing: since the failure rate of a single data center (DC) is low, if we assume a system composed by multiple DCs, they may act as a reliable failover for whenever edge devices are partitioned of fail. 
+%However, there are many ways that a hybrid architecture can be applied to Edge computing: since the failure rate of a single data center (DC) is low, if we assume a system composed by multiple DCs, they may act as a reliable failover for whenever edge devices are partitioned of fail. 
+
+\subsection{Decentralized Resource Location}
+
+There are two architectures of decentralized resource location systems, \textbf{distributed over a Distributed Hash Table (DHT)} and \textbf{distributed over an Unstructured Overlay}. 
+
+In these systems, the resources (or their indexes) are scattered among all peers in the system, by consequence, peers in these systems search for the resources they need by disseminating queries, we now study popular techniques in the literature.
+
+\subsubsection{Query Dissemination Techniques}
+
+There are two popular approaches for disseminating queries in a decentralized resource location system, \textbf{flooding} and \textbf{random walks}. When \textbf{flooding}, peers eagerly forward queries to other peers in the system, the objective of flooding is to contact a certain number of distinct peers in the system that may have the queried resource.
+
+One approach is \textbf{complete flooding}, which consists in contacting every node in the system, this guarantees that if the resource exists, it will be found (this is the only way to provide exact resource location in a decentralized resource location system), however, complete flooding is not scalable and incurs lots of message redundancy. 
+
+\textbf{Flooding with limited horizon} minimizes the message redundancy overhead by attaching a TTL to messages that limits the number of times a message can be retransmitted. However, there is a trade-off for efficiency: flooding with limited horizon does not provide exact resource location. There are many other dissemination techniques, often tailored towards specific application requirements.
+
+\textbf{Random Walks} are a dissemination strategy that attempts to minimize the communication overhead that accompanies flooding. Instead of flooding, a random walk consists of a message with a TTL that is randomly forwarded one peer at a time throughout the network. Walks may also attempt to forward queries to neighbors which are more likely to have answers \cite{1022239}, this technique called a \textbf{random guided walk}. A common approach to bias random walks is to use bloom filters \cite{5751342}, which are space-efficient probabilistic data structures that support set membership queries.
 
 \subsubsection{Resource Location on Unstructured Overlays}
 
@@ -63,7 +67,7 @@ When a group detects that its size has become too large, it triggers a dividing 
 
 SOSP-Net \cite{garbacki2007optimizing}  (Self-Organizing Super-Peer Network) proposes a resource location system composed by weak peers and super-peers that effectively employs feedback concerning previous queries to improve the overlay network. 
 
-Weak peers maintain links to super-peers which are biased based on the success of previous queries, and super peers bias the routing of queries by taking into account the semantic content of each query. The original work does not specify how s
+Weak peers maintain links to super-peers which are biased based on the success of previous queries, and super peers bias the routing of queries by taking into account the semantic content of each query. 
 
 \subsubsection{Resource Location on Structured Overlays}
 
@@ -71,13 +75,13 @@ Weak peers maintain links to super-peers which are biased based on the success o
 
 One particular type of DHT that is commonly employed in small sized resource location systems is the One-Hop Distributed Hash Table (DHT), nodes in a one-hop DHT have full membership of the system and, consequently, they can locally map resources to known peers and perform lookups in O(1) time and message complexity. Facebook's Cassandra \cite{lakshman2010cassandra} and Amazon's Dynamo \cite{decandia2007dynamo} are widely used implementations of one-hop DHTs. 
 
-\todo[]{elaborar}
-
 \subsection{Discussion}
 
-Unstructured resource location systems are attractive to perform queries that search for resources which are abundant in the system. However, this approach is inefficient when performing exact match queries, as a finding the exact resource in an unstructured resource location system requires flooding the entire system with messages.
+As previously mentioned, centralized resource location systems are unsuited for edge environments, as such, we focused on the two variants of decentralized resource location systems.
 
-Conversely, structured resource location systems are specially tailored towards exact match queries, but are less robust to churn and subject to low-capacity nodes being a bottleneck in routing procedures.   
+Unstructured resource location systems are attractive to perform queries that search for resources which are abundant in the system, however, this approach is inefficient when performing exact match queries, as a finding the exact resource in an unstructured resource location system requires flooding the entire system with messages.
+
+Conversely, structured resource location systems are specially tailored towards exact match queries, but are less robust to churn and subject to low-capacity nodes being a bottleneck in routing procedures. 
 
 %\subsection{Hybrid approaches}
 
@@ -90,7 +94,6 @@ Conversely, structured resource location systems are specially tailored towards 
 
 %\paragraph{\textbf{Koala} }
 
-
 % TODO falar de otimizacoes fixes observadas:
 % lazyness a montar a rede (usar mensagens de servicos)
 % manter peers antigos (churn inversamente proporcional a uptime)
@@ -99,3 +102,5 @@ Conversely, structured resource location systems are specially tailored towards 
 % Xor-distance vs numeric distance (unidirectionality)
 % Pedidos assincronos para fazer queries mais rapidas
 % usar um algoritmo para dar "feed" ao outro (gossip + dht)
+
+
