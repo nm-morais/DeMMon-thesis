@@ -123,7 +123,7 @@ The aggregation functions which produce the MIBs are contained in \textit{aggreg
 
 Astrolabe employs gossip, which provides an eventual consistency model: if updates cease to exist for a long enough time, all the elements of the system  converge towards the same state. This is achieved by employing a gossip algorithm which selects another agent at random and exchanges zone state with it. If the agents are within the same zone, they simply exchange information relative to their zone. Conversely, if agents are in different zones, they exchange information relative to the zone which is their least common ancestor.
 
-Not all nodes gossip information, within each zone, a node is elected (the authors do not specify how) to perform gossip on behalf of that zone, additionally, nodes can represent nodes from other zones, in this case nodes run one instance of the gossip protocol per zone it represents. The number of represented zones is bounded by the number of levels in the Astrolabe tree.
+Not all nodes gossip information, within each zone, a node is elected (the authors do not specify how) to perform gossip on behalf of that zone, additionally, nodes can represent nodes from other zones, in this case, nodes run one instance of the gossip protocol per represented zone. The number of represented zones is bounded by the number of levels in the Astrolabe tree.
 
 Astrolabe relies on clock time from the devices enforce an order among MIBs. Originally, it compared timestamps contained in MIBs to impose an order among them, however, as the system scaled, this approach is became unreliable. To circumvent this, Astrolabe agents store the last MIB from each agent that gossiped with them, and only compare the timestamps of MIBs which originated from the same representative.
 
@@ -139,15 +139,13 @@ Ganglia relies on IP multicast to perform intra-cluster aggregation, it is mainl
 
 \subsubsection{SDIMS}
 
-\cite{SDIMS} proposes a scalable distributed information management system (SDIMS) which combines techniques originated in Astrolabe \cite{Renesse2003} and distributed hash tables (in this case, Pastry \cite{rowstron2001pastry}). It proposes to solve the following requirements: (1) map different attributes to different aggregation trees; (2) provide flexibility in the aggregation to accommodate different application requirements; (3) attain administrative isolation; (4) provide robustness without unstructured gossip and total replication.
+\cite{SDIMS} proposes a scalable distributed information management system (SDIMS) which combines techniques originated in Astrolabe \cite{Renesse2003} and distributed hash tables (in this case, Pastry \cite{rowstron2001pastry}).
 
-SDIMS is based on an abstraction that exposes the internal abstraction of aggregation trees provided by a DHT. Given a key $k$, an aggregation tree in SDIMS is defined by the the union of the routing paths from all nodes to key $k$. 
+It is based on an abstraction which exposes the internal abstraction of aggregation trees provided by a DHT such as Pastry. Given a key $k$, an aggregation tree is defined by the the union of the routing paths from all nodes to key $k$, where each routing step along the path to $k$ corresponds to a level in the aggregation tree.
 
-The aggregation abstraction in SDIMS specifies an attribute type and attribute name and associates an aggregation function with a type rather than just specifying and associating a function with a name (contrasting with Astrolabe), then, by aggregating an attribute along the aggregation tree corresponding to \textit{hash(attribute type, attribute name)}, multiple attributes are aggregated along multiple trees, which enables load-balancing.
+Then, aggregation functions are associated an attribute type and name, and rooted at \textit{hash(attribute type, attribute name)}, which results in different attributes with the same function being aggregated along trees rooted in different parts of the DHT, which enables load-balancing.
 
-Each virtual node at the root of a level-i subtree maintains several Management Information Bases (MIBs) that store: \textbf{child MIBs} containing raw aggregate values; \textbf{reduction MIBs} containing locally aggregated values scattered down from ancestors, and finally an \textbf{ancestor MIBs} which contains aggregate values scattered down from ancestors.
-
-SDIMS communication and memory efficiency when compared to gossip-based approaches, because MIBs have a lesser degree of replication, however, limitations which arise from employing SDIMS is that each node acts as an intermediate aggregation point for some attributes and as a leaf node for other attributes, which could potentially be a problem in the edge environment, given that low-capacity nodes may become overloaded if they are present in multiple aggregation trees. 
+This achieves communication and memory efficiency when compared to gossip-based approaches, because MIBs have a lesser degree of replication, however, limitations which arise from employing SDIMS is that each node acts as an intermediate aggregation point for some attributes and as a leaf node for other attributes, which could potentially be a problem in the edge environment, given that low-capacity nodes may become overloaded if they are intermediate aggregation points in multiple aggregation trees. 
 
 \subsubsection{Prometheus}
 

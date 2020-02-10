@@ -287,11 +287,7 @@ improving load balancing properties in tree-based multicast systems, as long as 
 FogTorch is a service deployment framework aimed at determining eligible 
 deployments of an application over a given Fog infrastructure. The authors 
 model the fog infrastructure, IoT applications and eligible deployments considering
-IoT devices and QoS constraints.
-
-### System Model:
-
-The authors model the Fog infrastructure as follows:
+IoT devices and QoS constraints. The authors model the Fog infrastructure as follows:
 
 * Cloud Data Centers: Cloud DCs are denoted by their location and software capabilities it provides.
 * Fog Nodes: A fog node has is a tuple which contains the location, hardware and software capabilities and the things directly reachable from it
