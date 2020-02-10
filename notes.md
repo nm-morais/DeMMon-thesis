@@ -129,7 +129,7 @@ Pros : Good for locality in DHTS (heavily outperforms chord)
 
 Cons :
 * Does not compare with more sophisticated DHTs like Kademlia, Pastry or Tapestry 
-* Not applicable for heterogenous devices (keeps similar in-degree per )
+* Not applicable for heterogenous devices (keeps similar in-degree per node)
 
 ## Mesos:
 
@@ -194,26 +194,6 @@ Implementation
 
 - intra zone consistency is achieved by employing a gossip algorithm which consists in selecting another agent at random and exchanging state with it. If agents are within the same zone, they exchange state refering to the MIB of their zone, if agents are in different zones, they exchange information related to their least common ancestor in the tree.
 
-## OMEGA:
-
-* Scheduler for grid computing systems
-* uses parallelism, shared state and lock-free optimistic concurrency control
-
-* Classifies schedulers as: Monolithic, single scheduling algorithm for all jobs
-* Two-level schedulers : single active resource manager which offers compute resource to multiple scheduler frameworks
-
-* Monolithic schedulers are not  scalable enough nor extensible enough
-* Two-level schedulers have difficulty placing "picky" jobs which require access to state of the entire cluster
-
-
-Omega has N schedulers per cluster, each with shared state of the cluster state
-schedulers receive massive amounts of jobs composed by N tasks 
-
-Omega schedulers make scheduling decisions according to the cluster state and according to their scheduling policy. If 2 or more schedulers attempt to schedule a task to the the same worker, the worker tries to accommodate both tasks, if it cant, it rejects the least important one.
-
-Omega demonstrates that by employing 3 schedulers, one for batch jobs, other for services and other for utilizing the remaining space for mapreduce jobs, they achieved massive improvements in mapreduce job times and cluster utilization, this could not be doable w/ a YARN cluster, given that resource attributions "lock" the resources to the corresponding framework.
-
-MESOS is tailored for short-lived tasks, which does not go in hand with Google's workload. A disadvantage of the two-level scheduler is that because only one framework is examining a resource at a time, it effectively holds a lock on that resource for the duration of a scheduling decision. In other words, concurrency control is pessimistic. A framework simply does not have any knowledge of resources that have been allocated to other schedulers, which limits potentially more efficient task scheduling. Mesos uses resource hoarding to achieve gang scheduling, and can potentially deadlock as a result.
 
 ## Scalable Distributed Information Management System
 
@@ -231,10 +211,101 @@ Not very applicable to monitoring systems because in a monitoring system all nod
 
 
 
- 
 
 
 
+
+##############################################################################
+
+## OMEGA:
+
+Omega is a scheduler designed for grid computing systems composed by schedulers and workers.
+Each scheduler receives large amounts of jobs composed by either one or many tasks that 
+have to be scheduled among workers. Contrary to YARN, which is monolithic, OMEGA uses
+multiple schedulers per cluster, each with a shared global view of the cluster state.
+
+Schedulers make task placement decisions according to their view of the cluster state and their scheduling policy.
+If 2 or more schedulers attempt to schedule a task to the the same worker (conflict), the worker first tries to 
+accommodate both tasks, if it cant, it rejects the least important one.
+
+One advantage of OMEGA vs YARN is that YARN resource attributions "lock" the resources to the corresponding framework, 
+which means that only one framework is examining a resource at a time, effectively holding a lock on that resource for the duration of a scheduling decision. Limitations from OMEGA are that, in case the grid becomes overloaded,
+resource allocations can potentially start interfering with each other, and scheduling policies are harder to ensure.
+
+ ## MON:
+
+Management Overlay Network (MON) is a distributed system aimed
+at facilitating the management of large distributed applications.
+MON builds on-demand overlay structures that allow users to execute
+instant management commands, such as query the current status of the 
+application, or push software updates to all the nodes. This means
+that MON does not have a cost when there are no commands running.
+
+The on-demand overlay construction allows the creation of two structures: 
+
+ * Tree: a MON client sends a Session message to a nearby MON server, the MON server
+    responds with SessionOK, become a child of the session and forward the message to other nodes.
+    If a node receives a Session message for the second time, it answers with a Prune message.
+
+  * DAG: modifying the above algorithm by adding assigning levels to nodes, where the root node is level 1
+    and the remaining nodes are 1 plus the level of their first parent. If a node receives a second SESSION,
+    it can accept the message sender as a secondary parent, which creates a DAG.
+
+The authors then employ the created overlays for aggregating monitoring data related to
+the status of the devices by scraping data from the monitoring probe located in each node and aggregating
+it up the hierarchy.
+
+One limitation from MON is that the resulting overlays are susceptible to topology mismatch and
+do not ensure connectivity. In addition, from the point of view of speeding up resource allocations towards
+resource sharing systems, it is preferable for nodes to continuously aggregate data instead of performing 
+on-demand aggregations.
+
+## THICKET
+
+Thicket is a protocol which aims at establishing and maintaining multiple broadcast trees over a single unstructured 
+overlay network. However, unlike other approaches, thicket tries to make the trees independent from each other, such
+that failures affect each tree as little as possible. 
+
+The tree construction is as follows: for each tree, the source node selects a subset of its peers, sends them a message
+and establishes an active connection with them, every non-source node that is not already interior in any tree forwards the 
+message to other peers and becomes an interior node. Nodes that are already interior in a tree stop the branching process and
+become a leaf in the tree.
+
+This however does not ensure that all nodes belong to all trees, to ensure this, Thicket applies a tree repair
+which relies on nodes periodically exchanging a SUMMARY message containing all identifiers of fresh messages received and the local forwarding load. If a node receives a SUMMARY message and detects that it has not received a message, it sets up a tree repair timer associated to that message. 
+
+Whenever the repair timer triggers and the corresponding message has not been received in the meanwhile,
+the node which detected the fault in the tree attempts to chose another node to replace the failed tree
+from the pool of nodes from which it received the SUMMARY message containing the missing message. 
+The selection is made based on the forwarding load of each node, where the selected node can reject being selected.
+
+Thicket effectively builds an overlay where almost 100% of nodes are interior in a single spanning tree, significantly 
+improving load balancing properties in tree-based multicast systems, as long as each tree is used to transmit similar amounts of data. Limitations of thicket are: (1)  assumes that source nodes and nodes that serve as root nodes never fail; (2) the load balancing properties of the overlay do not take into account device heterogeneity nor network congestion; (3) the number of connections is linear with respect with the number of trees (4) the trees may become unbalanced as a function of the underlying network.
+
+## FogTorch
+
+FogTorch is a service deployment framework aimed at determining eligible 
+deployments of an application over a given Fog infrastructure. The authors 
+model the fog infrastructure, IoT applications and eligible deployments considering
+IoT devices and QoS constraints.
+
+### System Model:
+
+The authors model the Fog infrastructure as follows:
+
+* Cloud Data Centers: Cloud DCs are denoted by their location and software capabilities it provides.
+* Fog Nodes: A fog node has is a tuple which contains the location, hardware and software capabilities and the things directly reachable from it
+* Things: A tuple denoting the thing location and its type
+* QoS profiles: A set of QoS profiles consists of a set of pairs composed by the latency and bandwidth of a communication link.
+* Applications: which are composed of independent sets of components,
+ each with a set of requirements regarding QoS profiles, hardware and software capabilities, and things.
+
+Then, authors model the notion of service deployments as restrictions over the aforementioned system model and
+employ a greedy heuristic which reduces the search space of devices that constitute options for service deployments.
+
+FogTorch originated FogTorchPI, which employs the same system model but instead of searching over all possible deployment combinations, it employs Monte Carlo simulations, and returns a set of eligible deployments along with their QoS-assurance, heuristic rank and resource consumptions. FogTorch provides a comprehensive system model which is able to model many different types of application requirements, however, a limitation from the proposed service deployment algorithms is that they require a global up-to-date global view of the system, which would heavily limit system scalability.
+
+## 
 
 ### Edge
 
