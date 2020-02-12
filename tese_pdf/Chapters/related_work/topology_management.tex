@@ -11,27 +11,46 @@ Participants in a P2P system may know all other peers in the system, which is ca
 
 In order to circumvent the aforementioned problems, peers only maintain a view of a subset of all peers in the system, which is called \textbf{partial membership}, which is maintained by some membership algorithm which restricts neighboring relations among peers. Partial membership solutions are attractive because they offer similar functionality to full membership systems, while achieving more scalability and resiliency to churn. 
 
-The accumulation of the aforementioned neighboring relations between peers is what materializes an \textbf{overlay network}.
+These neighboring relations may be unidirectional or bidirectional, and the combination of these relations is what materializes an \textbf{overlay network}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{Figures/overlay_networks.pdf}
+    \caption{Examples Overlay Networks}
+    \label{fig:overlay_networks}
+\end{figure}
+
 
 \subsection{Taxonomy of Overlay Networks}
 
-Overlays are commonly designed towards specific applicational needs, as such, their neighboring relations may or may not follow some form of logic. There are two categories of overlays, \textbf{structured} and \textbf{unstructured}:
+Overlays are commonly designed towards specific applicational needs, as such, their neighboring relations may or may not follow some sort of logic. As observable in figure \ref{fig:overlay_networks} There are two categories of overlays, \textbf{structured} and \textbf{unstructured}:
 
 \subsubsection*{Unstructured Overlays}
 
 Unstructured overlays usually impose little to no rules in neighboring relations, peers may pick random peers to be their neighbors, or alternatively employ strategies to "rank"\ neighbors and selectively pick the "best". A key factor of unstructured overlays is their low maintenance cost, given that nodes can easily create neighboring relations and replace failed ones, consequently, this is the type of overlay which offers better resilience to churn.
 
+In figure \ref{fig:overlay_networks} we may observe three examples of unstructured overlay networks: (A) is an overlay network where the connections are unidirectional, in this type of overlay peers have no control over the status of incoming connections, consequently, a peer may become isolated from the network without realizing it, which is undesirable.
+
+Overlay (B) is similar to (A), however, neighboring connections are bidirectional. This means that a peer with a given number of outgoing connections must also have the correspondent number of incoming connections, diminishing the risk of the peer becoming disconnected from the overlay (this is the approach taken by HyParView \cite{Hyparview} to achieve high reliability and fault-tolerance).
+
+Lastly, (C) is an unstructured overlay where nodes establish groups among themselves. Grouping multiple devices into a group can be useful because: (1) failures can be quickly identified and resolved by other members of the group; (2) nodes can replicate data within the group, raising availability of said data item; (3) for devices with low computing capabilities groups are useful because nodes have nearby neighbors to offload tasks.
+
+
 \subsubsection*{Structured Overlays}
 
-Structured overlays enforce stronger rules towards neighbor selection (generally based on identifiers of peers). As a result, the overlay generally converges to a topology known a priori (e.g. a circle, tree, hypercube, among others). For example, an application which requires efficient routing may require some form of routing infrastructure which can be transversed efficiently, or a structure to perform aggregation. 
+Structured overlays enforce stronger rules towards neighbor selection (generally based on identifiers of peers). As a result, the overlay generally converges to a a certain topology known a priori (e.g. a circle, tree, hypercube, among others). 
 
-The most popular example of a structured overlay is the distributed hash table (DHT) due to its effective applicational-level routing capabilities. In a DHT, peers employ a global coordination mechanism which restricts their neighboring relations such that can find  any peer \textit{responsible} for any given key in a small (usually bounded) number of steps, where the bound is commonly logarithmic.
+In figure \ref{fig:overlay_networks} we also observe three kinds of structured overlay networks: (A) corresponds to a tree, trees are widely used to perform broadcasts because of the smaller message complexity required to deliver a message to all nodes, or to monitor the system state (if nodes in lower levels of the tree periodically send monitoring information, in turn, the root of the node has a global view of the system monitoring information). However, trees are very fragile in the presence of faults \cite{leitao2007epidemic}.
 
-DHTs have been extensibly studied, and there has been a proliferation of DHT designs, such as Chord \cite{stoica2003chord}, Pastry \cite{rowstron2001pastry}, Kademlia \cite{maymounkov2002kademlia}, Tapestry \cite{tapestry}, among others.
+Overlay (B) corresponds to a Distributed Hash Table, these overlays are extremely popular due to their effective applicational-level routing capabilities. In a DHT, peers employ a global coordination mechanism which restricts their neighboring relations such that can find any peer \textit{responsible} for any given key in a small limited number of steps.
 
+In the case of overlay (B), the topology consists of a circle (which is the strategy employed by Chord \cite{stoica2003chord}), however, not all distributed hash tables rely on circles to perform effective routing. For example, in Kademlia \cite{maymounkov2002kademlia}, nodes are considered leave in a binary tree.
+
+Overlay (C) is similar to overlay (B), however each position of the DHT consists of a virtual node composed by multiple physical nodes. Because of this, routing procedures have the potential to be load-balanced, and churn effects are mitigated, because the failure of a physical node does necessarily mean the failure of a virtual node.
+ 
 \subsection{Overlay Network Metrics}
 
-If we look at an overlay network where connections between nodes represent edges and nodes represent vertices in a graph, we obtain a graph from which we may extract metrics to estimate overlay performance:
+If we look at an overlay network where connections between nodes represent edges and nodes represent vertices in a graph, we obtain a graph from which we may extract direct metrics to estimate overlay performance \cite{leitaoPHDthesis}:
 
 \begin{enumerate}
     
@@ -73,59 +92,77 @@ The rationale X-BOT is as follows: nodes maintain active and passive views simil
 
 X-BOT proposes to address the previous concerns about the overlay topology mismatching the underlying network, however, it still proposes a flat topology, which also mismatches the edge environment taxonomy. 
 
+\subsubsection*{Overnesia}
+
+\textbf{Overnesia} \cite{leitao2014overnesia} is a protocol which establishes an overlay composed of fully connected groups of nodes, where all nodes within a group share the same identifier. Nodes join the system by sending a JOIN request to a bootstrap node which triggers a random walk, the requesting node joins the group where random walk finishes (either because it finds an underpopulated group or because the TTL expires). 
+
+In order to promote intra-group membership consistency, nodes employ an anti-entropy mechanism where they periodically exchange messages containing their own view of the group. When a group detects that its size has become too large, it triggers a dividing procedure where splits the groups in two halves. Conversely, when the group size has fallen bellow a certain threshold, Overnesia triggers a collapse procedure, where each node takes the initiative to relocate itself to another group, resulting in the collapse of the group. Finally, nodes perform random walks along the overlay in order to establish inter-group links.
+
+As previously mentioned, establishing groups of nodes enables load-balancing, efficient dissemination of queries, and fault-tolerance. However, limitations from Overnesia arise from peers maintaining active connections to all members belonging to the same group, and keeping the group membership up-to-date, which may limit system scalability, finally, the overlay may suffer from topology mismatch, as two nodes within the same group may be distant in the underlay.
+
 \subsubsection* {Chord}
 
-\textbf{Chord} \cite{stoica2003chord} is a protocol which an overlay where nodes are structured in a circle. Chord assigns each node and key an m-bit identifier that is uniformly distributed in the id space (peers receive roughly the same number of keys). Then, peers are ordered by identifier in a clockwise circle, where any key \(k\) is assigned to the first peer whose identifier is equal or follows k in the identifier space. 
+\textbf{Chord} \cite{stoica2003chord} is a protocol which an overlay where nodes are structured in a circle, similar to overlay (E) in figure \ref{fig:overlay_networks}. Chord assigns each node and key an m-bit identifier that is uniformly distributed in the id space (peers receive roughly the same number of keys). Then, peers are ordered by identifier in a clockwise circle, where any key \(k\) is assigned to the first peer whose identifier is equal or follows k in the identifier space. 
 
 Chord implements a system of "shortcuts"\ called the \textbf{finger table}. The finger table contains at most \(m\) entries, each $ith$ entry of this table corresponds to the first peer that succeeds a certain peer \(n\) by \(2^{ith}\) in the circle. This means that whenever the finger table is up-to-date, and the system is stable, lookups for any key only take logarithmic time to finish. 
 
-Although Chord provides the best trade-off between bandwidth and lookup latency \cite{dht_performance_churn}, it has its limitations: peers do not learn routing information from incoming requests, links have no correlation to latency or traffic locality, and the overlay is highly susceptible to churn. Finally, the ring topology is flat, which means that lower capacity nodes in the ring may quickly become a bottleneck in in routing procedures.
-
-\subsubsection*{Kademlia}
-
-\textbf{Kademlia} \cite{maymounkov2002kademlia} is a DHT with provable consistency and performance in a fault-prone environment. Kademlia nodes are assigned 160-bit identifiers uniformly distributed in the ID space.
-
-Peers route queries and locate nodes by employing a novel \textbf{XOR-based distance} function which is symmetric and unidirectional. Each node in Kademlia is a router where its routing tables consist of shortcuts to peers whose XOR distance is between \(2^{i}\) by \(2^{i + 1}\) in the ID space. Similar to Pastry, "closer"\ nodes are those that share a longer common prefix.
-
-The main benefits that Kademlia draws from this approach are: nodes learn routing information from receiving messages, there is a single routing algorithm for the whole routing process (unlike Pastry) which eases formal analysis of worst-case behavior. Finally, Kademlia exploits the fact that node failures are inversely related to uptime by prioritizing nodes that are already present in the routing table.
-
-\subsubsection*{Pastry}
-
-\textbf{Pastry} \cite{rowstron2001pastry} is a DHT that assigns a 128-bit node identifier (nodeId) to each peer in the system. The nodes are randomly generated, and consequently are uniformly distributed in the 128-bit nodeId space. 
-
-The routing procedure is as follows: in each routing step, messages are forwarded to nodes whose nodeId shares a prefix that is at least one bit closer to the key. If there are no nodes available, Pastry routes messages towards the numerically closest nodeId. This routing technique accomplishes routing in O(log N), where N is the number of Pastry nodes in the system. Pastry has been widely used and tested in applications such as Scribe \cite{10.1007/3-540-45546-9_3} and PAST \cite{990064}. 
-
-Limitations from using Pastry arise from the use of a numeric distance function towards the end of the routing process, which creates discontinuities at some node ID values, and complicates attempts at formal analysis of worst case behavior, in addition to the flat topology which mismatches the edge device taxonomy.
-
-\subsubsection*{Tapestry}
-
-\textbf{Tapestry} \cite{tapestry} Is a DHT similar to pastry, however, nodeIDs are represented in a certain base b. Routing procedures in the overlay are similar to pastry, messages are incrementally forwarded to the destination digit by digit (e.g. ***8 -> **98 -> *598 -> 4598), consequently, routing procedures take logb(n) hops to their destination where b is the base of the ID space. 
-
-Because nodes assume that the preceding digits all match the current node's suffix, it only needs to keep a constant size of entries at each route level, consequently, nodes contain entries for a fixed-sized neighbor map of size b.log(N). 
-
-
-\subsubsection*{Kelips}
-
-\textbf{Kelips} \cite{gupta2003kelips} exploits increased memory usage and constant background communication to achieve O(1) lookup time and message complexity. 
-
-Kelips nodes are split in $k$ affinity groups split in the intervals [0,$k-1$] of the ID space, thus, with $n$ nodes in the system, each affinity group contains $\frac{n}{k}$ peers.  Each node stores a partial set of nodes contained in the same affinity group and a small set of nodes lying in foreign affinity groups.
-
-Kelips achieves O(1) time and message complexity in lookups at the cost of increased memory consumption (O($\sqrt{n}$), which limits system scalability  when compared to Pastry, Chord or Kademlia. 
-
+Although Chord provides the best trade-off between bandwidth and lookup latency \cite{dht_performance_churn}, it has its limitations: peers do not learn routing information from incoming requests, links have no correlation to latency or traffic locality, and the overlay is highly susceptible to churn. Finally, the ring topology is flat, which means that lower capacity nodes in the ring may become a limitation instead of an asset in the context of routing procedures.
 
 %Chord is the building block for many other solutions: Cyclone \cite{Artigas2005} is a hierarchical DHT inspired on Chord which constructs clusters by splitting the ID space into a PREFIX and SUFIX. The PREFIX provides intra-cluster identity, whereas the SUFIX lets nodes know their residence cluster.
 
-%Hieras \cite{1240580} uses a binning scheme according the underlay topology to group peers into smaller rings. The lower the ring, the smaller the average link latency. Routing is done in lower rings to make use of the reduced latency and if the resource is not
+%Hieras \cite{1240580} uses a binning scheme according the underlay topology to group peers into smaller rings. The lower the ring, the smaller the average link latency. Routing is done in lower rings to make use of the reduced latency and if the resource is not present in those rings, then the query is forwarded to higher rings.
 
 %Crescendo \cite{Ganesan2004} splits the ID range into domains (similar to DNS), where nodes in leaf-domains form Chord rings, then nodes merge rings by applying rules such that rings in different domains can communicate. The resulting routing table and the routing procedures in Crescendo are similar to Chord.
+
+\subsubsection*{Pastry}
+
+\textbf{Pastry} \cite{rowstron2001pastry} is a DHT which assigns a 128-bit node identifier (nodeId) to each peer in the system. The nodes are randomly generated, and consequently, are uniformly distributed in the 128-bit nodeId space. 
+
+The routing procedure is as follows: in each routing step, messages are forwarded to nodes whose nodeId shares a prefix that is at least one bit closer to the key, if there are no nodes available, Pastry routes messages towards the numerically closest nodeId. 
+
+This routing technique accomplishes routing in O(log N) steps, where N is the number of Pastry nodes in the system. Pastry has been widely used and acts as a building block for Pub-SUB applications such as Scribe \cite{10.1007/3-540-45546-9_3} and file storage systems like PAST \cite{990064}. 
+
+Limitations from using Pastry arise from the use of a numeric distance function towards the end of the routing process, which creates discontinuities at some node ID values, and complicates attempts at formal analysis of worst case behavior, in addition to the flat topology which mismatches the edge device taxonomy.
+
+\subsubsection*{Kademlia}
+
+\textbf{Kademlia} \cite{maymounkov2002kademlia} is a DHT where nodes are considered leaves in a binary tree. Kademlia nodes are assigned 160-bit identifiers uniformly distributed in the ID space.
+
+Peers route queries and locate nodes by employing a novel \textbf{XOR-based distance} function which is symmetric and unidirectional. Each node in Kademlia is a router where its routing tables consist of shortcuts to peers whose XOR distance is between \(2^{i}\) by \(2^{i + 1}\) in the ID space, given the use of the XOR metric, "closer"\ nodes are those that share a longer common prefix.
+
+The main benefits that Kademlia draws from this approach are: nodes learn routing information from receiving messages, there is a single routing algorithm for the whole routing process (unlike Pastry) which eases formal analysis of worst-case behavior. Finally, Kademlia exploits the fact that node failures are inversely related to uptime by prioritizing nodes that are already present in the routing table.
+
+\subsubsection*{Tapestry}
+
+\textbf{Tapestry} \cite{tapestry} Is a DHT similar to pastry, however, nodeIDs are represented in a certain base b. Routing procedures in the overlay are similar to pastry, messages are incrementally forwarded to the destination digit by digit (e.g. ***8 -> **98 -> *598 -> 4598), consequently, routing procedures take logb(n) hops to their destination where b is the base of the ID space. This architecture is similar to Pastry, however, in pastry, nodeIDs are always represented in base 2.
+
+Because nodes assume that the preceding digits all match the current node's suffix, it only needs to keep a constant size of entries at each route level, consequently, nodes contain entries for a fixed-sized neighbor map of size b.log(N).  
+
+\subsubsection*{Kelips}
+
+\textbf{Kelips} \cite{gupta2003kelips} is a group-based DHT which exploits increased memory usage and constant background communication to achieve O(1) lookup time and message complexity. 
+
+Kelips nodes are split in $k$ affinity groups split in the intervals [0,$k-1$] of the ID space, thus, with $n$ nodes in the system, each affinity group contains $\frac{n}{k}$ peers. Within a group, nodes store a partial set of nodes contained in the same affinity group and a small set of nodes lying in foreign affinity groups.
+
+With this architecture, Kelips achieves O(1) time and message complexity in lookups at the cost of increased memory consumption (O($\sqrt{n}$), however at the cost of scalability when compared to Pastry, Chord or Kademlia. 
+
+\subsubsection*{Rollerchain}
+
+\textbf{Rollerchain} \cite{rollerchain} is a protocol which establishes a group-based DHT by leveraging on techniques from both structured and unstructured  overlays (Chord and Overnesia). In short, group-based DHTs function in a similar manner as regular DHTs, however, each node in the DHT is materialized by a small group of peers,
+the size of which depends on a protocol parameter. 
+
+The protocol functions as follows: the Overnesia protocol materializes an unstructured overlay composed by logical
+groups of physical peers who share the same id. Then, the peer with the lowest identifier within each logical group
+joins the structured overlay and obtains links to other virtual peers, which are distributed a round-robin manner among group members such that each group member has a single connection to each group member of other virtual nodes.
+
+Replication in Rollerchain achieves better robustness to churn events when compared to other other replication strategies,
+however, there are limitations to this approach: (1) the load is unbalanced within members of each group, as only one node  is in charge of populating and balancing the inter-group links; (2) similar to Chord, nodes do not learn from incoming queries, which contrasts with other DHTs such as Pastry; (3) the protocol has a higher maintenance cost when compared to a regular DHT.
 
 \subsection{Discussion}
 
 Unstructured overlays are an attractive option towards federating large amounts of devices in heavily dynamic environments. They provide a low clustering coefficient, are flexible, and maintain good connectivity even in the face of churn. However, given their unstructured nature, they are limited in certain scenarios, for example, when trying to find a specific peer in the system.
 
-Conversely, distributed hash tables enable efficient routing procedures with very low message overhead, which makes them suitable for application-level routing. However, given their strict neighboring rules, participating nodes cannot replace neighbors easily, which hinders the fault-tolerance of these types of topologies.
-
-%We believe that structured overlays which promote a flat design are not suitable for edge environments, due to the fact that devices in those environments have varied computational power and connectivity, and consequently may become a limitation instead of an asset in the context of routing procedures. 
+Conversely, distributed hash tables enable efficient routing procedures with very low message overhead, which makes them suitable for application-level routing. However, given their strict neighboring rules, participating nodes cannot replace neighbors easily, which hinders the fault-tolerance of these types of topologies, in addition, given the fact that devices in edge environments have varied computational power and connectivity, they may become a limitation instead of an asset in the context of routing procedures. 
 
 %Hierarchical DHTS consisting of DHTS contained within other DHTS (e.g. a ring within a ring) offer several advantages over a flat DHT: first, lookups take less hops and messages to reach the target, second, organizing nodes in disjoint groups allows traffic locality if groups of nodes are close within the underlay, and churn events within a group stay contained within that group. 
 

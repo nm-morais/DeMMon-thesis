@@ -1,31 +1,28 @@
+In this section we will cover \textbf{resource monitoring}, which consists in tracking the state of a certain aspect of a system, such as the device status, the capacity of links between devices, the status of available resources in a given zone of the system, among others. 
 
-In this section we will cover \textbf{monitoring}, monitoring consists of tracking the state of a certain aspect of the system, either device state, the links between devices, the status of available resources in a given zone of the system, among others. 
+\subsection{Device Monitoring}
 
-\subsection{Device monitoring}
+A particularly hard problem in resource monitoring is fault detection, given the need to ensure each component is monitored by at least one non-faulty component, even in the face of joins, leaves and failures of both nodes and network infrastructure. Most fault-detectors rely on heartbeats, which consist in a peer sending a message periodically to another peer in order to signal that it is functioning correctly.
 
-Device monitoring consists in tracking the status of the device itself. One of the key aspects device monitoring is the issue of fault detection, which consists in detecting failures among devices in the system. This is particularly challenging in large-scale dynamic systems, given the need to ensure that each component is monitored by at least one non-faulty component. Even in the face of joins, leaves and failures of both nodes and network infrastructure. 
-
-\textcite{leitao2008large} proposes solving the aforementioned problems by employing Hyparview \cite{Hyparview} towards detecting failures in a large scale decentralized system. The effectiveness of the monitoring system relies on the fixed number of active connections, which ensures that each component has at least another non-faulty component monitoring it.
-
-Another key aspect in device monitoring is tracking the available resources in a device, according to the literature \cite{7013000}, information deemed important to obtain in a system-wide in order to gain insight into system and task performance consists of:
+\textcite{leitao2008large} proposes a decentralized device monitoring system by employing Hyparview \cite{Hyparview} as a decentralized monitoring fault detector, given the fixed number of active connections, which ensures overlay connectivity, each peer ensures has at least another non-faulty component monitoring it through the active TCP connection. In addition to tracking device health, it is paramount to collect metrics regarding the operation of the device, such as:
 
 \begin{enumerate}
 
-    \item Network related information: In the envisioned system, devices need to be interconnected across an underlying infrastructure which is continuously changing. This raises concerns about the network quality of links between devices across the system, especially if they are running time-critical services. Given this, it is paramount to track network related information such as congestion, latency and link status.
+    \item Network related information: devices need to be interconnected across an underlying infrastructure which is continuously changing. This raises concerns about the network quality of links between devices across the system, especially if they are running time-critical services. Given this, it is paramount to track network related information such as bandwidth, latency and link status.
     
-    \item Memory related information: either related to volatile memory or persistent memory, it is important to track how  much of it is currently free and how much memory is actively being used.
+    \item Memory related information: either related to volatile memory or persistent memory, it is important to track how much of it is currently free and how much memory is actively being used.
     
     \item CPU information: the utilization of the CPU (user, sys, idle, wait).
     
 \end{enumerate}
 
-\subsection{Resource Monitoring}
+\subsection{Container Monitoring}
 
-It is paramount to obtain insight about the tasks that are running atop the resource sharing platform. As previously mentioned, containers are the solution which incurs less overhead when it comes to sharing resources in the same node, given this, we now focus on studying tools which monitor the status of containers and the applications executing inside it. There are many container-specific tools which provide statistics about a given container.
+It is paramount to obtain insight about the tasks that are running atop the resource sharing platform. As previously mentioned, containers are the solution which incurs less overhead when it comes to sharing resources in the same node, given this, we now study tools which monitor the status of containers and the applications executing inside it. 
 
 \textit{Docker} \cite{docker} has a built tool called \textit{docker stats} \cite{docker_stats} which provides a live data stream of metrics related to running containers. It provides information about the network I/O, cpu and memory usage, among others. 
 
-\textit{Container Advisor} \cite{cAdvisor} (cAdvisor) is a service which analyzes and exposes resource usage and performance data from running containers. Simply put, cAdvisor consists of a daemon which collects, aggregates and exports information. The information it collects resource isolation parameters, historical resource usage and network statistics. cAdvisor includes native support for Docker containers and supports a wide variety of other container implementations.
+\textit{Container Advisor} \cite{cAdvisor} (cAdvisor) is a service which analyzes and exposes resource usage and performance data from running containers.  The information it collects consist of resource isolation parameters, historical resource usage and network statistics. cAdvisor includes native support for Docker containers and supports a wide variety of other container implementations.
 
 \textit{Agentless System Crawler}  (ASC) \cite{cloudviz_2019} is a monitoring tool with support for containers. It collects monitoring information from running containers including metrics, system state and configuration information. It provides the ability to build two types of plugins, function  plugins for on-the-fly data aggregation or analysis, and output plugins for target monitoring and analytics endpoints.
 
@@ -125,9 +122,7 @@ Astrolabe employs gossip, which provides an eventual consistency model: if updat
 
 Not all nodes gossip information, within each zone, a node is elected (the authors do not specify how) to perform gossip on behalf of that zone, additionally, nodes can represent nodes from other zones, in this case, nodes run one instance of the gossip protocol per represented zone. The number of represented zones is bounded by the number of levels in the Astrolabe tree.
 
-Astrolabe relies on clock time from the devices enforce an order among MIBs. Originally, it compared timestamps contained in MIBs to impose an order among them, however, as the system scaled, this approach is became unreliable. To circumvent this, Astrolabe agents store the last MIB from each agent that gossiped with them, and only compare the timestamps of MIBs which originated from the same representative.
-
-Given this, attribute updates may not be monotonic, this happens due to the fact that aggregations do not take into account the time where the leaf attribute was updated. 
+Astrolabe relies on clock time from the devices enforce an order among MIBs. Originally, it compared timestamps contained in MIBs to impose an order among them, however, as the system scaled, this approach is became unreliable. To circumvent this, Astrolabe agents store the last MIB from each agent that gossiped with them, and only compare the timestamps of MIBs which originated from the same representative. Given this, attribute updates may not be monotonic, due to the fact that aggregations do not take into account the time where the leaf attribute was updated. 
 
 A agents' zone is defined by the system administrator, which is a potential limitation towards scalability, given that configuration errors have the potential to heavily reduce system latency and traffic locality. Additionally, the original authors state that the size of gossip messages scales with the branching factor, often exceeding the maximum size of a UDP packet. Other limitations which arise from using Astrolabe are the high memory requirements per participant due to the high degree of replication, and zone representatives are a point of failure in each zone. 
 

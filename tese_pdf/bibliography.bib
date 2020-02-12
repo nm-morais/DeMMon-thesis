@@ -57,23 +57,6 @@ keywords = {Distributed cloud, architecture design, fog computing, edge computin
   year={2012}
 }
 
-@article{DBLP:journals/corr/abs-1805-06989,
-  author    = {Jo{\~{a}}o Leit{\~{a}}o and
-               Pedro {\'{A}}kos Costa and
-               Maria Cec{\'{\i}}lia Gomes and
-               Nuno M. Pregui{\c{c}}a},
-  title     = {Towards Enabling Novel Edge-Enabled Applications},
-  journal   = {CoRR},
-  volume    = {abs/1805.06989},
-  year      = {2018},
-  url       = {http://arxiv.org/abs/1805.06989},
-  archivePrefix = {arXiv},
-  eprint    = {1805.06989},
-  timestamp = {Mon, 13 Aug 2018 16:47:08 +0200},
-  biburl    = {https://dblp.org/rec/bib/journals/corr/abs-1805-06989},
-  bibsource = {dblp computer science bibliography, https://dblp.org}
-}
-
 @ARTICLE{7488250,
 author={W. {Shi} and J. {Cao} and Q. {Zhang} and Y. {Li} and L. {Xu}},
 journal={IEEE Internet of Things Journal},
@@ -937,3 +920,25 @@ title = {Policies for Efficient Data Replication in P2P Systems},
 isbn = {978-1-4799-2081-5},
 doi = {10.1109/ICPADS.2013.63}
 }
+
+@article{leitaoPHDthesis,
+abstract = {The peer-to-peer (P2P) paradigm has emerged as a viable alternative to overcome limitations of the client-server model namely, in terms of scalability, fault-tolerance, and even operational costs. This paradigm has gained significant popularity with its successful application in the context of file sharing applications. The success of these applications is illustrated by systems such as Napster, Emule, Gnutella, and recently, BitTorrent. In order to ensure the scalability of these solutions many P2P services operate on top of unstructured overlay networks, which are logical networks deployed at the application level. Unstructured overlay networks establish random neighboring associations among participants of the system. Although the random nature of these overlays is desirable by many P2P services, the resulting topology may present sub-optimal characteristics, for instance from the point of view of link latency. This may have a significative impact of the performance of P2P services executed over these overlays. This thesis focuses on the design and evaluation of techniques that manage the topology of unstructured overlay networks, to understand if and how it is possible to manage the topology of unstructured overlays in such a way that the random nature and low overhead that charac- terizes these overlays is not lost, while being able to impose some relaxed constraints over the topology to benefit the operation of specific P2P services. To answer this question, four different approaches to manage the topology of unstructured overlays are proposed and evaluated in the thesis. Each approach is evaluated in the context of a distinct P2P service that serves as a case study for measuring its benefits. In more detail, this thesis presents: i) CellFarm, a new overlay that combines properties of unstructured and structured overlays, to achieve a highly resilient topology composed of cliques of nodes, highly connected among themselves, that supports efficient replication for P2P systems; ii) X-BOT, a protocol to bias the topology of unstructured overlay networks given any criteria X; iii) Thicket, a protocol that efficiently embeds multiple interior-node-disjoint trees over a single unstructured overlay; and finally, iv) OpenFire, a protocol for balancing rumor mongering exchanges in networks populated by Firewalls and NAT-boxes.},
+file = {:Users/nunomorais/Documents/Developer/tese{\_}edge{\_}monitoring/related{\_}work/2012{\_}Unknown{\_}Topology Management for Unstructured Overlay Networks.pdf:pdf},
+journal = {Technical University of Lisbon},
+mendeley-groups = {Topology{\_}Management},
+title = {{Topology Management for Unstructured Overlay Networks.}},
+year = {2012}
+}
+
+@INPROCEEDINGS{rollerchain,
+author={J. {Paiva} and J. {Leitão} and L. {Rodrigues}},
+booktitle={2013 IEEE 12th International Symposium on Network Computing and Applications},
+title={Rollerchain: A DHT for Efficient Replication},
+year={2013},
+volume={},
+number={},
+pages={17-24},
+keywords={distributed processing;network theory (graphs);overlay networks;resource allocation;storage management;virtualisation;DHT;distributed hash table;data storage;gossip-based overlay networks;structured overlay networks;fully connected nodes;virtual node;structured component;data replication management;load balancing;rollerchain prototype;Peer-to-peer computing;Routing;Topology;Load management;Protocols;Maintenance engineering;Bandwidth;Peer to peer;Distributed hash tables;Unstructed overlays;Replication;Distributed systems},
+doi={10.1109/NCA.2013.29},
+ISSN={null},
+month={Aug},}

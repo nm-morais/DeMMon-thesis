@@ -203,17 +203,11 @@ SDIMS satisfies four properties: scalability, flexibility in API, administrative
 
 Each data entry is a tuple (attrType, attrName, value), and the system associates aggregation functions with attribute types, and for each level-i subtree in the system, the system defines an aggregate value for each (attrType, attrName).
 
-Makes simple modifications to Pastry routing tables to yield an Autonomous DHT w/ path locality and path convergence. Whenever two nodes in a domain share the same prefix with respect to a key and no node in the domain has a longer prefix, SDIMS introduces a virtual node at the boundary of the domain corresponding to that prefix plus the next digit of the key. This node is simulated by the existing  node whose id is numerically closest to the virtual node's id. (this is weird)
+Makes simple modifications to Pastry routing tables to yield an Autonomous DHT w/ path locality and path convergence. Whenever two nodes in a domain share the same prefix with respect to a key and no node in the domain has a longer prefix, SDIMS introduces a virtual node at the boundary of the domain corresponding to that prefix plus the next digit of the key. This node is simulated by the existing node whose id is numerically closest to the virtual node's id. (this is weird)
 
 Very strict aggregation rules, load is homogeneous among nodes, reconfigurations are expensive. Does not handle composite queries, because attributes are aggregated along different trees.
 
 Not very applicable to monitoring systems because in a monitoring system all nodes communicate all values, therefore, there will be a short amount of attributes in the system. However, it is interesting as a building block for a cloud system (or a platform which servers as support for edge nodes).
-
-
-
-
-
-
 
 ##############################################################################
 
@@ -282,6 +276,20 @@ The selection is made based on the forwarding load of each node, where the selec
 Thicket effectively builds an overlay where almost 100% of nodes are interior in a single spanning tree, significantly 
 improving load balancing properties in tree-based multicast systems, as long as each tree is used to transmit similar amounts of data. Limitations of thicket are: (1)  assumes that source nodes and nodes that serve as root nodes never fail; (2) the load balancing properties of the overlay do not take into account device heterogeneity nor network congestion; (3) the number of connections is linear with respect with the number of trees (4) the trees may become unbalanced as a function of the underlying network.
 
+## Rollerchain 
+
+Rollerchain is a protocol which establishes a group-based DHT by leveraging on techniques from both
+structured and unstructured  overlays (Chord and Overnesia). In short, group-based DHTs function in a
+similar manner as regular DHTs, however, each node in the DHT is materialized by a small group of peers,
+the size of which depends on a protocol parameter. 
+
+The protocol functions as follows: the Overnesia protocol materializes an unstructured overlay composed by logical
+groups of physical peers who share the same id. Then, the peer with the lowest identifier within each logical group
+joins the structured overlay and obtains links to other virtual peers, which are distributed a round-robin manner among group members such that each group member has a single connection to each group member of other virtual nodes.
+
+Replication in Rollerchain achieves better robustness to churn events when compared to other other replication strategies,
+however, there are limitations to this approach: (1) the load is unbalanced within members of each group, as only one node  is in charge of populating and balancing the inter-group links; (2) similar to Chord, nodes do not learn from incoming queries, which contrasts with other DHTs such as Pastry; (3) the protocol has a higher maintenance cost when compared to a regular DHT.
+
 ## FogTorch
 
 FogTorch is a service deployment framework aimed at determining eligible 
@@ -301,7 +309,10 @@ employ a greedy heuristic which reduces the search space of devices that constit
 
 FogTorch originated FogTorchPI, which employs the same system model but instead of searching over all possible deployment combinations, it employs Monte Carlo simulations, and returns a set of eligible deployments along with their QoS-assurance, heuristic rank and resource consumptions. FogTorch provides a comprehensive system model which is able to model many different types of application requirements, however, a limitation from the proposed service deployment algorithms is that they require a global up-to-date global view of the system, which would heavily limit system scalability.
 
-## 
+## Cyclon
+
+
+
 
 ### Edge
 
