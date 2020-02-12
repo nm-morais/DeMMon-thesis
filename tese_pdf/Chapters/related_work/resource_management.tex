@@ -80,6 +80,24 @@ ENORM authors test the designed system using an online game based on Pokemon GO 
 
 Limitations from this framework are similar to Mesos and Yarn, specifically lack of fault-tolerance and scalability, which arise from a centralized component monitoring and managing all the edge nodes at the same time. 
 
+\subsubsection*{FogTorch}
+
+FogTorch \cite{Brogi2017} is a service deployment framework aimed at determining eligible  deployments of an application over a given Fog infrastructure. The authors model the fog infrastructure, IoT applications and eligible deployments considering IoT devices and QoS constraints. The authors model the Fog infrastructure as follows:
+
+\begin{enumerate}
+    \item Cloud Data Centers: Cloud DCs are denoted by their location and software capabilities it provides.
+    \item Fog Nodes: A fog node has is a tuple which contains the location, hardware and software capabilities and the things directly reachable from it.
+    \item Things: A tuple denoting the thing (sensor or actuator) location and its type
+    \item QoS profiles: A set of QoS profiles consists of a set of pairs composed by the latency and bandwidth of a communication link.
+    \item Applications: which are composed of independent sets of components,
+    each with a set of requirements regarding QoS profiles, hardware and software capabilities, and things.
+\end{enumerate}
+
+
+Then, authors model the notion of service deployments as restrictions over the aforementioned system model and employ a greedy heuristic which reduces the search space of devices which constitute options for service deployments.
+
+FogTorch originated FogTorchPI \cite{brogi2017best}, which employs the same system model but instead of searching over all possible deployment combinations, it employs Monte Carlo simulations, and returns a set of eligible deployments along with their QoS-assurance, heuristic rank and resource consumptions. FogTorch provides a comprehensive system model which is able to model many different types of application requirements, however, a limitation from the proposed service deployment algorithms is that they require a global up-to-date global view of the system, which would heavily limit system scalability.
+
 \subsection{Discussion}
 
 Although resource management systems have been present for many years, these are often tailored towards small scale environments composed by high-capacity devices in stable environments, which contrast with the edge of the network, where devices are extremely numerous, decentralized, and heterogenous.
