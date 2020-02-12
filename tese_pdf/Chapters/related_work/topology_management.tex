@@ -74,6 +74,21 @@ If we look at an overlay network where connections between nodes represent edges
 
 Nodes periodically exchange their neighboring sets with peers in the system and keep the nodes which rank higher according to the ranking method. A limitation of T-Man is that it does not ensure stability of the in-degree of nodes during the optimization of the overlay, and consequently, the overlay may not remain connected. 
 
+\subsubsection*{MON}
+
+Management Overlay Network \cite{liang2005mon} (MON) is an overlay network system aimed at facilitating the management of large distributed applications.
+MON builds on-demand overlay structures that allow users to execute instant management commands, such as query the current status of the application, or push software updates to all the nodes. This means that MON does not have a cost when there are no commands running.
+
+The on-demand overlay construction allows the creation of two Overlay Networks: 
+
+\begin{enumerate}
+    \item Tree, a MON client sends a Session message to a nearby MON server, the MON server responds with SessionOK, become a child of the session and forward the message to other nodes. If a node receives a Session message for the second time, it answers with a Prune message, which removes the redundant link.
+    
+    \item Direct Acyclic Graph, modifying the above algorithm by adding assigning levels to nodes, where the root node is level 1 and the remaining nodes are 1 plus the level of their first parent. If a node receives a second SESSION, it can accept the message sender as a secondary parent, which creates a DAG
+\end{enumerate}
+
+The authors then employ the created overlays for aggregating monitoring data related to the status of the devices by scraping data from the monitoring probe located in each node and aggregating it up the hierarchy. Limitations from MON are that the resulting overlays are susceptible to topology mismatch, and do not ensure connectivity.
+
 \subsubsection*{Hyparview}
 
 \textit{Hyparview} \cite{Hyparview} (Hybrid Partial View) gets its name from maintaining two exclusive views: the \textit{active} and \textit{passive} view, which are distinguished by their maintenance strategy. 

@@ -57,7 +57,14 @@ AMs send resource requests to the RM, these contain the number of containers to 
 
 The resource request model effectively makes YARN RM a \textit{monolithic} scheduler, because the RM is in charge of processing and scheduling all task distributions for each request made by AMs. This contrasts with MESOS \cite{hindman2011mesos}, which delegates task scheduling for the frameworks. Given this, its limitations are similar to Mesos, given the centralized point of failure.
 
-%\subsubsection{Omega}
+\subsubsection*{Omega}
+
+Omega \cite{41684} is a scheduler designed for grid computing systems composed by schedulers and workers. Each scheduler receives large amounts of jobs composed by either one or many tasks that  have to be scheduled among workers. Contrary to YARN, which is monolithic, OMEGA uses multiple schedulers per cluster, each with a shared global view of the cluster state.
+
+Schedulers make task placement decisions according to their view of the cluster state and their scheduling policy. If 2 or more schedulers attempt to schedule a task to the the same worker (conflict), the worker first tries to 
+accommodate both tasks, if it cant, it rejects the least important one.
+
+One advantage of OMEGA vs YARN is that YARN resource attributions "lock" the resources to the corresponding framework,  which means that only one framework is examining a resource at a time, effectively holding a lock on that resource for the duration of a scheduling decision. Limitations from OMEGA are that, in case the grid becomes overloaded, resource allocations can potentially start interfering with each other, and scheduling policies are harder to ensure.
 
 \subsubsection{ENORM}
 
