@@ -1,9 +1,9 @@
 
-As previously mentioned, an important requirement of the system that we intend to develop is that devices should be able to be issued multiple tasks (e.g. services, monitoring tasks, among others), and that the issued tasks interfere as little as possible with other running tasks and the core behavior of the system.
+After studying the taxonomy of the edge environment, it is paramount to study how these devices can execute tasks (e.g. services, monitoring tasks, among others) in a controlled environment. A major requirement of these environments is that tasks interfere as little as possible with other running tasks as well as with the core behavior of the system.
 
-A popular approach towards solving the aforementioned challenges is perform tasks in loosely coupled independent components running some form of virtualization software, as it enables co-deployment tasks in the same physical node. The main benefits of employing virtualization include hardware independence, isolation, secure user environments, and increased scalability. 
+A popular approach towards solving the aforementioned challenges is to perform tasks in loosely coupled independent components running some form of virtualization software, as it enables co-deployment tasks in the same physical node. The main benefits of employing virtualization include hardware independence, isolation, secure user environments, and increased scalability. 
 
-The two most common types of virtualization used nowadays are containers and virtual machines (VMs), in this section present a brief description of both technologies, study their advantages and limitations towards edge environments.
+The two most common types of virtualization used nowadays are containers and virtual machines (VMs), in this section present a brief description of both technologies, and study their advantages and limitations towards edge environments.
 
 \subsection{Virtual Machines}
 
@@ -25,4 +25,4 @@ Consequently, given their lightweight nature, it is possible to deploy container
 
 Although VMs are widely present in the cloud infrastructure, they have significant start up time (due to having to start-up an OS) and the image sizes are larger when compared to containers, which hinders the ability to perform quick migrations across different devices. 
 
-The accumulation of these factors make VMs unsuited for devices with low capacity and availability, which are abundant in edge environments. Consequently, we believe containers the most appropriate solution when it comes to perform resource sharing in edge scenarios. 
+The accumulation of these factors make VMs unsuited for devices with low capacity and availability, which are abundant in edge environments, consequently, we believe containers are the most appropriate solution when it comes to performing resource sharing in edge scenarios. 

@@ -57,7 +57,7 @@ SOSP-Net \cite{garbacki2007optimizing}  (Self-Organizing Super-Peer Network) pro
 
 However, even with super-peers, one problem that still remains in these systems is finding very rare resources, which requires flooding the entire overlay. To circumvent this, the third generation of resource location systems rely on Distributed Hash Tables to ensure that even rare resources in the system can be found within a limited number of steps.
 
-\subsubsection{Resource Location on Distributed Hash Tables}
+\subsection{Resource Location on Distributed Hash Tables}
 
 Resource location on structured overlays is often done by relying on the applicational routing capabilities of distributed Hash Tables (DHTs). In a DHT, peers use hash functions to generate node IDs which are uniformly distributed over the id space. Then, by employing the same hash function to generate resource IDs and assigning a portion of the ID space to each node, peers are able to map resources to the responsible peers in a bounded number of steps, which makes them very suitable for (\textbf{exact match queries}) \cite{leitaoPHDthesis}. 
 
@@ -83,9 +83,7 @@ Data replication is paramount towards handling the churn effects, promoting load
 
 As previously mentioned, centralized resource location systems are unsuited for edge environments, given that devices have low computational power and storage capabilities, it is impossible for an edge device to index all the resources in a system.
 
-Unstructured resource location systems are attractive to perform queries that search for resources which are abundant in the system, however, this approach is inefficient when performing exact match queries, as a finding the exact resource in an unstructured resource location system requires flooding the entire system with messages.
-
-Conversely, structured resource location systems are especially tailored towards exact match queries, but are less robust to churn and subject to low-capacity nodes being a bottleneck in routing procedures. 
+Unstructured resource location systems are attractive to perform queries that search for resources which are abundant in the system, however, this approach is inefficient when performing exact match queries, as a finding the exact resource in an unstructured resource location system requires flooding the entire system with messages. Conversely, distributed hash tables are especially tailored towards exact match queries, but are less robust to churn and are subject to low-capacity nodes being a bottleneck in routing procedures. 
 
 %Hybrid approaches between  simultaneously ensure load balancing properties and address  problems related to churn and 
 

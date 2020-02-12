@@ -1,4 +1,5 @@
-In this section we will cover \textbf{resource monitoring}, which consists in tracking the state of a certain aspect of a system, such as the device status, the capacity of links between devices, the status of available resources in a given zone of the system, among others. 
+
+In this section we will cover \textbf{resource monitoring}, which is paramount for making effective management decisions regarding task allocations and managing the overlay network. Resource monitoring consists in tracking the state of a certain aspect of a system, such as the device status, the capacity of links between devices, the status of available resources in a given zone of the system, among others. 
 
 \subsection{Device Monitoring}
 
@@ -128,7 +129,7 @@ A agents' zone is defined by the system administrator, which is a potential limi
 
 \subsubsection{Ganglia}
 
-\textbf{Ganglia} is a scalable distributed monitoring system \cite{massie2004ganglia} for high performance computing systems, namely clusters and grids. In short, Ganglia groups nodes in clusters, in each cluster, there are representative cluster nodes which federate devices and aggregate internal cluster state. Then, representatives aggregate information in a tree of point-to-point connections.
+\textbf{Ganglia} \cite{massie2004ganglia} is a scalable distributed monitoring system for high performance computing systems, namely clusters and grids. In short, Ganglia groups nodes in clusters, in each cluster, there are representative cluster nodes which federate devices and aggregate internal cluster state. Then, representatives aggregate information in a tree of point-to-point connections.
 
 Ganglia relies on IP multicast to perform intra-cluster aggregation, it is mainly designed to monitor infrastructure monitoring data about machines in a high-performance computing cluster. Given this, its applicability is limited towards edge environments: (1) clusters are situated in stable environments, which contrasts with the edge environment; (2) it relies on IP multicast, which has been proven not to hold in a number of cases; (3) has no mechanism to prevent network congestion; (4) the project info page only claims scalability up to 2000 nodes.
 
