@@ -22,11 +22,13 @@ The goal of this chapter is to present the related work studied towards our obje
     \label{fig:proposed_architecture}
 \end{figure}
 
-Now that we have identified the high-level components of such a system, we study related work in these areas. First, we study the taxonomy of devices which compose the edge environment, and discuss how they can be employed towards the proposed solution (Section \ref{sec:edge_computing}). After understanding the environment taxonomy, we study how to federate devices and sub-networks in an efficient abstraction layer (Section \ref{sec:topology_management}).
+Now that we have identified the high-level components of such a system, in the following sections we cover the taxonomy of devices which compose the edge environment, and discuss how they can be employed towards the proposed solution (Section \ref{sec:edge_computing}). Next, we study execution environments for applications, namely virtual machines and containers, address their performance impact and discuss their strengths and limitations towards edge-enabled applications (Section \ref{sec:runtime_environments}). 
 
-Following, nodes must employ the aforementioned layers in order to efficiently find resources (e.g. other peers, services or even computing power) in the system, and to keep track of which tasks are running and where. For this, we cover different types of queries employed in resource location systems, how to disseminate them, and finally study related resource location systems in the  literature (Section \ref{sec:res_location}).
+After this, we study how to federate devices in an efficient abstraction layer (Section \ref{sec:topology_management}) which allows them to efficiently find nearby devices to cooperate, which is important given the fact that edge devices are typically resource constrained, and a computing task that would otherwise require a single cloud device, may require multiple edge devices to accomplish.
 
-Next, we study popular execution environments for applications and discuss which is more applicable towards edge environments (Section \ref{sec:runtime_environments}). After, we study related work towards monitoring the execution environments and how to effectively aggregate those metrics in a decentralized manner (Section \ref{sec:res_monitoring}).  Lastly, we study the taxonomy of resource sharing solutions and present popular systems in the literature (Section \ref{sec:res_management}). 
+Next, we address how peers can efficiently find the resources they need (e.g. services, peers, computing power, among others) in the aforementioned abstraction layer. We cover different types of querying techniques, how to disseminate them, and how to efficiently replicate resources to ensure load balancing and that failures in both devices and network equipment do not impair the behavior of the system (Section \ref{sec:res_location}).
+
+Following, we cover tools which collect metrics from the aforementioned execution environments, which is relevant towards performing efficient resource allocations. We study how to aggregate those metrics in a decentralized manner, and discuss related resource monitoring systems, for each, we discuss its limitations and advantages for the edge environment (Section \ref{sec:res_monitoring}). Lastly, we study the taxonomy of resource sharing solutions, and present popular systems in the literature (Section \ref{sec:res_management}). 
 
 \section{Edge Environment} \label{sec:edge_computing} \input{Chapters/related_work/edge_computing.tex}
 
@@ -42,9 +44,9 @@ Next, we study popular execution environments for applications and discuss which
 
 \section{Summary}
 
-In this section we studied related work towards devising a resource sharing platform for edge environments. We started by describing the edge environment and identifying which resources are present in these environments and classifying them in categories according to their capacity and availability. 
+In this chapter we studied related work towards devising a resource sharing platform for edge environments. We started by describing the edge environment and identifying which resources are present in these environments and classifying them in categories according to their capacity and availability. 
 
-After classifying the devices which compose the system, we studied related work related to building an overlay network such that these devices can cooperatively solve tasks. We covered overlay architectures and discussed their limitations towards edge environments. Next, we studied how to(e.g. other participants, computing resources, among others) by studying resource location systems.
+After classifying the devices which compose the system, we studied related work towards building an overlay network which enables cooperation among devices and interoperability. We covered overlay architectures and discussed their limitations towards edge environments. Next, we studied how to find resources (e.g. other participants, computing resources, among others) by studying how to query resources in the system, and how the aforementioned overlays can be employed to perform those queries.
 
 Following, we studied popular execution environments for edge-enabled applications and how to monitor said execution environments, after an enumeration of important metrics to collect in resource monitoring systems, we study how to efficiently aggregate them in order to track system-wide properties in a decentralized manner. Following, we covered popular resource monitoring systems, and discuss their limitations in edge environments. 
 
