@@ -3,11 +3,11 @@ In this section we provide context about edge-related paradigms, study the taxon
 
 \subsection{Edge Computing}
 
-As previously mentioned, edge computing calls for the processing of data in all the devices which act as an "Edge" along the path from the data center (DC) do the data source \cite{Leitao2018}. It has the potential of enabling novel edge-enabled applications along with optimizing existing systems \cite{7488250}:
+As previously mentioned, edge computing calls for the processing of data (and potentially storage) across all the devices which act as an "edge"\ along the path from the data center (DC) do the data source or client device \cite{Leitao2018}. It has the potential of enabling novel edge-enabled applications along with optimizing existing systems \cite{7488250} making them more responsive:
 
 \begin{itemize}
 
-    \item \textbf{Reducing the amount of traffic}, Edge Computing has the potential to reduce the amount of data exchanged between the Cloud and the Edge. For example, in the case of a smart home which computes the average home temperature in all divisions, almost all the data collected by the sensors can be aggregated (averaged) in a home gateway, effectively summarizing the data from a set of values to one single value, which is then sent to the Cloud pre-processed. Reducing the size of the data effectively improves transmission reliability and reduces infrastructure cost for both users and companies. 
+    \item \textbf{Reducing the amount of traffic}, Edge Computing has the potential to reduce the amount of data exchanged between the Edge and the Cloud. For example, in the case of a smart home which computes the average home temperature in all divisions, almost all the data collected by the sensors can be aggregated (averaged) in a home gateway, effectively summarizing the data from a set of values to a single value, which is then sent to the Cloud pre-processed. Reducing the size of the data effectively improves transmission reliability and reduces infrastructure cost for both users and application / cloud operators. 
     
     \item \textbf{Reducing Latency} is one of the most important benefits, especially towards time-critical applications (e.g. traffic monitoring) which have special latency needs. Latency consists in the time it takes for a packet to travel the network from the origin endpoint to the target endpoint. Edge computing proposes to improve this by, for example, transferring the computation to the edge node closest to the data requests.
 
@@ -65,7 +65,7 @@ Table \ref{tab:taxonomy_edge} shows the categories of edge devices, we assign le
 \textbf{Levels 0 and 1}, composed of \textit{cloud and edge DCs}, offer pools of computational and storage resources which can dynamically scale to support the operation of edge-enabled applications. Both of these options have high availability and large amounts of storage and computational power, as such, there is no limitations on the kinds of computations these devices can perform.
 
 \textbf{Levels 2 and 3} are composed of \textit{networking devices}, namely 
-\textit{5G cell towers} and \textit{routers, switches}, and \textit{access points}. 5G towers serve as access points for mobile devices, and have higher capacity when compared to routers or switches. Devices in both levels have high availability, and are can easily improve the management of the network, for example, by manipulating data flows.
+\textit{5G cell towers} and \textit{routers, switches}, and \textit{access points}. 5G towers serve as access points for mobile devices, and have higher capacity when compared to routers or switches. Devices in both levels have high availability, and are can easily improve the management of the network, for example, by manipulating data flows among different components of applications (executing in different devices).
 
 \textbf{Level 4} Consists of \textit{private servers} and \textit{desktops}, devices in this level have medium capacity and availability and can perform a varied amount of tasks on behalf of devices in higher levels (e.g. compute on behalf of smartphones, act as logical gateways or just cache data). 
 
@@ -77,6 +77,6 @@ Finally, \textbf{level 7} consists of \textit{actuators, sensors} and \textit{th
 
 \subsection{Discussion}
 
-Intuitively, the lower the level the harder it is to employ devices towards applications. Devices in levels 6 and 7 are especially restricted due to having lower availability and computational power, however, these can still be used in specific scenarios (e.g. an application with very low computational overhead but real-time latency requirements). 
+Intuitively, the lower the level the harder it is to employ edge devices to support the execution of edge-enabled applications. Devices in levels 6 and 7 are especially restricted due to having lower availability and computational power, however, these can still be used in specific scenarios (e.g. an application with very low computational overhead but real-time latency requirements). 
 
-Devices in levels 0-5 are potential candidates towards building the resource monitoring system we intend to create. The low availability and potential mobility of devices in higher levels make them unsuitable, as they could potentially be a source of instability in the system. This effect can be circumvented by employing devices in other levels as gateways for those devices.
+Devices in levels 0-5 are potential candidates towards building the resource management and monitoring system we intend to create. The low availability and potential mobility of devices in higher levels make them unsuitable, as they could potentially be a source of instability in the system. This effect can be circumvented by employing devices in other levels as gateways for those devices, hence starting to establish a hierarchy on the way different application components interact.
