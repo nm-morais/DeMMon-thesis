@@ -1,17 +1,17 @@
 \chapter{Related Work} 
 \label{cha:related_work}
 
-The goal of this chapter is to present the related work studied towards our objectives. We begin by identifying the 4 high-level requirements of resource sharing platforms, as observable in figure \ref{fig:proposed_architecture}:
+The goal of this chapter is to present the related work studied that is related with our objectives. We begin by identifying the four high-level requirements of resource sharing platforms, as denoted in figure \ref{fig:proposed_architecture}:
 
 \begin{enumerate}
 
-    \item \textit{Topology Management} consists in the study of how to organize multiple devices in a logical network such that they can cooperatively solve tasks. Efficiently managing the topology is an essential building block for the efficient functioning of the remaining components. 
+    \item \textit{Topology Management} consists in the study of how to organize multiple devices in a logical network such that they can cooperatively solve tasks. Efficiently managing the topology is an essential building block for achieving efficient operation of the remaining components. 
     
-    \item \textit{Resource Location and Discovery} focuses on how to efficiently locate resources throughout the aforementioned logical network. For example, in the context of resource sharing, resource discovery is paramount towards locating nearby devices which enough computing and networking capabilities to perform a certain task, or host a certain service.
+    \item \textit{Resource Location and Discovery} focuses on how to efficiently locate resources throughout the aforementioned logical network. For example, in the context of resource sharing, resource discovery is paramount towards locating nearby devices which have enough (free) computing and networking capabilities to perform a certain task, or host a certain application component or service.
     
-    \item \textit{Resource Monitoring} studies which metrics to track per device, and how to efficiently compress the size of those metrics through aggregation to reduce the size of the collected data.
+    \item \textit{Resource Monitoring} studies which metrics to track per device, and how to efficiently compress those metrics through aggregation to reduce the size of the collected data, as well as how to propagate that data towards the components that need it to operate.
 
-    \item \textit{Resource Scheduling} addresses how to efficiently schedule jobs among peers such that the system remains load-balanced, jobs have data locality and resources are not wasted.
+    \item \textit{Resource Scheduling} addresses how to efficiently schedule jobs across existing resources such that the system remains load-balanced and operations can operate efficiently, jobs have data locality and resources are not wasted. While the work conducted in this thesis is tailored toward supporting this goal, this this does not aim at devising a complete scheduling scheduler, as that is a complete research line on its own. However, for completeness, we also discuss this aspect here.
 
 \end{enumerate}
 
@@ -22,13 +22,13 @@ The goal of this chapter is to present the related work studied towards our obje
     \label{fig:proposed_architecture}
 \end{figure}
 
-Now that we have identified the high-level components of such a system, in the following sections we cover the taxonomy of devices which compose the edge environment, and discuss how they can be employed towards the proposed solution (Section \ref{sec:edge_computing}). Next, we study execution environments for applications, namely virtual machines and containers, address their performance impact and discuss their strengths and limitations towards edge-enabled applications (Section \ref{sec:runtime_environments}). 
+Considering the identified high-level components of such a system, in the following sections we cover the taxonomy of devices which compose the edge environment, and discuss how they can be employed towards the design of the proposed solution (Section \ref{sec:edge_computing}). Next, we study execution environments for applications, namely virtual machines and containers, discuss their performance impact and their strengths and limitations towards edge-enabled applications (Section \ref{sec:runtime_environments}). 
 
-After this, we study how to federate devices in an efficient abstraction layer (Section \ref{sec:topology_management}) which allows them to efficiently find nearby devices to cooperate, which is important given the fact that edge devices are typically resource constrained, and a computing task that would otherwise require a single cloud device, may require multiple edge devices to accomplish.
+After this, we study how to federate devices in an efficient abstraction layer (Section \ref{sec:topology_management}) which allows them to efficiently find nearby devices to delegate particular application components, which is important given the fact that edge devices are typically resource constrained, and a computing task that would otherwise require a single cloud device, may require multiple edge devices to be accomplished in an efficient way.
 
-Next, we address how peers can efficiently find the resources they need (e.g. services, peers, computing power, among others) in the aforementioned abstraction layer. We cover different types of querying techniques, how to disseminate them, and how to efficiently replicate resources to ensure load balancing and that failures in both devices and network equipment do not impair the behavior of the system (Section \ref{sec:res_location}).
+Next, we address how peers can efficiently find the resources they need (e.g. services, peers, computing power, among others) in the aforementioned abstraction layer. We cover different types of querying techniques, how to disseminate such queries in a distributed setting, and how to efficiently replicate resources to ensure load balancing and that failures in both devices and network lines do not impair the behavior of the system (Section \ref{sec:res_location}).
 
-Following, we cover tools which collect metrics from the aforementioned execution environments, which is relevant towards performing efficient resource allocations. We study how to aggregate those metrics in a decentralized manner, and discuss related resource monitoring systems, for each, we discuss its limitations and advantages for the edge environment (Section \ref{sec:res_monitoring}). Lastly, we study the taxonomy of resource sharing solutions, and present popular systems in the literature (Section \ref{sec:res_management}). 
+Following, we cover tools which collect metrics from the aforementioned execution environments, which are relevant towards performing efficient resource allocations. We study how to aggregate those metrics in a decentralized manner, and discuss related resource monitoring systems, for each, we address its limitations and advantages for the edge environment (Section \ref{sec:res_monitoring}). Lastly, we study the taxonomy of resource sharing solutions, and present popular systems in the literature that share aspects with the solution we aim at developing (Section \ref{sec:res_management}). 
 
 \section{Edge Environment} \label{sec:edge_computing} \input{Chapters/related_work/edge_computing.tex}
 
@@ -44,10 +44,6 @@ Following, we cover tools which collect metrics from the aforementioned executio
 
 \section{Summary}
 
-In this chapter we studied related work towards devising a resource sharing platform for edge environments. We started by describing the edge environment and identifying which resources are present in these environments and classifying them in categories according to their capacity and availability. 
+In this chapter we discussed relevant state of the art found in the literature towards devising a resource management and sharing platform for edge environments. We analyzed the devices which materialize these environments and studied execution environments that allow multiple applications to share resources within a single device, and concluded that containers are the more suitable execution environments for edge-enabled applications. Following, we addressed popular architectures and implementations of both structured and unstructured overlay networks, and analyzed techniques towards performing effective resource location and discovery in these overlays. Finally, we examined related work towards collecting metrics about the execution of devices and the aforementioned execution environments in a decentralized manner, and covered popular resource management systems which perform resource scheduling based on the collected metrics.
 
-After classifying the devices which compose the system, we studied related work towards building an overlay network which enables cooperation among devices and interoperability. We covered overlay architectures and discussed their limitations towards edge environments. Next, we studied how to find resources (e.g. other participants, computing resources, among others) by studying how to query resources in the system, and how the aforementioned overlays can be employed to perform those queries.
-
-Following, we studied popular execution environments for edge-enabled applications and how to monitor said execution environments, after an enumeration of important metrics to collect in resource monitoring systems, we study how to efficiently aggregate them in order to track system-wide properties in a decentralized manner. Following, we covered popular resource monitoring systems, and discuss their limitations in edge environments. 
-
-Finally, we briefly covered popular resource sharing systems, and conclude from the study of the literature that there is a lack of related work towards performing task scheduling in a decentralized, heterogenous environment. 
+In the next chapter we present the proposed solution that we named Edge DEMMON, which draws inspiration from the study of the state of the art to enable decentralized management and monitoring of resources in the edge of the network.

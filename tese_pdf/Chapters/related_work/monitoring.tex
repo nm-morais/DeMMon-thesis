@@ -3,23 +3,23 @@ In this section we will cover \textbf{resource monitoring}, which is paramount f
 
 \subsection{Device Monitoring}
 
-A particularly hard problem in resource monitoring is fault detection, given the need to ensure each component is monitored by at least one non-faulty component, even in the face of joins, leaves and failures of both nodes and network infrastructure. Most fault-detectors rely on heartbeats, which consist in a peer sending a message periodically to another peer in order to signal that it is functioning correctly.
+A particularly hard problem in resource monitoring is fault detection, given the need to ensure each component is monitored by at least one non-faulty component, even in the face of joins, leaves, and failures of both nodes and network infrastructure. Most fault-detectors rely on heartbeats, which consist in a peer sending a message periodically to another peer in order to signal that it is functioning correctly.
 
-\textcite{leitao2008large} proposes a decentralized device monitoring system by employing Hyparview \cite{Hyparview} as a decentralized monitoring fault detector, given the fixed number of active connections, which ensures overlay connectivity, each peer ensures has at least another non-faulty component monitoring it through the active TCP connection. In addition to tracking device health, it is paramount to collect metrics regarding the operation of the device, such as:
+\textcite{leitao2008large} proposes a decentralized device monitoring system by employing Hyparview \cite{Hyparview} as a decentralized monitoring fault detector, given the fixed number of active connections, which ensures overlay connectivity, each peer will have at least another non-faulty component monitoring it through the active TCP connection. In addition to tracking device health, it is paramount to collect metrics regarding the operation of the device, such as:
 
 \begin{enumerate}
 
-    \item Network related information: devices need to be interconnected across an underlying infrastructure which is continuously changing. This raises concerns about the network quality of links between devices across the system, especially if they are running time-critical services. Given this, it is paramount to track network related information such as bandwidth, latency and link status.
+    \item Network related information: devices need to be interconnected across an underlying infrastructure which is continuously changing. This raises concerns about the network link quality between devices across the system, especially if they are running time-critical services. Given this, it is paramount to track network related information such as bandwidth, latency and link status.
     
-    \item Memory related information: either related to volatile memory or persistent memory, it is important to track how much of it is currently free and how much memory is actively being used.
+    \item Memory related information: either related to volatile memory or persistent memory, it is important to track the amount of free and used memory.
     
-    \item CPU information: the utilization of the CPU (user, sys, idle, wait).
+    \item CPU information: the utilization of the CPU (e.g., user, sys, idle, wait).
     
 \end{enumerate}
 
 \subsection{Container Monitoring}
 
-It is paramount to obtain insight about the tasks that are running atop the resource sharing platform. As previously mentioned, containers are the solution which incurs less overhead when it comes to sharing resources in the same node, given this, we now study tools which monitor the status of containers and the applications executing inside them. 
+As previously mentioned, containers are the solution which incurs less overhead when it comes to sharing resources in the same node, given this, we now study tools which monitor the status of containers and the applications executing inside them. 
 
 \textit{Docker} \cite{docker} has a built tool called \textit{docker stats} \cite{docker_stats} which provides a live data stream of metrics related to running containers. It provides information about the network I/O, cpu and memory usage, among others. 
 
@@ -31,13 +31,13 @@ There are many other tools which offer the ability to continuously collect metri
 
 \subsection{Aggregation}
 
-Aggregation consists in the determination of important system wide properties in a decentralized manner \cite{DBLP:journals/corr/abs-1110-0725}, it is an essential building block towards monitoring distributed systems. For example, towards computing the average of available computing resources in a certain part of the network, or towards identifying application hotspots by aggregating the average resource usage in certain areas, among many other uses. There are two properties of aggregation functions: \textit{decomposability} and \textit{duplicate sensitiveness}.
+Aggregation consists in the determination of important system wide properties in a decentralized manner, it is an essential building block towards monitoring distributed systems \cite{8613952} \cite{DBLP:journals/corr/abs-1110-0725}. For example, towards computing the average of available computing resources in a certain part of the network, or towards identifying application hotspots by aggregating the average resource usage in certain areas, among many other uses. There are two properties of aggregation functions: \textit{decomposability} and \textit{duplicate sensitiveness}.
 
 \subsubsection*{Decomposability}
 
 For some aggregation functions, we may need to involve all elements in the multiset, however, for memory and bandwidth issues, it is impractical to perform a centralized computation, hence, the aim is to employ \textit{in-transit computation}. In order to enable this, it is required that the aggregation function is \textbf{decomposable}. 
 
-Intuitively, a decomposable aggregation function is one where a function may be composed defined as a composition of other functions. Decomposable functions may \textit{self-decomposable}, which intuitively means that the aggregated value is the same for all possible combinations of all sub-multisets partitioned in the multiset. This happens whenever the applied function is commutative and associative (e.g. min, max, sum, count). A canonical example of a decomposable function that is not self-decomposable is average, which consists in the sum of all pairs divided by the count of peers that contributed to the aggregation.
+Intuitively, a decomposable aggregation function is one where a function may be defined as a composition of other functions. Decomposable functions may \textit{self-decomposable}, which intuitively means that the aggregated value is the same for all possible combinations of all sub-multisets partitioned in the multiset. This happens whenever the applied function is commutative and associative (e.g. min, max, sum, count). A canonical example of a decomposable function that is not self-decomposable is average, which consists in the sum of all pairs divided by the count of peers that contributed to the aggregation.
 
 \subsubsection*{Duplicate sensitiveness}
 
@@ -61,7 +61,7 @@ This presents a limitation towards calculating exact aggregations in large scale
 
 \subsection{Aggregation techniques}
 
-Following, we provide context about the taxonomy of aggregation techniques:
+In the following subsection, we provide context about the taxonomy of aggregation techniques:
 
 \subsubsection*{Hierarchical aggregation}
 
@@ -75,11 +75,7 @@ Hierarchical approaches, due to taking advantage of device heterogeneity, are at
 
 \subsubsection*{Continuous aggregation}
 
-Continuous aggregation consists in the continuous computation and exchange of partial averages data among all active nodes in the aggregation process. This type of aggregation is attractive for gossip protocols, where nodes may employ varied gossip techniques to continuously share and update their values with random neighbors. Algorithms from this category are also attractive to use in edge environments, because they provide high accuracy while employing random unstructured overlays \cite{gossip_aggregation}, consequently, the aggregation process retains the fault-tolerance and resilience to churn from these overlays.
-
-\textbf{Sketches} are fixed-size data structures that hold a \textit{sketch} of all network values. Multiple sketches are usually forwarded throughout the system, and nodes who forward sketches apply (usually commutative and associative) operations to update and merge them.
-
-\textbf{Digests} are an aggregation technique which gathers a representation of all system values, it supports complex aggregation functions such as Median and Mode. In short, algorithms employ a fixed-size data structures commonly composed of a set of values and associated counters) which compacts the data distribution (e.g. into a histogram).
+Continuous aggregation consists in the continuous computation and exchange of partial averages data among all active nodes in the aggregation process  \cite{8613952}. This type of aggregation is attractive for gossip protocols, where nodes may employ varied gossip techniques to continuously share and update their values with random neighbors. Algorithms from this category are also attractive to use in edge environments, because they provide high accuracy while employing random unstructured overlays \cite{gossip_aggregation}, consequently, the aggregation process retains the fault-tolerance and resilience to churn from these overlays.
 
 %\textbf{Counting} algorithms target the same aggregation function: Count, algorithms from this class usually employ some randomized procedure to achieve a probabilistic approximation of the population size.
 
@@ -103,9 +99,7 @@ Continuous aggregation consists in the continuous computation and exchange of pa
 
 \subsection{Monitoring systems}
 
-Following, we study popular monitoring systems in the literature, for each system we analyze its advantages and drawbacks, followed by a discussion with the systems' applicability in an edge environment.
-
-\subsubsection{Astrolabe}
+We now discuss study popular monitoring systems in the literature, for each system we analyze its advantages and drawbacks, followed by a discussions with the systems' applicability to edge environments.
 
 \textbf{Astrolabe} \cite{Renesse2003} is a distributed information management platform which aims at monitoring the dynamically changing state of a collection of distributed resources. 
 
@@ -119,43 +113,35 @@ Astrolabe employs gossip, which provides an eventual consistency model: if updat
 
 Not all nodes gossip information, within each zone, a node is elected (the authors do not specify how) to perform gossip on behalf of that zone, additionally, nodes can represent nodes from other zones, in this case, nodes run one instance of the gossip protocol per represented zone. The number of represented zones is bounded by the number of levels in the Astrolabe tree.
 
-Astrolabe relies on clock time from the devices enforce an order among MIBs. Originally, it compared timestamps contained in MIBs to impose an order among them, however, as the system scaled, this approach is became unreliable. To circumvent this, Astrolabe agents store the last MIB from each agent that gossiped with them and only compare the timestamps of MIBs which originated from the same representative. Given this, attribute updates may not be monotonic, due to the fact that aggregations do not take into account the time where the leaf attribute was updated. 
+Astrolabe relies on clock time from the devices to enforce an order among MIBs. Originally, it compared timestamps contained in MIBs to impose an order among them, however, as the system scales, this approach becomes unreliable. To circumvent this, Astrolabe agents store the last MIB from each agent that gossiped with them and only compare the timestamps of MIBs which originated from the same representative. Given this, attribute updates may not be monotonic.
 
-An agents' zone is defined by the system administrator, which is a potential limitation towards scalability, given that configuration errors have the potential to heavily reduce system latency and traffic locality. Additionally, the original authors state that the size of gossip messages scales with the branching factor, often exceeding the maximum size of a UDP packet. Other limitations which arise from using Astrolabe are the high memory requirements per participant due to the high degree of replication and zone representatives are a point of failure in each zone. 
-
-\subsubsection{Ganglia}
+An agents' zone is defined by the system administrator, which is a potential limitation towards scalability, given that configuration errors have the potential to heavily reduce system latency and traffic locality. Additionally, the original authors state that the size of gossip messages scales with the branching factor, often exceeding the maximum size of a UDP packet. Other limitations which arise from using Astrolabe are the high memory requirements per participant due to the high degree of replication. Finally, zone representatives are potential single point of failure within each zone. 
 
 \textbf{Ganglia} \cite{massie2004ganglia} is a scalable distributed monitoring system for high performance computing systems, namely clusters and grids. In short, Ganglia groups nodes in clusters, in each cluster, there are representative cluster nodes which federate devices and aggregate internal cluster state. Then, representatives aggregate information in a tree of point-to-point connections.
 
-Ganglia relies on IP multicast to perform intra-cluster aggregation, it is mainly designed to monitor infrastructure monitoring data about machines in a high-performance computing cluster. Given this, its applicability is limited towards edge environments: (1) clusters are situated in stable environments, which contrasts with the edge environment; (2) it relies on IP multicast, which has been proven not to hold in a number of cases; (3) has no mechanism to prevent network congestion; (4) the project info page only claims scalability up to 2000 nodes.
+Ganglia relies on IP multicast to perform intra-cluster aggregation, it is mainly designed to monitor infrastructure monitoring data about machines in a high-performance computing cluster. Given this, its applicability is limited towards edge environments: (1) clusters are situated in stable environments, which contrasts with the edge environment; (2) it relies on IP multicast, which has been proven not to hold in a number of cases; (3) has no mechanism to prevent network congestion; finally, (4) the project info page only claims scalability up to 2000 nodes.
 
 \subsubsection{SDIMS}
 
-SDIMS \cite{SDIMS} (Scalable Distributed Information Management System) proposes a combination of techniques employed in Astrolabe \cite{Renesse2003} and distributed hash tables (in this case, Pastry \cite{rowstron2001pastry}).
+\textbf{SDIMS} \cite{SDIMS} (Scalable Distributed Information Management System) proposes a combination of techniques employed in Astrolabe \cite{Renesse2003} and distributed hash tables (in this case, Pastry \cite{rowstron2001pastry}).
 
-It is based on an abstraction which exposes the internal abstraction of aggregation trees provided by a DHT such as Pastry. Given a key $k$, an aggregation tree is defined by the the union of the routing paths from all nodes to key $k$, where each routing step along the path to $k$ corresponds to a level in the aggregation tree.
+It is based on an abstraction which exposes the aggregation trees provided by a DHT such as Pastry. Given a key $k$, an aggregation tree is defined by the the union of the routing paths from all nodes to key $k$, where each routing step along the path to $k$ corresponds to a level in the aggregation tree.
 
 Then, aggregation functions are associated an attribute type and name, and rooted at \textit{hash(attribute type, attribute name)}, which results in different attributes with the same function being aggregated along trees rooted in different parts of the DHT, which enables load-balancing.
 
 This achieves communication and memory efficiency when compared to gossip-based approaches, because MIBs have a lesser degree of replication, however, limitations which arise from employing SDIMS is that each node acts as an intermediate aggregation point for some attributes and as a leaf node for other attributes, which could potentially be a problem in the edge environment, given that low-capacity nodes may become overloaded if they are intermediate aggregation points in multiple aggregation trees. 
 
-\subsubsection{Prometheus}
-
 \textbf{Prometheus} \cite{prometheus} is an open-source monitoring and alerting toolkit originally built at SoundCloud. Prometheus works well for recording any purely numeric time series. It supports machine-centric monitoring as well as monitoring of highly dynamic service-oriented architectures. 
 
-Prometheus is especially useful towards querying and collecting multi-dimensional data collections, it offers a platform towards configuring alerts, which are triggered whenever a certain criteria is met. 
+Prometheus is especially useful for querying and collecting multi-dimensional data collections, it offers a platform towards configuring alerts, which are triggered whenever a certain criteria is met. 
 
 It allows federation, which consists in a prometheus server scraping selected time-series from another Prometheus server. Federation is split in two categories, \textit{hierarchical federation} and \textit{cross-service federation}. In \textit{hierarchical federation}, prometheus servers are organized into a topology which resembles a tree, where each server aggregates aggregated time series data from a larger number of subordinated servers. Alternatively,  \textit{cross-service federation} enables scraping selected data from another service's prometheus server to enable alerting and queries against both datasets within a single server. 
 
-Prometheus employs a variety of service discovery options for discovering and scraping targets. A key feature which improves its flexibility is the option to use file-based discovery, which enables the use of customized service discovery. This is achieved by programmers by providing a custom file with list of targets (and target metadata) which Prometheus will scrape.
-
 \subsection{Discussion}
 
-We believe there is a lack of monitoring systems targeted towards edge environments, in our study of the literature, we did not find many resources regarding monitoring large numbers of heterogenous nodes at a large scale. Most studied large scale information systems are targeted towards cloud environments, which as previously mentioned contrast immensely with the edge environment. These solutions often rely on techniques such as IP multicast \cite{massie2004ganglia} to perform efficiently.
+We believe there is a lack of monitoring systems targeted towards edge environments, in our study of the literature, we did not find many solutions tailored for large numbers of heterogenous nodes. Most studied large scale information systems are targeted towards cloud environments which, as previously mentioned, differs significantly from edge environments. These solutions often rely on techniques such as IP multicast \cite{massie2004ganglia} to perform efficiently.
 
-Furthermore, we argue that large-scale monitoring systems purely based on distributed hash tables \cite{SDIMS} are unsuitable for edge environments, as  devices are heavily constrained in memory and often are unreliable routers (which a DHT assumes all nodes can reliably do). Conversely, pure gossip systems such as Astrolabe \cite{Renesse2003} require heavy amounts of message exchanges to keep information up-to-date, and require manual configuration of the hierarchical tree. 
-
-
+Furthermore, we argue that large-scale monitoring systems purely based on distributed hash tables \cite{SDIMS} are unsuitable for edge environments, as  devices are heavily constrained in memory and often are unreliable routers (which a DHT assumes all nodes can reliably do). Conversely, pure gossip systems such as Astrolabe \cite{Renesse2003} require heavy amounts of message exchanges to keep information up-to-date, and require manual configuration of the hierarchical tree, which may also be undesirable. 
 
 %\subsection{End-to-end link monitoring}
 
