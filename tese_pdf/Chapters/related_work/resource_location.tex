@@ -41,11 +41,11 @@ When employing an unstructured overlay for resource location, the resources are 
 
 \subsubsection{Query Dissemination Techniques}
 
-There are two popular approaches for disseminating queries, \textbf{flooding} and \textbf{random walks}.
+There are two popular approaches for disseminating queries, \textbf{flooding} and \textbf{random walks} \cite{leitaoPHDthesis}.
 
 When \textbf{flooding}, peers eagerly forward queries to other peers in the system as soon as they receive them for the first time, the objective of flooding is to contact a certain number of distinct peers in the system that may have the queried resource. One approach is \textbf{complete flooding}, which consists in contacting every node in the system, this guarantees that if the resource exists, it will be found, however, complete flooding is not scalable and incurs significant message redundancy. 
 
-\textbf{Flooding with limited horizon} minimizes the message overhead by attaching a TTL to messages that limits the number of times a message can be retransmitted. However, there is a trade-off for efficiency: flooding with limited horizon does not guarantee that all resources will be found. There are many other dissemination techniques, often tailored towards specific application requirements. \todo{citações}
+\textbf{Flooding with limited horizon} minimizes the message overhead by attaching a TTL to messages that limits the number of times a message can be retransmitted. However, there is a trade-off for efficiency: flooding with limited horizon does not guarantee that all resources will be found. There are many other dissemination techniques, often tailored towards specific application requirements. 
 
 \textbf{Random Walks} are a dissemination strategy that attempts to minimize the communication overhead that is associated with flooding. Instead of flooding, a random walk consists of a message with a TTL that is randomly forwarded one peer at a time throughout the network. Random walks may also attempt to forward queries to neighbors which are more likely to have answers \cite{1022239}, this technique called a \textbf{random guided walk}. A common approach to bias random walks is to use bloom filters \cite{5751342}, which are space-efficient probabilistic data structures that allow to  create imprecise distributed indexes for resources.
 
