@@ -15,15 +15,15 @@ As previously mentioned, the challenge we propose to address is to create a larg
 
 As defined in Section~\ref{sec:edge_computing}, the edge environment is composed by devices classified in levels ranging from [0-7]. From this classification, we outline two major categories:  
 
-\textbf{Stable devices} consist of devices ranging from levels [0-5] in the taxonomy. We consider devices in these levels ``stable'' because they are usually connected across a wired medium (except in the case of laptops) which makes their connections more stable, and have enough computational capacity to perform monitoring and management tasks.
+\textbf{Stable devices} consist of devices ranging from levels [0-5] in the taxonomy. We consider devices in these levels ``stable'' because they are usually connected across a wired medium (except in the case of laptops) which makes their connections more stable, and have enough computational capacity to perform monitoring and management tasks. 
 
 \textbf{Unstable devices} are comprised by devices in levels 6 and 7. In the case of mobile devices (level 6), we consider them unstable due to their low computational power and the fact that their physical location may change rapidly, which may lead to topology mismatch. Furthermore, both devices in levels 6 and 7 are connected across a wireless medium which raises a large number of concerns which are outside the scope of this work.
 
-Following, we have the applications, in the context of this thesis, we will only consider the management of \textbf{edge-enabled applications} running on containers. We consider these as applications which are decomposable into independent components, these application components may be hosted in a single container, and function as a \textit{monolithic} application, or alternatively have components hosted by devices scattered throughout the system. 
+Following, we have the applications, in the context of this thesis, we will only consider the management of \textbf{edge-enabled applications} running on containers. We consider these as applications which are decomposable into  multiple independent applicational components, these applications may be hosted in a single container, and function as a \textit{monolithic} application, or alternatively have components hosted by containers scattered throughout the system.
 
-Consequently, we define a set of operations which are critical for this type of applications: \textit{offloading} and \textit{migrating}. Offloading consists in delegating the task of hosting an application subcomponent to another device, whereas migrating means transferring a component (or multiple components) of the application to another device in the system. T
+Consequently, we define a set of operations which are critical for this type of applications: \textit{offloading} and \textit{migrating}. Offloading consists in delegating the task of hosting an application subcomponent to another device, whereas migrating means transferring a component (or multiple components) of the application to another device in the system. These two operations enable load-balancing the application through offloading tasks, enable scaling up or down depending on the computational capabilities of the device, and allow applications to improve their latency by migrating or offloading application components to devices near the end-users. 
 
-These two operations enable load-balancing the application through offloading tasks, enable scaling up or down depending on the computational capabilities of the device, and allow applications to improve their latency by migrating or offloading application components to devices near the end-users. 
+During the execution of our solution, we assume that there is at most 1 simultaneous unexpected failure across the data centers belonging to the system,in addition, we assume that paths between any two nodes in the system have the same chance of failure regardless of the administrative domains they belong to.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Proposed Solution}
@@ -40,27 +40,72 @@ As previously mentioned, the challenge we propose to address is to create a larg
 
 In the Figure \ref{fig:proposed_architecture_detailed}, we find the proposed architecture of the solution we intend to design, which is composed of four co-dependent mechanisms exercised by every participant of the system.
 
-At the bottom we have topology management, whose responsibilities consist of: (1) ensuring that devices belonging to the overlay remain connected at all times; (2) materializing a hierarchical topology inspired on the capabilities of devices composing the system; (3) assure that devices have at least one non-faulty device connected to it. This mechanism enables the correct behavior of the remaining components.
+At the bottom we have \textbf{topology management}, whose responsibilities consist of: (1) ensuring that devices belonging to the overlay remain connected at all times; (2) materializing a hierarchical topology inspired on the capabilities of devices composing the system; (3) assure that devices have at least one non-faulty device connected to it; (4) detect failures of the participating nodes. This mechanism, inspired in works such as Astrolabe \cite{Renesse2003} enables the correct behavior of the remaining components.
 
-Following, we have resource monitoring, the objectives of this mechanism consist in collecting metrics regarding the tasks running and the free resources in nearby devices, in addition to detecting if an application hosted on certain device is not performing according to the established performance criteria, and emit alerts which in turn may trigger either an application migration, or the offload of a certain task.
+Following, we have \textbf{resource monitoring}, the objectives of this mechanism consist of: (1) collecting metrics about the containers hosting the applicational components; (2) aggregating the collected data in a decentralized manner (3) deciding whether an application component hosted on certain device is not performing according to the established performance criteria. (4) alert the resource management mechanism about failures in the containers and components performing sub-optimally.
 
-Next, we have resource location and discovery, this mechanism offers search strategies such that nodes can cooperatively find available resources in the system so that a node hosting a certain application has available targets to offload tasks to.
+The \textbf{resource management} mechanism handles the alerts emitted by the resource monitoring mechanism, and (depending on the alert) immediately relocates application components to ensure they remain functional. As previously mentioned, scheduling optimal deployment configurations for application components is out of the scope of our work, given that it is an entire research topic on its own. With this in mind, our architecture will be tailored to accommodate an additional mechanism (resource scheduling), materialized in the form of an edge-enabled application composed by multiple components, that will employ decentralized scheduling algorithms to determine the aforementioned optimal deployments.
 
-Finally, we have resource management, which consists in a mechanism which handles the alerts emitted, and performs migration or offloading decisions based on the information reported by the alerts.
+To enable this, the resource management mechanism will provide two operations: a subscription mechanism which enables the resource scheduling mechanism to be notified whenever an application component changes its location due to the alerts or failures, and a mechanism for querying available resources and issuing deployment configurations. 
+
+Lastly, we have the \textbf{resource location and discovery} mechanism, this mechanism will offer multiple search strategies which in turn will be employed by the resource management layer to replace failed components, or to satisfy queries arising from the resource scheduling mechanism.
 
 \section{Evaluation}  
 
 In order to evaluate our work, we will employ a real-world scenario composed by devices ranging across the different levels of capacity and availability. The devices composing the test scenario consist of: devices in Cloud Environments (e.g. AWS or azure), devices in the Grid5000 cluster and around 20 Raspberry Pis.
 
-In order to evaluate the implemented solution, and the advantages and disadvantages of the decentralized hierarchical model, we intend to develop two variants of monitoring systems. The first and most popular approach consists of a centralized controller tracking the state of devices and applications running on them. The second approach consists of a flat decentralized model, in this model, peers are not organized into a hierarchy and simply exchange monitoring information with other peers in the system. These simple solutions will serve as a baseline for our own solution.
+In order to evaluate the implemented solution, and the advantages and disadvantages of the decentralized hierarchical model, we intend to develop two simple solutions which are representative of common architectures of monitoring systems. The first and most popular approach in consists of a centralized controller tracking and managing the state of devices and components running on them, while the second approach consists of a flat decentralized model where peers are not organized into a hierarchical topology, which means that all nodes in the system handle similar amounts of monitoring information. These simple solutions will serve as a baseline for our solution.
 
-We define a set of system and applicational-related metrics in order to compare the aforementioned implementations. The \textbf{system metrics} consist of the usage of system resources such as cpu, memory and bandwidth in each node of the system, followed by the number of required messages to maintain the overlay.
+In order to compare topologies, we define a set of system and applicational-related metrics. \textbf{System metrics} consist of the usage of system resources such as cpu, memory and bandwidth in each node of the system, followed by the number of required control messages to maintain the overlay.
 
-\textbf{Application metrics} consist in metrics related to the monitoring infrastructure running atop the overlay. The first metric to consider is cost, which consists in the relation between the number of messages sent and the value of the information. Following, we have information freshness, which consists in the timeliness of the information each node has of the system. Finally, we have information precision, which represents the difference between the obtained monitoring data and the real status of the device / applications running on it.  
+\textbf{Application metrics} consist in metrics related to the monitoring infrastructure running atop the overlay. The first metric to consider is \textit{cost}, which consists in the relation between the number of messages sent and the value of the information, following, we have \textit{information freshness}, which consists in the timeliness of the information each node has of the system, and finally, \textit{information precision}, which represents the difference between the obtained monitoring data and the real status of the device / applications running on it.  
 
 \section{Scheduling}
 
-In this section we outline the identified tasks and present the work plan in order to accomplish the established objectives. We identify four main tasks: first task is to devise, implement and validate the hierarchical overlay network. Following, the second task consists of implementing and validating the decentralized monitoring system. The third task is to perform the experimental evaluation of the system, and finally, the final task consists in writing the thesis document.
+In this section we outline the identified tasks and the proposed work plan for the remaining of this thesis. 
+
+\begin{enumerate}
+    \item Topology Management
+    
+    \begin{enumerate}
+        \item Devising the overlay algorithm which establishes the hierarchical topology
+        \item Implementation and validation of the algorithm
+    \end{enumerate}
+    
+    \item Resource Monitoring
+    
+    \begin{enumerate}
+        \item Defining the metrics to collect and devising a monitoring probe which extracts these metrics from deployed components.
+        \item Devising an aggregation protocol for these metrics based on the overlay structure.
+        \item Creating or adapting an alerting solution which analyzes the aggregation results, detects anomalies on running components (e.g., sub-optimal performance) and emits alerts.
+    \end{enumerate}
+    
+    \item Resource Location and Discovery
+    
+    \begin{enumerate}
+        
+    \end{enumerate}
+    
+    \item Resource Management
+    
+    \begin{enumerate}
+        \item 
+    \end{enumerate}
+
+    \item Evaluating the proposed system
+    
+    \begin{enumerate}
+        \item Develop baseline systems
+        \item Perform 
+    \end{enumerate}
+
+    \item Writing thesis document
+    
+    
+
+\end{enumerate}
+
+
 
 \begin{enumerate}
     \item Topology management mechanism

@@ -47,6 +47,10 @@ The second property of aggregation is \textbf{duplicate sensitiveness}, and it i
     \label{table:aggregation_functions}
 \end{table}
 
+%Building on the concepts of duplicate sensitiveness and decomposability, we show that aggregation functions present their own particularities which dictate their applicability in particular scenarios. For example, a Min or Max function may be easier to implement with a simpler algorithm, while Sum, Count and Average require extra considerations. 
+
+%This presents a limitation towards calculating exact aggregations in large scale systems, to circumvent this, some systems do not require obtaining exact aggregated values to perform near optimally (e.g. estimating the system size in order to select the optimal fanout for a gossip system only requires an estimation of the magnitude of the system). 
+
 \subsection{Aggregation techniques}
 
 In the following subsection, we provide context about the taxonomy of aggregation techniques:
@@ -64,6 +68,10 @@ Hierarchical approaches, due to taking advantage of device heterogeneity, are at
 \subsubsection*{Continuous aggregation}
 
 Continuous aggregation consists in the continuous computation and exchange of partial averages data among all active nodes in the aggregation process  \cite{8613952}. This type of aggregation is attractive for gossip protocols, where nodes may employ varied gossip techniques to continuously share and update their values with random neighbors. Algorithms from this category are also attractive to use in edge environments, because they provide high accuracy while employing random unstructured overlays \cite{gossip_aggregation}, consequently, the aggregation process retains the fault-tolerance and resilience to churn from these overlays.
+
+%\textbf{Sketches} are fixed-size data structures that hold a \textit{sketch} of all network values. Multiple sketches are usually forwarded throughout the system, and nodes who forward sketches apply (usually commutative and associative) operations to update and merge them.
+
+%\textbf{Digests} are an aggregation technique which gathers a representation of all system values, it supports complex aggregation functions such as Median and Mode. In short, algorithms employ a fixed-size data structures commonly composed of a set of values and associated counters) which compacts the data distribution (e.g. into a histogram).
 
 %\textbf{Counting} algorithms target the same aggregation function: Count, algorithms from this class usually employ some randomized procedure to achieve a probabilistic approximation of the population size.
 
