@@ -19,11 +19,11 @@ As defined in Section~\ref{sec:edge_computing}, the edge environment is composed
 
 \textbf{Unstable devices} are comprised by devices in levels 6 and 7. In the case of mobile devices (level 6), we consider them unstable due to their low computational power and the fact that their physical location may change rapidly, which may lead to topology mismatch. Furthermore, both devices in levels 6 and 7 are connected across a wireless medium which raises a large number of concerns which are outside the scope of this work.
 
-Following, we have the applications, in the context of this thesis, we will only consider the management of \textbf{edge-enabled applications} running on containers. We consider these as applications which are decomposable into  multiple independent applicational components, these applications may be hosted in a single container, and function as a \textit{monolithic} application, or alternatively have components hosted by containers scattered throughout the system.
+Following, we have the applications, in the context of this thesis, we will only consider the management of \textbf{edge-enabled applications} running on containers. We consider these as applications which are decomposable into  multiple independent components, these applications may be hosted in a single container, and function as a \textit{monolithic} application, or alternatively have components hosted by containers scattered throughout the system.
 
 Consequently, we define a set of operations which are critical for this type of applications: \textit{offloading} and \textit{migrating}. Offloading consists in delegating the task of hosting an application subcomponent to another device, whereas migrating means transferring a component (or multiple components) of the application to another device in the system. These two operations enable load-balancing the application through offloading tasks, enable scaling up or down depending on the computational capabilities of the device, and allow applications to improve their latency by migrating or offloading application components to devices near the end-users. 
 
-During the execution of our solution, we assume that there is at most 1 simultaneous unexpected failure across the data centers belonging to the system,in addition, we assume that paths between any two nodes in the system have the same chance of failure regardless of the administrative domains they belong to.
+During the execution of our solution, we assume that there is at most 1 simultaneous unexpected failure across the data centers belonging to the system, in addition, we assume that paths between any two nodes in the system have the same chance of failure regardless of the administrative domains they belong to.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Proposed Solution}
@@ -75,17 +75,17 @@ In this section we outline the identified tasks and the proposed work plan for t
     \item Resource Monitoring
     
     \begin{enumerate}
-        \item Defining the metrics to collect and devising a monitoring probe which extracts these metrics from deployed components.
-        \item Devising an aggregation protocol for these metrics based on the overlay structure.
-        \item Creating or adapting an alerting solution which analyzes the aggregation results, detects anomalies on running components (e.g., sub-optimal performance) and emits alerts.
-        \item Validate the resource monitoring mechanism
+        \item Define the metrics to collect and devise or adapt a monitoring probe which extracts these metrics from deployed components.
+        \item Implement an adapting aggregation technique for these metrics based on the overlay structure.
+        \item Create or adapt an alerting solution which analyzes the aggregation results, detects anomalies on running components (e.g., sub-optimal performance) and emits alerts.
+        \item Validate the resource monitoring mechanism.
     \end{enumerate}
     
     \item Resource Location and Discovery
     
     \begin{enumerate}
-        \item Implementing search algorithms which serve as tools for finding certain resources in the system
-        \item Validating the implemented search solutions
+        \item Implement search algorithms which serve as tools for finding certain resources in the system
+        \item Validate the implemented search solutions
     \end{enumerate}
     
     \item Resource Management
