@@ -11,14 +11,6 @@ Participants in a P2P system may know all other peers in the system, which is ty
 
 In order to circumvent the aforementioned problems, a common alternative is to have peers only maintain a view of a subset of all peers in the system, which is called \textbf{partial membership}. This information is maintained by some membership algorithm which restricts neighboring relations among peers. Partial membership solutions are attractive because they offer similar functionality to full membership systems, while achieving more scalability and resiliency to churn. Neighboring relations may be unidirectional or bidirectional, and the combination of these relations is what materializes an \textbf{overlay network}.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=\linewidth]{Figures/overlay_networks.pdf}
-    \caption{Examples Overlay Networks}
-    \label{fig:overlay_networks}
-\end{figure}
-
-
 \subsection{Taxonomy of Overlay Networks}
 
 Overlay networks are logical networks which operate at the applicational level, these rely on an existing network (commonly referred to as the \textit{underlay}) to establish neighboring relations, where each participant tipically only communicates directly with its overlay neighbors \cite{leitaoPHDthesis}. 
@@ -28,6 +20,14 @@ Overlays are commonly designed towards specific applicational needs, as such, th
 \subsubsection*{Unstructured Overlays}
 
 Unstructured overlays usually impose little to no rules in neighboring relations, peers may pick random peers to be their neighbors, or alternatively employ strategies to "rank"\ neighbors and selectively pick the "best" given a particular criteria that is typically entwined with the needs of applications. A key factor of unstructured overlays is their low maintenance cost, given that nodes can easily create neighboring relations and replace failed ones, consequently, this is the type of overlay which offers better resilience to churn.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{Figures/overlay_networks.pdf}
+    \caption{Examples Overlay Networks}
+    \label{fig:overlay_networks}
+\end{figure}
+
 
 In figure \ref{fig:overlay_networks} we ilustrate three examples of unstructured overlay networks: (A) is a representation of an overlay network where the connections are unidirectional (e.g. Cyclon \cite{jelasity2007gossip}), in this type of overlay peers have no control over the status of incoming connections, consequently, a peer may become isolated from the network without realizing it, which is undesirable. 
 
@@ -74,13 +74,7 @@ Nodes periodically exchange their neighboring sets with peers in the system and 
 \textbf{Management Overlay Network} \cite{liang2005mon} (MON) is an overlay network system aimed at facilitating the management of large distributed applications.
 MON builds on-demand overlay structures that allow users to execute instant management commands, such as query the current status of the application, or push software updates to all the nodes. This means that MON does not have a cost when there are no commands running.
 
-The on-demand overlay construction allows the creation of two Overlay Networks: 
-
-\begin{enumerate}
-    \item Tree, a MON client sends a Session message to a nearby MON server, the MON server responds with SessionOK, become a child of the session and forward the message to other nodes. If a node receives a Session message for the second time, it answers with a Prune message, which removes the redundant link.
-    
-    \item Direct Acyclic Graph, modifying the above algorithm by adding assigning levels to nodes, where the root node is level 1 and the remaining nodes are 1 plus the level of their first parent. If a node receives a second SESSION, it can accept the message sender as a secondary parent, which creates a DAG.
-\end{enumerate}
+The on-demand overlay construction allows the creation of two Overlay Networks: (1)~Tree, a MON client sends a Session message to a nearby MON server, the MON server responds with SessionOK, become a child of the session and forward the message to other nodes. If a node receives a Session message for the second time, it answers with a Prune message, which removes the redundant link. (2)~Direct~Acyclic~Graph, modifying the above algorithm by adding assigning levels to nodes, where the root node is level 1 and the remaining nodes are 1 plus the level of their first parent. If a node receives a second SESSION, it can accept the message sender as a secondary parent, which creates a DAG. 
 
 The authors then employ the created overlays for aggregating monitoring data related to the status of the devices by scraping data from the monitoring probe located in each node and aggregating it up the hierarchy. Limitations from MON are that the resulting overlays are susceptible to topology mismatch, and do not ensure connectivity. Furthermore, since the topologies are supposed to be short-lived, MON does not provide mechanisms for dealing with faults.
 
@@ -94,9 +88,7 @@ Hyparview is often used as a \textit{peer sampling service} for other protocols 
 
 Neighboring connections are attributed a metric according to an \textit{oracle}, which consists in a component which exports a function that takes a pair of peers in the system and attributes a cost to that neighboring connection. An oracle may take into account device latency, ISP distribution, network stretch, among others. 
 
-The rationale X-BOT is as follows: nodes maintain active and passive views similar to Hyparview \cite{Hyparview}. Then, nodes periodically trigger optimization rounds where they attempt to acquire neighbors which rank higher according to the oracle.
-
-X-BOT proposes to address the previous concerns about the overlay topology mismatching the underlying network, however, it still proposes a flat topology, which also is not adequate for the edge environment taxonomy. 
+The rationale X-BOT is as follows: nodes maintain active and passive views similar to Hyparview \cite{Hyparview}. Then, nodes periodically trigger optimization rounds where they attempt to acquire neighbors which rank higher according to the oracle. This addresses the previous concerns about the overlay topology mismatching the underlying network, however, it still proposes a flat topology, which also is not adequate for the edge environment taxonomy. 
 
 \textbf{Overnesia} \cite{leitao2014overnesia} is a protocol which establishes an overlay composed of fully connected groups of nodes, where all nodes within a group share the same identifier. Nodes join the system by sending a JOIN request to a bootstrap node which triggers a random walk, the requesting node joins the group where its random walk terminates (either because it finds an underpopulated group or because the TTL expires). 
 
@@ -104,7 +96,7 @@ In order to promote intra-group membership consistency, nodes employ an anti-ent
 
 As previously mentioned, establishing groups of nodes enables load-balancing, efficient dissemination of queries, and fault-tolerance. However, limitations from Overnesia arise from peers maintaining active connections to all members belonging to the same group, and keeping the group membership up-to-date, which may limit system scalability, finally, the overlay may suffer from topology mismatch, as two nodes within the same group may be distant in the underlay.
 
-\textbf{Chord} \cite{stoica2003chord} is a well known structured overlay network where the protocol builds and manages a ring topology, similar to overlay (E) in Figure \ref{fig:overlay_networks}. Chord assigns each node an m-bit identifier that is uniformly distributed in the id space. Then, peers are ordered by identifier in a clockwise circle, where any data piece \(k\), is assigned to the first peer whose identifier is equal or follows k in the identifier space. 
+\textbf{Chord} \cite{stoica2003chord} is a well known structured overlay network where the protocol builds and manages a ring topology, similar to overlay (E) in Figure \ref{fig:overlay_networks}. Each node is assigned an m-bit identifier that is uniformly distributed in the id space. Then, peers are ordered by identifier in a clockwise circle, where any data piece identified by \(k\), is assigned to the first peer whose identifier is equal or follows k in the identifier space. 
 
 Chord implements a system of "shortcuts"\ called the \textbf{finger table}. The finger table contains at most \(m\) entries, each $ith$ entry of this table corresponds to the first peer that succeeds a certain peer \(n\) by \(2^{ith}\) in the circle. This means that whenever the finger table is up-to-date, and the system is stable, lookups for any data piece only take logarithmic time to finish. 
 
@@ -125,16 +117,13 @@ This routing technique accomplishes routing in O(log N) steps, where N is the nu
 
 Limitations from using Pastry arise from the use of a numeric distance function towards the end of the routing process, which creates discontinuities at some node ID values, and complicates attempts at formal analysis of worst case behavior, in addition to the flat topology which mismatches the edge device taxonomy.
 
+\textbf{Tapestry} \cite{tapestry} Is a DHT similar to pastry, however, nodeIDs are represented taking into account a certain base b supplied as a parameter of the system. Routing procedures in the overlay are similar to pastry, messages are incrementally forwarded to the destination digit by digit (e.g. ***8 -> **98 -> *598 -> 4598), consequently, routing procedures theoretically take logb(n) hops to their destination where b is the base of the ID space. Because nodes assume that the preceding digits all match the current node's suffix, nodes in tapestry only needs to keep a constant size of entries at each route level, consequently, nodes contain entries for a fixed-sized neighbor map of size b.log(N).  
 
 \textbf{Kademlia} \cite{maymounkov2002kademlia} is a DHT where nodes are considered leaves in a binary tree. Kademlia nodes are assigned 160-bit identifiers uniformly distributed in the identifiers space.
 
 Peers route queries and locate nodes by employing a novel \textbf{XOR-based distance} function which is symmetric and unidirectional. Each node in Kademlia is a router where its routing tables consist of shortcuts to peers whose XOR distance is between \(2^{i}\) by \(2^{i + 1}\) in the ID space, given the use of the XOR metric, "closer"\ nodes are those that share a longer common prefix.
 
 The main benefits that Kademlia draws from this approach are: nodes learn routing information from receiving messages, there is a single routing algorithm for the whole routing process (unlike Pastry) which eases formal analysis of worst-case behavior. Finally, Kademlia exploits the fact that node failures are inversely related to uptime by prioritizing nodes that are already present in the routing table.
-
-\textbf{Tapestry} \cite{tapestry} Is a DHT similar to pastry, however, nodeIDs are represented taking into account a certain base b supplied as a parameter of the system. Routing procedures in the overlay are similar to pastry, messages are incrementally forwarded to the destination digit by digit (e.g. ***8 -> **98 -> *598 -> 4598), consequently, routing procedures theoretically take logb(n) hops to their destination where b is the base of the ID space. This architecture is similar to Pastry, however, in pastry, nodeIDs are always represented in base 2.
-
-Because nodes assume that the preceding digits all match the current node's suffix, it only needs to keep a constant size of entries at each route level, consequently, nodes contain entries for a fixed-sized neighbor map of size b.log(N).  
 
 \textbf{Kelips} \cite{gupta2003kelips} is a group-based DHT which exploits increased memory usage and constant background communication to achieve O(1) lookup time and message complexity. 
 

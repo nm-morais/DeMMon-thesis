@@ -3,19 +3,19 @@ In this section we provide context about edge-related paradigms, study the taxon
 
 \subsection{Edge Computing}
 
-As previously mentioned, edge computing calls for the processing of data (and potentially storage) across all the devices which act as an "edge"\ along the path from the data center (DC) do the data source or client device \cite{Leitao2018}. It has the potential of enabling novel edge-enabled applications along with optimizing existing systems \cite{7488250} making them more responsive:
+As previously mentioned, edge computing calls for the processing of data (and potentially storage) across all the devices which act as an "edge"\ along the path from the data center (DC) do the data source or client device \cite{Leitao2018}. It has the potential of enabling novel edge-enabled applications along with optimizing existing systems \cite{7488250}, making them more responsive.
 
-\begin{itemize}
-
-    \item \textbf{Reducing the amount of traffic}, Edge Computing has the potential to reduce the amount of data exchanged between the Edge and the Cloud. For example, in the case of a smart home which computes the average home temperature in all divisions, almost all the data collected by the sensors can be aggregated (averaged) in a home gateway, effectively summarizing the data from a set of values to a single value, which is then sent to the Cloud pre-processed. Reducing the size of the data effectively improves transmission reliability and reduces infrastructure cost for both users and application / cloud operators. 
-    
-    \item \textbf{Reducing Latency} is one of the most important benefits, especially towards time-critical applications (e.g. traffic monitoring) which have special latency needs. Latency consists in the time it takes for a packet to travel the network from the origin endpoint to the target endpoint. Edge computing proposes to improve this by, for example, transferring the computation to the edge node closest to the data requests.
-
-    \item Facilitating new approaches of \textbf{load-balancing}, given that there is a massive increase of devices in the edge of the network, applications may load-balance themselves by offloading tasks towards the nearest available device with enough capacity, or by migrating an entire application towards a nearby device with higher capacity.
-    
-    \item \textbf{Minimizing energy consumption}, edge computing has the potential of optimizing the resource distributions towards saving energy. For example, a device which has low battery but belongs to time-critical service can chose to offload any unnecessary computations towards neighbors as a cost-saving measure. 
-    
-\end{itemize}
+%\begin{itemize}
+%
+%    \item \textbf{Reducing the amount of traffic}, Edge Computing has the potential to reduce the amount of data exchanged between the Edge and the Cloud. For example, in the case of a smart home which computes the average home temperature in all divisions, almost all the data collected by the sensors can be aggregated (averaged) in a home gateway, effectively summarizing the data from a set of values to a single value, which is then sent to the Cloud pre-processed. Reducing the size of the data effectively improves transmission reliability and reduces infrastructure cost for both users and application / cloud operators. 
+%    
+%    \item \textbf{Reducing Latency} is one of the most important benefits, especially towards time-critical applications (e.g. traffic monitoring) which have special latency needs. Latency consists in the time it takes for a packet to travel the network from the origin endpoint to the target endpoint. Edge computing proposes to improve this by, for example, transferring the computation to the edge node closest to the data requests.
+%
+%    \item Facilitating new approaches of \textbf{load-balancing}, given that there is a massive increase of devices in the edge of the network, applications may load-balance themselves by offloading tasks towards the nearest available device with enough capacity, or by migrating an entire application towards a nearby device with higher capacity.
+%    
+%    \item \textbf{Minimizing energy consumption}, edge computing has the potential of optimizing the resource distributions towards saving energy. For example, a device which has low battery but belongs to time-critical service can chose to offload any unnecessary computations towards neighbors as a cost-saving measure. 
+%    
+%\end{itemize}
 
 Many approaches have already leveraged on some form of Edge computing in the past. \textbf{Cloudlets} \cite{10.1145/2307849.2307858} are an extension of the cloud computing paradigm beyond the DC, and consists in deploying resource rich computers near the vicinity of users that provide cloud functionality. They have become a trending subject, and have been employed towards resource management, Big Data analytics, security, among others. However, a limitation of Cloudlets is that because they are specialized computers, they cannot guarantee low-latency ubiquitous service provision, and cannot ensure that applications behave correctly in the presence of large hotspots of users. 
 

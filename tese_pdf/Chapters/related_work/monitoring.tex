@@ -5,27 +5,19 @@ In this section we will cover \textbf{resource monitoring}, which is paramount f
 
 A particularly hard problem in resource monitoring is fault detection, given the need to ensure each component is monitored by at least one non-faulty component, even in the face of joins, leaves, and failures of both nodes and network infrastructure. Most fault-detectors rely on heartbeats, which consist in a peer sending a message periodically to another peer in order to signal that it is functioning correctly.
 
-\textcite{leitao2008large} proposes a decentralized device monitoring system by employing Hyparview \cite{Hyparview} as a decentralized monitoring fault detector, given the fixed number of active connections, which ensures overlay connectivity, each peer will have at least another non-faulty component monitoring it through the active TCP connection. In addition to tracking device health, it is paramount to collect metrics regarding the operation of the device, such as:
+\textcite{leitao2008large} proposes a decentralized device monitoring system by employing Hyparview \cite{Hyparview} as a decentralized monitoring fault detector, given the fixed number of active connections, which ensures overlay connectivity, each peer will have at least another non-faulty component monitoring it through the active TCP connection. 
 
-\begin{enumerate}
-
-    \item Network related information: devices need to be interconnected across an underlying infrastructure which is continuously changing. This raises concerns about the network link quality between devices across the system, especially if they are running time-critical services. Given this, it is paramount to track network related information such as bandwidth, latency and link status.
-    
-    \item Memory related information: either related to volatile memory or persistent memory, it is important to track the amount of free and used memory.
-    
-    \item CPU information: the utilization of the CPU (e.g., user, sys, idle, wait).
-    
-\end{enumerate}
+In addition to tracking device health, it is paramount to collect metrics regarding the operation of the device, such as: \textbf{(1)~Network~related~metrics}: devices need to be interconnected across an underlying infrastructure which is continuously changing. This raises concerns about the network link quality between devices across the system, especially if they are running time-critical services. Given this, it is paramount to track network related metrics such as bandwidth, latency and link status. \textbf{(2)~Memory related metrics:} either related to volatile memory or persistent memory, it is important to track the amount of free and used memory. \textbf{(3) CPU metrics}: the utilization of the CPU (e.g., user, sys, idle, wait).
 
 \subsection{Container Monitoring}
 
 As previously mentioned, containers are the solution which incurs less overhead when it comes to sharing resources in the same node, given this, we now study tools which monitor the status of containers and the applications executing inside them. 
 
-\textit{Docker} \cite{docker} has a built tool called \textit{docker stats} \cite{docker_stats} which provides a live data stream of metrics related to running containers. It provides information about the network I/O, cpu and memory usage, among others. 
+\textbf{Docker} \cite{docker} has a built tool called \textbf{Docker Stats} \cite{docker_stats} which provides a live data stream of metrics related to running containers. It provides information about the network I/O, cpu and memory usage, among others. 
 
-\textit{Container Advisor} \cite{cAdvisor} (cAdvisor) is a service which analyzes and exposes resource usage and also performance data from running containers. The information it collects consists of resource isolation parameters, historical resource usage and network statistics. cAdvisor includes native support for Docker containers and supports a wide variety of other container implementations.
+\textbf{Container Advisor} \cite{cAdvisor} (cAdvisor) is a service which analyzes and exposes resource usage and also performance data from running containers. The information it collects consists of resource isolation parameters, historical resource usage and network statistics. cAdvisor includes native support for Docker containers and supports a wide variety of other container implementations.
 
-\textit{Agentless System Crawler}  (ASC) \cite{cloudviz_2019} is a monitoring tool with support for containers. It collects monitoring information from running containers including metrics, system state and configuration information. It provides the ability to build two types of plugins: function  plugins for on-the-fly data aggregation or analysis, and output plugins for target monitoring and analytics endpoints.
+\textbf{Agentless System Crawler}  (ASC) \cite{cloudviz_2019} is a monitoring tool with support for containers. It collects monitoring information from running containers including metrics, system state and configuration information. It provides the ability to build two types of plugins: function  plugins for on-the-fly data aggregation or analysis, and output plugins for target monitoring and analytics endpoints.
 
 There are many other tools which offer the ability to continuously collect metrics about running containers, however, if we were to continuously store and transmit these metrics, the amount of communication and processing needed to do this would quickly overload the system. Consequently, there is the need to reduce the size of the data through a process called \textit{aggregation}.
 
@@ -54,10 +46,6 @@ The second property of aggregation is \textbf{duplicate sensitiveness}, and it i
     \caption{popular aggregation functions in function of decomposability and duplicate sensitiveness}
     \label{table:aggregation_functions}
 \end{table}
-
-Building on the concepts of duplicate sensitiveness and decomposability, we show that aggregation functions present their own particularities which dictate their applicability in particular scenarios. For example, a Min or Max function may be easier to implement with a simpler algorithm, while Sum, Count and Average require extra considerations. 
-
-This presents a limitation towards calculating exact aggregations in large scale systems, to circumvent this, some systems do not require obtaining exact aggregated values to perform near optimally (e.g. estimating the system size in order to select the optimal fanout for a gossip system only requires an estimation of the magnitude of the system). 
 
 \subsection{Aggregation techniques}
 
@@ -101,9 +89,7 @@ Continuous aggregation consists in the continuous computation and exchange of pa
 
 We now discuss study popular monitoring systems in the literature, for each system we analyze its advantages and drawbacks, followed by a discussions with the systems' applicability to edge environments.
 
-\textbf{Astrolabe} \cite{Renesse2003} is a distributed information management platform which aims at monitoring the dynamically changing state of a collection of distributed resources. 
-
-Astrolabe introduces a hierarchical architecture defined by zones, where a zone is recursively defined to be either a host or a set of non-overlapping zones.Each zone (minus the root zone) has a local identifier, which is unique within the zone where it is contained. Zones are globally identified by their \textit{zone name}, which consists of the concatenation of all zone identifiers within the path from the root to the zone.
+\textbf{Astrolabe} \cite{Renesse2003} is a distributed information management platform which aims at monitoring the dynamically changing state of a collection of distributed resources. It introduces a hierarchical architecture defined by zones, where a zone is recursively defined to be either a host or a set of non-overlapping zones. Each zone (minus the root zone) has a local identifier, which is unique within the zone where it is contained. Zones are globally identified by their \textit{zone name}, which consists of the concatenation of all zone identifiers within the path from the root to the zone.
 
 Associated with each zone there is a Management Information Base (MIB), which consists in a set of attributes from that zone. Zone attributes are not directly writable, instead they are generated by aggregation functions contained in special entries in the MIB. Leaf zones are the exception to the aforementioned mechanism, leaf zones contain \textit{virtual child zones} which are directly writable by devices within that virtual child zone.
 
@@ -113,15 +99,11 @@ Astrolabe employs gossip, which provides an eventual consistency model: if updat
 
 Not all nodes gossip information, within each zone, a node is elected (the authors do not specify how) to perform gossip on behalf of that zone, additionally, nodes can represent nodes from other zones, in this case, nodes run one instance of the gossip protocol per represented zone. The number of represented zones is bounded by the number of levels in the Astrolabe tree.
 
-Astrolabe relies on clock time from the devices to enforce an order among MIBs. Originally, it compared timestamps contained in MIBs to impose an order among them, however, as the system scales, this approach becomes unreliable. To circumvent this, Astrolabe agents store the last MIB from each agent that gossiped with them and only compare the timestamps of MIBs which originated from the same representative. Given this, attribute updates may not be monotonic.
-
 An agents' zone is defined by the system administrator, which is a potential limitation towards scalability, given that configuration errors have the potential to heavily reduce system latency and traffic locality. Additionally, the original authors state that the size of gossip messages scales with the branching factor, often exceeding the maximum size of a UDP packet. Other limitations which arise from using Astrolabe are the high memory requirements per participant due to the high degree of replication. Finally, zone representatives are potential single point of failure within each zone. 
 
 \textbf{Ganglia} \cite{massie2004ganglia} is a scalable distributed monitoring system for high performance computing systems, namely clusters and grids. In short, Ganglia groups nodes in clusters, in each cluster, there are representative cluster nodes which federate devices and aggregate internal cluster state. Then, representatives aggregate information in a tree of point-to-point connections.
 
 Ganglia relies on IP multicast to perform intra-cluster aggregation, it is mainly designed to monitor infrastructure monitoring data about machines in a high-performance computing cluster. Given this, its applicability is limited towards edge environments: (1) clusters are situated in stable environments, which contrasts with the edge environment; (2) it relies on IP multicast, which has been proven not to hold in a number of cases; (3) has no mechanism to prevent network congestion; finally, (4) the project info page only claims scalability up to 2000 nodes.
-
-\subsubsection{SDIMS}
 
 \textbf{SDIMS} \cite{SDIMS} (Scalable Distributed Information Management System) proposes a combination of techniques employed in Astrolabe \cite{Renesse2003} and distributed hash tables (in this case, Pastry \cite{rowstron2001pastry}).
 

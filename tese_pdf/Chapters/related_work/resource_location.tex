@@ -10,18 +10,9 @@ To achieve this, a search strategy must be applied, which depends on both the st
 
 In this section we cover resource location and discovery, starting by the studying the taxonomy of querying techniques for P2P systems, followed by the study of how resources can be stored or indexed and looked up throughout the topologies studied in the previous section.
 
-Querying techniques consist in how peers describe the resources they need,according to \cite{leitaoPHDthesis}, common querying techniques employed in resource location systems consist of:
+\subsubsection*{Querying techniques}
 
-\begin{enumerate}
-    \item \textbf{Exact Match queries} specify the resource to search by the value of an unique attribute (i.e., an identifier, which commonly consists of a hash of the value).
-
-    \item \textbf{Keyword queries} employ one or more keywords (or tags) combined with logical operators to describe resources (e.g. "pop", "rock", "pop and rock" ...). These queries return a list of resources and peers that own a resource whose description matches the keyword(s).
-    
-    \item \textbf{Range queries} retrieve all resources whose value is contained in a given interval (e.g. "movies with 100 to 300 minutes of duration"). These queries are especially applied in the context of databases.
-    
-    \item \textbf{Arbitrary queries} are queries that aim to find a set of nodes or resources that satisfy one or more arbitrary conditions, a possible example of an arbitrary query is looking for a set resources with a certain size or format.
-    
-\end{enumerate}
+Querying techniques consist in how peers describe the resources they need, according to \cite{leitaoPHDthesis}, common querying techniques employed in resource location systems consist of: \textbf{(1)~Exact Match queries}, which specify the resource to search by the value of an unique attribute (i.e., an identifier, which commonly consists of a hash of the value). \textbf{(2)~Keyword queries} employ one or more keywords (or tags) combined with logical operators to describe resources (e.g. "pop", "rock", "pop and rock" ...). These queries return a list of resources and peers that own a resource whose description matches the keyword(s). \textbf{(3)~Range queries} retrieve all resources whose value is contained in a given interval (e.g. "movies with 100 to 300 minutes of duration"). These queries are especially applied in the context of databases. \textbf{(4)~Arbitrary queries} are queries that aim to find a set of nodes or resources that satisfy one or more arbitrary conditions, a possible example of an arbitrary query is looking for a set resources with a certain size or format.
 
 Provided with a way of describing their resource needs, peers need strategies to index and retrieve the resources in the system, there are three popular techniques: centralized, distributed over an unstructured overlay, or distributed over a structured overlay.
 
@@ -41,9 +32,7 @@ When employing an unstructured overlay for resource location, the resources are 
 
 \subsubsection{Query Dissemination Techniques}
 
-There are two popular approaches for disseminating queries, \textbf{flooding} and \textbf{random walks} \cite{leitaoPHDthesis}.
-
-When \textbf{flooding}, peers eagerly forward queries to other peers in the system as soon as they receive them for the first time, the objective of flooding is to contact a certain number of distinct peers in the system that may have the queried resource. One approach is \textbf{complete flooding}, which consists in contacting every node in the system, this guarantees that if the resource exists, it will be found, however, complete flooding is not scalable and incurs significant message redundancy. 
+There are two popular approaches for disseminating queries, \textbf{flooding} and \textbf{random walks} \cite{leitaoPHDthesis}. When \textbf{flooding}, peers eagerly forward queries to other peers in the system as soon as they receive them for the first time, the objective of flooding is to contact a certain number of distinct peers in the system that may have the queried resource. One approach is \textbf{complete flooding}, which consists in contacting every node in the system, this guarantees that if the resource exists, it will be found, however, complete flooding is not scalable and incurs significant message redundancy. 
 
 \textbf{Flooding with limited horizon} minimizes the message overhead by attaching a TTL to messages that limits the number of times a message can be retransmitted. However, there is a trade-off for efficiency: flooding with limited horizon does not guarantee that all resources will be found. There are many other dissemination techniques, often tailored towards specific application requirements. 
 
@@ -59,7 +48,7 @@ However, even with super-peers, one problem that still remains in these systems 
 
 \subsection{Resource Location on Distributed Hash Tables}
 
-Resource location on structured overlays is often done by relying on the applicational routing capabilities of distributed Hash Tables (DHTs). In a DHT, peers use hash functions to generate node IDs which are uniformly distributed over the id space. Then, by employing the same hash function to generate resource IDs and assigning a portion of the identifier space to each node, peers are able to map resources to the responsible peers in a bounded number of steps, which makes them very suitable for (\textbf{exact match queries}) \cite{leitaoPHDthesis}. 
+Resource location on structured overlays is often done by relying on the applicational routing capabilities of distributed Hash Tables (DHTs). In a DHT, peers use hash functions to generate node identifiers (IDS) which are uniformly distributed over the ID space. Then, by employing the same hash function to generate resource IDs and assigning a portion of the ID space to each node, peers are able to map resources to the responsible peers in a bounded number of steps, which makes them very suitable for (\textbf{exact match queries}) \cite{leitaoPHDthesis}. 
 
 One particular type of DHT that is commonly employed in small sized resource location systems is the One-Hop Distributed Hash Table (DHT), nodes in a one-hop DHT have full membership of the system and, consequently, they can locally map resources to known peers and perform lookups in O(1) time and message complexity. Facebook's Cassandra \cite{lakshman2010cassandra} and Amazon's Dynamo \cite{decandia2007dynamo} are widely used implementations of one-hop DHTs. 
 
@@ -73,7 +62,7 @@ As mentioned previously, centralized resource location systems are unsuited for 
 
 Unstructured resource location systems are attractive to perform queries that search for resources which are abundant in the system, however, this approach is inefficient when performing exact match queries, as a finding the exact resource in an unstructured resource location system requires flooding the entire system with messages. Conversely, distributed hash tables are especially tailored towards exact match queries, but are less robust to churn and are subject to low-capacity nodes being a bottleneck in routing procedures. 
 
-In the context of the solution we intend to create, it may be useful to employ a combination of strategies. For example, if an edge device wishes to find nearby computing resources to offload a certain task, it may employ a random walk. On the other hand, if a peer wishes to find a larger set of computing resources to deploy multiple application components, it may require flooding nearby peers. 
+In the context of the proposed solution, given that the resources we intend to manage are present in all nodes (e.g., computing power, memory, among others), we believe unstructured resource location is more suited. For example, if an edge device wishes to find nearby computing resources to offload a certain task, it may employ a random walk. On the other hand, if a peer wishes to find a larger set of computing resources to deploy multiple application components, it may require flooding multiple peers. 
 
 %Hybrid approaches between  simultaneously ensure load balancing properties and address  problems related to churn and 
 
