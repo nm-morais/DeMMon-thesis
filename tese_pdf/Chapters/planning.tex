@@ -68,8 +68,8 @@ In this section we outline the identified tasks and the proposed work plan for t
     \item Topology Management
     
     \begin{enumerate}
-        \item Devising the overlay algorithm which establishes the hierarchical topology
-        \item Implementation and validation of the algorithm
+        \item Devise and develop the overlay algorithm which establishes the hierarchical topology
+        \item Validate the devised algorithm
     \end{enumerate}
     
     \item Resource Monitoring
@@ -78,56 +78,38 @@ In this section we outline the identified tasks and the proposed work plan for t
         \item Defining the metrics to collect and devising a monitoring probe which extracts these metrics from deployed components.
         \item Devising an aggregation protocol for these metrics based on the overlay structure.
         \item Creating or adapting an alerting solution which analyzes the aggregation results, detects anomalies on running components (e.g., sub-optimal performance) and emits alerts.
+        \item Validate the resource monitoring mechanism
     \end{enumerate}
     
     \item Resource Location and Discovery
     
     \begin{enumerate}
-        
+        \item Implementing search algorithms which serve as tools for finding certain resources in the system
+        \item Validating the implemented search solutions
     \end{enumerate}
     
     \item Resource Management
     
     \begin{enumerate}
-        \item 
+        \item Implement the handlers for the alerts emitted by the monitoring mechanism
+        \item Implement subscription mechanisms which, in turn, will be employed by the aforementioned resource scheduler
+        \item Validate the resource management mechanism
     \end{enumerate}
 
-    \item Evaluating the proposed system
+    \item Evaluation
     
     \begin{enumerate}
-        \item Develop baseline systems
-        \item Perform 
+        \item Develop the centralized and flat solutions which will serve as baseline for evaluating the performance of the system
+        \item Develop simple mock-ups of edge-enabled applications
+        \item Perform an experimental assessment of the solution in a realistic test bed
+        \item Compare the performance between the developed system and the mock-ups
     \end{enumerate}
 
-    \item Writing thesis document
+    \item Thesis document
     
-    
-
-\end{enumerate}
-
-
-
-\begin{enumerate}
-    \item Topology management mechanism
     \begin{enumerate}
-        \item Implement
-        \item Validate
-        \item Evaluate
-    \end{enumerate}
-
-    \item Resource monitoring mechanism
-    \begin{enumerate}
-        \item Implement
-        \item Validate
-        \item Evaluate
+        \item Writing
+        \item Reviewing the written document
     \end{enumerate}
     
 \end{enumerate}
-
-
-
-
-
-
-
-
