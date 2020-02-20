@@ -1,17 +1,17 @@
 
-After studying the taxonomy of the edge environment, it is paramount to study how these devices can execute tasks (e.g. services, monitoring tasks, among others) in a controlled environment. A major requirement of these environments is that tasks interfere as little as possible with other running tasks as well as with the core behavior of the system.
+After studying the taxonomy of the edge environment, it is paramount to study how these devices can execute tasks (e.g. services, monitoring tasks, among others) in a controlled environment. A major requirement of these environments is the ability to simultaneously execute multiple tasks, and that these interfere as little as possible with each other, as well as with the core behavior of the system.
 
-A popular approach towards solving the aforementioned challenges is to perform tasks in loosely coupled independent components running some form of virtualization software, as it enables co-deployment tasks in the same physical node. The main benefits of employing virtualization include hardware independence, isolation, secure user environments, and increased scalability. 
+A popular approach towards solving these challenges is to perform tasks in loosely coupled independent components running some form of virtualization software, as it enables the co-deployment of tasks within the same physical node. The main benefits of employing virtualization include hardware independence, isolation, secure user environments, and increased scalability. 
 
-The two most common types of virtualization used nowadays are containers and virtual machines (VMs), in this section present a brief description of both technologies, and study their advantages and limitations towards supporting edge-enabled applications.
+The two most common types of virtualization used nowadays are containers and virtual machines (VMs), in this section present a brief description of both technologies, and study their advantages / limitations towards supporting edge-enabled applications.
 
 \subsection{Virtual Machines}
 
 A VM provides a complete environment in which an operating system and many processes, possibly belonging to multiple users, can coexist. By using VMs, a single-host hardware platform can support multiple, isolated guest operating system environments simultaneously \cite{1430629}. 
 
-Virtual machines rely on a type of software called a \textit{hypervisor}, the role of the hypervisor is to abstract hardware to support the concurrent execution of full-fledged operating systems (e.g. Linux or Windows). This abstraction layer provides great isolation between virtual machines, meaning that a VM cannot directly interact with the host or the other VMs, which is highly desirable for both virtualized applications and the host machine. 
+Virtual machines rely on a type of software called a \textit{hypervisor}, the role of the hypervisor is to abstract hardware to support the concurrent execution of full-fledged operating systems (e.g. Linux or Windows). Virtualizing the hardware layer ensures great isolation between virtual machines, meaning that a VM cannot directly interact with the host or the other VMs, which is highly desirable for both the virtualized applications and the host. 
 
-However, virtualizing the hardware and the device drivers incurs an non-negligible overhead, and the large image sizes of operating systems makes live migrations harder to accomplish, which we believe to be crucial in edge environments. Given the aforementioned reasons, we believe that virtual machines are unsuited for edge environments.
+However, virtualizing the hardware and the device drivers incurs non-negligible overhead, and the large image sizes of operating systems required by virtual machines makes live migrations harder to accomplish, which we believe to be crucial in edge environments. Given the aforementioned reasons, we believe that virtual machines are unsuited for edge environments.
 
 \subsection{Containers}
 
