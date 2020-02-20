@@ -7,7 +7,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Planning} \label{cha:planning}
 
-In this Chapter we begin by defining the system model and the intuition for the proposed solution, followed by defining and discussing a set of metrics to verify its success through experimental work. In the last section we present the work plan for the remaining time of the thesiss. 
+In this Chapter we begin by defining the system model and the intuition for the proposed solution, followed by defining and discussing a set of metrics to verify its success through experimental work. In the last section we present the work plan for the remaining time of the thesis. 
 
 As previously mentioned, the challenge we propose to address is the creation of a large-scale decentralized management and monitoring infrastructure tailored for heterogenous edge devices. This infrastructure may be used to track the state of applications (for load balancing), discover nearby devices to offload tasks, or find a set of devices to deploy a new application in a strategic location, enabling in the future the autonomic management of edge-enabled applications.
 
@@ -15,9 +15,9 @@ As previously mentioned, the challenge we propose to address is the creation of 
 
 As defined in Section~\ref{sec:edge_computing}, the edge environment is composed by devices classified in levels ranging from 0-7. From this classification, we outline two major categories:  
 
-\textbf{Stable devices} consist of devices ranging from levels 0-5 in the taxonomy. We consider devices in these levels ``stable'' because they are usually connected across a wired medium (except in the case of laptops), which makes their connections more stable, and have enough computational capacity to perform monitoring and management tasks. 
+\textbf{Stable devices} consist of devices ranging from levels 0-5 in the taxonomy. We consider devices in these levels ``stable'' because they are usually connected across a wired medium (except in the case of laptops), and have enough computational capacity towards performing monitoring and management of tasks. 
 
-\textbf{Unstable devices} are comprised by devices in levels 6 and 7. In the case of mobile devices (level 6), we consider them unstable due to their low computational power and the fact that their physical location may change rapidly, which may lead to additional overhead in tracking their location. Furthermore, both devices in levels 6 and 7 are connected across a wireless medium, raising a large number of concerns that are outside the scope of this work.
+\textbf{Unstable devices} comprises devices in levels six and 7 of the taxonomy. In the case of mobile devices (level 6), we consider them unstable due to their low computational power and the fact that their physical location may change rapidly, which may lead to additional overhead in tracking their location. Given that devices in levels 6 and 7 are connected across a wireless medium, raising a large number of concerns that are outside the scope of this work, we intend to employ only stable devices in order to materialize our solution, unstable devices may employ stable devices as gateways to the system.
 
 Following, we have applications. In the context of this thesis, we will focus on the management of \textbf{edge-enabled applications} running on containers. We consider these as applications which are decomposable into multiple independent components that may be hosted in a single container and function as a \textit{monolithic} application, or alternatively have components hosted by containers scattered throughout the system.
 
@@ -38,7 +38,7 @@ Finally, during the execution of our solution, we assume that there is at most o
     \label{fig:proposed_architecture_detailed}
 \end{figure}
 
-In Figure \ref{fig:proposed_architecture_detailed}, we illustrate the proposed architecture of the solution we intend to design, which is composed of four co-dependent mechanisms exercised by every participant of the system (that execute the management solution).
+In Figure \ref{fig:proposed_architecture_detailed}, we illustrate the proposed architecture of the solution we intend to design, which is composed of four co-dependent mechanisms exercised by every participant of the system (that executes the management solution).
 
 At the bottom, we have \textbf{topology management}, whose responsibilities consist of: (1) ensuring that devices belonging to the overlay remain connected at all times; (2) materializing a hierarchical topology based on the capabilities of devices composing the system; (3) assuring that devices have at least one non-faulty device connected to it; (4) detecting failures of the participating nodes. This mechanism, inspired in works such as Astrolabe \cite{Renesse2003}, enables the correct behavior of the remaining components.
 
@@ -48,9 +48,9 @@ The \textbf{resource management} mechanism handles the alerts emitted by the res
 
 %\todo{dizer deployment scheduling e depois chamar de resource scheduling é confuso. não está claro sobre qual é a diferença, ou que estás a falar da mesma coisa sequer. talvez meter entre () o resource scheduling quando falas da cena de deployment e mencionares que é um layer a cima do que estás a fazer. e quando te queres referir entao a esse layer, podes dizer accommodate to the/this/aforementioned upper layer}
 
-To enable this, the resource management mechanism will provide two operations: a subscription operation which enables the resource scheduling mechanism to be notified whenever an application component changes its location due to the alerts or failures, and a operation for querying available resources and issuing deployment configurations. 
+To enable layer, the resource management mechanism will provide two operations: a subscription operation which enables the resource scheduling mechanism to be notified whenever an application component changes its location due to the alerts or failures, and a operation for querying available resources and issuing deployment configurations. 
 
-Lastly, we have the \textbf{resource location and discovery} mechanism. This mechanism will offer multiple search strategies which, in turn, will be employed by the resource management layer to replace failed components or to satisfy queries arising from the resource scheduling mechanism.
+Lastly, we have the \textbf{resource location and discovery} mechanism. This mechanism will offer multiple search strategies which, in turn, will be employed by the resource management layer to replace failed components or to satisfy queries arising from the resource scheduling components.
 
 \section{Evaluation}  
 
@@ -60,12 +60,12 @@ In order to evaluate our work, we will employ a real-world scenario composed by 
 We intend to develop two simple solutions 
 %which are representative...
 that will be representative of common architectures of monitoring systems. The first and most popular approach consists of a centralized controller for tracking and managing the state of devices and components running on them. %while the second approach...
-On the other hand, the second approach consists of a flat decentralized model where peers are not organized into a hierarchical topology, 
+On the other hand, the second approach consists of a flat decentralized model, 
 %which means that...
 meaning that all nodes in the system handle similar amounts of monitoring information. These simple solutions will serve as a baseline for evaluating the benefit of our solution.
 %our solution.
 
-In order to compare topologies, we define a set of system and applicational-related metrics. \textbf{System metrics} consist of the usage of system resources such as cpu, memory, and bandwidth in each node of the system, followed by the number of required control messages to maintain the overlay.
+In order to compare solutions, we define a set of system and applicational-related metrics. \textbf{System metrics} consist of the usage of system resources such as cpu, memory, and bandwidth in each node of the system, followed by the number of required control messages to maintain the overlay.
 
 \textbf{Application metrics} are related to the monitoring infrastructure running atop the overlay. The first metric to consider is \textit{cost}, that consists in the relation between the number of messages sent and the value of the information. 
 %...,following, we have \textit{information freshness}, which consists in the timeliness of the information each node has of the system, and finally, \textit{information precision}, which represents the difference between the obtained monitoring data and the real status of the device / applications running on it. 
@@ -92,7 +92,7 @@ In this section we outline the identified tasks and the proposed work plan for t
     \item \textbf{Resource Location and Discovery} (22/5/2020 - 6/10/2020)
     \begin{enumerate}
         \item Implement search algorithms which serve as tools for finding certain resources in the system (22/5/2020 - 7/6/2020)
-        \item Test the implemented search solutions (31/5/2020 - 10/6/2020)
+        \item Test the implemented search algorithms (31/5/2020 - 10/6/2020)
     \end{enumerate}
     \item \textbf{Resource Management} (7/6/2020 - 3/7/2020)
     \begin{enumerate}

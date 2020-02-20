@@ -10,29 +10,27 @@ To achieve this, a search strategy must be applied, which depends on both the st
 
 In this section we cover resource location and discovery, starting by the studying the taxonomy of querying techniques for P2P systems, followed by the study of how resources can be stored or indexed and looked up throughout the topologies studied in the previous section.
 
-\subsubsection*{Querying techniques}
+\subsection{Querying techniques}
 
 Querying techniques consist of how peers describe the resources they need. Following, we cover common querying techniques employed in resource location systems \cite{leitaoPHDthesis}: \textbf{(1)~Exact Match queries} specify the resource to search by the value of an unique attribute (i.e., an identifier, commonly the hash of the value of the resource); \textbf{(2)~keyword queries} employ one or more keywords (or tags) combined with logical operators to describe resources (e.g. "pop", "rock", "pop and rock" ...); \textbf{(3)~range queries} retrieve all resources whose value is contained in a given interval (e.g. "movies with 100 to 300 minutes of duration"); \textbf{(4)~arbitrary queries} aim to find a set of nodes or resources that satisfy one or more arbitrary conditions (e.g. looking for a set resources with a certain format).
 
-Provided with a way of describing their resource needs, peers need strategies to index and retrieve the resources in the system, there are three popular techniques: centralized, distributed over an unstructured overlay, or distributed over a structured overlay.
+Provided with a way of describing their resource needs, peers need strategies to index and retrieve the resources in the system, there are three popular techniques: \textbf{centralized}, \textbf{distributed over an unstructured overlay}, or \textbf{distributed over a structured overlay}.
 
 \subsection{Centralized Resource Location}
 
-\textbf{Centralized resource location} relies on one (or a group of) centralized peers that index all resources. This type of architecture greatly reduces the complexity of systems, as peers only need to contact a subset of nodes to locate resources. 
+\textbf{Centralized resource location} relies on one (or a group of) centralized peers that index all existing resources. This type of architecture greatly reduces the complexity of systems, as peers only need to contact a subset of nodes to locate resources. 
 
 It is important to notice that in a centralized architecture, while the indexation of resources is centralized, the resource access may still be distributed (e.g. a centralized server provides the addresses of peers who have the files, and files are obtained in a pure P2P fashion), a system which employs this architecture with success is BitTorrent \cite{cohen2003incentives}.
 
-Although centralized architectures are widely used nowadays, they lack the necessary scalability to index the large number of dynamic resources we intend to manage, and have limited fault tolerance to failures, which makes centralized resource location systems unsuited for edge environments. 
+Although centralized architectures are widely used nowadays, they lack the necessary scalability to index the large number of dynamic resources we intend to manage, and have limited fault tolerance to failures, which makes them unsuited for edge environments. 
 
 %However, there are many ways that a hybrid architecture can be applied to Edge computing: since the failure rate of a single data center (DC) is low, if we assume a system composed by multiple DCs, they may act as a reliable failover for whenever edge devices are partitioned of fail. 
 
 \subsection{Resource Location on Unstructured Overlays}
 
-When employing an unstructured overlay for resource location, the resources are scattered throughout all peers in the system, consequently, peers need to employ distributed search strategies to find the intended resources, which is accomplished by disseminating queries through the overlay.
+When employing an unstructured overlay for resource location, the resources are scattered throughout all peers in the system, consequently, peers need to employ distributed search strategies to find the intended resources, which is accomplished by disseminating queries through the overlay, there two popular approaches for accomplishing this in unstructured overlays: \textbf{flooding} and \textbf{random walks} \cite{leitaoPHDthesis}. 
 
-\subsubsection{Query Dissemination Techniques}
-
-There are two popular approaches for disseminating queries in unstructured overlays: \textbf{flooding} and \textbf{random walks} \cite{leitaoPHDthesis}. When \textbf{flooding}, peers eagerly forward queries to other peers in the system as soon as they receive them for the first time, the objective of flooding is to contact a certain number of distinct peers that may have the queried resource. One approach is \textbf{complete flooding}, which consists in contacting every node in the system, this guarantees that if the resource exists, it will be found. However, complete flooding is not scalable and incurs significant message redundancy. 
+\textbf{Flooding} consits in peers eagerly forwarding queries to other peers in the system as soon as they receive them for the first time, the objective of flooding is to contact a certain number of distinct peers that may have the queried resource. One approach is \textbf{complete flooding}, which consists in contacting every node in the system, this guarantees that if the resource exists, it will be found. However, complete flooding is not scalable and incurs significant message redundancy. 
 
 \textbf{Flooding with limited horizon} minimizes the message overhead by attaching a TTL to messages that limits the number of times a message can be retransmitted. However, there is a trade-off for efficiency: flooding with limited horizon does not guarantee that all resources will be found. 
 
@@ -40,21 +38,21 @@ There are two popular approaches for disseminating queries in unstructured overl
 
 First generation of decentralized resource location systems relied on unstructured overlays (such as Gnutella \cite{gnutella_gtk}) and employed simple broadcasts with limited horizon to query other peers in the system. However, as the size of the system grew, simple flooding techniques lacked the required scalability for satisfying the rising number of queries, which triggered the emergence of new techniques to reduce the number of messages per query, called \textbf{super-peers}. 
 
-\textbf{Super-peers} are peers which are assigned special roles in the system (often chosen in function of their capacity or stability). In the case of resource location systems, super-peers disseminate queries throughout the system. Super-peers are at the core of solutions such as by Gia \cite{Chawathe2003} towards effectively reducing the number of peers that have to disseminate queries, which was employed on the second version of Gnutella \cite{gnutella_gtk}. 
+\textbf{Super-peers} are peers which are assigned special roles in the system (often chosen in function of their capacity or stability). In the case of resource location systems, super-peers disseminate queries throughout the system. This technique is at the core of solutions such as Gia \cite{Chawathe2003}, employed towards effectively reducing the number of peers that have to disseminate queries on the second version of Gnutella \cite{gnutella_gtk}. 
 
-SOSP-Net \cite{garbacki2007optimizing}  (Self-Organizing Super-Peer Network) proposes a resource location system composed by regular peers and super-peers that effectively employs feedback concerning previous queries to improve the overlay network. Weak peers maintain links to super-peers which are biased based on the success of previous queries, and super-peers bias the routing of queries by taking into account the semantic content of each query. 
+\textbf{SOSP-Net} \cite{garbacki2007optimizing} (Self-Organizing Super-Peer Network) proposes a resource location system composed by regular peers and super-peers that effectively employs feedback concerning previous queries to improve the overlay network. Weak peers maintain links to super-peers which are biased based on the success of previous queries, and super-peers bias the routing of queries by taking into account the semantic content of each query. 
 
 However, even with super-peers, one problem that still remains in these systems is finding very rare resources, which requires flooding the entire overlay. To circumvent this, the third generation of resource location systems rely on Distributed Hash Tables to ensure that even rare resources in the system can be found within a limited number of communication steps.
 
 \subsection{Resource Location on Distributed Hash Tables}
 
-Resource location on structured overlays is often done by relying on the applicational routing capabilities of distributed Hash Tables (DHTs). In a DHT, peers use hash functions to generate node identifiers (IDS) which are uniformly distributed over the ID space. Then, by employing the same hash function to generate resource IDs and assigning a portion of the ID space to each node, peers are able to map resources to the responsible peers in a bounded number of steps, which makes them very suitable for (\textbf{exact match queries}) \cite{leitaoPHDthesis}. 
+Resource location on structured overlays is often done by relying on the applicational routing capabilities of distributed Hash Tables (DHTs). In a DHT, peers use hash functions to generate node identifiers (IDS) which are uniformly distributed over the ID space. Then, by employing the same hash function to generate resource IDs, and assigning a portion of the ID space to each node, peers are able to map resources to the responsible peers in a bounded number of steps, which makes them very suitable for (\textbf{exact match queries}) \cite{leitaoPHDthesis}. 
 
 One particular type of DHT that is commonly employed in small sized resource location systems is the One-Hop Distributed Hash Table (DHT), nodes in a one-hop DHT have full membership of the system and, consequently, they can locally map resources to known peers and perform lookups in O(1) time and message complexity. Facebook's Cassandra \cite{lakshman2010cassandra} and Amazon's Dynamo \cite{decandia2007dynamo} are widely used implementations of one-hop DHTs. 
 
 There are two popular techniques for storing resources in a DHT, the first approach is to store the resources locally, and publish the location of the resource in the DHT, this way, the node responsible for the resource's key only stores the locations of other nodes in the system, and the resource may be replicated among distinct nodes composing system. 
 
-The second technique consists in transferring the entire resource to the responsible node in the DHT, contrasting to the previous technique, the resources are not replicated: due to consistent hashing, all nodes with the same resource will publish the resource in the same location of the DHT. 
+The second technique consists in transferring the entire resource to the responsible node in the DHT, contrasting to the previous technique, the resources are not replicated: due to consistent hashing, all nodes with the same resource will publish the resource in the same location of the DHT.
 
 \subsection{Discussion}
 
@@ -62,7 +60,7 @@ As mentioned previously, centralized resource location systems are unsuited for 
 
 Unstructured resource location systems are attractive to perform queries that search for resources which are abundant in the system, however, this approach is inefficient when performing exact match queries, as a finding the exact resource in an unstructured resource location system requires flooding the entire system with messages. Conversely, distributed hash tables are especially tailored towards exact match queries, but are less robust to churn and are subject to low-capacity nodes being a bottleneck in routing procedures. 
 
-In the context of the proposed solution, given that the resources we intend to manage are present in all nodes (e.g., computing power, memory, among others), we believe unstructured resource location is more suited. For example, if an edge device wishes to find nearby computing resources to offload a certain task, it may employ a random walk. On the other hand, if a peer wishes to find a larger set of computing resources to deploy multiple application components, it may require flooding multiple peers. 
+In the context of the proposed solution, given that the resources we intend to manage are present in all nodes (e.g., computing power, memory, among others), we believe unstructured resource location is more suited. For example, if an edge device wishes to find nearby computing resources to offload a certain task, it may employ a random walk. On the other hand, if a peer wishes to find a larger set of computing resources to deploy multiple application components, it may employ flooding techniques. 
 
 %Hybrid approaches between  simultaneously ensure load balancing properties and address  problems related to churn and 
 

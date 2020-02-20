@@ -1,5 +1,5 @@
 
-In this section we provide context about edge-related paradigms, study the taxonomy of the devices which materialize edge environments and analyze which computations each device can perform.
+In this section we provide context about edge-related paradigms, study the taxonomy of the devices which materialize edge environments, and analyze which computations each device can perform.
 
 \subsection{Edge Computing}
 
@@ -17,13 +17,13 @@ As previously mentioned, edge computing calls for the processing of data (and po
 %    
 %\end{itemize}
 
-Many approaches have already leveraged on some form of Edge computing in the past. \textbf{Cloudlets} \cite{10.1145/2307849.2307858} are an extension of the cloud computing paradigm beyond the DC, and consists in deploying resource rich computers near the vicinity of users that provide cloud functionality. They have become a trending subject, and have been employed towards resource management, Big Data analytics, security, among others. A limitation of Cloudlets is that because they are specialized computers, they cannot guarantee low-latency ubiquitous service provision, and cannot ensure that applications behave correctly in the presence of large hotspots of users.  
+Many approaches have already leveraged on some form of Edge computing in the past. \textbf{Cloudlets} \cite{10.1145/2307849.2307858} are an extension of the cloud computing paradigm beyond the DC, and consist in deploying resource rich computers near the vicinity of users that provide cloud functionality. They have become a trending subject and have been employed towards resource management, Big Data analytics, security, among others. A limitation of Cloudlets is that because they are specialized computers, they cannot guarantee low-latency ubiquitous service provision, and cannot ensure that applications behave correctly in the presence of large hotspots of users.  
 
-\textbf{Content Distribution networks} \cite{peng2004cdn} consist of specialized high bandwidth servers strategically located at the edge of the network which replicate content from a certain origin and serve it at reduced latencies, effectively decentralizing the content delivery. 
+\textbf{Content Distribution networks} \cite{peng2004cdn} are specialized high bandwidth servers strategically located at the edge of the network which replicate content from a certain origin and serve it at reduced latencies, effectively decentralizing the content delivery. 
 
-\textbf{Fog Computing} \cite{bonomi2012fog} is paradigm which aims at solving similar problems to the Edge Computing. It proposes to provide computing, storage and networking services between end devices and traditional cloud computing data centers, typically, but not exclusively located at the edge of the network. We consider fog computing to be interchangeable with our definition of Edge Computing, however, with a special emphasis on providing infrastructure for edge-enabled services, instead of focusing on the inter-cooperation among devices.
+\textbf{Fog Computing} \cite{bonomi2012fog} is paradigm which aims at solving similar problems to the Edge Computing. It proposes to provide computing, storage and networking services between end devices and traditional cloud DCs, typically, but not exclusively located at the edge of the network. We consider Fog Computing to be interchangeable with our definition of Edge Computing, however, with a special emphasis on providing infrastructure for edge-enabled services, instead of focusing on the inter-cooperation among devices.
 
-\textbf{Osmotic Computing} \cite{villari2016osmotic} envisions the automatic deployment and management of inter-connected microservices deployed over a seamless infrastructure composed of both edge and cloud devices. This is accomplished by employing an orchestration technique similar to the process of "osmosis". Translated, this consists in dynamically detecting and resolving resource contention via the execution of coordinated microservice deployments / migrations across edge and cloud devices. In our view, this paradigm is a subset of Edge Computing, because it only focuses on deploying microservices on edge devices instead of employing them towards generic computations, in addition, the original authors only envision deploying services over Cloud and Edge DCs, instead of the whole range of possible devices.
+\textbf{Osmotic Computing} \cite{villari2016osmotic}  envisions the automatic deployment and management of inter-connected microservices deployed over a seamless infrastructure composed of both edge and cloud devices. This is accomplished by employing an orchestration technique similar to the process of "osmosis". Translated, this consists in dynamically detecting and resolving resource contention via the execution of coordinated microservice deployments / migrations across edge and cloud devices. This paradigm is a subset of Edge Computing, as it only focuses on deploying microservices on edge devices instead of employing them towards generic computations, in addition, the original authors only envision deploying services over cloud and edge DCs, instead of the whole range of possible devices.
 
 \textbf{Multi-access edge computing} \cite{mobile_edge_cloud} (MEC) is a network architecture which proposes to provide fast-interactive responses for mobile applications. It solves this by employing the devices in the edge (e.g. base stations and access points) to provide compute resources for latency-critical mobile applications (e.g. facial recognition). Similar to Osmotic Computing, we consider MEC a subset of edge computing, given that its primary focus is on how to offload the computation from mobile to the cloud and not vice-versa. 
 
@@ -60,12 +60,12 @@ According to \textcite{Leitao2018}, edge devices may be classified according to 
     \label{tab:taxonomy_edge}
 \end{table}
 
-Table \ref{tab:taxonomy_edge} shows the categories of edge devices, we assign levels to categories as a function of their distance from the cloud infrastructure. 
+Table \ref{tab:taxonomy_edge} shows the proposed categories of edge devices, we assign levels to categories as a function of their distance from the cloud infrastructure. 
 
 \textbf{Levels 0 and 1}, composed of \textit{cloud and edge DCs}, offer pools of computational and storage resources which can dynamically scale. Both of these options have high availability and large amounts of storage and computational power, as such, there is no limitations on the kinds of computations these devices can perform.
 
 \textbf{Levels 2 and 3} are composed of \textit{networking devices}, namely 
-\textit{5G cell towers} and \textit{routers, switches}, and \textit{access points}. Devices in both levels have high availability, and are can easily improve the management of the network, for example, by manipulating data flows among different components of applications (executing in different devices).
+\textit{5G cell towers}, \textit{routers}, \textit{switches}, and \textit{access points}. Devices in both levels have high availability, and can easily improve the management of the network, for example, by manipulating data flows among different components of applications (executing in different devices).
 
 \textbf{Levels 4 and  5} consist of \textit{private servers}, \textit{desktops} and \textit{laptops}, devices in these levels level have medium capacity and medium to low availability. They can perform a varied amount of tasks on behalf of devices in higher levels (e.g. compute on behalf of smartphones, act as logical gateways or just cache data). 
 
