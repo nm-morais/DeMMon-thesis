@@ -64,7 +64,7 @@ If we look at an overlay network where connections between nodes represent edges
 
 \subsection{Examples of Overlay Networks}
 
-\textbf{T-MAN} \cite{jelasity2005t} is protocol to manage the topology of overlay networks based on a gossiping scheme, which proposes to build a wide range of structured overlay networks (e.g., ring, mesh, tree, etc.). To achieve this, T-MAN takes an overlay as an input to the protocol, this overlay is then organized by taking into consideration a ranking method applied by every node to compare the preference among possible neighbors iteratively. 
+\textbf{T-MAN} \cite{jelasity2005t} is protocol to manage the topology of overlay networks, it is based on a gossiping scheme, and proposes to build a wide range of structured overlay networks (e.g., ring, mesh, tree, etc.). To achieve this, T-MAN expects a topology as an input to the protocol, this topology is then materialized by employing a ranking method which is applied by every node to compare the preference among possible neighbors iteratively. 
 
 Nodes periodically exchange their neighboring sets with peers in the system and keep the nodes which rank higher according to the ranking method. A limitation of T-Man is that it does not ensure stability of the in-degree of nodes during the optimization of the overlay, and consequently, the overlay may not remain connected. 
 

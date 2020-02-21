@@ -369,3 +369,22 @@ Mesos
   * SIMPSON
   * iFogSim (https://onlinelibrary.wiley.com/doi/full/10.1002/spe.2509)
   * EdgeCloudSim
+
+
+
+
+
+
+# Apresentação da cena
+
+ * 3 mins intro (no final dos 3 minutos iniciais, slide com problem statement)
+ * 7 mins related work (3 papers + parecidos (2 min cada))
+
+ * 3 min explicar o que se vai fazer
+ * 1 min avaliação
+ * 1 min calendario
+
+
+ * 10 mins pergintas (2 juris (orientador + ))
+
+ 
