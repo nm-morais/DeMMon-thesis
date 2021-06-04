@@ -7,5 +7,28 @@
         "markdown",
         "latex",
         "plaintext"
+    ],
+    "grammarly.overrides": [
+        {
+            "files": [
+                "**/structure.MD"
+            ],
+            "config": {
+                "audience": "general",
+                "dialect": "british",
+                "domain": "academic",
+                "emotions": [
+                    "neutral",
+                    "confident",
+                    "respectful",
+                    "analytical"
+                ],
+                "goals": [
+                    "inform",
+                    "describe",
+                    "tellStory"
+                ]
+            }
+        }
     ]
 }

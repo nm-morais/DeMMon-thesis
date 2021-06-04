@@ -1,103 +1,83 @@
 %!TEX root = ../template.tex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Config/5_cover.tex
+%% Config/6_files.tex
 %% NOVA thesis configuration file
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\typeout{NT FILE Config/5_cover.tex}
+\typeout{NT FILE Config/6_files.tex}
 
-%%============================================================
-%%  THESIS/DISSERTATION COVER DATA
-%%============================================================
-
-%%------------------------------------------------------------
-% Thesis/Dissertation title (valid for all languages unless redefined as below)
-%   syntax: \nttitle[lang]{title}
-\nttitle[en]{A Very Long and Impressive\\Thesis Title with a Forced Line Break}%
-\nttitle[pt]{Um Título de Tese Longo\\e com uma Mudança de Linha Forçada}%
-%   \nttitle{A Very Long and Impressive Thesis Title}%
-%   \nttitle[en]{The title in a Specific language}%
+%=============================================================================
+% THE FILES
+%=============================================================================
 
 %%------------------------------------------------------------
-% Thesis/Dissertation subtitle (valid for all languages unless redefined as below)
-%   syntax: \nttitle{title}
-\ntsubtitle{Some thoughts on the Life, the Universe,\\and Everything Else}%
-%   \ntsubtitle{Some thoughts on the Life and the Universe}%
-%   \nttitle[en]{The title in a Specific language}%
+%% Except for the bibliography, all the other FILE NAMES below  
+%%     inside braces must correspond to a file with extension 
+%%     ".tex" and located in the "Chapters" folder
+%%------------------------------------------------------------
 
 %%------------------------------------------------------------
-% Department customization
-%   DON'T TOUCH HERE! Please open and edit the
-%   configuration file “Config/department_name.tex”
+% BibTeX bibiography files and customization.  
+%   May be used multiple times with a single file nae each time.
+%   syntax: \ntaddfile{bib}{filename.bib}
+\ntaddfile{bib}{bibliography.bib}
+%\ntaddfile{bib}{anotherbibfile.bib}
 
 %%------------------------------------------------------------
-% Degree customization
-%   DON'T TOUCH HERE! Please open and edit the appropriate
-%   configuration file “Config/degree_name_phd.tex”
-%   or “Config/degree_name_msc.tex”
-%   or “Config/degree_name_other.tex”
+% File with the dedicatory text. Will only be considered for final documents,
+%   i.e., "bsc", "msc" and "phd", otherwise, it will be silently ignored
+%   syntax: \ntaddfile{dedicatory}{filename}
+\ntaddfile{dedicatory}{dedicatory}
 
 %%------------------------------------------------------------
-% Degree customization
-%   If the degree includes a specialization
-%   syntax: \ntspecialization(language){name}
-\ntspecialization(pt){\embrace{Designação da Especialidade}}
-\ntspecialization(en){\embrace{Speciality Name}}
+% File with the acknowledgments text. Will only be considered for final documents,
+%   i.e., "bsc", "msc" and "phd", otherwise, it will be silently ignored
+%   syntax: \ntaddfile{acknowledgements}{filename}
+\ntaddfile{acknowledgements}{acknowledgements}
 
 %%------------------------------------------------------------
-% Sponsors
-%   Some Schools require the work sponsors to be listed in the cover
-%   syntax: \ntsponsors(language){names}
-\ntsponsors(pt){\embrace{Fontes de Financiamento}}
-\ntsponsors(en){\embrace{Funding Sponsors}}
+% File with the quote text. Will only be considered for final documents,
+%   i.e., "bsc", "msc" and "phd", otherwise, it will be silently ignored
+%   syntax: \ntaddfile{quote}{filename}
+\ntaddfile{quote}{quote}
 
 %%------------------------------------------------------------
-% Author full name, abbreviated name, and gender
-%   use [f] for female and [m] for male author
-%   syntax: \ntauthorname(language){full name}{abbreviated name}
-\ntauthorname[m]{Nuno Morais}{Nuno Morais}
+% Abstract files in multiple languages
+%   syntax: \ntaddfile{abstract}[language]{filename}
+\ntaddfile{abstract}[pt]{abstract-pt}  % Abstract in Portuguese
+\ntaddfile{abstract}[en]{abstract-en}  % Abstract in English
+% \ntaddfile{abstract}[fr]{abstract-fr}  % Abstract in French
 
 %%------------------------------------------------------------
-% Author previous degree
-%   syntax: \ntauthordegree{degree}
-\ntauthordegree{Bachelor in Computer Science and Engineering}
+% Lists of Glossary, Acronyms and Symbols
+%   syntax: \ntaddfile{glossaries}[list-type]{filename}
+\ntaddfile{glossaries}[glossary]{glossary}
+\ntaddfile{glossaries}[acronyms]{acronyms}
+\ntaddfile{glossaries}[symbols]{symbols}
 
 %%------------------------------------------------------------
-% Submission date
-%   syntax: \ntdatemonth{month}
-%           \ntdateyear{year}
-\ntdatemonth{\embrace{month}}
-\ntdateyear{\embrace{year}}
+% Main text - document chapters
+%   syntax: \ntaddfile{chapter}{filename}
+\ntaddfile{chapter}{introduction}
+\ntaddfile{chapter}{chapter2}
+\ntaddfile{chapter}{chapter3}
+% \ntaddfile{chapter}{chapter4}
+% \ntaddfile{chapter}{chapter-last}
 
 %%------------------------------------------------------------
-% Advisers' gender and info (name, position, school, etc)
-%   use [f] for female and [m] for male
-%   use "\\" to break the lines in the appropriate place
-%   syntax: \ntaddperson{adviser}[gender]{Name, Position, School}
-\ntaddperson{adviser}[f]{{João Leitão, Assistant Professor, NOVA University Lisbon}}
-% \ntaddperson{adviser}[f]{{Mary Doe other Adviser Name, Full Professor, NOVA University Lisbon}}
-% \ntaddperson{adviser}[f]{{Mary Doe yet another Adviser Name, Full Professor, NOVA University Lisbon}}
+% Text appendices 
+% syntax: \ntaddfile{appendix}{filename}
+\ntaddfile{appendix}{appendix1}
+\ntaddfile{appendix}{appendix2}
 
 %%------------------------------------------------------------
-% Co-Advisers' gender and info (name, position, school, etc)
-%   use [f] for female and [m] for male
-%   use "\\" to break the lines in the appropriate place
-%   syntax: \ntaddperson{coadviser}[gender]{Name, Position, School}
-% \ntaddperson{coadviser}[f]{John Doe Co-Adviser Name, Associate Professor, NOVA University Lisbon}
-% \ntaddperson{coadviser}[f]{John Doe other Co-Adviser Name, Full Professor, NOVA University Lisbon}
+% Text annexes
+% syntax: \ntaddfile{annex}{filename}
+\ntaddfile{annex}{annex1}
+% \ntaddfile{annex}{annex2}
 
 %%------------------------------------------------------------
-% Committee members
-%   For [role] use: [c] for committee chair
-%                   [r] for rapporteurs
-%                   [a] for advisers
-%                   [m] for remaining members
-%                   [g] for guests
-%   syntax: \ntaddperson{committee}[role,gender]{Name, Position, School}
-\ntaddperson{committee}[c,m]{Name of the committee chairperson, Full Professor, FCT-NOVA}
-\ntaddperson{committee}[r,m]{Name of a rapporteur, Associate Professor, Another University}
-% \ntaddperson{committee}[r,m]{Name of another rapporteur, \\Assistant Professor, Another University}
-\ntaddperson{committee}[a,m]{Name of the adviser present in defense, Associate Professor, Some University}
-% \ntaddperson{committee}[m,f]{Yet another member of the committee, Full Professor, \\Another University}
-% \ntaddperson{committee}[m,f]{Yet another member of the committee, Assistant Professor, \\Another University}
-% \ntaddperson{committee}[g,m]{Guest member of the committee, Position, University}
+% Definition of the statement page, to be printed before the copyright
+% syntax: \ntaddfile{statement}{filename}
+% \ntaddfile{statement}{statement-nova-ims}
+
