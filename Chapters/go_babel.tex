@@ -1,0 +1,46 @@
+%!TEX root = ../template.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% chapter2.tex
+%% NOVA thesis document file
+%%
+%% Chapter with the template manual
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\typeout{NT FILE GO-Babel.tex}
+
+\chapter{GO-Babel}
+\label{cha:GO-Babel}
+
+
+
+The first contribution of this masters dissertation is an event-based framework called GO-Babel. This framework is a port in Golang \todo{citation} of Babel \todo{citation} with a few additions focused on fault detection and latency probing. Babel \todo{citation} itself is based on Yggdrasil \todo{citation}, which in turn is inspired on \todo{cite and discover paper of original event-based framework}.
+
+The decision to build this framework arose from the need to use Babel for building the distributed protocols and the decision to use Golang during this dissertation (due to its primitives for building concurrent systems). Given that there was no implementation of Babel in Golang, and the current Babel implementation lacked needed features such as a fault detector and a latency measurement tool, we implemented a new version in Golang with these additions.
+
+In summary, this framework has the following main objectives:
+
+\begin{enumerate}
+
+    \item Abstract the networking layer, providing \textbf{channels}, which are essentially an abstraction over TCP connections, providing callbacks whenever outbound or inbound connections are established or terminated and whenever messages or sent or received from the respective operating system buffers.
+
+    \item Execute protocols in a single-threaded environment and provide abstractions for timers, request-reply patterns, notifications, and ease channel management.
+
+    \item Provide a layer of abstraction over node latency probing and fault detection.
+
+\end{enumerate}
+
+As previously mentioned, the abstraction layer latency probing and node collection is the new addition to the framework, implemented in GO-Babel by adding a new component, called Node Watcher. The remaining components of this framework were implemented similarly to Babel \todo{insert citation}. Consequently, the Node Watcher is the only feature that we will be focusing on for the remainder of this chapter.
+
+
+\section{Node Watcher}
+
+The node watcher is an optional component, that if registered, will listen for probes in a custom port (specified in the configurations) and send them back to the original senders. These probes are sent (usually) via UDP and contain a timestamp used by the original sender to calculate the round-trip time to the target node.
+
+The main interface for the Node watcher is composed of two operations, the "watch" and the "unwatch". When a node is "watched", the node watcher instantiates a PHI-accrual fault detector \todo{insert citation}, and a rolling-average latency calculator, then it starts sending probes to the target peer according to the issued configuration settings and "watch" options.
+
+When watching a node, if the "watched" node does not reply within a time frame, the Node Watcher attempts to fallback to TCP. This fallback was implemented for cases where the watched node may be dropping UDP packets due to a constraint in its infrastructure.
+
+% For each "watched" node, It also allows issuing conditions that, when triggered, issue a notification back to the issuing protocol.
+
+% If a node fails to receive an answer from a specified node 
+% For the watch operation, multiple options are configurable, such as, (1) how many probes to send initu

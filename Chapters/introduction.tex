@@ -17,9 +17,9 @@ Nowadays, the Cloud Computing paradigm is the standard for development, deployme
 
 However, the centralized model proposed by the Cloud Computing paradigm mismatches the needs of many types of applications  such as: latency-sensitive applications, interactive mobile applications, and IoT applications \cite{10.1145/3154815}. All of these application domains are characterized by having data being generated and accessed (mostly) by end-user devices, consequently, when the computation resides in the data center (DC), far from the source of the data, challenges may arise: from the physical space needed to contain all the infrastructure, the increasing amount of bandwidth needed to support the information exchange from the DC to the client, the latency in communication from the clients to the DC as well as the security aspects that emerge from offloading data storage and computation to DCs operated by third parties have directed us into a new computing paradigm: \textit{Edge Computing}.
 
-Edge computing addresses the increasing need for enriching the interaction between cloud computing systems and interactive / collaborative web and mobile applications \cite{10.1145/242857.242867}, by taking into consideration  computing and networking resources which exist beyond the boundaries of DCs and close to the edge of systems \cite{Leitao2018} \cite{7488250}. This paradigm aims at enabling the creation of systems which could otherwise be unfeasible with Cloud Computing: Google's self-driving car generates 1 Gigabyte every second \cite{datafloq}, and a Boeing 787 produces data at a rate close to 5 gigabytes per second \cite{finnegan_2013}, which would be impossible to transport and process in real-time (e.g., towards self-driving) if the computations were to be carried exclusively in a DC. 
+Edge computing addresses the increasing need for enriching the interaction between cloud computing systems and interactive / collaborative web and mobile applications \cite{10.1145/242857.242867}, by taking into consideration  computing and networking resources which exist beyond the boundaries of DCs and close to the edge of systems \cite{Leitao2018} \cite{7488250}. This paradigm aims at enabling the creation of systems which could otherwise be unfeasible with Cloud Computing: Google's self-driving car generates 1 Gigabyte every second \cite{datafloq}, and a Boeing 787 produces data at a rate close to 5 gigabytes per second \cite{finnegan_2013}, which would be impossible to transport and process in real-time (e.g., towards self-driving) if the computations were to be carried exclusively in a DC.
 
-By taking into consideration all the devices which are external to the DC, we are faced with a huge increase in the number and characteristics of computational devices ranging from Edge Data Centers to 5G towers and mobile devices. These devices, contrary to the cloud, have heterogenous computational capacity and potentially limited and unreliable data lines. Given this, developing an efficient resource management and sharing platform which enables the adequate and efficient use of these devices is an open challenge for fully realizing Edge Computing. 
+By taking into consideration all the devices which are external to the DC, we are faced with a huge increase in the number and characteristics of computational devices ranging from Edge Data Centers to 5G towers and mobile devices. These devices, contrary to the cloud, have heterogenous computational capacity and potentially limited and unreliable data lines. Given this, developing an efficient resource management and sharing platform which enables the adequate and efficient use of these devices is an open challenge for fully realizing Edge Computing.
 
 \section{Context}
 
@@ -29,25 +29,7 @@ Most popular resource management and sharing platforms are tailored towards smal
 
 Given this, it is paramount that devices cooperatively materialize a robust lightweight decentralized resource control system, which tracks resource demands and allocations. In such a system, the accuracy and freshness of the information each component has dictates how efficiently they manage resources such that the system remains balanced, and applications running on the infrastructure maintain their target quality of service. This system must federate devices such that they leverage on heterogeneity to build a hierarchical infrastructure which combines naturally with the device taxonomy, and adapts to the environment changes.
 
-\section{Expected Contributions}
-
-The expected contributions from the work to be conducted in this thesis, as will be further detailed in Chapter \ref{cha:planning}, arise from the aforementioned challenges. We plan to focus on creating a decentralized resource monitoring and management solution tailored for provisioning resources for edge-enabled applications. Given this, the expected contributions to arise from our work consist of: 
-
-\begin{itemize}
-
-    \item A novel decentralized overlay network protocol tailored towards federating large numbers of edge devices in a hierarchical way.
-    
-    \item A lightweight monitoring solution which relies on that overlay structure to aggregate information regarding applications’ operation and the load across edge resources.
-    
-    \item A decentralized resource management solution capable of satisfying resource allocations for multi-tenant resource sharing, based on the monitoring information captured by our platform
-    
-    \item An extensive experimental assessment of our solution that will demonstrate its correctness and compare its performance with regard to existing solutions in a realistic test bed. Parts of this experimental work will be based on simple mock ups of applications that will be implemented to exercise our platform.
-
-    %\item Design an experimental scenario for the system and collect metrics to evaluate the performance and correctness of designed components. Additionally, we may design or adapt an existing edge-enabled application to test the solution in a real world scenario by scheduling application deployments and tracking metrics about the overlay and the quality of service of the applications.
-
-
-    
-\end{itemize}
+\section{Contributions}
 
 \section{Document structure}
 

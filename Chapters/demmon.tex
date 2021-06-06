@@ -1,0 +1,24 @@
+%!TEX root = ../template.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% chapter2.tex
+%% NOVA thesis document file
+%%
+%% Chapter with the template manual
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\typeout{NT FILE demmon.tex}
+
+\chapter{DeMMON}
+\label{cha:demmon}
+
+DeMMon (Decentralized Management and Monitoring Overlay Network) is an overlay network aiming to create logical connections among nodes integrating the network, forming multiple tree-shaped networks. Then, it provides an API to collect information about nodes and services running in the system. The information is collected on-demand by performing efficient information aggregation and dissemination using the tree structure. This solution, as observed in figure \todo{put a picture here}, is composed of three major components:
+
+\begin{enumerate}
+    \item The overlay network, which strives to build the tree-shaped network, nodes in this network use proximity and a set of logical rules to change their location in the tree.
+
+    \item The monitoring protocol, which is a component that collects and disseminates information using the overlay network's established connections. It communicates via notifications and asynchronous request-replies with the overlay network to receive updates regarding established connections and connection failures, and receives requests from the API to collect issued information.
+
+    \item Lastly, the API receives updates from both the overlay network and the monitoring protocol, exposes the received information from those layers, and allows ingestion of new information. Furthermore, it allows issuing commands to collect new information, perform local aggregations periodically, or alarm based on a condition.
+\end{enumerate}
+
+
