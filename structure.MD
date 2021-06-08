@@ -87,36 +87,42 @@ Consequently, it is necessary to coordinate said devices in a way which circumve
 
 ### 2.3.3 Conclusion
 
-# 3 The DeMMon framework
+# 3 GO-Babel framework
 
-## 3.1 GO-Babel framework
+# 3.1 Overview
 
-### 3.3.1 Design choices
+# 3.2 Node Watcher
 
-## 3.2 Overlay network
+# 3.3 Conclusion
 
-## 3.2 Monitoring protocol
+# 4 The DeMMon framework
 
-## 3.3 DeMMon API
+# 4.1 Overview
 
-## 3.3 DeMMon API showcase ??
+## 4.2 Overlay network
 
-## 3.3 Summary
+## 4.3 Monitoring protocol
 
-# 4 Benchmark
+## 4.4 DeMMon API
 
-## 4.1 Overview
-
-## 4.2 Design choices
+## 4.3 Use cases ??
 
 ## 4.3 Summary
 
-# 5 Evaluation
+# 5 Benchmark
 
-## 5.1 Overlay network
+## 5.1 Overview
 
-## 5.3 Broadcast
+## 5.2 Design choices
 
-## 5.2 Monitoring
+## 5.3 Summary
 
-## 6 Conclusion and future work
+# 6 Evaluation
+
+## 6.1 Overlay network
+
+## 6.3 Broadcast
+
+## 6.2 Monitoring
+
+## 7 Conclusion and future work
