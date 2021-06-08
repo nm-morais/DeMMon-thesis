@@ -6,7 +6,7 @@ Thesis structure:
 
 - Cloud is the de-facto paradigm -> easy to use, many tools, scalable vertically, simpler algorithms
 
-- however, the bandwith limitations of the cloud infrastracture, and the increasing growth of mobile and Internet of Things applications, coupled with higher demands regarding quality of service and proximity to the end-user, pushed computation outside of the Data-Center to the edge of the network.
+- however, the bandwidth limitations of the cloud infrastracture, and the increasing growth of mobile and Internet of Things applications, coupled with higher demands regarding the quality of service and proximity to the end-user, pushed computation outside of the Data-Center to the edge of the network.
 
 - Moving to the edge enables the use of far higher computation power, as there are many more devices in the edge when compared to those found in DCs, however, new bottlenecks arise when making use of such hardware, due to the constrained bandwidth and computing power.
 

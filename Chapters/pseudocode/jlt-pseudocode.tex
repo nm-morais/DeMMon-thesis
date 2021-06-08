@@ -1,0 +1,176 @@
+% Define tab size for indentation
+\algrenewcommand\algorithmicindent{2em}%
+
+% Basic command building block
+\newcommand{\statenew}[1]{\State #1;}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BLOCKS - \block[]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% State, like all blocks ends with \asdend
+\algblockdefx[asdstate]{asdstate}{asdend}
+{\textbf{State}}{}
+
+% Init
+\algblockdefx[asdinit]{asdinit}{asdend}
+{\textbf{Init}}{}
+
+\algblockdefx[asdtypes]{asdtypes}{asdend}
+{\textbf{Types}}{}
+
+\algdef{SE}[SUBALG]{Indent}{EndIndent}{}{\algorithmicend\ }%
+\algtext*{Indent}
+\algtext*{EndIndent}
+
+% Upon
+\algblockdefx[asdupon]{asdupon}{asdend}
+[1][Unknown]{\textbf{Upon} #1 \textbf{Do}}{}
+\algblockdefx[asdupontimer]{asdupontimer}{asdend}
+[1][Unknown]{\textbf{Upon Timer} #1 \textbf{Do}}{}
+
+% For
+\algblockdefx[asdfor]{asdfor}{asdend}
+[1][Unknown]{\textbf{Forall} #1 \textbf{Do}}{}
+
+% If
+\algblockdefx[asdif]{asdif}{asdend}
+[1][Unknown]{\textbf{If} (#1) \textbf{Then}}{}
+
+% Else for If
+\algcblockdefx[asdelsea]{asdif}{asdelsea}{asdend}
+{\textbf{Else}}{}
+
+% Else for Else If
+\algcblockdefx[asdelseb]{asdelseif}{asdelseb}{asdend}
+{\textbf{Else}}{}
+
+% Else If
+\algcblockdefx[asdelseif]{asdif}{asdelseif}{asdend}
+[1][Unknown]{\textbf{Else If} (#1) \textbf{Then}}{}
+
+% Interface
+\algblockdefx[asdinterface]{asdinterface}{asdend}
+{\textbf{Interface}}{}
+
+% Requests
+\algblockdefx[asdrequests]{asdrequests}{asdend}
+{\textbf{Requests}}{}
+
+% Indications
+\algblockdefx[asdindications]{asdindications}{asdend}
+{\textbf{Indications}}{}
+
+% Procedure
+\algblockdefx[asdprocedure]{asdprocedure}{asdend}
+[1][Unknown]{\textbf{Procedure} #1}{}
+
+% Forever
+\algblockdefx[asdforever]{asdforever}{asdend}
+{\textbf{Forever Do}}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% STATEMENTS - \statement{} or \statement{}{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Simple Statements
+\newcommand{\asdstatement}[1]{\statenew{#1}}
+\newcommand{\asdstatementbold}[1]{\statenew{\textbf{#1}}}
+
+% Trigger
+\newcommand{\asdtrigger}[1]{\statenew{\textbf{Trigger} #1}}
+
+% Timer
+\newcommand{\asdsetuptimer}[1]{\statenew{\textbf{Setup Timer} #1}}
+\newcommand{\asdsetupptimer}[1]{\statenew{\textbf{Setup Periodic Timer} #1}}
+\newcommand{\asdcanceltimer}[1]{\statenew{\textbf{Cancel Timer} #1}}
+
+% Call
+\newcommand{\asdcall}[1]{\statenew{\textbf{Call} #1}}
+
+% Return - use [] due to xparse
+\NewDocumentCommand{\asdreturn}{o}{
+	\statenew{\textbf{Return}\IfValueT{#1}{ #1}}
+}
+
+% Comment (inline)
+\makeatletter
+\newcommand{\asdcomment}[1]{
+	\parbox[t]{\dimexpr\linewidth-\ALG@thistlm-8em}{
+		\strut
+		//\space #1
+		\strut
+	}
+}
+\makeatother
+
+
+% Comment (entire line)
+\makeatletter
+\newcommand{\asdlinecomment}[1]{
+		\State \parbox[]{\dimexpr\textwidth-\leftmargin-\labelsep-\labelwidth}{
+			//\space #1
+		\strut}
+}
+\makeatother
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% VALUES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Booleans
+\newcommand{\asdfalse}[0]{$false$}
+\newcommand{\asdtrue}[0]{$true$}
+
+% Map
+\newcommand{\asdmap}[2]{#1{[}#2{]}}
+
+% Set 
+\newcommand{\asdset}[1]{$\{$#1$\}$}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Algebraic
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Equals (assignment)
+\newcommand{\asdassign}[2]{\statenew{#1 $\longleftarrow$ #2}}
+
+% Equals (comparison)
+\newcommand{\asdeq}[2]{#1 $=$ #2}
+
+% Not equals
+\newcommand{\asdneq}[2]{#1 $\neq$ #2}
+
+% Exists
+\newcommand{\asdexists}[1]{$\exists$ #1}
+
+% Not Exists
+\newcommand{\asdnexists}[1]{$\nexists$ #1}
+
+% And
+\newcommand{\asdand}[2]{#1 $\wedge$ #2}
+
+% Or
+\newcommand{\asdor}[2]{#1 $\vee$ #2}
+
+% Except
+\newcommand{\asdexcept}[2]{#1 $\setminus$ #2}
+
+% Union
+\newcommand{\asdunion}[2]{#1 $\bigcup$ #2}
+
+% Belongs to
+\newcommand{\asdin}[2]{#1 $\in$ #2}
+
+% Not belongs to
+\newcommand{\asdnotin}[2]{#1 $\notin$ #2}
+
+% Bottom
+\newcommand{\asdbottom}{$ \perp $}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Other
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\asdnewline}{\hfill\State}

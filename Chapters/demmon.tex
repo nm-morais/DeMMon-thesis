@@ -35,13 +35,19 @@ This solution, as observable in figure \ref{fig:demmon-overview}, is composed of
 
 \section{Overlay network}
 
-In this section, we discuss the design of the aforementioned distributed membership protocol, which aims at building and maintaining a latency and bandwidth aware tree-shaped overlay network. We begin by providing the considered system model, followed by an overview of both the mechanisms responsible for building and maintaining the tree and lastly conclude with a summary and discussion.
+In this section, we discuss the design of the overlay network, which aims to build and maintain a latency and bandwidth aware tree-shaped network. We begin by providing the considered system model, then follow with an overview of the mechanisms responsible for building and maintaining the tree. Lastly, we conclude the chapter with a summary and discussion of the protocol.
 
 \subsection{System Model}
 
+The assumed system model is a distributed scenario composed of nodes connected to the internet set-up such that they can send and receive messages via the internet (i.e. with an external IP or port-forwarding). All nodes are running the GO-Babel framework with the same configuration settings, and that each node knows a priori a set of nodes to join the network (also denoted by landmarks). Optionally, the protocol can employ bandwidths to impose additional constraints in the tree-building procedures, so nodes with higher bandwidths tend to be used at the top of the tree topology. In this case, the system administrator must also configure nodes with a heuristic of their bandwidth capacity. Lastly, every node must share the same configurations concerning the membership protocols' parameters, listed in the following subsection.  \todo {say nodes are bandwidth-constrained}
 
+\subsection{Tree construction and maintenance}
 
-\subsection{Overview}
+The devised membership protocol is coalesced by five main mechanisms: (1) the \textbf{join} mechanism, which aims to establish the initial tree structure, (2) \textbf{active view maintenance} is the mechanism responsible for periodically sharing some state with peers, which later useful for tree optimizations, (3) \textbf{group optimization}, where nodes periodically attempt to optimize their childrens' active connections, (4) \textbf{passive view maintenance}, responsible for collecting information about peers which are not in the active view, used for fault tolerance and optimizations, and finally, (5) \textbf{oportunistic optimization}, where nodes may attempt to improve their position in the overlay based on latency and bandwidth. We will now cover each mechanism in the provided order.
+
+As previously mentioned, the join mechanism is the mechanism responsible for creating the initial tree structure, it is the first mechanism to be executed by each node in the system, 
+
+\input{Chapters/pseudocode/memb_join.tex}
 
 \subsection{Summary}
 

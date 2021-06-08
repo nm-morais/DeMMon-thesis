@@ -1,0 +1,177 @@
+% JOIN -----
+
+% Types :
+
+% Node {
+%     ID // string attributed by parent \asdupon[entering the syst]m
+%     measuredLatency // the measured latency to the peer
+%     parentIP // the IP of the parent of the Node
+%     nrChildren // the number of children
+%     replied // wether the node replied to joinMessage
+%     IP // the node IP
+%     children: [] {
+%         ID  // the children id of the peer
+%         nrChildren  // the nr of children of the child
+%         IP // the node IP
+%     }
+% }
+
+\input{Chapters/pseudocode/jlt-pseudocode.tex}
+
+\algblock[]{Start}{End}
+
+\begin{algorithm}
+\begin{algorithmic}[1]
+    \caption{Join Protocol}
+    \asdtypes
+        \State Node \{
+        \Indent
+        \State     ID // string attributed by parent upon entering the system
+        \State     measuredLatency // the measured latency to the peer
+        \State     parentIP // the IP of the parent of the Node
+        \State     nrChildren // the number of children
+        \State     replied // wether the node replied to joinMessage
+        \State     IP // the node IP
+        \State     children: []<nrChildren,IP> 
+        \EndIndent
+        \State \}
+    \asdend
+
+
+    \asdstate
+        \State minGroupSize // the minimum group size
+        \State joinTimeouts // collection of timers for contacted nodes
+        \State contactedNodes // map of all successfully contacted nodes
+        \State nodesToContact // nodes being contacted
+        \State bestPeerLastLevel // lowest latency peer in last level
+        \State isLandmark // boolean indicating if peer is landmark peer
+        \State joinTimeoutTimerID // timer id for join messages
+        \State self Node // self
+    \asdend
+
+    \asdupon[Init(landmarkIps, selfIP)]
+        \State joinTimeouts <- {}
+        \State bestPeerLastLevel <- {}
+        \State landmarks <- []
+        \State isLandmark <- selfIP \asdin landmarkIps
+        \asdif[isLandmark]
+            \State progressToNextLevel(landmarkIps)
+        \asdelsea 
+            \asdfor[landmark in landmarks]
+                \State dial(landmark)
+            \asdend
+        \asdend
+    \asdend
+
+    \asdupon[JoinTimeoutTimer(L)]
+        \asdif (L in Landmarks)
+        \State rejoinLater()
+        \asdelsea
+            \State delete(nodesToContact[L])
+        \asdend
+    \asdend
+
+    \asdupon[JoinRequestTimeout(p)]
+        \asdif[p.parentIP != nil]
+        \State bestPeerLastLevel = contactedNodes[bestPeerLastLevel.parentIP]
+        \State joinAsChild(bestPeerLastLevel)
+        \asdelsea
+            \State rejoinLater()
+        \asdend
+    \asdend
+
+    \asdupon[receive(Join<>,sender)]
+        \State cancelTimer(joinTimeouts[sender])
+        \State delete(joinTimeouts, sender)
+        \State sendMessageSideChannel(JoinReply<self.parent, self.node, self.children>, sender)
+    \asdend
+
+    \asdupon[receive JoinReply(<parentIP, node, children>, sender)]
+        \State contactedNode = nodesToContact[node.IP]
+        \State contactedNode.id = node.ID
+        \State contactedNode.parentIP = parentIP
+        \State contactedNode.nrChildren = len(children)
+        \State contactedNode.replied = true
+        \asdfor[c in children]
+            \State contanctedNode.Children.append(\{ ID : c.ID, nrChildren <- c.nrChildren,
+                IP <- c.IP
+            \})
+        \asdend
+    \asdend
+
+    \asdupon[receive(JoinRequestReply<>, sender)]
+        \State // joined successfully! 
+        \State // further assignments omitted
+        \State addParent(sender)
+    \asdend
+
+    \asdupon[NodeMeasured(node, latency]
+        \State nodesToContact[node].measuredLatency = latency
+    \asdend
+
+    \asdupon[NodeMeasuringFailed(node]{
+        \State delete(nodesToContact, node)
+    \asdend
+
+    % \asdupon[forAll(n in nodesToContact -> n.measuredLatency != -1 && ].replied) {
+    %     if len(nodesToContact) == 0 {
+    %         if bestPeerLastLevel == nil { // has not gotten past landmarks
+    %         rejoinLater()
+    %         return
+    %     }
+    %     contactedNodes.appendAll(nodesToContact)
+    %     for node in sortedByLatency(nodesToContact) {
+    %         // check to see if parent's latency isn't lower than node's
+    %         if bestPeerLastLevel != nil {
+    %             if bestPeerLastLevel.measuredLatency < node.measuredLatency {
+    %                 joinAsChild(bestPeerLastLevel)
+    %                 return
+    %             }
+    %         }
+
+    %         // check to see if node has enough children to become joiner's parent (unless its a landmark)
+    %         if (node.IP not in landmarks) && node.nrChildren == 0  {
+    %             continue
+    %         }
+
+    %         bestPeerLastLevel = node
+    %         progressToNextLevel([c.IP for c in node.children])
+    %         return
+    %     }
+    %     if bestPeerLastLevel.parentIP == nil {
+    %         bestPeerLastLevel = contactedNodes[bestPeerLastLevel.parentIP]
+    %         joinAsChild(bestPeerLastLevel)       
+    %         return
+    %     } else {
+    %         rejoinLater()
+    %     }
+    % }
+
+    % prodecude joinAsChild(p){
+    %     joinTimeoutTimerID = setupTimer(JoinRequestTimeout<p>)
+    %     sendMessageSideChannel(JoinRequest<>, p.IP)
+    % }
+
+    % prodecude progressToNextLevel(nodeIPs) {
+    %     nodesToContact <- {}
+    %     parentID <- nil
+    %     if bestPeerLastLevel != nil { parentID <- bestPeerLastLevel.ID}
+
+    %     for p in nodeIPs {
+    %         nodesToContact[p] = Node {
+    %             IP : p
+    %             measuredLatency <- -1
+    %             parentID <- parentID
+    %             nrChildren <- -1
+    %             replied <- false
+    %             children <- []
+    %         }
+    %         sendMessageSideChannel(JoinMessage<>, p)
+    %         t <- setupTimer(JoinTimeoutTimer{p})
+    %         joinTimeouts[p] = t
+    %         MeasureNode(p)
+    %     }
+    % }
+
+\end{algorithmic}
+\end{algorithm}
