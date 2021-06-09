@@ -1,0 +1,29 @@
+state:
+    potentialParent : Node
+
+do every x seconds:
+    toMeasureRand = getRandSample(eView, config.NrPeersToMeasureRandom)
+    toMeasureBiased = getRandSample(sortByEuclideanDist(eView / toMeasureRand), config.NrPeersToMeasureRandom)
+
+    for p in toMeasureRand:
+        measurePeer(p)
+    for p in toMeasureBiased:
+        measurePeer(p)
+
+
+upon peerMeasured(p, latency):
+    latencyImprovement := parent.measuredLatency - Latency
+    if latencyImprovement >= config.MinLatencyForImprovement:
+        sendMessageSideChannel(OportunisticImprovementReq<self>,p)
+
+upon receive(OportunisticImprovementReq<p>,sender):
+    if isDescendent(p.ID,self):
+        sendMessageSideChannel(OportunisticImprovementReqReply<false>,sender)
+    else:
+        addChildren(sender)
+        sendMessageSideChannel(OportunisticImprovementReqReply<true>,sender)
+
+upon receive(OportunisticImprovementReqReply<answer>,sender):
+    if answer {
+        addParent(sender)
+    }

@@ -10,6 +10,7 @@
 
 \chapter{DeMMON}
 \label{cha:demmon}
+\input{Chapters/pseudocode/jlt-pseudocode.tex}
 
 DeMMon (Decentralized Management and Monitoring Overlay Network) is an overlay network aiming to create logical connections among nodes integrating the network, forming multiple tree-shaped networks. Then, it provides an API to request information about nodes and services running in the system, which is collected on-demand by the monitoring protocol via efficient information aggregation and dissemination using the tree structure.
 
@@ -47,7 +48,13 @@ The devised membership protocol is coalesced by five main mechanisms: (1) the \t
 
 As previously mentioned, the join mechanism is the mechanism responsible for creating the initial tree structure, it is the first mechanism to be executed by each node in the system, 
 
-\input{Chapters/pseudocode/memb_join.tex}
+\input{Chapters/pseudocode/membership/memb_join.tex}
+
+\input{Chapters/pseudocode/membership/memb_active_view_maintenance.tex}
+
+\input{Chapters/pseudocode/membership/memb_passive_view_maintenance.tex}
+
+\input{Chapters/pseudocode/membership/memb_oportunistic_improvement.tex}
 
 \subsection{Summary}
 

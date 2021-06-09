@@ -1,0 +1,81 @@
+state:
+    childrenLatencies = {}
+
+do every x seconds:
+    if parent != nil {
+        siblingLatencies = []
+        for sibling in siblings:
+            siblingLatencies.append(<sibling.IP,sibling.measuredLatency)
+        sendMessage(UpdateChildStatus<children, siblingLatencies>, parent)
+
+do every X seconds:
+    for child in children:
+        sendMessage(UpdateParentStatus<self,child.ID, parent>)
+
+upon receive(UpdateParentStatus<parent,myID, grandParent>, sender):
+    if sender == parent.IP:
+        parent = parent
+        self.ID = parent.ID + myID
+        grandParent = grandParent
+
+upon receive(UpdateChildStatus<child, childSiblingLatencies>, sender):
+    if children[sender] != nil:
+        children[sender] = children
+        childrenLatencies[sender]=childSiblingLatencies
+
+do every X seconds:
+    childrenLatValues = {}
+    for c1 in children:
+        for <c2, lat> in childrenLatencies[c]:
+            if lat - c1.measuredLatency >= d.config.maxLatDowngrade: 
+                break    
+            higherBwC = c1
+            lowerBWC = c2
+            if c2.bw > c1.bw:
+                higherBwC = c2
+                lowerBWC = c1  
+            childrenLatValues.add(<higherBwC,lowerBWC,lat>)
+    kickedNodes = {}
+    newParents = {}
+    potentialChildren = dict<string,set<Node>>
+    sortByLatency(childrenLatValues)
+
+    for <higherBwC,lowerBWC,lat> in childrenLatValues:
+        if len(children) - len(kickedNodes) <= config.MinGroupSize:
+            break
+        if higherBwC in kickedNodes or lowerBWC in kickedNodes:
+            continue
+        if loserBWC in newParents:
+            continue
+
+        if higherBwNode.nrChildren == 0:
+            potentialChildren[higherBwNode].append(lowerBWC)
+            if len(potentialChildren) >= config.MinGroupSize:
+                for potentialChild in potentialChildren[higherBwNode]:
+                    newParents <- newParents + higherBwNode
+                    send(OptimizationPropose<higherBwNode>, potentialChild)
+                    higherBwNode.nrChildren++
+                    kickedNodes <- kickedNodes + potentialChild
+
+                for <nIP,potentialChilren> in potentialChildren:
+                    potentialChilren.deleteAll(potentialChildren[higherBwNode])
+                potentialChildren[higherBwNode] = set<Node>
+                continue
+
+        kickedNodes <- kickedNodes + lowerBWC
+        send(OptimizationPropose<higherBwNode>, lowerBWNode)
+
+upon receive(OptimizationPropose<newParent>, sender):
+    if sender == parent:
+        send(OptimizationProposeRequest<sender>, newParent)
+
+upon receive(OptimizationProposeRequest<p>, sender):
+    if p == parent && sender in siblings: // parent issuing the message is the same parent that i have
+        send(OptimizationProposeRequestReply<true>, sender)
+    else 
+        sendSideChannel(OptimizationProposeRequestReply<false>, sender)
+
+upon receive(OptimizationProposeRequestReply<reply>, sender):
+    if reply: 
+        sendMessageAndDisconnectFrom(DisconnectMessage<>, parent)
+        addParent(sender)

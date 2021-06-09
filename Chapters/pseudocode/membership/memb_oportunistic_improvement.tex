@@ -1,0 +1,47 @@
+\begin{algorithm}
+\begin{algorithmic}[1]
+
+        \caption{Oportunistic Optimization}
+
+    \asdstate
+        \State childrenLatencies : dict<string:dict<string:number>>
+    \asdend
+
+    \asdrepeateveryx[config.OportunisticOptimizationTimeout]
+        \State toMeasureRand = getRandSample(eView, config.NrPeersToMeasureRandom)
+        \State toMeasureBiasedOpts = sortByEuclideanDist(eView / toMeasureRand)
+        \State toMeasureBiased = getRandSample(toMeasureBiasedOpts, config.NrPeersToMeasureRandom)
+
+        \For p in toMeasureRand:
+            \State measurePeer(p)
+        \EndFor
+        \For p in toMeasureBiased:
+            \State measurePeer(p)
+        \EndFor
+    \asdend
+
+    \asdupon{peerMeasured(p, latency)}
+        \State latencyImprovement := parent.measuredLatency - Latency
+        \If{latencyImprovement >= config.MinLatencyForImprovement}:
+            \State sendMessageSideChannel(OportunisticImprovementReq<self>,p)
+        \EndIf
+    \asdend
+
+
+    \asdupon{receive(OportunisticImprovementReq<p>,sender)}
+        \If{isDescendent(p.ID,self)}:
+            \State sendMessageSideChannel(OportunisticImprovementReqReply<false>,sender)
+        \Else
+            \State addChildren(sender)
+            \State sendMessageSideChannel(OportunisticImprovementReqReply<true>,sender)
+        \EndIf
+    \asdend
+
+    \asdupon{receive(OportunisticImprovementReqReply<answer>,sender)}
+        \If {answer} 
+            \State addParent(sender)
+        \EndIf
+    \asdend
+
+\end{algorithmic}
+\end{algorithm}

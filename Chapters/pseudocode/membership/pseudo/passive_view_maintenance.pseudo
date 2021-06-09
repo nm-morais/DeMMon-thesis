@@ -1,0 +1,36 @@
+state:
+    eView : set<Node>
+
+do every x seconds:
+    asc_neighs = [parent + siblings]
+    all_neighbours = [children + asc_neighs]
+    sample = getRandSample([eView + all_neighbours], config.NrPeersToMergeRandWalk)
+    sendMessage(RandomWalk<sample, config.RandWalkTTL, self.ID, self.IP>, get_random(asc_neighs))
+
+upon receive RandomWalk<sample, ttl, nID, orig>:
+    stepsTaken = config.RandWalkTTL - ttl
+
+    nrToAdd = config.NrPeersToMergeRandWalk
+    nrToMerge = config.NrPeersToMergeRandWalk
+
+    asc_neighs = [parent + siblings]
+    all_neighbours = [children + asc_neighs]
+
+    if stepsTaken < config.NrStepsToIgnore:
+        nrToMerge = 0
+    
+    toAdd = getRandSample(excludeDescendantsOf([eView + all_neighbours] / sample),nID), nrToAdd)
+    toRemoveFromSample = getRandSample(sample, nrToMerge)
+    sample = sample / toRemoveFromSample
+    sample = sample + toAdd
+    target = getRand(excludeDescendantsOf(all_neighbours, nID)
+    if target == nil || ttl == 0:
+        sendMessageSideChannel(RandomWalkReply<sample>, orig)
+    else:
+        sendMessage(RandomWalk<sample, ttl-1, nID, orig>, get_random(asc_neighs))
+    eView = excludeDescendantsOf(toRemoveFromSample, self.ID)  + eView
+    eView = eView / all_neighbours
+    eView = eView[:config.MaxEViewSize]
+
+procedure isDescendentOf(nodeID, PotentialDescID):
+    return PotentialDescID.Contains(nodeID)

@@ -1,9 +1,6 @@
 % Define tab size for indentation
 \algrenewcommand\algorithmicindent{2em}%
 
-% Basic command building block
-\newcommand{\statenew}[1]{\State #1;}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BLOCKS - \block[]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -11,6 +8,7 @@
 % State, like all blocks ends with \asdend
 \algblockdefx[asdstate]{asdstate}{asdend}
 {\textbf{State}}{}
+
 
 % Init
 \algblockdefx[asdinit]{asdinit}{asdend}
@@ -32,6 +30,9 @@
 % For
 \algblockdefx[asdfor]{asdfor}{asdend}
 [1][Unknown]{\textbf{Forall} #1 \textbf{Do}}{}
+
+\algblockdefx[asdrepeateveryx]{asdrepeateveryx}{asdend}
+[1]{\textbf{Every} #1 \textbf{Do}}{}
 
 % If
 \algblockdefx[asdif]{asdif}{asdend}
@@ -134,7 +135,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Equals (assignment)
-\newcommand{\asdassign}[2]{\statenew{#1 $\longleftarrow$ #2}}
+\newcommand{\asdassign}[0]{ $\longleftarrow$ }
+
+\algblockdefx[Foreach]{Foreach}{EndForeach}[1]{\For{\textbf{each} #1}}{}
 
 % Equals (comparison)
 \newcommand{\asdeq}[2]{#1 $=$ #2}
