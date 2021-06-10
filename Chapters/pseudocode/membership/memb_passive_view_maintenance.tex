@@ -1,14 +1,12 @@
 \begin{algorithm}
-% \setstretch{0.85}
 \begin{algorithmic}[1]
-
     \caption{Passive view Maintenance}
 
     \asdstate
         \State eView : set<Node>
     \asdend
 
-    \asdrepeateveryx[config.RandWalkPeriodicity]
+    \asdrepeateveryx{config.RandWalkPeriodicity}
         \State ascNeighs, allNeighs = set
         \State ascNeighs = ascNeighs + parent + siblings
         \State allNeighs = allNeighs + ascNeighs + children
@@ -44,7 +42,8 @@
     \asdend
 
     \asdprocedure{isDescendentOf(nodeID, PotentialDescID)}:
-        return PotentialDescID.Contains(nodeID)
+        \State return PotentialDescID.Contains(nodeID)
+    \asdend
 
 \end{algorithmic}
 \end{algorithm}

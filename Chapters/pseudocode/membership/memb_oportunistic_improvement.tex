@@ -1,13 +1,13 @@
-\begin{algorithm}
+\begin{algorithm}[H]
 \begin{algorithmic}[1]
 
-        \caption{Oportunistic Optimization}
+    \caption{Oportunistic Optimization}
 
     \asdstate
         \State childrenLatencies : dict<string:dict<string:number>>
     \asdend
 
-    \asdrepeateveryx[config.OportunisticOptimizationTimeout]
+    \asdrepeateveryx{config.OportunisticOptimizationTimeout}
         \State toMeasureRand = getRandSample(eView, config.NrPeersToMeasureRandom)
         \State toMeasureBiasedOpts = sortByEuclideanDist(eView / toMeasureRand)
         \State toMeasureBiased = getRandSample(toMeasureBiasedOpts, config.NrPeersToMeasureRandom)
