@@ -40,19 +40,27 @@ In this section, we discuss the design of the overlay network, which aims to bui
 
 \subsection{System Model}
 
-The assumed system model is a distributed scenario composed of nodes connected to the internet set-up such that they can send and receive messages via the internet (i.e. with an external IP or port-forwarding). All nodes are running the GO-Babel framework with the same configuration settings, and that each node knows a priori a set of nodes to join the network (also denoted by landmarks). Optionally, the protocol can employ bandwidths to impose additional constraints in the tree-building procedures, so nodes with higher bandwidths tend to be used at the top of the tree topology. In this case, the system administrator must also configure nodes with a heuristic of their bandwidth capacity. Lastly, every node must share the same configurations concerning the membership protocols' parameters, listed in the following subsection.  \todo {say nodes are bandwidth-constrained}
+The assumed system model is assumed to be a distributed scenario composed of nodes connected to the internet set-up such that they can send and receive messages via the internet (i.e. with an external IP or port-forwarding). We also assume that nodes are inserted in an cloud-edge environment, with nodes possibly spread throughout multiple continents and with varied bandwidth values. All nodes run the same software stack with similar configuration settings, installed a priori.
 
-\subsection{Tree construction and maintenance}
+It is assumed that all but a small portion of nodes (also known as the landmarks) can fail, and that nodes that fail do so in a crash-fault manner, stopping the emition and reception of messages. The aforementioned landmarks are representative of nodes running in cloud environments, and consequently, may have increased fault-tolerance using replication.
 
-The devised membership protocol is coalesced by five main mechanisms: (1) the \textbf{join} mechanism, which aims to establish the initial tree structure, (2) \textbf{active view maintenance} is the mechanism responsible for periodically sharing some state with peers, which later useful for tree optimizations, (3) \textbf{group optimization}, where nodes periodically attempt to optimize their childrens' active connections, (4) \textbf{passive view maintenance}, responsible for collecting information about peers which are not in the active view, used for fault tolerance and optimizations, and finally, (5) \textbf{oportunistic optimization}, where nodes may attempt to improve their position in the overlay based on latency and bandwidth. We will now cover each mechanism in the provided order.
+\subsection{Overview}
 
-As previously mentioned, the join mechanism is the mechanism responsible for creating the initial tree structure, it is the first mechanism to be executed by each node in the system, 
+The devised protocol
+
+The devised membership protocol is coalesced by four main mechanisms: (1) the \textbf{join} mechanism, which aims to establish the initial tree structure, (2) the \textbf{active view maintenance}, responsible for periodically sharing some information with the parent, and using that information for tree management, (3) \textbf{passive view maintenance}, responsible for collecting information about peers which are not in the active view, used for fault tolerance and for optimizing the tree, and finally, (4) \textbf{fault tolerance}.
+
+\subsubsection{Join mechanism}
+
+As previously mentioned, the join mechanism is the mechanism responsible for creating the initial tree structure, it is the first mechanism to be executed by each node in the system,
 
 \input{Chapters/pseudocode/membership/memb_join.tex}
 
-\input{Chapters/pseudocode/membership/memb_active_view_maintenance.tex}
 
-\input{Chapters/pseudocode/membership/memb_passive_view_maintenance.tex}
+
+
+
+\input{Chapters/pseudocode/membership/memb_active_view_maintenance.tex}
 
 \input{Chapters/pseudocode/membership/memb_oportunistic_improvement.tex}
 

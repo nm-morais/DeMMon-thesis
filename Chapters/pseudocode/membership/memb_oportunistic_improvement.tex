@@ -1,17 +1,24 @@
 \begin{algorithm}[H]
 \begin{algorithmic}[1]
-
+    
     \caption{Oportunistic Optimization}
 
     \asdstate
-        \State childrenLatencies : dict<string:dict<string:number>>
+        \State eView : set<Node>
+    \asdend
+
+    \asdrepeateveryx{config.RandWalkPeriodicity}
+        \State ascNeighs, allNeighs = set
+        \State ascNeighs = ascNeighs + parent + siblings
+        \State allNeighs = allNeighs + ascNeighs + children
+        \State sample = getRandSample(eView + allNeighs, config.NrPeersToMergeRandWalk)
+        \State sendMessage(RandomWalk<sample, config.RandWalkTTL, self.ID, self.IP>, getRand(ascNeighs))
     \asdend
 
     \asdrepeateveryx{config.OportunisticOptimizationTimeout}
         \State toMeasureRand = getRandSample(eView, config.NrPeersToMeasureRandom)
         \State toMeasureBiasedOpts = sortByEuclideanDist(eView / toMeasureRand)
         \State toMeasureBiased = getRandSample(toMeasureBiasedOpts, config.NrPeersToMeasureRandom)
-
         \For p in toMeasureRand:
             \State measurePeer(p)
         \EndFor
@@ -20,16 +27,44 @@
         \EndFor
     \asdend
 
-    \asdupon{peerMeasured(p, latency)}
+
+    \asdupon[receive( RandomWalk<sample, ttl, nID, orig>, sender)]
+        \State stepsTaken = config.RandWalkTTL - ttl
+        \State nrToAdd = config.NrPeersToMergeRandWalk
+        \State nrToMerge = config.NrPeersToMergeRandWalk
+        \State ascNeighs, allNeighs = set(), set()
+        \State ascNeighs = ascNeighs + parent + siblings
+        \State allNeighs = allNeighs + ascNeighs + children
+
+        \If{stepsTaken < config.NrStepsToIgnore}:
+            \State nrToMerge = 0
+        \EndIf
+
+        \State toAdd = getRandSample(excludeDescendantsOf([eView + allNeighs] / sample),nID), nrToAdd)
+        \State toRemoveFromSample = getRandSample(sample, nrToMerge)
+        \State sample = sample / toRemoveFromSample
+        \State sample = sample + toAdd
+        \State target = getRand(excludeDescendantsOf(allNeighs, nID)
+        \If{target == nil || ttl == 0}
+            \State sendMessageSideChannel(RandomWalkReply<sample>, orig)
+        \Else
+            \State sendMessage(RandomWalk<sample, ttl-1, nID, orig>, getRandom(ascNeighs))
+        \EndIf
+        \State eView = excludeDescendantsOf(toRemoveFromSample, self.ID)  + eView
+        \State eView = eView / allNeighs
+        \State eView = eView[:config.MaxEViewSize]
+    \asdend
+
+    \asdupon[peerMeasured(p, latency)]
         \State latencyImprovement := parent.measuredLatency - Latency
-        \If{latencyImprovement >= config.MinLatencyForImprovement}:
+        \If{latencyImprovement >= config.MinLatencyForImprovement}
             \State sendMessageSideChannel(OportunisticImprovementReq<self>,p)
         \EndIf
     \asdend
 
 
-    \asdupon{receive(OportunisticImprovementReq<p>,sender)}
-        \If{isDescendent(p.ID,self)}:
+    \asdupon[receive(OportunisticImprovementReq<p>,sender)]
+        \If{isDescendent(p.ID,self) or parent == nil}
             \State sendMessageSideChannel(OportunisticImprovementReqReply<false>,sender)
         \Else
             \State addChildren(sender)
@@ -37,11 +72,15 @@
         \EndIf
     \asdend
 
-    \asdupon{receive(OportunisticImprovementReqReply<answer>,sender)}
+    \asdupon[receive(OportunisticImprovementReqReply<answer>,sender)]
         \If {answer} 
             \State addParent(sender)
         \EndIf
     \asdend
+
+    \Function{isDescendentOf}{nodeID, PotentialDescID}
+        \State return PotentialDescID.Contains(nodeID)
+    \EndFunction
 
 \end{algorithmic}
 \end{algorithm}

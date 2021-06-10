@@ -19,7 +19,7 @@
 \begin{algorithm}
 % \setstretch{0.85}
 \begin{algorithmic}[1]
-    \caption{Join Protocol}
+    \caption{Join Protocol (part 1)}
     \asdtypes
         \State Node \{
         \Indent
@@ -56,7 +56,7 @@
 % \setstretch{0.85}
 \begin{algorithmic}[1]
 
-    
+\caption{Join Protocol (part 2)}
 \asdupon[Init(landmarks : map{IP}:Node, selfIP)]
         \State joinTimeouts \asdassign \{\}
         \State bestPeerLastLevel \asdassign \{\}
@@ -130,7 +130,7 @@
 \begin{algorithm}
 % \setstretch{0.85}
 \begin{algorithmic}[1]
-
+\caption{Join Protocol (part 3)}
     
 \asdupon[(forall n $\in$ nodesToContact -> n.measured \&\& n.replied)]
         \If{ len(nodesToContact) == 0}
