@@ -1,0 +1,97 @@
+% JOIN -----
+
+\begin{algorithm}
+    % \setstretch{0.85}
+\caption{Join Protocol (part 1)}
+\begin{algorithmic}[1]
+
+\asdupon[Init(landmarks : map{IP}:Node, selfIP, isLandmark)]
+    \State joinTimeouts \asdassign \{\}
+    \State prevBestP \asdassign \{\}
+    \State landmarks \asdassign [landmarks]
+    \IfThenElse{isLandmark}{addSibling(landmarks)}{contactNodes(landmarkIps)}
+\asdend
+    
+\asdupon[JoinTimeoutTimer(node) || NodeMeasuringFailed(node)]
+        \IfThenElse{(L in Landmarks)}{rejoinLater()}{delete(nodesToContact[L])}
+    \asdend
+
+\asdupon[receive(Join<>,sender)]
+    \State sendMessageSideChannel(JoinReply<self.parent, self.node, self.children>, sender)
+\asdend
+    
+\asdupon[receive JoinReply(<parentIP, node, children>, sender) \&\& measured(latency)]
+        \State nodesToContact[node].lat = latency
+        \State nodesToContact[node.IP].children \asdassign children
+        \State nodesToContact[node.IP].replied \asdassign true
+        \State cancelTimer(joinTimeouts[sender])
+        \State delete(joinTimeouts, sender)
+\asdend
+   
+\asdprocedure[contactNodes(nodeIPs)]
+    \State nodesToContact \asdassign \{\}
+    \For{p in nodeIPs}
+        \State nodesToContact[p] = Node \{IP: p, replied:false,measured: false\}
+        \State MeasureNode(p) 
+        \State sendMessageSideChannel(JoinMessage<>, p)
+        \State joinTimeouts[p] = \asdassign setupTimer(JoinTimeoutTimer(p))
+    \EndFor
+\asdend
+
+\asdupon[(forall n $\in$ nodesToContact -> n.replied)]
+        \If{ len(nodesToContact) == 0}
+        % \Comment{has not gotten past landmarks}
+            \IfThenElse{prevBestP == nil}
+            {rejoinLater()}
+            {joinAsChild(prevBestP) }
+            \State return
+        \EndIf
+        \State contactedNodes.appendAll(nodesToContact)
+        \For{node in sortedByLatency(nodesToContact)}
+            \If{prevBestP != nil \&\& prevBestP.lat $\le$ node.lat} 
+                \State joinAsChild(prevBestP)
+                \State return
+            \EndIf
+            \If{(\asdnotin{node.IP}{landmarks}) \&\& node.nrChildren == 0}
+                \State continue \Comment{check if node has enough children}
+            \EndIf
+            \State prevBestP = node
+            \State contactNodes([c.IP for c in node.children])
+            \State return
+            \If{prevBestP.parentIP == nil}
+                \State prevBestP = contactedNodes[prevBestP.parentIP]
+                \State joinAsChild(prevBestP)       
+                \State return
+            \Else
+                \State rejoinLater()
+                \State return
+            \EndIf
+        \EndFor
+    \asdend
+   
+    \asdprocedure[joinAsChild(p)]
+        \State joinTimeoutTimerID = setupTimer(JoinRequestTimeout<p>)
+        \State sendMessageSideChannel(JoinRequest<>, p.IP)
+    \asdend
+
+    \asdupon[JoinRequestTimeout(p)]
+        \If{p.parentIP != nil}
+            \State prevBestP = contactedNodes[prevBestP.parentIP]
+            \State joinAsChild(prevBestP)
+        \Else
+            \State rejoinLater()
+        \EndIf
+    \asdend
+
+    \asdupon[receive(JoinRequest<>, sender)]
+        \asdassign addChildren(sender) \Comment{ measures node and sets up periodic exchanges of information }
+        \State sendMessageSideChannel(JoinRequestReply<generatedID,self,children>, p.IP)
+    \asdend
+        
+    \asdupon[receive(JoinRequestReply<attributedId,parent,siblings>, sender)]
+        \State addParent(sender) \Comment{ measures node and sets up periodic exchanges of information}
+        \State addSiblings(siblings) \Comment{ measures nodes and sets up connections}
+        \State cancelTimer(joinTimeoutTimerID)
+    \asdend
+\end{algorithmic}
+\end{algorithm}
