@@ -1,7 +1,7 @@
 \begin{algorithm}[H]
 \begin{algorithmic}[1]
     
-    \caption{Oportunistic Optimization}
+    \caption{Membership protocol (Oportunistic Optimization)}
 
     \asdstate
         \State eView : set<Node>
@@ -78,9 +78,9 @@
         \EndIf
     \asdend
 
-    \Function{isDescendentOf}{nodeID, PotentialDescID}
+    \asdprocedure[isDescendentOf(nodeID, PotentialDescID)]
         \State return PotentialDescID.Contains(nodeID)
-    \EndFunction
+    \asdend
 
 \end{algorithmic}
 \end{algorithm}

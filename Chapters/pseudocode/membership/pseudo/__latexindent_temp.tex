@@ -19,42 +19,6 @@
 \begin{algorithm}
 % \setstretch{0.85}
 \begin{algorithmic}[1]
-    \caption{Join Protocol (part 1)}
-    \asdtypes
-        \State Node \{
-        \Indent
-            \State ID \Comment{ string attributed by parent upon entering the system}
-            \State measuredLatency \Comment{ the measured latency to the peer}
-            \State parentIP \Comment{ the IP of the parent of the Node}
-            \State nrChildren \Comment{ the number of children}
-            \State replied \Comment{ wether the node replied to joinMessage}
-            \State IP \Comment{ the node IP}
-            \State bw \Comment{the node's bandwidth}
-            \State coordinates \Comment{ the node's coordinates}
-            \State children: []Node \Comment{ the node's children, can be null for certain nodes (i.e. siblings and node's children), and is not sent in messages }
-        \EndIndent
-    \asdend
-    \asdstate
-        \State minGroupSize \Comment{ number representing the minimum group size}
-        \State joinTimeouts \Comment{ collection of contacted nodes -> timerIDs}
-        \State contactedNodes \Comment{ collection of all successfully contacted nodes}
-        \State nodesToContact \Comment{ nodes being contacted}
-        \State bestPeerLastLevel : Node \Comment{ lowest latency node in last level}
-        \State landmakrs : []Node \Comment{ the ips of landmarks}
-        \State isLandmark \Comment{ boolean indicating if self is landmark}
-        \State joinTimeoutTimerID \Comment{ timerID for join messages}
-        \State self : Node \Comment{ myself}
-        \State siblings : Node \Comment{ my siblings}
-        \State children : \{\} Node \Comment{ my children}
-        \State parent : \{\} Node \Comment{ my parent}
-    \asdend
-
-\end{algorithmic}
-\end{algorithm}
-
-\begin{algorithm}
-% \setstretch{0.85}
-\begin{algorithmic}[1]
 
 \caption{Join Protocol (part 2)}
 \asdupon[Init(landmarks : map{IP}:Node, selfIP)]
@@ -83,10 +47,8 @@
     \asdend
     
 \asdupon[receive(Join<>,sender)]
-        \State cancelTimer(joinTimeouts[sender])
-        \State delete(joinTimeouts, sender)
-        \State sendMessageSideChannel(JoinReply<self.parent, self.node, self.children>, sender)
-    \asdend
+    \State sendMessageSideChannel(JoinReply<self.parent, self.node, self.children>, sender)
+\asdend
     
 \asdupon[receive JoinReply(<parentIP, node, children>, sender)]
         \State contactedNode \asdassign nodesToContact[node.IP]
