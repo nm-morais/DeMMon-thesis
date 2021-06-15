@@ -3,119 +3,79 @@
 \begin{algorithm}
     % \setstretch{0.85}
 \begin{algorithmic}[1]
-    \caption{Join Protocol (Types and state)} \label{alg:state:join}
+    \caption{Join Protocol} \label{alg:memb:join}
     \asdtypes
-        \State Node \{
-        \Indent
-            \State lat \Comment{ the measured latency to the peer}
-            \State parentIP \Comment{ the IP of the parent of the Node}
-            \State nrChildren \Comment{ the number of children}
-            \State replied \Comment{ wether the node replied to joinMessage}
-            \State IP \Comment{ the node IP}
-            \State children: []<IP, nrChildren> \Comment{ the node's children, can be null for certain nodes (i.e. siblings and node's children), and is not sent in messages }
-        \EndIndent
+        \State Node : <lat, parentIP, nrChildren, replied, IP, children<IP,  nrChildren>>
     \asdend
-    \asdstate \label{alg:state:state}
+    \asdstate \label{alg:memb:join:state}
         \State contactedNodes \Comment{ collection of all successfully contacted nodes}
         \State nodesToContact \Comment{ nodes being contacted}
+        \State landmarks \Comment{ landmark nodes}
         \State joinTimeouts \Comment{ collection of contacted nodes -> timerIDs}
         \State bestPeerLastLevel : Node \Comment{the best peer contacted so far in the join process}
-        \State joinTimeoutTimerID \Comment{ timerID for join messages}
+        \State joinReqTimeoutTid \Comment{ timerID for join messages}
         \State self : Node \Comment{ myself}
     \asdend
-    
-\end{algorithmic}
-\end{algorithm}
 
-
-\begin{algorithm}
-    % \setstretch{0.85}
-\caption{Membership protocol (Join)}
-\begin{algorithmic}[1]
-
-
-\asdupon[Init(landmarks : map{IP}:Node, selfIP, isLandmark)] \label{alg:memb:join:init}
-    \State joinTimeouts \asdassign \{\}
-    \State prevBestP \asdassign \{\}
-    \State landmarks \asdassign [landmarks]
-    \IfThenElse{isLandmark}{addSibling(landmarks)}{contactNodes(landmarks)}
+\asdupon[Init(landmarks : IP[], selfIP, isLandmark)] \label{alg:memb:join:init}
+    \State landmarks \asdassign landmarks 
+    \State joinTimeouts, prevBestP \asdassign \{\}, nil
+    \IfThenElse{isLandmark}
+    {addLandmarkUntilSuccess(landmarks)} \label{alg:memb:join:add_land}
+    {contactNodes(landmarks)} \label{alg:memb:join:contact_landm}
 \asdend
 
-\asdprocedure[contactNodes(nodeIPs)]
-    \State nodesToContact \asdassign \{\}
-    \For{p in nodeIPs}
-        \State nodesToContact[p] = Node \{IP: p, replied:false,measured: false\}
-        \State MeasureNode(p) 
-        \State sendMessageSideChannel(JoinMessage<>, p)
-        \State joinTimeouts[p] = \asdassign setupTimer(JoinTimeoutTimer(p))
-    \EndFor
-\asdend
 
-\asdupon[JoinTimeoutTimer(node) || NodeMeasuringFailed(node)]
-        \IfThenElse{(L in Landmarks)}{rejoinLater()}{delete(nodesToContact[L])}
-    \asdend
-
-\asdupon[receive(Join<>,sender)]
-    \State sendMessageSideChannel(JoinReply<self.parent, self.node, self.children>, sender)
+\asdupon[receive(Join<>,sender)] \label{alg:memb:join:recv_join}
+    \State sendMessageSideChannel(JoinReply<self.parent, self.node, self.children>, sender) 
 \asdend
     
-\asdupon[receive JoinReply(<parentIP, node, children>, sender) \&\& \textbf{measuredLatency}(lat)]
-        \If{\asdnotin{parentIP}{contactedNodes}}
-            \State nodesToContact.delete(node)
-        \Else
-            \State nodesToContact[node].lat = lat
+\asdupon[receive JoinReply(<parentIP, node, children>, sender) \&\& measuredLatency(lat)]  \label{alg:memb:join:recv_join_reply}
+        \If{(\asdin{parentIP}{Landmarks} || \asdin{parentIP}{contactedNodes}) \&\& \asdin{node.IP}{nodesToContact}} 
+            \State nodesToContact[node.IP].lat \asdassign lat
             \State nodesToContact[node.IP].children \asdassign children
             \State nodesToContact[node.IP].parent \asdassign parentIP
             \State nodesToContact[node.IP].replied \asdassign true
             \State cancelTimer(joinTimeouts[sender])
             \State delete(joinTimeouts, sender)
+        \Else
+            \State nodesToContact.delete(node)
         \EndIf
 \asdend
 
 \asdupon[(forall n $\in$ nodesToContact -> n.replied)]
-    \If{ len(nodesToContact) == 0}
-    % \Comment{has not gotten past landmarks}
-        \IfThenElse{prevBestP == nil}
-        {rejoinLater()}
-        {joinAsChild(prevBestP) }
-        \State return
-    \EndIf
     \State contactedNodes.appendAll(nodesToContact)
     \For{node in sortedByLatency(nodesToContact)}
-        \If{prevBestP != nil \&\& prevBestP.lat $\le$ node.lat} 
-            \State joinAsChild(prevBestP)
-            \State return
-        \EndIf
-        \If{(\asdnotin{node.IP}{landmarks}) \&\& node.nrChildren == 0}
+        \If{(\asdnotin{node.IP}{landmarks}) \&\& node.nrChildren == 0} \label{alg:memb:join:verif_children}
             \State continue \Comment{check if node has enough children}
         \EndIf
-        \State prevBestP = node
-        \State toContact \asdassign [c -> c.nrChildren >= config.minGroupSize]
-        \State contactNodes(toContact)
+        \If{prevBestP != nil \&\& (prevBestP.lat $\le$ node.lat || prevBestP.nrChildren < config.minGroupSize)} \label{alg:memb:join:verif_vs_prev}
+            \State joinAsChild(prevBestP)
+        \Else
+            \State prevBestP \asdassign node \label{alg:memb:join:advance}
+            \State toContact \asdassign [\asdin{c}{prevBestP.children} -> c.nrChildren >= config.minGroupSize]
+            \State contactNodes([c.IP for c in toContact])
+        \EndIf
         \State return
     \EndFor
-
-    \If{prevBestP.parentIP == nil} \Comment{No nodes were suitable, fallback to parent of best previous node}
-        \State prevBestP = contactedNodes[prevBestP.parentIP]
-        \State joinAsChild(prevBestP)       
-        \State return
-    \Else
-        \State rejoinLater()
-        \State return
-    \EndIf
+    \IfThenElse{prevBestP != nil} 
+    {joinAsChild(prevBestP)}  
+    {abortJoinAndRetryLater()} \label{alg:memb:join:join_base_case}
+    \State return
 \asdend
 
-\asdprocedure[joinAsChild(p : Node)]
-    \State joinTimeoutTimerID = setupTimer(JoinRequestTimeout<p>)
-    \State sendMessageSideChannel(JoinRequest<>, p.IP)
+\asdupon[JoinTimeoutTimer(node) || NodeMeasuringFailed(node)] \label{alg:memb:join:exclusions}
+    \IfThenElse{(L in Landmarks)}{abortJoinAndRetryLater()}{delete(nodesToContact[L])} 
 \asdend
 
-\asdupon[JoinRequestTimeout(p : Node)]
-    \If{p.parentIP != nil}
-        \State prevBestP = contactedNodes[prevBestP.parentIP]
-        \State joinAsChild(prevBestP)
-    \Else
-        \State rejoinLater()
+\asdupon[JoinRequestTimer(p : Node)]
+    \If {sender == prevBestP}
+        \If{p.parentIP != nil}
+            \State prevBestP \asdassign contactedNodes[p.parentIP]
+            \State joinAsChild(prevBestP)
+        \Else
+            \State abortJoinAndRetryLater()
+        \EndIf
     \EndIf
 \asdend
 
@@ -125,8 +85,27 @@
 \asdend
     
 \asdupon[receive(JoinRequestReply<attributedId,parent,siblings>, sender)]
-    \State addParent(sender) \Comment{Parent is established, join complete}
-    \State cancelTimer(joinTimeoutTimerID)
+    \If {sender == prevBestP} 
+        \State addParent(sender) \Comment{Adds Parent is established, join complete}
+        \State cancelTimer(joinReqTimeoutTid)
+    \EndIf
 \asdend
+
+\asdprocedure[joinAsChild(p : Node)]
+    \State joinReqTimeoutTid \asdassign setupTimer(JoinRequestTimer<p>, config.JoinTimeout)
+    \State sendMessageSideChannel(JoinRequest<>, p.IP)
+\asdend
+
+\asdprocedure[contactNodes(ips : IP[])]
+    \State nodesToContact \asdassign \{\}
+    \State toContact \asdassign [Node<0,nil,0,false,lIP,false,[]> for ip in ips]
+    \For{n in toContact}
+        \State nodesToContact[n] \asdassign n
+        \State MeasureNode(n) 
+        \State sendMessageSideChannel(JoinMessage<>, n)
+        \State joinTimeouts[n] \asdassign \asdassign setupTimer(JoinTimeoutTimer(n), config.JoinTimeout)
+    \EndFor
+\asdend
+
 \end{algorithmic}
 \end{algorithm}

@@ -27,7 +27,7 @@ This solution, as observable in figure \ref{fig:demmon-overview}, is composed of
 
 
 \begin{enumerate}
-    \item The overlay network, which strives to build the tree-shaped network, nodes in this network use latency, node capacity, and a set of logical rules to change their location in the tree.
+    \item The overlay network, which strives to build a multi-tree-shaped network, nodes in this network use latency, node capacity, and a set of logical rules to change their location either from one tree to another or within their own tree.
 
     \item The monitoring protocol, which is a component that collects and disseminates information using the overlay network's established connections. It communicates via notifications and asynchronous request-replies with the overlay network to receive updates regarding established connections and connection failures. Lastly, it receives requests from the API to collect information.
 
@@ -43,29 +43,51 @@ In this section, we discuss the design of the overlay network, which aims to bui
 The assumed system model is assumed to be a distributed scenario composed of nodes connected to the internet set-up such that they can send and receive messages via the internet (with an external IP or port-forwarding). We also assume that nodes are spread throughout a large area and have varied capacity values.
 
 Regarding the fault model, we assume that all but a small portion of nodes (also known as the landmarks, which in our model represent DCs) can fail, and when other nodes fail, they do so in a crash-fault manner, stopping all emissions and receptions of messages. We assume landmarks have additional fault tolerance given their privileged infrastructure, and additionally, we assume other such as replication \cite{} mechanisms could be employed to ensure that faulty landmarks get replaced in case of failure. 
-
+  
 Finally, all nodes must run the same software stack with similar configuration settings and landmark values, installed a priori.
 
 \subsection{Overview}
 
-As previously mentioned, the main objective of the created protocol is to establish a latency and capacity-aware tree-shaped network. Our motivations for choosing the tree structure for the network are: (1) to be able to map the heterogeneity of each device in the environment: by biasing the placement of nodes in the tree such that nodes with higher capacity are placed higher in the tree, and nodes with lower capacity are biased towards lower levels of the tree, nodes are used more or less according to their capacity values; (2) the tree structure can be easily employed to perform efficient aggregations, by propagating and merging values recursively from the lower to the higher levels of the tree, which is the basis for the aggregation protocol presented in \todo{add ref}; and finally, (3) by leveraging on the tree structure, nodes can propagate information efficiently, given that, in a network composed of N nodes, broadcasts require only N-1 message transmissions to reach all nodes in the network. 
+As previously mentioned, the main objective of the created protocol is to establish a latency and capacity-aware multi-tree-shaped network, rooted on the previosuly mentioned landmarks. Our motivations for choosing the tree structure for the network are the following: (1) to map the cloud-edge environment, by rooting the trees on nodes running DCs in the cloud, and creating a hierarchical structure for other, less powerful, nodes to be coordinated from the roots \todo{isto e esticar?} (2) to be able to map the heterogeneity of each device in the environment: by biasing the placement of nodes in the tree such that nodes with higher capacity are placed higher in the tree, and nodes with lower capacity are biased towards lower levels of the tree, nodes are used more or less according to their capacity values; (3) the tree structure can be easily employed to perform efficient aggregations, by propagating and merging values recursively from the lower to the higher levels of the tree, which is the basis for the aggregation protocol presented in \todo{add ref}; and finally, (4) by leveraging on the tree structure, nodes can propagate information efficiently, given that, in a network composed of N nodes, broadcasts require only N-1 message transmissions to reach all nodes in the network. 
 
-The devised membership protocol is coalesced by three main mechanisms: (1) the \textbf{join} mechanism, which aims to establish the initial tree structure, (2) the \textbf{active view maintenance}, responsible for bounding the number of connections for each node, and optimizing the connections of each node, (3)  and finally \textbf{passive view maintenance}, responsible for collecting information about peers which are not in the active view, which are used for both fault tolerance and connection optimizations.
+\todo{put paragraph of the intended resulting structure}
+
+The devised membership protocol is coalesced by three main mechanisms: (1) the \textbf{join} mechanism, which aims to establish the initial tree structures, (2) the \textbf{active view maintenance}, responsible for bounding the number of connections for each node, and optimizing the connections of each node, (3)  and finally \textbf{passive view maintenance}, responsible for collecting information about peers which are not in the active view, which are used for both fault tolerance and connection optimizations.
 
 \subsubsection{Join mechanism}
 
-As previously mentioned, the join mechanism is the mechanism responsible for creating the initial tree structure. This mechanism is the first to be executed by all nodes in the system. Its first step (line \ref{alg:state:state} of alg. \ref{alg:state}) is to initialize the state of the joining node, composed by: (1) a map of type Node containing all successfully contacted nodes so far the join process, (2) a collection of type Node with all the nodes currently being contacted, (3) a set of timer ids for each node being contacted, (4) the best node contacted so far in the join process, (5) a timer id for contacting the chosen node in the join process, and finally (5) a variable of type Node denoting the peer itself. The type ``Node'' is a collection of attributes regarding a node, such as: latency measured, its parent, its number of children, among others.
-
-
-
-
-
-This protocol varies largely depending on wether the joining node is a landmark or not. In case the joining node is a landmark, then it simply 
+The joining mechanism is the mechanism responsible for choosing the initial parent connection, which performs a greedy depth-first search to find a suitable low latency parent. This mechanism is the first to be executed by all nodes in the system, with the pseudocode presented in \ref{alg:memb:join}. 
 
 \input{Chapters/pseudocode/membership/memb_join-small.tex}
 
+Its first step (line \ref{alg:memb:join:state}) is to initialize the state of the joining node, composed by: (1) a map of type Node containing all successfully contacted nodes so far the join process, (2) a collection of type Node and a set of timer ids for each contacted node, (4) the best node contacted so far in the join process, (5) a timer id for contacting the chosen node in the join process, and finally (5) a variable of type Node denoting the peer itself. The type ``Node'' is a collection of attributes regarding a node, composed of latency measured, its current parent, number of children, whether the node replied to the message, its IP, and an array of its childrens' IP and children number.
+
+Then, each node joins the system, the procedures taken to join the tree differ consonant the node is a landmark or not. Given that landmarks are the roots of the trees, they have no parent in the resulting overlay, and consequently, in the join algorithm, these nodes attempt to repeatedly establish a connection with other landmarks by sending a special message. Landmarks that receive this message will send a reply and establish a connection back (line \ref{alg:memb:join:add_land}), a joining landmark node only stops sending messages to other landmarks when the respective reply is received.
+
+Nodes that are not landmarks begin the process of choosing their initial parent, initiated by sending a JOIN message via a temporary TCP channel, measuring the latency, and issuing ``joinTimers'' for all tree roots (line \ref{alg:memb:join:contact_landm}), then the node awaits the responses from the contacted nodes, during this process, the joining node listens for any ``joinTimers'' which have triggered, or until any of the node measurements has been unsuccessful (meaning contacted nodes have exceeded their reply timeout), if this happens, in the case of the contacted node being a landmark, the joining node aborts the join process and waits a configurable amount of time until attempting to re-join the overlay again. If the timed-out node is not a landmark, then that node is excluded from the remaining of the join process, and the join process is resumed as normal (line \ref{alg:memb:join:exclusions}).
+
+When a node receives a JOIN message, it sends a JOINREPLY message back to the original sender containing: its parent, itself, and its children (line \ref{alg:memb:join:recv_join}). When the joining node receives the joinReply, it checks to see if it is not from a timed out node, or if the node's parent is not the same anymore, if any of these conditions are observed, then the reply is discarded. 
+
+Then, whenever the joining node has either: received the JOINREPLY messages from all the contacted nodes, and stored the information (line \ref{alg:memb:join:recv_join_reply}), or they have been timed-out via the ``joinTimers'', it evaluates all contacted nodes, attempting to find the contacted node with lowest latency by performing the following verifications:
+
+\begin{enumerate}
+    \item Verify if the node already has any children or if the node is a landmark (and can become parent of the joining node) (line \ref{alg:memb:join:verif_children}).
+    
+    \item Verify if there was a node already contacted which was a suitable parent and had lower latency, if there was, the joining node sends a JOINREQUEST and sets up a ``JoinRequestTimer'' for that node, and stops the verification process. (line \ref{alg:memb:join:verif_vs_prev})
+
+    \item Verify if the current node has both enough children, and has the lowest latency up to this point in the join process, then the joining node assigns it as its best node so far and starts a new recursive step by sending JOIN messages and measuring the children of that node (line \ref{alg:memb:join:advance}).
+\end{enumerate}
+
+If none of the verified peers were suitable to start a new recursive step (line \ref{alg:memb:join:join_base_case}) (either had no children or had higher latency than a previously contacted node), then the node joining node sends a JOINREQUEST to that node and sets up a ``JoinRequestTimer'' for the best previously contacted node. If there is no previous node, the joining node aborts the process and restarts the join process later.
+
+The join process finishes with the reception of a ``JoinRequestReply'' and the establishment of a connection between the sender and receiver of the message. If this does not happen, and JoinRequestTimer triggers, then the node will recursively fall back to the parent (if it exists) or re-join the overlay later.
+
+
+\subsubsection{Active view maintenance}
 \input{Chapters/pseudocode/membership/memb_active_view_maintenance.tex}
 
+
+\subsubsection{Passive view maintenance}
 \input{Chapters/pseudocode/membership/memb_oportunistic_improvement.tex}
 
 \subsection{Summary}
