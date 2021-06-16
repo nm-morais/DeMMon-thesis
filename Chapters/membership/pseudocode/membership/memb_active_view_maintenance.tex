@@ -1,0 +1,118 @@
+\begin{algorithm}
+    \caption{Membership protocol (Active view Optimization)} \label{alg:memb:active_view_maint}
+    % \setstretch{0.85}
+    \begin{algorithmic}[1]
+        \asdstate
+            \State parent \Comment{defined in join} \label{alg:memb:active_view_maint:state_start}
+            \State children \Comment{defined in join} 
+            \State siblings  
+            \State childrenLatencies : dict<string:dict<string:number>> \label{alg:memb:active_view_maint:state_end} \Comment{Holds the latencies of each children to every other children}
+        \asdend
+
+        \asdrepeateveryx{config.updatePeriodicity} \label{alg:memb:active_view_maint:update}
+            \If{parent != nil}
+                \State sLatencies \asdassign set()
+                \For{sibling in siblings}
+                    \State sLatencies.append(<sibling.IP,sibling.measuredLatency)
+                \EndFor
+                \State sendMessage(UpdateChildStatus<children, siblingLatencies>, parent)
+            \EndIf
+            \For{child in chidren}
+                \State sendMessage(UpdateParentStatus<self, chidren \\ child>)
+            \EndFor
+        \asdend \label{alg:memb:active_view_maint:update_end}
+
+        \asdupon[receive(UpdateParentStatus<parent, children>, sender)] 
+        \label{alg:memb:active_view_maint:update_recv_par}
+            \If{sender == parent.IP}
+                \State parent \asdassign parent
+                \State self.ID \asdassign parent.ID + myID
+                \State grandParent \asdassign grandParent
+                \State siblings \asdassign siblings
+            \EndIf
+        \asdend
+
+        \asdupon[receive(UpdateChildStatus<child, childSiblingLatencies>, sender)]\label{alg:memb:active_view_maint:update_recv_chi}
+            \If{children[sender] != nil}
+                \State children[sender]\asdassign child
+                \State childrenLatencies[sender] \asdassign childSiblingLatencies
+            \EndIf
+        \asdend
+
+        \asdrepeateveryx{config.evalGroupSize} \label{alg:memb:active_view_maint:update_eval}
+            \If{len(children) <= config.maxGroupSize}
+                \State return
+            \EndIf
+            \State childrenLatValues \asdassign set()
+            \For{c1 in children} \label{alg:memb:active_view_maint:update_eval_merge_start}
+                \For{<c2, lat> in childrenLatencies[c]}
+                    \If{lat - c1.measuredLatency > d.config.maxLatDowngrade}
+                        \State continue
+                    \EndIf
+                    \State isDowngrade \asdassign lat > c1.measuredLatency
+                    \IfThenElse{c1.cap > c2.cap}
+                    {childrenLatValues.add(<c1,c2,lat,isDowngrade>)}
+                    {childrenLatValues.add(<c2,c1,lat,isDowngrade>)}
+                \EndFor
+            \EndFor \label{alg:memb:active_view_maint:update_eval_merge_finish}
+            \State kickedNodes, newParents \asdassign set(),set()
+            \State pChildren \asdassign dict<string,set<Node{>}{>} \Comment{set of potential children for each children}
+            \State sortByLatency(childrenLatValues)
+            \State idealGroupSize \asdassign config.maxSize - config.MinGroupSize
+            \For{<c1,c2,lat,isDowngrade> in childrenLatValues}
+                \If{len(children) - len(kickedNodes) <= idealGroupSize} \label{alg:memb:active_view_maint:check_done_1}
+                    \State break
+                \EndIf
+                \If{len(children) - len(kickedNodes) <= config.maxSize \&\& isDowngrade} \label{alg:memb:active_view_maint:check_done_2}
+                    \State break
+                \EndIf
+                \If{\asdin{c1}{kickedNodes} || \asdin{c2}{kickedNodes} ||  \asdin{lowerCapC}{newParents}} \label{alg:memb:active_view_maint:check_done_3}
+                    \State continue
+                \EndIf
+                \If{c1.nrChildren == 0 \&\& newParents[c1] == nil}
+                    \State pChildren[c1].append(c2)
+                    \If{len(pChildren) >= config.MinGroupSize}
+                        \If{len(children) - len(kickedNodes) - len(pChildren) > idealGroupSize || len(pChildren) >= config.maxSize}
+                            \For{potentialChild in pChildren[c1]}
+                                \State newParents <- newParents + c1
+                                \State send(OptimizationPropose<c1>, potentialChild)
+                                \State c1.nrChildren++
+                                \State kickedNodes <- kickedNodes + potentialChild
+                            \EndFor
+                            \For{<nIP,pontentialChildrenTmp> in pChildren}
+                                \State pontentialChildrenTmp.deleteAll(pChildren[c1])
+                            \EndFor
+                            \State pChildren[c1] \asdassign set<Node>
+                            \State continue
+                        \EndIf
+                    \EndIf
+                \Else
+                    \State kickedNodes <- kickedNodes + c2
+                    \State send(OptimizationPropose<higherCapNode>, lowerCapNode)
+                \EndIf    
+            \EndFor
+        \asdend
+
+        \asdupon[receive(OptimizationPropose<newParent>, sender)]
+            \If{sender == parent}
+                \State send(OptimizationProposeRequest<sender>, newParent)
+            \EndIf
+        \asdend
+
+        \asdupon[receive(OptimizationProposeRequest<p>, sender)]
+            \If{ p == parent \&\& sender in siblings} \Comment{ parent issuing the message is the same parent that i have}
+                \State send(OptimizationProposeRequestReply<true>, sender)
+            \Else
+                \State sendSideChannel(OptimizationProposeRequestReply<false>, sender)
+            \EndIf
+        \asdend
+
+        \asdupon[receive(OptimizationProposeRequestReply<reply>, sender)]
+            \If{reply}
+                \State sendMessageAndDisconnectFrom(DisconnectMessage<>, parent)
+                \State addParent(sender)
+            \EndIf
+        \asdend
+
+    \end{algorithmic}
+\end{algorithm}

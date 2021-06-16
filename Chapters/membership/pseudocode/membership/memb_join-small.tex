@@ -1,17 +1,17 @@
 % JOIN -----
 
-\begin{algorithm}
+\begin{algorithm}{}
+\caption{Join Protocol} \label{alg:memb:join}
     % \setstretch{0.85}
 \begin{algorithmic}[1]
-    \caption{Join Protocol} \label{alg:memb:join}
     \asdtypes
         \State Node : <lat, parentIP, nrChildren, replied, IP, children<IP,  nrChildren>>
     \asdend
     \asdstate \label{alg:memb:join:state}
-        \State contactedNodes \Comment{ collection of all successfully contacted nodes}
-        \State nodesToContact \Comment{ nodes being contacted}
-        \State landmarks \Comment{ landmark nodes}
-        \State joinTimeouts \Comment{ collection of contacted nodes -> timerIDs}
+        \State contactedNodes \Comment{collection of all successfully contacted nodes}
+        \State nodesToContact \Comment{nodes being contacted}
+        \State landmarks \Comment{landmark nodes}
+        \State joinTimeouts \Comment{collection of contacted nodes -> timerIDs}
         \State bestPeerLastLevel : Node \Comment{the best peer contacted so far in the join process}
         \State joinReqTimeoutTid \Comment{ timerID for join messages}
         \State self : Node \Comment{ myself}
@@ -21,8 +21,8 @@
     \State landmarks \asdassign landmarks 
     \State joinTimeouts, prevBestP \asdassign \{\}, nil
     \IfThenElse{isLandmark}
-    {addLandmarkUntilSuccess(landmarks)} \label{alg:memb:join:add_land}
-    {contactNodes(landmarks)} \label{alg:memb:join:contact_landm}
+    {addLandmarkUntilSuccess(landmarks) \label{alg:memb:join:add_land}} 
+    {contactNodes(landmarks) \label{alg:memb:join:contact_landm}} 
 \asdend
 
 
@@ -43,7 +43,7 @@
         \EndIf
 \asdend
 
-\asdupon[(forall n $\in$ nodesToContact -> n.replied)]
+\asdupon[(forall n $\in$ nodesToContact -> n.replied)] \label{alg:memb:join:cond_go}
     \State contactedNodes.appendAll(nodesToContact)
     \For{node in sortedByLatency(nodesToContact)}
         \If{(\asdnotin{node.IP}{landmarks}) \&\& node.nrChildren == 0} \label{alg:memb:join:verif_children}
@@ -53,7 +53,7 @@
             \State joinAsChild(prevBestP)
         \Else
             \State prevBestP \asdassign node \label{alg:memb:join:advance}
-            \State toContact \asdassign [\asdin{c}{prevBestP.children} -> c.nrChildren >= config.minGroupSize]
+            \State toContact \asdassign [\asdin{c}{prevBestP.children} -> c.nrChildren > 0]
             \State contactNodes([c.IP for c in toContact])
         \EndIf
         \State return
