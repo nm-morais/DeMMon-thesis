@@ -1,0 +1,93 @@
+\begin{algorithm}
+\caption{Tree aggregation} \label{alg:mon:tree_agg}
+\begin{algorithmic}[1]
+
+    \asdstate \label{alg:mon:tree_agg:state}
+        \State parent,children,siblings \Comment{Defined by the overlay protocol}
+        \State tIds \asdassign map()
+        \State timerIds \asdassign map()
+        \State lastSeen \asdassign map()
+        \State childValues \asdassign map()
+    \asdend
+
+    \asdupon[StartTreeAggregationRequest(tHeight, mergeF, query, periodicity ,outmName)] 
+    \label{alg:mon:tree_agg:start_req}
+        \State tId \asdassign hash(tHeight + mergeF + query + periodicity + outmName) \label{alg:mon:tree_agg:start_req_start}
+        \If{tId in tIds} 
+            \State <tHeight, mergeF, query, periodicity, outmName, isLocal, isParentSub, ptId> \asdassign tIds[tId]
+            \State tIds[tId] \asdassign <tHeight, mergeF, query, periodicity, outmName, true, isParentSub, ptId>
+        \Else:
+        \State tIds[tId] \asdassign <tHeight, mergeF, query, periodicity, outmName, true, false, nil>
+        \State timerID \asdassign registerPeriodicTimer(ExportTreeAggTimer(tID), periodicity)
+        \State timerIds[tId] \asdassign timerID
+        \EndIf\label{alg:mon:tree_agg:start_req_end}
+    \asdend
+
+    \asdupon[ExportTreeAggTimer(tId)] \label{alg:mon:tree_agg:export_trigger}
+        \State <tHeight, mergeF, query, periodicity, outmName, isLocal, isParentSub, ptId> \asdassign tIds[tId]
+        \If{!isLocal }
+            \If{timeSince(tIdLastSeen[tId]) > config.treeAggExpiration}
+                \State tIds.delete(tId)
+                \State lastSeen.delete(tId)
+                \State cancelTimer(timerIds[tId])
+                \State return
+            \EndIf
+        \EndIf
+        \State res \asdassign aggregateValues(mergeF, resolveQuery(query), childValues[tID])
+        \If{isLocal}
+            \State storeLocalVal(res, outmName)
+        \EndIf 
+        \If{isParentSub}
+            \State sendMessage(PropagateTAggValues<ptId, res>, parent)
+        \EndIf
+    \asdend
+
+    \asdupon[receive(PropagateTAggValues<tID, res>, sender)] \label{alg:mon:tree_agg:recv_propag_vals}
+        \If{tId in tIds and sender in children}
+            \If{tID not in localValues}
+                \State localValues[tID] = map()
+            \EndIf
+            \State localValues[tID][sender] = res
+        \EndIf
+    \asdend
+
+    \asdrepeateveryx{config.PropagateTAggTimeout seconds} \label{alg:mon:tree_agg:propag}
+        \State toSendArr \asdassign set 
+        \For{tID in tids}
+            \State <tHeight, mergeF, query, periodicity, outmName, isLocal, isParentSub, ptId> \asdassign tIds[tId]
+            \If{isLocal \&\& tHeight > 0 || tHeight == -1}
+                \State toSendArr.append(<max(tHeight -1, -1), mergeF, query, periodicity ,outmName, tID>)
+            \EndIf
+        \EndFor
+        \For{c in chilren}        
+            \State sendMessage(RefreshTreeAggFunc<toSendArr>, c)
+        \EndFor
+    \asdend
+
+    \asdupon[receive(RefreshTreeAggFunc<tAggs>, sender)] \label{alg:mon:tree_agg:propag_recv}
+        \If{parent == sender}
+            \State toSendArr \asdassign set 
+            \For{<tHeight, mergeF, query, periodicity, outmName, ptId> in tAggs}
+                \State tId \asdassign hash(tHeight + mergeF + query + periodicity + outmName)
+                \If{id in tIds}
+                    \State <tHeight, mergeF, query, periodicity, outmName, isLocal, isParentSub, ptId> \asdassign tIds[tId]
+                    \State lastSeen[id] \asdassign time.Now()
+                    \State tIds[tId] \asdassign <tHeight, mergeF, query, periodicity, outmName, isLocal, true, ptId>
+                    \If{!isLocal}
+                        \State toSendArr.append(<max(tHeight -1, -1), mergeF, query, periodicity ,outmName, tID>)
+                    \EndIf
+                \Else
+                    \State toSendArr.append(<max(tHeight -1, -1), mergeF, query, periodicity ,outmName, tID>)
+                    \State tIds[tId] \asdassign <tHeight, mergeF, query, periodicity, outmName, false, true, ptId>
+                    \State registerPeriodicTimer(HandleTreeAggTimer(tID), periodicity)
+                \EndIf
+            \EndFor
+            \For{c in chilren}        
+                \State sendMessage(RefreshTreeAggFunc<toSendArr>, c)
+            \EndFor
+        \EndIf
+    \asdend
+
+    \end{algorithmic}
+\end{algorithm}
+    

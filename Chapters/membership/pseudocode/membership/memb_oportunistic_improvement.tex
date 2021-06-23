@@ -1,58 +1,67 @@
 \begin{algorithm}
-\caption{Membership protocol (Oportunistic Optimization)}
+\label{alg:memb:passive_view_maint}
+\caption{Membership protocol (Passive view maintenance)}
 \begin{algorithmic}[1]
     
-
     \asdstate
-        \State eView : set<Node>
+        \State pView : set<Node> \label{alg:memb:passive_view_maint:state}
     \asdend
 
-    \asdrepeateveryx{config.RandWalkPeriodicity}
-        \State ascNeighs, allNeighs = set
-        \State ascNeighs = ascNeighs + parent + siblings
-        \State allNeighs = allNeighs + ascNeighs + children
-        \State sample = getRandSample(eView + allNeighs, config.NrPeersToMergeRandWalk)
-        \State sendMessage(RandomWalk<sample, config.RandWalkTTL, self.ID, self.IP>, getRand(ascNeighs))
+    \asdrepeateveryx{config.RandWalkPeriodicity} \label{alg:memb:passive_view_maint:walk_trig}
+        \State sample \asdassign getRandSample([pView + allNeighs + children + parent + siblings], config.NrPeersToMergeRandWalk)
+        \State target \asdassign getRand(excludeDescendatsOf(ascNeighs, self.ID))
+        \State sendMessage(RandomWalk<sample + self, config.RandWalkTTL, self.ID, self.IP>, target)
     \asdend
 
-    \asdrepeateveryx{config.OportunisticOptimizationTimeout}
-        \State toMeasureRand = getRandSample(eView, config.NrPeersToMeasureRandom)
-        \State toMeasureBiasedOpts = sortByEuclideanDist(eView / toMeasureRand)
-        \State toMeasureBiased = getRandSample(toMeasureBiasedOpts, config.NrPeersToMeasureRandom)
-        \For p in toMeasureRand:
-            \State measurePeer(p)
-        \EndFor
-        \For p in toMeasureBiased:
-            \State measurePeer(p)
-        \EndFor
-    \asdend
-
-
-    \asdupon[receive( RandomWalk<sample, ttl, nID, orig>, sender)]
-        \State stepsTaken = config.RandWalkTTL - ttl
-        \State nrToAdd = config.NrPeersToMergeRandWalk
-        \State nrToMerge = config.NrPeersToMergeRandWalk
-        \State ascNeighs, allNeighs = set(), set()
-        \State ascNeighs = ascNeighs + parent + siblings
-        \State allNeighs = allNeighs + ascNeighs + children
-
-        \If{stepsTaken < config.NrStepsToIgnore}:
-            \State nrToMerge = 0
+    \asdupon[receive( RandomWalk<sample, ttl, nID, orig>, sender)] \label{alg:memb:passive_view_maint:walk_rec}
+        \State nrNodesToRemove \asdassign config.NrPeersToMergeRandWalk
+        \If{config.RandWalkTTL - ttl < config.NrStepsToIgnore}:
+            \State nrNodesToRemove \asdassign 0
         \EndIf
-
-        \State toAdd = getRandSample(excludeDescendantsOf([eView + allNeighs] / sample),nID), nrToAdd)
-        \State toRemoveFromSample = getRandSample(sample, nrToMerge)
-        \State sample = sample / toRemoveFromSample
-        \State sample = sample + toAdd
-        \State target = getRand(excludeDescendantsOf(allNeighs, nID)
-        \If{target == nil || ttl == 0}
+        \State updateNodesToHigherVersion(sample, pView) \label{alg:memb:passive_view_maint:walk_rec_merge_start}
+        \State ascNeighs \asdassign set(parent + siblings)
+        \State allNeighs \asdassign set(allNeighs + ascNeighs + children)
+        \State toAdd \asdassign getRandSample(excludeDescendantsOf(pView + allNeighs / sample,self.ID), config.NrPeersToMergeRandWalk)
+        \State toRemoveFromSample \asdassign getRandSample(sample, nrNodesToRemove)
+        \State sample \asdassign sample / toRemoveFromSample
+        \State pView \asdassign excludeDescendantsOf(toRemoveFromSample + pView, self.ID)  
+        \State pView \asdassign pView / allNeighs
+        \State pView \asdassign pView[:config.MaxEViewSize]
+        \State sample  \asdassign trimSetToSize(sample + toAdd + self, config.MaxRndWalkSampleSize) \label{alg:memb:passive_view_maint:walk_rec_merge_end}
+        \State target \asdassign getRand(excludeDescendantsOf(allNeighs, nID)
+        \If{target == nil || ttl == 0} \label{alg:memb:passive_view_maint:walk_rec_send}
             \State sendMessageSideChannel(RandomWalkReply<sample>, orig)
         \Else
             \State sendMessage(RandomWalk<sample, ttl-1, nID, orig>, getRandom(ascNeighs))
-        \EndIf
-        \State eView = excludeDescendantsOf(toRemoveFromSample, self.ID)  + eView
-        \State eView = eView / allNeighs
-        \State eView = eView[:config.MaxEViewSize]
+        \EndIf \label{alg:memb:passive_view_maint:walk_rec_send_end}
+    \asdend
+
+    \asdupon[receive( RandomWalkReply<sample>, sender)]: \label{alg:memb:passive_view_maint:walk_reply_recv_start}
+        \State sample \asdassign excludeDescendantsOf(sample, self.ID)
+        \State updateNodesToHigherVersion(sample, pView)
+        \State sample \asdassign excludeNodesInActiveView(sample)
+        \State pView \asdassign trimSetToSize(pView + sample, config.MaxEViewSize) \label{alg:memb:passive_view_maint:walk_reply_recv_end}
+    \asdend
+
+
+    \asdrepeateveryx{config.OportunisticOptimizationTimeout} \label{alg:memb:passive_view_maint:eval_nodes}
+        \State toMeasureRand \asdassign getRandSample(pView, len(pView)) // shuffle sample
+        \State toMeasureBiased \asdassign sortByEuclideanDist(pView / toMeasureRand)
+
+        \State measuredNr \asdassign 0
+        \For{i=0; i < len(toMeasureRand) \&\& measuredNr < config.ToMeasureRand ; i++}
+            \If{canBecomeChildrenOf(p)} \label{alg:memb:passive_view_maint:opt_verification_1}
+                \State measuredNr++
+                \State measurePeer(p)
+            \EndIf
+        \EndFor
+        \State measuredNr \asdassign 0
+        \For{i=0; i < len(toMeasureRand) \&\& measuredNr < config.toMeasureBiased ; i++}
+            \If{canBecomeChildrenOf(p)} \label{alg:memb:passive_view_maint:opt_verification_2}
+                \State measuredNr++
+                \State measurePeer(p)
+            \EndIf
+        \EndFor
     \asdend
 
     \asdupon[peerMeasured(p, latency)]
@@ -62,9 +71,8 @@
         \EndIf
     \asdend
 
-
     \asdupon[receive(OportunisticImprovementReq<p>,sender)]
-        \If{isDescendent(p.ID,self) or parent == nil}
+        \If{isDescendent(p.ID,self)}
             \State sendMessageSideChannel(OportunisticImprovementReqReply<false>,sender)
         \Else
             \State addChildren(sender)
@@ -74,8 +82,16 @@
 
     \asdupon[receive(OportunisticImprovementReqReply<answer>,sender)]
         \If {answer} 
+            \State disconnectFromCurrentParent(parent)
             \State addParent(sender)
         \EndIf
+    \asdend
+
+    \asdprocedure[canBecomeChildrenOf(c, parent)]
+        \If{(c.nrChildren > 0 \&\& parent.ID.level() >= c.ID.level())}
+            \State return false
+        \EndIf
+        \State return parent.nrChildren > 0 \&\& !isDescendentOf(parent.ID, c) \&\& !isDescendentOf(c, parent.ID)
     \asdend
 
     \asdprocedure[isDescendentOf(nodeID, PotentialDescID)]

@@ -54,7 +54,7 @@ In the figure \ref{fig:go-babel-overview} we may observe a high-level overview o
 
 As previously mentioned, the  Node Watcher is the only new addition to the framework, and consequently, it is the component explained in further detail. The remaining components of this framework were implemented similarly to Babel \todo{insert citation} and can found in \todo{cite}.
 
-\section{Node Watcher}
+\section{Node Watcher} \label{sec:GO-Babel}
 
 The node watcher is a component that, if registered, will listen for probes in a custom port (specified in the configurations) and send a reply with a copy of the contents back to the original senders. These probes are sent (usually) via UDP and carry a timestamp used by the original sender to calculate the round-trip time to the target node.
 

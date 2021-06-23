@@ -14,31 +14,54 @@
 
 \prependtographicspath{{Chapters/Figures/Covers/phd/}{Chapters/Figures/Covers/msc/}}
 
+
 \section{Motivation}
 
 Nowadays, the Cloud Computing paradigm is the standard for development, deployment, and management of services, most of the software systems present in our everyday life, such as Google Apps, Amazon, Twitter, among many others, are deployed on some form of cloud service. Cloud Computing refers to both the applications delivered as services over the Internet and the hardware and software systems in the data centers that provide those services \cite{10.1145/1721654.1721672}. It enabled the illusion of unlimited computing power, which revolutionized the way developers, companies, and users develop, maintain, and even use services.
 
-However, the centralized model proposed by the Cloud Computing paradigm mismatches the needs of many types of applications  such as: latency-sensitive applications, interactive mobile applications, and IoT applications \cite{10.1145/3154815}. All of these application domains are characterized by having data being generated and accessed (mostly) by end-user devices, consequently, when the computation resides in the data center (DC), far from the source of the data, challenges may arise: from the physical space needed to contain all the infrastructure, the increasing amount of bandwidth needed to support the information exchange from the DC to the client, the latency in communication from the clients to the DC as well as the security aspects that emerge from offloading data storage and computation to DCs operated by third parties have directed us into a new computing paradigm: \textit{Edge Computing}.
+However, the centralized model proposed by the Cloud Computing paradigm mismatches the needs of many types of applications  such as: latency-sensitive applications, interactive mobile applications, and IoT applications \cite{10.1145/3154815}. All of these application domains are characterized by having data being generated and accessed (mostly) by end-user devices. When the computation resides in the data center (DC), far from the source of the data, challenges may arise: from the physical space needed to contain all the infrastructure, the increasing amount of bandwidth needed to support the information exchange from the DC to the client as well as the latency in communication from the clients to the DC have directed us into a new computing paradigm: \textit{Edge Computing}.
 
-Edge computing addresses the increasing need for enriching the interaction between cloud computing systems and interactive / collaborative web and mobile applications \cite{10.1145/242857.242867}, by taking into consideration  computing and networking resources which exist beyond the boundaries of DCs and close to the edge of systems \cite{Leitao2018} \cite{7488250}. This paradigm aims at enabling the creation of systems which could otherwise be unfeasible with Cloud Computing: Google's self-driving car generates 1 Gigabyte every second \cite{datafloq}, and a Boeing 787 produces data at a rate close to 5 gigabytes per second \cite{finnegan_2013}, which would be impossible to transport and process in real-time (e.g., towards self-driving) if the computations were to be carried exclusively in a DC.
+Edge computing addresses the increasing need for enriching the interaction between cloud computing systems and interactive/collaborative web and mobile applications \cite{10.1145/242857.242867} by taking into consideration computing and networking resources which exist beyond the boundaries of DCs, closer to the edge of systems \cite{Leitao2018} \cite{7488250}. This paradigm aims at enabling the creation of systems that could otherwise be unfeasible with Cloud Computing: Google's self-driving car generates 1 Gigabyte every second \cite{datafloq}, and a Boeing 787 produces data at a rate close to 5 gigabytes per second \cite{finnegan_2013}, which would be impossible to transport and process in real-time (e.g., towards self-driving) if the computations were to be carried exclusively in a DC.
 
-By taking into consideration all the devices which are external to the DC, we are faced with a huge increase in the number and characteristics of computational devices ranging from Edge Data Centers to 5G towers and mobile devices. These devices, contrary to the cloud, have heterogenous computational capacity and potentially limited and unreliable data lines. Given this, developing an efficient resource management and sharing platform which enables the adequate and efficient use of these devices is an open challenge for fully realizing Edge Computing.
-
+By taking into consideration all the devices which are external to the DC, we are faced with a huge increase in the number and diversity of computational devices, as these range from Edge Data Centers to 5G towers and mobile devices. These devices, contrary to the cloud, have a wide range of computational capacity, and potentially limited and unreliable data lines. \todo{improve} Given this, developing an efficient resource monitoring and management platform which enables the adequate and efficient use of these devices is an open challenge for fully realizing in Edge Computing.
 
 \section{Context}
 
-Resource management and sharing platforms are extensibly used in Cloud systems (e.g. Mesos \cite{hindman2011mesos}, Yarn \cite{Vavilapalli2013ApacheHY}, Omega \cite{41684}, among others), whose high-level functionality consist of: (1) federating all the devices and tracking their state and utilization of computational and networking resources; (2) keeping track of resource demands which arise from different tenants; (3) performing resource allocations to satisfy the needs of such tenants; (4) adapting to dynamic workloads such that the system remains balanced and system policies as well as performance criteria are being met.
 
-Most popular resource management and sharing platforms are tailored towards small numbers of homogenous resource-heavy devices, which rely on a centralized system component that performs resource allocations with global knowledge of the system. Although this system architecture heavily simplifies the management of the resources, we argue that such systems are plagued by a central point of failure and a single point of contention which hinders the scalability of such such solutions, making them unsuitable for the scale of Edge Computing systems. Instead, we argue in favor of decentralized architectures for such resource management and sharing platforms, composed of multiple components, potentially organized in a flexible hierarchical way, and promoting load management decisions supported by partial and localized knowledge of the system.
+Resource management platforms are extensibly used in Cloud systems (e.g. Mesos \cite{hindman2011mesos}, Yarn \cite{Vavilapalli2013ApacheHY}, Omega \cite{41684}, among others), whose high-level functionality consist of: (1) federating all the devices and tracking their state and utilization of computational and networking resources; (2) keeping track of resource demands which arise from different tenants; (3) perform ving resource allocations to satisfy the needs of such tenants; (4) adapting to dynamic workloads such that the system remains balanced and system policies as well as performance criteria are being met.
 
-Given this, it is paramount that devices cooperatively materialize a robust lightweight decentralized resource control system, which tracks resource demands and allocations. In such a system, the accuracy and freshness of the information each component has dictates how efficiently they manage resources such that the system remains balanced, and applications running on the infrastructure maintain their target quality of service. This system must federate devices such that they leverage on heterogeneity to build a hierarchical infrastructure which combines naturally with the device taxonomy, and adapts to the environment changes.
+Most popular resource management and sharing platforms are tailored towards small numbers of homogenous resource-heavy devices, which rely on a centralized system component that performs resource allocations with global knowledge of the system. Although this system architecture heavily simplifies the management of the resources, we argue that such systems are plagued by a central point of failure and a single point of contention that hinders the scalability of such solutions, making them unsuitable for the scale of Edge Computing systems. 
+
+Instead, for achieving general-purpose computation in Edge systems, we argue in favour of decentralized management and monitoring platforms, composed of multiple components, organized in a flexible hierarchical way, and promoting load management decisions supported by partial and localized knowledge of the system. As building such a platform would not be trivial, and as we believe that in such a system, the accuracy and freshness of the information (which may be but is not exclusive to the execution of components or services) each component has, dictates how efficiently they manage resources. As such, we focus on that particular task: \text{information gathering and aggregation}.
+
+We believe data aggregation is an essential step towards general-purpose computations in Edge systems, as it allows information to be summarized. For devices with constrained data links and limited resources in resource management systems, being able to summarize data in transit is crucial, as it provides them with a partial view of the aggregated value, which in turn can be used in decentralized resource management decisions (e.g. load-balancing, improving QOS, among others).
 
 \section{Contributions}
 
+The contributions which arose from this dissertation are as follows:
+
+\begin{enumerate}
+    \item A distributed monitoring framework, built for decentralized resource management systems, composed of three main components: {
+        \begin{enumerate}
+            \item A novel overlay protocol which strives to build a logical multi-tree-shaped overlay network using both bandwidth and node latency as heuristics for connection establishment. This protocol is fully decentralized and fault-tolerant, with its only configuration being a set of static nodes: the roots of the trees.
+            
+            \item A distribured aggregation protocol, which uses the connections created by the overlay protocol's tree structure to perform efficient on-demand in-transit aggregations.
+            
+            \item An API to consult information regarding the operation of the overlay protocol, and to issue or collect arbitrary information in the framework in the form of time-series data. This framework also allows other auxiliary functions such as applying periodic functions to information, or alerting based on provided information. 
+            
+            \item An experimental evaluation of the membership protocol against popular membership protocols in the state of the art, where their fault tolerance, ability to improve the network cost, and ability to perform information dissemination reliably is tested. 
+
+            \item An experimental evaluation of the monitoring protocol against common prometheus configurations. Here, the accuracy of the collected monitoring values is collected over time, as well as information regarding the networking/processing cost of collecting the information.
+            
+        \end{enumerate}
+        }
+    \item A benchmark in the form of an edge-enabled application composed by multiple loosely coupled micro-services, tailored to benchmark resource management platforms, in this benchmark, geographical proximity leads to a significant improvement of QOS for the end-user, favouring resource management platforms which value placement of their services closer to the client.
+    
+\end{enumerate}
+
 \section{Document structure}
 
-This remaining of this document is structured as follows:
+\todo{elaborate this}
+The remaining of this document is structured as follows: 
 
 \textbf{Chapter} \ref{cha:related_work} studies related work that is related with the overall goal of this thesis work: we begin by analyzing similar paradigms to Edge Computing, the devices which compose these environments, and execution environments for edge-enabled applications. Following, we discuss strategies towards federating various devices in an abstraction layer, and study search strategies to find resources in the this layer, finally, we cover monitoring and management of system resources.
-
-\textbf{Chapter} \ref{cha:planning} further elaborates on the proposed contributions and the proposed work plan for the remainder of the thesis, including a more detailed explanation of our plans to experimentally evaluate our solution.
