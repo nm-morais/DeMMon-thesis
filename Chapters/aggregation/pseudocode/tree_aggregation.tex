@@ -25,12 +25,14 @@
 
     \asdupon[ExportTreeAggTimer(tId)] \label{alg:mon:tree_agg:export_trigger}
         \State <tHeight, mergeF, query, periodicity, outmName, isLocal, isParentSub, ptId> \asdassign tIds[tId]
-        \If{!isLocal }
-            \If{timeSince(tIdLastSeen[tId]) > config.treeAggExpiration}
+        \If{isParentSub \&\& timeSince(tIdLastSeen[tId]) > config.treeAggExpiration}
+            \If{!isLocal }
                 \State tIds.delete(tId)
                 \State lastSeen.delete(tId)
                 \State cancelTimer(timerIds[tId])
                 \State return
+            \Else
+                \State tIds[tId] \asdassign <tHeight, mergeF, query, periodicity, outmName, isLocal, false, nil>
             \EndIf
         \EndIf
         \State res \asdassign aggregateValues(mergeF, resolveQuery(query), childValues[tID])

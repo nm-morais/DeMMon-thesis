@@ -3,7 +3,7 @@ With a membership protocol capable of coordinating nodes into building a tree ov
 
 This protocol provides three different types of decentralized aggregation techniques, inspired from the study of the state of the art: (1) tree aggregation, (2) neighbourhood aggregation, and finally, (3) global aggregation, which we now clarify in further detail, starting by tree aggregation.
 
-\subsection{Tree aggregation}
+\subsection{Tree aggregation} \label{sec:mon_protocol:tree_agg}
 
 Tree aggregation is the mechanism responsible for collecting metrics and merging them using the tree, collecting an aggregated value for all nodes which are descendants of the node performing this mechanism (also denoted the \textbf{root of the aggregation tree}). It is important to notice that this mechanism is executable by all nodes in the mechanism, and if two different nodes are aggregating the same values with the same parameters, and a node is descendent of the other, the descendant node, will, when possible, embed its tree into the ascendants' (thus not performing the mechanism individually for nodes with overlapping trees, and reusing the values of the already existing tree).
 
@@ -17,15 +17,15 @@ Before adding the tree to its local tree map, the node checks if there already i
 
 Whenever this timer triggers, (line \ref{alg:mon:tree_agg:export_trigger}), the node checks if the aggregation tree has expired (i.e. if the parent stopped refreshing the aggregation tree), if it it has, then the node cancels the timer and deletes the tree metadata, if it has not expired, then the node evaluates the query (this procedure will be explained in section \ref{sec:mon_module}), obtaining its local value, then it merges all the values sent by its children with its own using the merge function, producing the final aggregated result. Afterwards, if configured to do so, it will store the value locally, and if the parent is also subscribed to the aggregation tree, it propagates the obtained value to it. Whenever a node receives this propagation of values from another node (line \ref{alg:mon:tree_agg:recv_propag_vals}), it checks that it has the corresponding aggregation tree in its local set of trees and that the message was sent by its children, discarding it if it is not, and stores the received values into a map of maps, containing all children values for each aggregation tree.
 
-Finally, each node periodically (using configured intervals) broadcasts to its children a message containing the aggregation trees it is the root of and that have height higher than 0 (line \ref{alg:mon:tree_agg:propag}). Whenever this message is received (line \ref{alg:mon:tree_agg:propag_recv}), the child merges all the received aggregation trees with registered ones, marking the sender as a subscriber to values for each tree which were previously present, and propagates the aggregation trees in which he is not the root to its children.
+Finally, each node periodically (using configured intervals) broadcasts to its children a message containing the aggregation trees it is the root of and that have height higher than 0 (line \ref{alg:mon:tree_agg:propag}). Whenever this message is received (line \ref{alg:mon:tree_agg:propag_recv}), the child merges all the received aggregation trees with registered ones, marking the parent as a subscriber for each previously present tree, and propagates the aggregation trees from which he is not the root of to its children.
 
 \todo{talvez meter uma conclusão aqui?}
 
 \subsection{Neighborhood aggregation}
 
-Neighborhood aggregation is the mechanism responsible for collecting metrics 
+Neighborhood aggregation is the mechanism responsible for collecting metrics from neighboring nodes to the node performing this mechanism, in essence, every node executing this mechanism creates a tree rooted upon itself by broadcasting messages with a configurable hop-based range periodically. Then, nodes who receive that message (essentially becoming federated in the tree) rebroadcast it to other peers and start to periodically propagate these values towards the root of each tree using the reverse path established by the broadcast message. Nodes in overlapping trees (i.e. propagating values derived from the same query) deduplicate the mechanisms of the propagation of broadcast messages and metric emission (by employing hashing, similarly to \ref{sec:mon_protocol:tree_agg}) in order to reduce the number of propagated messages.
 
-The second mechanism 
+
 
 \subsection{Global aggregation}
 
