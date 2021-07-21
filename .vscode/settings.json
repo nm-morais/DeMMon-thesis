@@ -49,5 +49,7 @@
                 ]
             }
         }
-    ]
+    ],
+    "files.autoSave": "onFocusChange",
+    "editor.wordWrap": "wordWrapColumn"
 }

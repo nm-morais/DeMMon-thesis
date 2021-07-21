@@ -29,28 +29,28 @@ DeMMon (Decentralized Management and Aggregation Overlay Network) is a monitorin
     
 \end{enumerate}
 
-Having enumerated what we believe to be the requirements of such tools, we now provide a brief overview of the devised framework which aims to fulfil these requirements. 
+Having enumerated what we believe to be the requirements of such tools, we now provide a brief overview of the devised framework which aims to fulfill these requirements. 
 
 \section{Framework overview}
 \label{sec:framework_overview}
 
 
-The devised framework, (ilustrated in figure \ref{fig:demmon-overview}), is composed of four main modules, the overlay network, the aggregation protocol, the API, and the monitoring module. We now describe each module's role within the framework and how they contribute to fulfil the aforementioned requirements.
+The devised framework (illustrated in figure \ref{fig:demmon-overview}) is coalesced by four main modules: the overlay network, the aggregation protocol, the API, and the monitoring module. In the following paragraphs we describe each module's role within the framework and how they contribute to fulfill the aforementioned requirements.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=\textwidth]{Chapters/Figures/DeMMon-arch-overview.pdf}
+    \includegraphics[width=\textwidth]{Chapters/Figures/DeMMon-overview.pdf}
     \caption{An overview of the architecture of DeMMon}
     \label{fig:demmon-overview}
 \end{figure}
     
-First, the \textbf{API} exposes the functionality of the framework, its main objectives are to: (1) allow issuing commands to collect metrics about nodes (or services they host) in the system; (2) allow those metrics to be queried through the use of a query language; (3) allow registering alarms which trigger based on conditions which evaluate the collected information. It is important to notice that the API is not the component tasked with gathering the information to perform these tasks, instead, the API's purpose is to expose the results and mediate the interactions between the clients and the remaining modules.
+First, the \textbf{API} exposes the functionality of the framework, its main objectives are to: (1) allow issuing commands to collect metrics about nodes (or services they host) in the system; (2) allow those metrics to be queried through the use of a query language; (3) allow registering alarms which trigger based on conditions which evaluate the collected information. It is important to notice that the API is not the component tasked with gathering the information to perform these tasks. Instead, it exposes the results and mediates the interactions between the clients and the remaining modules.
 
-Second, the \textbf{monitoring module} which is tasked with storing metrics, resolving queries regarding stored metrics, removing expired metrics, and periodically evaluating registered alarms and triggering callbacks which the API then propagates to the client. This module, toghether with the API, satisfies points (\ref{enum:demmon_4} and \ref{enum:demmon_6}) of the aforementioned requirements.
+Second, the \textbf{monitoring module} is tasked with storing metrics, resolving queries regarding stored metrics, removing expired metrics, periodically evaluating registered alarms, and triggering callbacks which the API then propagates to the client. This module satisfies points (\ref{enum:demmon_4} and \ref{enum:demmon_6}) of the aforementioned requirements.
 
 The \textbf{overlay network} strives to build a latency-aware multi-tree-shaped network. Nodes in this network use latency, node capacity, and a set of logical rules to change their location either from one tree to another or within their tree until they have an optimized set of nodes (according to latency). The connections resulting from the operation of this protocol are the basis for the aggregation protocol. In addition, this module also offers limited horizont flood techniques, exposed through the API, fulfilling the points \ref{enum:demmon_1} and \ref{enum:demmon_5} of the requirements.
 
-Finally, the \textbf{aggregation protocol} is a component that performs on-demand metric collection based on issued commands from the API. This component takes advantage of the overlay networks' established connections and hierarchical structure to perform efficient distributed aggregations. It allows three types of decentralized aggregation: (1) tree aggregation, which consists of collecting metrics and merging them using the tree, collecting a globally aggregated value in the tree roots, or a partial view of the system for nodes which are not the root of the overlay); (2) global aggregation, where nodes also use their tree connections to efficiently collect an aggregated global value (independently of being the root of the tree); and (3) neighborhood aggregation, where nodes collect values (non aggregated) of nearby nodes in term of hop proximity. These three mechanisms satisfy points \ref{enum:demmon_2} and \ref{enum:demmon_3} of the aforementioned requirements. 
+Finally, the \textbf{aggregation protocol} is a component that performs on-demand metric collection based on issued commands from the API. This component takes advantage of the overlay networks' established connections and hierarchical structure to perform efficient distributed aggregations. It allows three types of decentralized aggregation: (1) tree aggregation, which consists of collecting metrics and merging them using the overlay protocols' trees, collecting a globally aggregated value in the tree roots (or a partial view of the system for nodes that are not the root of the overlay); (2) global aggregation, where nodes also use their tree connections to efficiently collect an aggregated global value (independently of being the root of the tree); and (3) neighborhood aggregation, where nodes collect values (non aggregated) of nearby nodes in term of hop proximity. These three mechanisms satisfy points \ref{enum:demmon_2} and \ref{enum:demmon_3} of the aforementioned requirements. 
 
 In the following sections we will provide a detailed explanation of each individual module, starting by the \textbf{overlay network} (section \ref{sec:overlay_network}), followed by \textbf{aggregation protocol} (section \ref{sec:mon_protocol}), and lastly, the \textbf{monitoring module} (section \ref{sec:mon_module}) and \textbf{API} (section \ref{sec:api}). 
 
@@ -64,17 +64,13 @@ In the following sections we will provide a detailed explanation of each individ
 
 \section{Monitoring module}
 \label{sec:mon_module}
-\input{Chapters/api/api.tex}
+\input{Chapters/mon_module/mon_module.tex}
 
 \section{API}
 \label{sec:api}
 \input{Chapters/api/api.tex}
 
-\section{Showcase}
+\section{Summary}
 
 
-% .
-% It is important to notice that, as the nodes are organized in a tree, resource management systems may also take advantage of this structure to perform actions more efficiently, for example, using 
-
-% such that nodes in higher levels of the tree have a broader knowledge of the whole system, and nodes in lower levels have more localized information. This feature is especially useful for frameworks that take advantage of the hierarchical structure to organize its nodes.
-
+In this chapter, we covered the implementation of the deMMon framework, a decentralized management and monitoring framework targeted for the operation of decentralized resource management systems. We begun by covering what we believe to be the requirements of this solution (enum. \ref{enum:demmon}). Following, we provided a brief overview of the four modules which compose this framework, beginning by the overlay network (sec. \ref{sec:overlay_network}), which is responsible for creating and maintaining a multi-tree shaped network, optimized using latencies and node capacity. Following, in section \ref{sec:mon_protocol} we covered the aggregation protocol, which provides multiple primitives for collecting and aggregating metrics in a decentralized and efficient manner, using in-transit aggregation when possible, from a partial (or complete) set other nodes in the system. Next, we covered the monitoring module (sec. \ref{sec:mon_module}), which is the module in charge of: storing the time series data, parsing and processing queries, and managing alarm lifecycles. We finished the chapter by covering the API (sec. \ref{sec:api}), which essentially is the module responsible for mediating, via a WebSockets interface, the afoementioned interactions between the external clients and the other modules.

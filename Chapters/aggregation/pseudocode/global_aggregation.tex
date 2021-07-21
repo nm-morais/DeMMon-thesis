@@ -1,0 +1,107 @@
+\begin{algorithm}
+    \caption{Global aggregation} \label{alg:mon:global_agg}
+    \begin{algorithmic}[1]
+
+    \asdstate \label{alg:mon:global_agg:state_start}
+        \State parent,children,siblings \Comment{Defined by the overlay protocol}
+        \State tIds \asdassign map()
+        \State lastTimeSent \asdassign map()
+        \State neighValues \asdassign map() \label{alg:mon:global_agg:state_end}
+    \asdend
+
+    \asdupon[StartGlobalAggregationRequest(diffF, mergeF, query, periodicity ,outmName)] 
+    \label{alg:mon:global_agg:start_req}
+        \State tId \asdassign hash(diffF + mergeF + query + periodicity) 
+        \If{tId in tIds} 
+            \State <diffF, mergeF, query, periodicity, outmName, timerId, isLocal, aggNeighs> \asdassign tIds[tId]
+            \State tIds[tId] \asdassign <mergeF, query, periodicity, outmName, timerId, true, aggNeighs>
+        \Else
+            \State timerID \asdassign registerPeriodicTimer(ExportGlobalAggTimer(tId), periodicity)
+            \State tIds[tId] \asdassign <mergeF, query, periodicity, outmName, timerId, true, map()>
+            \State neighValues[tId] = map()
+            \State
+        \EndIf
+    \asdend
+
+    \asdrepeateveryx{config.PropagateGAggTimeout seconds} \label{alg:mon:global_agg:propag}
+        \State toSendArr \asdassign set \label{alg:mon:global_agg:propag_start}
+        \For{tId in tIds}
+            \State <diffF, mergeF, query, periodicity, outmName, timerId, isLocal, aggNeighs> \asdassign tIds[tId]
+            \For{<node, timestamp> in aggNeighs}
+                \If{timeSince(timestamp) > config.SubExpirationDuration}
+                    \State aggNeighs.remove(node)
+                \EndIf
+            \EndFor
+            \If{aggNeighs.length == 0 \&\& !isLocal}
+                \State tIds.remove(tId)
+                \State continue
+            \EndIf
+            \If{isLocal}
+                \State toSendArr \asdassign toSendArr + <diffF, mergeF, query, periodicity, outmName, tId>
+            \EndIf
+        \EndFor
+        \State PropagateGAggTrees(toSendArr, parent + children) \label{alg:mon:global_agg:propag_end}
+    \asdend
+
+    \asdupon[receive(RefreshGaggTree<gAggs>, sender)] \label{alg:mon:global_agg:propag_recv}
+        \State gAggTreeArr \asdassign set 
+        \For{<diffF, mergeF, query, periodicity, outmName, tId> in gAggs}
+            \If{id in tIds} \label{alg:mon:global_agg:propag_recv_merge}
+                \State gAggTreeArr.append(<diffF, mergeF, query, periodicity ,outmName, timerId, tId>)
+                \State neighValues[tId] = map()
+                \State tIds[tId] \asdassign <diffF, mergeF, query, periodicity ,outmName, timerId, false, <sender: time.Now()>>
+                \State registerPeriodicTimer(HandleTreeAggTimer(tId), periodicity)
+            \Else \label{alg:mon:global_agg:propag_recv_merge_end}
+                \State <diffF, mergeF, query, periodicity ,outmName, timerId, isLocal, aggNeighs> \asdassign tIds[tId]
+                \State aggNeighs[sender] \asdassign time.Now()
+                \State tIds[tId] \asdassign <diffF, mergeF, query, periodicity ,outmName, timerId, isLocal, aggNeighs>
+                \If{isLocal}
+                    \State continue
+                \EndIf
+            \EndIf
+        \EndFor
+        \If{sender == parent}
+            \State PropagateGAggTrees(gAggTreeArr, children)
+        \EndIf
+        \If{sender in children}
+            \State PropagateGAggTrees(gAggTreeArr, children - sender + parent)
+        \EndIf
+    \asdend
+
+
+    \asdupon[ExportGlobalAggTimer(tId)] \label{alg:mon:global_agg:export_trigger}
+        \State <diffF, mergeF, query, periodicity, outmName, timerId, isLocal, aggNeighs> \asdassign tIds[tId] \label{alg:mon:global_agg:export_trigger_init_part}
+        \State removeOldNeighValues(neighValues[tId])
+        \State localVal \asdassign resolveQuery(query)
+        \State res \asdassign evalFunc(mergeF, localVal, neighValues[tId])
+        \If{isLocal}
+            \State storeValLocally(res, outmName)
+        \EndIf  \label{alg:mon:global_agg:export_trigger_init_part_end}
+        \For{<node, timestamp> in aggNeighs}\label{alg:mon:global_agg:export_trigger_last_part}
+            \State sendMessage(PropagateGAggValues<tId, evalFunc(diffF, res, neighValues[tId][node]>, node)
+           
+        \EndFor \label{alg:mon:global_agg:export_trigger_last_part_end}
+    \asdend
+
+    \asdupon[receive(PropagateGAggValues<tId, res>, sender)] \label{alg:mon:global_agg:recv_propag_vals}
+        \If{tId in tIds and sender in children || sender == parent}
+            \State neighValues[tId][sender] = res, time.Now()
+        \EndIf
+    \asdend
+
+    \asdprocedure{PropagateGAggTrees(gAggTreeArr, nodeList)} \label{alg:mon:global_agg:propag_procedure}
+        \For{node in nodeList}
+            \State toSendToNode \asdassign set()
+            \For{<diffF, mergeF, query, periodicity ,outmName, timerId, tId> in gAggTreeArr}
+                \If{lastTimeSent[node][tId] == nil || time.Since(lastTimeSent[node][tId]) > config.RefreshMessageBackoff}
+                    \State toSendToNode \asdassign toSendToNode + <diffF, mergeF, query, periodicity ,outmName, timerId, tId>
+                \EndIf
+            \EndFor
+            \State lastTimeSent[node][tId] \asdassign time.Now()
+            \State sendMessage(RefreshGaggTree<toSendToNode>,node)
+        \EndFor
+    \asdend
+
+    \end{algorithmic}
+\end{algorithm}
+    
