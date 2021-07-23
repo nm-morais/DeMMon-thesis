@@ -48,6 +48,26 @@
                     "describe"
                 ]
             }
+        },
+        {
+            "files": [
+                "**/Chapters/benchmark.tex"
+            ],
+            "config": {
+                "audience": "knowledgeable",
+                "dialect": "british",
+                "domain": "academic",
+                "emotions": [
+                    "neutral",
+                    "confident",
+                    "respectful",
+                    "analytical"
+                ],
+                "goals": [
+                    "inform",
+                    "describe"
+                ]
+            }
         }
     ],
     "files.autoSave": "onFocusChange",

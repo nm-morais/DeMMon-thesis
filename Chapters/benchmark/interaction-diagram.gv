@@ -1,0 +1,47 @@
+
+digraph architecture {
+    
+  rankdir="LR";
+//   overlap=scalexy; 
+  concentrate=true;
+  splines=compound;
+  root=Trainers;
+  ranksep=1; nodesep=0.2;
+
+    subgraph client_dependencies {
+      Client [style=filled, fillcolor="darkorange"];
+      Client -> {Microtransactions, Store, Battles, Gyms, Location, Trades, Notifications, Trainers, Authentication} 
+      { rank="min"; Client};
+    }
+    subgraph cenas2 {
+        Authentication -> {Trainers}   
+        Authentication [style=filled, fillcolor="lightblue"];
+    }
+
+
+    subgraph ms_deps {
+        Battles [style=filled, fillcolor="lightblue"];
+        Trades [style=filled, fillcolor="lightblue"];
+        Gyms [style=filled, fillcolor="lightblue"];
+        Store [style=filled, fillcolor="lightblue"];
+        Microtransactions [style=filled, fillcolor="lightblue"];
+        Location [style=filled, fillcolor="lightblue"];
+        Battles -> {Trainers, Authentication, Notifications}
+        Trades -> {Trainers, Authentication, Notifications}
+        Gyms -> {Trainers, Authentication}
+        Store -> {Trainers, Authentication}
+        Microtransactions -> {Trainers, Authentication}
+        Location -> {Trainers, Authentication}
+        { rank=same; Microtransactions Store Battles Trades Location Gyms};
+    }
+
+    subgraph cenas {
+        Trainers [style=filled, fillcolor="lightblue"];
+        Notifications [style=filled, fillcolor="lightblue"];
+        Trainers -> {Authentication}
+        { rank=same; Microtransactions Store Battles Trades Location Gyms};
+        { rank="same"; Trainers Notifications};
+        
+    }
+  
+}

@@ -11,7 +11,6 @@
 \chapter{Evaluation}
 \label{cha:evaluation}
 
-
 In this chapter, we test the performance and applicability of the deMMon framework. It is our goal to demonstrate the applicability of the devised solution through the comparison of multiple aspects of the framework against popular solutions (in each aspect) from the literature. To this end, section \ref{sec:exp_setting_conf} covers the experimental setting and configuration, namely the specifications of the nodes executing the solutions, the methods used to control the experiment scenarios, among other aspects of the experimental setting. Following, in section \ref{sec:overlay_proto_eval}, the applicability of the overlay protocol is tested in two ways: the first test compares the characteristics of the resulting network against a set of baseline protocols, and the second overlay test evaluates the performance of the protocol in performing message dissemination against the same set of baseline protocols (executing dissemination protocols). Lastly, section \ref{sec:agg_proto_eval}, covers the experimental evaluation for aggregation protocol, notably, which solutions composed the baseline for comparison, which experiments were carried, and provides the obtained experimental results. All of the previously mentioned sections are finished with a discussion of the obtained results.
 
 \section{Experimental Setting} \label{sec:exp_setting_conf}
@@ -175,7 +174,17 @@ Provided the results from the combination of the baseline protocols with PlumTre
     \label{fig:overlay_proto_res_msg_diss:0_failures_latency_flood}
 \end{figure}
 
-In figure \ref{fig:overlay_proto_res_msg_diss:0_failures_latency_flood} we may observe the obtained results from collecting the latency between the emition and reception of the message for each node. The first takeaway from these results is that all protocols converge toward the same latency value, this is due to the fact the the test times are limited to 15 minutes, and whenever the system is saturated, all messages tend to take a similarly long time to be delivered, and those which are not delivered are only reflected in the previously discussed reliability graphs (figures \ref{fig:overlay_proto_res_msg_diss:0_failures_reliability_flood}, \ref{fig:overlay_proto_res_msg_diss:0_failures_reliability_plumTree}, \ref{fig:overlay_proto_res_msg_diss:50_failures_reliability_flood}, and \ref{fig:overlay_proto_res_msg_diss:50_failures_reliability_plumTree}). However, for lower message counts, the latency results show that deMMon tends to achieve lower latency values when compared with the baseline protocols on certain workloads (e.g. low numbers of messages emitted on both the 50 and 750 node graphs) where we believe the flood protocol becomes saturated due to the number of redundant messages sent, whereas deMMon must send less messages to perform the dissemination.
+In figure \ref{fig:overlay_proto_res_msg_diss:0_failures_latency_flood} we may observe the obtained results from collecting the latency between the emition and reception of the message for each node. The first takeaway from these results is that all protocols plateau at the same latency value, this is due to the fact the the test times are limited to 15 minutes, and whenever the system is saturated, all messages tend to take a similarly long time to be delivered, and those which are not delivered are only reflected in the previously discussed reliability graphs (figures \ref{fig:overlay_proto_res_msg_diss:0_failures_reliability_flood}, \ref{fig:overlay_proto_res_msg_diss:0_failures_reliability_plumTree}, \ref{fig:overlay_proto_res_msg_diss:50_failures_reliability_flood}, and \ref{fig:overlay_proto_res_msg_diss:50_failures_reliability_plumTree}). However, for lower message counts, the latency results show that deMMon tends to achieve lower latency values when compared with the baseline protocols on certain workloads (e.g. low numbers of messages emitted on both the 50 and 750 node graphs) where we believe the flood protocol becomes saturated due to the number of redundant messages sent, whereas deMMon must send less messages to perform the message dissemination.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{Chapters/evaluation/figures/flood/flood_0.0_failures_throughput.pdf}
+    \caption{Maximum message throughput during experiment (30 second window) in simple flood scenario (0\% failures)}
+    \label{fig:overlay_proto_res_msg_diss:0_failures_throughput_flood}
+\end{figure}
+
+In figure \ref{fig:overlay_proto_res_msg_diss:0_failures_throughput_flood}, we may observe the obtained throughput across the simple flood experiments with 0 failures, as we can observe, in lower node counts, the throughput achieved by deMMon surpasses the throughput achieved by the remaining protocols on lower node counts (i.e. 50 nodes), which also explains the higher values of reliability achieved by deMMon in these node counts (see fig. \ref{fig:overlay_proto_res_msg_diss:50_failures_reliability_flood}).
+
 
 % \begin{figure}[htbp]
 %     \centering
