@@ -8,7 +8,7 @@
 
 \typeout{NT FILE benchmark.tex}
 
-\chapter{Benchmark}
+\chapter{PouchBeasts: A Benchmark Application}
 \label{cha:benchmark}
 
 In this chapter, we present the third contribution from this dissertation, named ``PouchBeasts'' .PouchBeasts consists in a benchmark application for a back-end of an edge-enabled interactive multiplayer game, with functionality inspired from the popular game PokemonGO \todo{cite}. This contribution arose from the suggestion presented in \todo{cite this https://www.semanticscholar.org/paper/Towards-Enabling-Novel-Edge-Enabled-Applications-Leitao-Costa/7379b13c29b1543ef67adb969b08c9169836e750}, and aims to present a materialization of a benchmark with focus on real-time interactions between users. The importance of this contribution is its' possible use in testing service deployment systems, as the user interaction can be dramatically influenced in terms of quality of service as a function of the proximity of the deployment of its' services (i.e. users performing real-time battles mediated by a server in a different continent will have a poor user experience).
@@ -56,6 +56,8 @@ The interactions between the services in this benchmark are illustrated in the d
 Provided with the high-level overview of each of the implemented microservices of the benchmark, it is important to notice that the latency requirements regarding the interactions with the users and services are varied. For example, services such as the Trainers, Store or Microtransactions services are more tolerant when it comes to latency requirements when compared to services like the Gyms, Battles or Trades, as these have an interactive nature where a high latency value leads to frustration when it comes to user experience (i.e. having a delay in a battle may cause a certain users to lose in a way which feels unfair).
 
 To enable this experimentation of these interactions, the benchmark also contains a client which allows the execution of actions such as: battling other users, catching beasts, acquiring and spending tokens, among others actions. Then, through the instrumentation of both the client and the services, we provide a way to quantify some aspects regarding these interactions, such as the delays in the interactions between users and servers in both trades and battles services, among other interactions. Provided with these indicators, users may then acess the performance of their service deployment and maintenance systems.
+
+\todo{ falar de que o design permite a utilizacao de tantos servidores quanto se quiser que fazem interacoes real-time com os utilizadores}.
 
 To enable automated client testing, we provide ways for client to simulate user behavior. This behavior is configurable via a configurable stochastic matrix \todo{cite this from somwhere else other than wikipedia https://en.wikipedia.org/wiki/Stochastic\_matrix}. This matrix contains a line and a row for each possible action to perform with the client, and each matrix position (provided by a certain line and row) contains the probability of performing any of the other possible actions, provided the user just performed the action in the current line. 
 
