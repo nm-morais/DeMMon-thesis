@@ -31,7 +31,7 @@ In this application, registered users own a set of beasts, which they can expand
 The interactions between the services in this benchmark are illustrated in the diagram of figure \ref{fig:pouchbeasts-overview}. There are nine microservices in total and a client to access them. We now provide a brief overview of each microservice and its role within the system:
 
 \begin{enumerate}
-    \item The first and most used microservice of the system is called \textbf{Trainers} and it essentially stores all the data related to the users and their owned beasts. In addition, the service verifies the tokens issued by the authentication microservice in regards to the recency of the information carried in the token. This service makes use of a MongoDB \todo{cite} database to store these records in a permanent storage and to maintain data consistency across microservices.
+    \item The first and most used microservice of the system is called \textbf{Trainers} and it essentially stores all the data related to the users and their owned beasts. In addition, the service verifies the tokens issued by the authentication microservice in regards to the recency of the information carried in the token. This service makes use of a MongoDB \todo{cite} database to store these records in permanent storage and to maintain data consistency across microservices.
     
     \item The next microservice is called \textbf{Authentication}, which only has the purpose of generating new authentication tokens for the users to use when interacting with other services. These tokens contain a hash of the owned beasts, so other servers can verify their authenticity and recency without having to fetch the users' beasts on each interaction.
 
