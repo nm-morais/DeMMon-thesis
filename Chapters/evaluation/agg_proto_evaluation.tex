@@ -8,14 +8,80 @@ As previously mentioned in section \ref{sec:mon_protocol}, the devised aggregati
 
 \[ Error(t) =  \frac{|\sum localVal_i(t) - aggVal(t)|}{\sum localVal_i(t)}\]
 
-, where $localVal_i$ corresponds to the emitted value of each node locally, $\sum localVal_i$ corresponds to the ``supposed'' value and $aggVal$ corresponds to the obtained aggregated value during the experiment. In addition to the error over time, we collected other metrics to acess the performance of our solutions such as the consumption of networking and computing resources. All tests were conducted with network sizes of 750 logical nodes, and for each experiment we varied the number of metrics emitted by the dummy applications.
+, where $localVal_i$ corresponds to the emitted value of each node locally, $\sum localVal_i$ corresponds to the ``supposed'' value and $aggVal$ corresponds to the obtained aggregated value during the experiment. In addition to the error over time, we collected other metrics to acess the performance of our solutions such as the consumption of networking and computing resources. All tests were conducted with network sizes of 750 logical nodes, and for each experiment we varied the number of metrics emitted by the dummy applications. Finally, for each of these experiment combinations, we conducted tests with failure rates of 0 and 50\% of the nodes in the system, excluding the configurated tree roots.
 
-The designed features were compared against Prometheus configured in two distinct tree-shaped setups: the first setup, which we named \textbf{centralized Prometheus}, corresponds to the most typical configuration of a Prometheus server, where a single node collects and aggregates the metrics correspondent to all the nodes in the system, collecting a global view of the system (materializing a single-level tree). The second experimental setup, named \textbf{Prometheus tree}, corresponds to a more sophisticated setup where instead of having a single aggregating node, a portion of nodes in the system aggregate the metric values (effectively splitting the load among the aggregator nodes), these aggregator nodes, similarly to deMMon, are set up in the shape of a tree, and make use of federation to scrape the partially aggregated value from other prometheus. The generation of these configurations is performed in an automated manner through scripts. In addition, for both of the centralized and tree configurations, we also test setup a variation where every node in the system is an aggregator node, which aggregates the metrics provided by their local dummy application, and only export the aggregated value. It is important to mention that only the first two setups (centralized and tree) are, to our knowledge, the most representative of common Prometheus configurations, however, we include them to study the impact on the network cost of performing in-transit aggregation by every node when compared to performing the aggregation of metrics corresponding to multiple nodes on a single node.
+The designed features were compared against Prometheus collecting metrics with two distinct tree-shaped setups: the first setup, which we named \textbf{centralized Prometheus}, corresponds to the most typical configuration of a Prometheus server, where a single node collects and aggregates the metrics correspondent to all the nodes in the system, collecting a global view of the system (materializing a single-level tree). The second experimental setup, named \textbf{Prometheus tree}, corresponds to a more sophisticated setup where instead of having a single aggregating node, a portion of nodes in the system aggregate the metric values (effectively splitting the load among the aggregator nodes), these aggregator nodes, similarly to deMMon, are set up in the shape of a tree, and make use of federation to scrape the partially aggregated value from other prometheus. We automated, through scripts, the generation of these setups, based on two parameters: with inner tree width, denoted by $i$, and the maximum number of leaf nodes, denoted by $o$. In addition, for both of the centralized and tree configurations, we also test setup a variation where every node in the system is an aggregator node (with the name \textbf{aggregator leaves}), which aggregates the metrics provided by their local dummy application, and only export the aggregated value. It is important to mention that only the first two setups (centralized and tree) are, to our knowledge, the most representative of common Prometheus configurations, however, we include the aggregator leaves scenarios to study the impact in terms of network cost of performing in-transit aggregation by every node which emits metrics when compared to performing the aggregation process of metrics extracted from multiple nodes on a single node. An illustration of these setups can be found in figure \ref{fig:sec:eval_prom_setups}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{Chapters/evaluation/figures/aggregation/Prometheus setups.pdf}
+    \caption{Exemplification (at smaller scale) the of tested prometheus setups}
+    \label{fig:sec:eval_prom_setups}
+\end{figure}
 
 \subsection{Tree aggregation}
 
-For the \textbf{tree aggregation} evaluation, we configured deMMon with a single tree aggregation function, which triggers the algorithm defined in section \ref{sec:mon_protocol} that, in sum, collects an aggregated value of the metrics of its descendants in the deMMon tree. This feature was designed for decentralized resource management applications that follow the deMMon hierarchical structure to perform decentralized resource management decisions. For example, a certain application that wishes to maintain a certain ratio of two service replicas (because one depends on the other), it can do so by having each node monitor its descendants and perform resource management actions (possibly coordinated with other nodes) to replenish or decommission a service replica to maintain the desired ratio.
+For the \textbf{tree aggregation} evaluation, we configured deMMon with a single tree aggregation function , which triggers the algorithm defined in section \ref{sec:mon_protocol} that, in sum, collects an aggregated value of the metrics of its descendants in the deMMon tree. This feature was designed for decentralized resource management applications that follow the deMMon hierarchical structure to perform decentralized resource management decisions. For example, a certain application that wishes to maintain a certain ratio of two service replicas (because one depends on the other), it can do so by having each node monitor its descendants and perform resource management actions (possibly coordinated with other nodes) to replenish or decommission a service replica such that the desired ratio is maintained.
+
+To test this feature, we set up both prometheus and DeMMon to collect an aggregated value of the whole system in a single node, providing an aggregated view of the system (in the previous example, this value could be the sum number of replicas in the system), and collected the error of the obtained aggregated value against the correct value over time and the total network cost over the duration of the experiments. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{Chapters/evaluation/figures/aggregation/Error_over_time_global_tree.jpg}
+    \caption{Error over time obtained in tree aggregation (centralized scenario)}
+    \label{fig:sec:mon_eval_tree_centralized}
+\end{figure}
+
+We begin this comparison with by discussing the obtained results regarding the centralized version of Prometheus agains deMMon (fig. \ref{fig:sec:mon_eval_tree_centralized}), we may observe that either DeMMon and Prometheus reach the 0\% error rate with low numbers of metrics, which means the systems are working correctly when not under load. Furthermore, we may observe that, in the regular Prometheus setup (non-aggregator leaves), as the number of metrics increases, Prometheus exceeds the allocated bandwidth and cannot obtain the correct metrics to calculate the aggregated value. This contrasts with the Prometheus ``aggregator leaves'' results, that tend to obtain 0\% error value across all conducted experiments, this happens because every node is aggregating their emitted metrics and only propagating an aggregated value, which does not saturate the system bandwidth. It is important to notice that as the number of series increases, the DeMMon error tends to increasingly fluctuate between 0 and low error values, we believe this occurs due to the DeMMon nodes saturating their CPU when parsing the metrics. Although we realize this may be a limitation of the developed system, we argue this limitation is an engineering problem which may be easily addressed by employing a more efficient metric transmission and parsing protocol (similar to Prometheus' or InfluxDBs').
 
 
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{Chapters/evaluation/figures/aggregation/Error_over_time_global_tree.jpg}
+    \caption{Error over time obtained in tree aggregation (tree scenario)}
+    \label{fig:sec:mon_eval_tree_tree}
+\end{figure}
+
+As the centralized prometheus setup saturates at higher metric counts, we now compare the performance of our solution against a more scalable Prometheus setup, the \textbf{Prometheus tree} setup. The results of this comparison can be observed in figure \ref{fig:sec:mon_eval_tree_tree}, which contains the error over time obtained for the experiments with 0 and 50\% failure rate. As we can observe, Prometheus (in the non-aggregator leaves scenario) now splits the load of aggregating the metrics throughout 10 nodes, and consequently can obtain the correct aggregated value. This configuration, however, is plagued by multiple points of failure which show in the scenarios with 50\% failures (bottom half of the graph), where Prometheus setups do not recover from the failures, as servers require manual intervention to change their configuration.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{Chapters/evaluation/figures/aggregation/network_cost_tree.jpg}
+    \caption{Average network cost incurred during tree aggregation experiments}
+    \label{fig:sec:mon_eval_tree_net_cost}
+\end{figure}
+
+Finally, in figure \ref{fig:sec:mon_eval_tree_net_cost}, we may observe the average network cost for the previously shown experiments. In this, we can observe that both the ``aggregator leaves'' remain at a constant number, which are the lowest obtained network costs when compared with other setups, given these setups perform aggregation of their metrics locally before emitting them towards the root node. in the case of DeMMon, the results are also constant as DeMMon also performs local aggregation before emitting the results. In the case of what we believe to be the most representative Prometheus setups, the network costs tend to increase linearly with the number of metrics, which is less desirable when compared to a constant networking cost.
 
 \subsection{Global aggregation}
+
+Global aggregation in DeMMon, (as further explained in section \ref{sec:mon_protocol:global_agg}), is a feature where each node in the system calculates an aggregated value in a decentralized manner. To test the applicability of this feature, we also employed Prometheus as a baseline comparision, set up using the configuration setups described in the beginning of this section, and configured such that every node periodically queries the root node for the root value (effectively providing the same results as DeMMon).
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{Chapters/evaluation/figures/aggregation/Error_over_time_global_0_failures_centralized.jpg}
+    \caption{Error over time obtained in global aggregation (centralized scenario)}
+    \label{fig:sec:mon_eval_global_centralized}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{Chapters/evaluation/figures/aggregation/Error_over_time_global_tree.jpg}
+    \caption{Error over time obtained in global aggregation (tree scenario)}
+    \label{fig:sec:mon_eval_global_tree}
+\end{figure}
+
+The experiments conducted for this feature are similar to the ones conducted for the tree aggregation. Their results can be observed in figures \ref{fig:sec:mon_eval_global_centralized} and \ref{fig:sec:mon_eval_global_tree}. In these, we observe a similar pattern to the one observed by the tree aggregation results, namely: the centralized Prometheus configurations cannot scale when the number of metrics emitted per node increases, and the tree Prometheus configurations, while they resolve the scaling problem, are subjected to multiple points of failure that, in the case of a failure, require manual configuration to recover from. Finally, in these results we may observe that DeMMon can correctly obtain the aggregated value both when the number of metrics increases, and in the presence of failures, making it a more versatile option for these scenarios.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{Chapters/evaluation/figures/aggregation/network_cost_global.jpg}
+    \caption{Average network cost incurred during global aggregation}
+    \label{fig:sec:mon_eval_global_net_cost}
+\end{figure}
+
+The final obtained result, showing the average network cost incurred during these experiments, can be observed in figure \ref{fig:sec:mon_eval_global_net_cost}, where similarly to tree aggregation, both DeMMon and the two prometheus configurations with ``aggregator leaves'' obtain constant network costs during the experiments because these setups perform local aggregation before emitting their metrics, with prometheus having less networking costs given it does not have to maintain the overlay network, unlike DeMMon. The remaining configurations (Prometheus tree and Prometheus centralized), as they do not perform in-transit aggregation of the metrics, incur in networking costs which scale with the number of metrics emitted by the nodes, which from the standpoint of scalability, also means its scalability will be limited by the number of series, contrary to DeMMon or configurations with ``aggregator leaves'' ( which as previously mentioned, are not representative of most Prometheus setups), which obtain linear costs with the number of emitted metrics.
+
+% \subsection{Neighborhood aggregation} 
+
+\todo{neighborhood aggregation}
