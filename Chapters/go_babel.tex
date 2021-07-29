@@ -68,6 +68,6 @@ When a protocol issues a command to watch a node, if the ``watched'' node fails 
 
 In order to prevent protocols from having to set timers to check the nodes' latency calculator or fault detector, the node watcher allows the possibility of registering ``observer'' functions (or conditions), which return a boolean value based on the current node information. The node watcher then executes these functions periodically, and if one returns true, a notification gets sent to the issuing protocol. In order to prevent protocols from getting overloaded with notifications when a condition returns ``true'', these may configure a grace period, which the node watcher will wait for until re-evaluating the condition.
 
-\section{Conclusion}
+\section{Summary}
 
 We believe Go-Babel is a valuable contribution as it eases the implementation of self-improving protocols which employ latency as an optimization heuristic. In addition, it provides a secondary fault detector which may be employed together with the TCP connections. Lastly, as the implementation is in Golang \todo{cite}, it allows easier integration with a range of packages already implemented in the language. \todo{Sinto que esta secçao nao devia existir?}

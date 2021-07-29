@@ -28,7 +28,7 @@ The utilized parameters for the protocols were adjusted to attempt to perform a 
     }
 \end{table}
 
-\subsection{Overlay construction and maintenance: experimental results}
+\subsection{Overlay construction and maintenance}
 
 The first conducted experiment, aimed at evaluating how protocols build and maintain the overlay networks, is an experiment where different numbers of nodes join the system and remain during 25 minutes. In this experiment, we evaluate what are the properties of the built overlay networks (costs, degree distribution, among other properties) and how fast the protocol converges towards an optimized network. Finally, in order to compare the scalability, performance and fault-tolerance at multiple scales, we perform the previously mentioned experiment using network sizes of 50, 250, 500 and 750 nodes.
 
@@ -83,7 +83,7 @@ As previously mentioned, the aplicability of our solution was tested in two diff
 
 \todo{meter resultados grandes em anexo?}
 
-\subsection{Information dissemination: experimental results}
+\subsection{Information dissemination}
 
 The second set of conducted experiments, as mentioned previously, intends to test the applicability of the devised membership protocol in an information dissemination scenario. To do so, we tested it against the same set of baseline protocols used in the previous experiments enriched with two message dissemination protocols: the first is a simple flood protocol, where if a node wishes to broadcast a message, it sends that message to every peer in its active view, then, nodes that receive this message, propagate it to every neighbour if they havent done so previously (excluding the sender). The second used dissemination protocol was PlumTree \todo{cite}, which is a dissemination protocol that builds a dissemination tree rooted on the first node that issues a broadcast message. The reasoning behind this choice of dissemination protocols was to provide a fairer comparison of deMMon with the remaining protocols, as we believe that because simple flood generates many redundant messages when compared to dissemination using only a tree structure, it would be unfair to not include a dissemination protocol which also employs a tree, similarly to deMMon. It is important to mention that, when testing the PlumTree protocol,in order to establish the initial tree, in the experiments for this protocol a single node first establishes the tree by starting the dissemination of its messages a minute earlier. For both of these comparisons, deMMon is set up with a dissemination protocol similar to the simple flood protocol, however only using its vertical connections (parent and children).
 
