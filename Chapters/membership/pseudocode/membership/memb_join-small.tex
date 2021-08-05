@@ -62,8 +62,8 @@
         \State return
     \EndFor
     \IfThenElse{prevBestP != nil} 
-    {joinAsChild(prevBestP)}  
-    {abortJoinAndRetryLater()} \label{alg:memb:join:join_base_case}
+    {joinAsChild(prevBestP)}  \label{alg:memb:join:join_base_case}
+    {abortJoinAndRetryLater()} 
     \State return
 \asdend
 

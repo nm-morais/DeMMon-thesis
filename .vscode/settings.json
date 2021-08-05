@@ -8,8 +8,7 @@
         "latex",
         "plaintext"
     ],
-    "grammarly.overrides": [
-        {
+    "grammarly.overrides": [{
             "files": [
                 "**/structure.MD"
             ],
@@ -55,6 +54,26 @@
             ],
             "config": {
                 "audience": "knowledgeable",
+                "dialect": "british",
+                "domain": "academic",
+                "emotions": [
+                    "neutral",
+                    "confident",
+                    "respectful",
+                    "analytical"
+                ],
+                "goals": [
+                    "inform",
+                    "describe"
+                ]
+            }
+        },
+        {
+            "files": [
+                "**/Chapters/mon_module/mon_module.tex"
+            ],
+            "config": {
+                "audience": "expert",
                 "dialect": "british",
                 "domain": "academic",
                 "emotions": [

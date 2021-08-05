@@ -64,14 +64,14 @@
         \EndFor
     \asdend
 
-    \asdupon[peerMeasured(p, latency)]
+    \asdupon[peerMeasured(p, latency)] \label{alg:memb:passive_view_maint:peer_measured}
         \State latencyImprovement := parent.measuredLatency - Latency
         \If{latencyImprovement >= config.MinLatencyForImprovement}
             \State sendMessageSideChannel(OportunisticImprovementReq<self>,p)
         \EndIf
     \asdend
 
-    \asdupon[receive(OportunisticImprovementReq<p>,sender)]
+    \asdupon[receive(OportunisticImprovementReq<p>,sender)] \label{alg:memb:passive_view_maint:oport_msg_recv}
         \If{isDescendent(p.ID,self)}
             \State sendMessageSideChannel(OportunisticImprovementReqReply<false>,sender)
         \Else
@@ -80,7 +80,7 @@
         \EndIf
     \asdend
 
-    \asdupon[receive(OportunisticImprovementReqReply<answer>,sender)]
+    \asdupon[receive(OportunisticImprovementReqReply<answer>,sender)] \label{alg:memb:passive_view_maint:op_msg_reply_recv}
         \If {answer} 
             \State disconnectFromCurrentParent(parent)
             \State addParent(sender)

@@ -62,7 +62,14 @@ The contributions which arose from this dissertation are as follows:
 
 \section{Document structure}
 
-\todo{elaborate this}
 The remaining of this document is structured as follows: 
 
-\textbf{Chapter} \ref{cha:related_work} studies related work that is related with the overall goal of this thesis work: we begin by analyzing similar paradigms to Edge Computing, the devices which compose these environments, and execution environments for edge-enabled applications. Following, we discuss strategies towards federating various devices in an abstraction layer, and study search strategies to find resources in the this layer, finally, we cover monitoring and management of system resources.
+Chapter \ref{cha:related_work} studies related work that is relevant to the overall goal of this thesis work: we begin by analyzing similar paradigms to Edge Computing, the devices which compose these environments, and execution environments for edge-enabled applications. We also discuss strategies towards federating various devices in an abstraction layer and study search strategies to find resources in this layer. Finally, we cover monitoring and management of system resources.
+
+Chapter \ref{cha:GO-Babel} covers the implementation of the first contribution of this thesis that consists in a port to Golang of Babel \cite{babel}, a framework for building distributed systems, used to build our solution. This contribution has some additions focused on latency measurement and fault detection.
+
+Chapter \ref{cha:demmon} explains the implementation of our solution, beginning with the overlay protocol, followed by the aggregation protocol that uses the overlay protocols' connections, and lastly, we cover the monitoring module of our system that stores and serves information in time-series format.
+
+After, in chapter \ref{cha:benchmark}, we cover the implementation of the previously mentioned edge-enabled benchmarking application targeted for testing decentralized resource management platforms.
+
+In chapter \ref{cha:evaluation}, we provide the results of our experimental evaluation regarding of the devised overlay protocol and aggregation protocol. Finally, in chapter \ref{cha:conclusions_future_work}, we draw conclusions from the conducted work and discuss the future work we intend to conduct to improve our solution.
