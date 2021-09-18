@@ -1,7 +1,7 @@
 
 In this section, we study the taxonomy of the devices which materialize edge environments and analyze, according to the literature, which computations each device can perform.
 
-% In this section we provide context about edge-related paradigms, study the taxonomy of the devices which materialize edge environments, and analyze which computations each device can perform.
+% In this Section we provide context about edge-related paradigms, study the taxonomy of the devices which materialize edge environments, and analyze which computations each device can perform.
 
 % \subsection{Edge Computing}
 
@@ -72,10 +72,12 @@ Table \ref{tab:taxonomy_edge} shows the proposed categories of edge devices, we 
 
 \textbf{Levels 4 and  5} consist of \textit{private servers}, \textit{desktops} and \textit{laptops}, devices in these levels level have medium capacity and medium to low availability. They can perform a varied amount of tasks on behalf of devices in higher levels (e.g. compute on behalf of smartphones, act as logical gateways or just cache data). 
 
-\textbf{Levels 6} consists of \textit{tablets} and \textit{mobile devices}, which have low capacity, availability, and short battery life. Given this, they are limited in how they can perform contribute towards edge applications. Aside from caching user data, they may filter or aggregate of data generated from devices in level 7. Finally, \textbf{level 7} consists of \textit{actuators, sensors} and \textit{things}, these devices are the most limited in their capacity, and enable limited forms of computation in the form of aggregation and filtering.
+\textbf{Levels 6} consists of \textit{tablets} and \textit{mobile devices}, which have low capacity, availability, and short battery life. Given this, they are limited in how they can perform contribute towards edge applications. Aside from caching user data, they may filter or aggregate of data generated from devices in level 7.
+
+Finally, \textbf{level 7} consists of \textit{actuators, sensors} and \textit{things}, these devices are the most limited in their capacity, and enable limited forms of computation in the form of aggregation and filtering.
 
 \subsection{Discussion}
 
-Coincidently, the levels are correlated to the number of devices and their computational power, where higher levels tend to have more devices that are closer to the origin of the data and have lower computational power. Consequently, the higher the level, the harder it is to employ edge devices to support the execution of edge-enabled applications. 
+Coincidently, the levels are correlated to the number of devices and their computational power, where higher levels tend to have more devices that are closer to the origin of the data while having lower computational power. Consequently, the higher the level, the harder it is to employ edge devices to support the execution of edge-enabled applications. 
 
-We believe the low availability and potential mobility of devices in higher levels make them unsuitable, as they could potentially be a source of instability in the system. Consequently,  we believe only devices in levels 0-5 are potential candidates to integrate the system we intend to build, provided the remaining devices tend too low of an availability to be possible targets to, for example, host a service reliably. It is, however, important to mention that this effect can be circumvented by employing devices in other levels as gateways for those devices, hence starting to establish a hierarchy on the way different application components interact. \todo{needs improvement}
+We believe the low availability and potential mobility of devices in higher levels make them unsuitable, as they could potentially be a source of instability in the system. Consequently,  we believe only devices in levels 0-5 are potential candidates to integrate the system we intend to build, provided the remaining devices tend too low of an availability to be possible targets to, for example, host a service reliably. It is, however, important to mention that employing devices in other levels as gateways for those devices can help circumvent this limitation. Hence, starting to establish a natural hierarchy on the way different application components interact and how information (calls or events) flow in such complex systems.

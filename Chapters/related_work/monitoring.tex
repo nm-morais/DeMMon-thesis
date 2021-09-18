@@ -34,7 +34,9 @@ A decomposable aggregation function is one where a function may be defined as a 
 
 \subsubsection*{Duplicate sensitiveness}
 
-The second property of aggregation is \textbf{duplicate sensitiveness}, and it is related to whether a given value can or cannot occur several times in a multiset, as depending on the aggregation function, the presence of repeated values may influence the result. It is said that a function is \textbf{duplicate sensitive} if the result of the aggregation function is influenced by the repeated values (e.g. SUM). Conversely, if the aggregation function is \textbf{duplicate insensitive}, it can be successfully repeated any number of times to the same multiset without affecting the result (e.g. MIN and MAX). Table \ref{table:aggregation_functions} classifies popular aggregation functions in function of decomposability and duplicate sensitiveness as found in \cite{DBLP:journals/corr/abs-1110-0725}.
+The second property of aggregation is \textbf{duplicate sensitiveness}, and it is related to whether a given value can or cannot occur several times in a multiset, as depending on the aggregation function, the presence of repeated values may influence the result. It is said that a function is \textbf{duplicate sensitive} if the result of the aggregation function is influenced by the repeated values (e.g. SUM). Conversely, if the aggregation function is \textbf{duplicate insensitive}, it can be successfully repeated any number of times to the same multiset without affecting the result (e.g. MIN and MAX).
+
+Table \ref{table:aggregation_functions} classifies popular aggregation functions in function of decomposability and duplicate sensitiveness as found in \cite{DBLP:journals/corr/abs-1110-0725}.
 
 \begin{table}[]
     \centering
@@ -111,7 +113,7 @@ Astrolabe employs gossip exchanges to update the MIBs, which provides an eventua
 
 Not all nodes gossip information, within each zone, a node is elected (the authors do not specify how) to perform gossip on behalf of that zone. Additionally, nodes can represent nodes from other zones, in this case, nodes run one instance of the gossip protocol per represented zone, where the maximum number of zones a node can represent is bounded by the number of levels in the Astrolabe tree.
 
-An agents' zone is defined by its system administrator, which is a potential limitation towards scalability, given that configuration errors have the potential of heavily raising system latency and reducing traffic locality. Additionally, the original authors state that the size of gossip messages scales with the branching factor, often exceeding the maximum size of a UDP packet. Other limitations which arise from using Astrolabe are the high memory requirements per participant due to the high degree of replication, and the potential points of failure of the representatives of zones.
+An agents' zone is defined by its system administrator, which is a potential limitation towards scalability, given that configuration errors have the potential of heavily raising system latency and reducing traffic locality. Additionally, the authors state that the size of gossip messages scales with the branching factor, often exceeding the maximum size of a UDP packet. Other limitations which arise from using Astrolabe are the high memory requirements per participant due to the high degree of replication, and the potential points of failure of the representatives of zones.
 
 \textbf{Ganglia} \cite{massie2004ganglia} is a distributed monitoring system for high performance computing systems, namely clusters and grids. In short, Ganglia groups nodes in clusters, in each cluster, there are representative cluster nodes that federate devices and aggregate internal cluster state. Then, representatives aggregate information in a tree of point-to-point connections.
 

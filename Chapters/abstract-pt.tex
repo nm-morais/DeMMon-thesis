@@ -10,10 +10,21 @@
 
 % Neste trabalho expõe-se a criação de uma nova solução de monitorização e disseminação de informação descentralizada, desenhada para executar em sistemas de larga escala principalmente compostos por dispositivos com ligações de dados limitadas, como os que se encontram na periferia da rede. Esta solução, através do uso de uma rede em àrvore, providencia um leque de operações para coletar e processar, de uma forma descentralizada e eficiente, informação relativa a dispositivos (ou processos) a executar num dado sistema. Resultados em ambientes de emulação?? mostram que esta solução, quando empregue no contexto de disseminação de informação, apresenta pontos de saturação mais tarde do que alternativas no estado da arte. No contexto de monitorização, o sistema apresenta maior tolerância a falhas e, dependendo da configuração das alternativas e tamanho da rede, maior capacidade de coleção e agregação de métricas.
 
-O modelo de computação centralizado utilizado no paradigma da Computação na Nuvem apresenta limitações no contexto de aplicações no domínio da Internet das Coisas e aplicações móveis. Neste, os dados são produzidos e consumidos maioritariamente por dispositivos que se encontram na periferia da rede, impondo uma carga excessiva nas infraestruturas de rede que ligam os dispositivos aos centros de dados, aumentando a latência de respostas e diminuindo a qualidade de serviço. O paradigma da Computação na Periferia propõe a execução de computações, e potencialmente armazenamento de dados, em dispositivos fora dos centros de dados, reduzindo custos e criando um novo leque de possibilidades para efetuar computações distribuídas mais próximas dos dispositivos que produzem e consomem os dados.
+O modelo de computação centralizado utilizado no paradigma da Computação na Nuvem apresenta limitações no contexto de aplicações no domínio da Internet das Coisas e aplicações móveis. Neste, os dados são produzidos e consumidos maioritariamente por dispositivos que se encontram na periferia da rede. Visto isto, transportar estes dados de e para os centros de dados impõe carga excessiva nas infraestruturas de rede que ligam os dispositivos aos centros de dados, aumentando a latência de respostas e diminuindo a qualidade de serviço para utilizadores. 
 
-Neste artigo propõem-se o desenho de uma nova solução de monitorização e disseminação de informação descentralizada, desenhada para executar em sistemas de larga escala principalmente compostos por dispositivos com ligações de dados com capacidade limitada, como os que se encontram na periferia da rede. Esta solução baseia-se numa topologia descentralizada em árvore estabelecida entre dispositivos da periferia e da nuvem, que é utilizada para eficientemente disseminar, coletar, e processar informação relativa aos dispositivos (ou processos) em execução neste ambiente híbrido. A nossa solução foi avaliada em redes emulada de várias dimensões, chegando a um máximo de 750 nós, no contexto de disseminação e de monitorização. Os nossos resultados mostram que o nosso sistema consegue ser mais robusto ao mesmo tempo que é mais escalável quando comparado com o estado da arte.
+Para combater estas limitações, surgiu o paradigma da Computação na Periferia, este propõe a execução de computações, e potencialmente armazenamento de dados, em dispositivos fora dos centros de dados, mais perto dos clientes, reduzindo custos e criando um novo leque de possibilidades para efetuar computações distribuídas mais próximas dos dispositivos que produzem e consomem os dados.
 
+Contudo, gerir e supervisionar a execução desses dispositivos levanta obstáculos não equacionados pela Computação na Nuvem, como a escala destes sistemas, a connectividade potencialmente instável dos dispositivos e a variabilidade na sua capacidade de computação. O estudo da literatura revela que ferramentas populares para gerir e supervisionar aplicações e dispositivos ou possuem pontos de falha centralizados, ou requerem a configuração manual de cada dispositivo, que são limitações para a sua escalabilidade.
+
+Nesta dissertação, propõem-se uma nova solução de monitorização e disseminação de informação descentralizada. Esta solução oferece operações que permitem recolher, de uma forma descentralizada, informação sobre o estado do sistema, de modo a ser utilizada por soluções (também descentralizadas) que gerem aplicações especializadas para executar na periferia da rede. A nossa solução foi avaliada em redes emuladas de várias dimensões com um máximo de 750 nós, no contexto de disseminação e de monitorização de informação. Os nossos resultados mostram que o nosso sistema consegue ser mais robusto ao mesmo tempo que é mais escalável quando comparado com o estado da arte.
+
+\begin{keywords}
+    Computação na periferia, Computação distribuída, Gestão de recursos, Monitorização, Gestão de topologias de redes
+\end{keywords}
+
+% desenhada para executar em sistemas de larga escala principalmente compostos por dispositivos com ligações de dados com capacidade limitada, como os que se encontram na periferia da rede.
+
+% Esta solução baseia-se numa topologia descentralizada em árvore estabelecida entre dispositivos da periferia e da nuvem, que é utilizada para eficientemente disseminar, coletar, e processar informação relativa aos dispositivos (ou processos) em execução neste ambiente híbrido.
 
 
 % como também recolher e agregar métricas sobre a operação e execução de componentes aplicacionais, de forma descentralizada.
@@ -24,12 +35,3 @@ Neste artigo propõem-se o desenho de uma nova solução de monitorização e di
 % O estudo do estado da arte revelou que as soluções existentes para a gestão e localização de recursos são normalmente especializadas para ambientes na Nuvem, onde os dispositivos têm capacidade de computação e armazenamento semelhantes, algo que não é adequado para ambientes dinâmicos e heterogéneos como a periferia do sistema. 
 
 
-% Palavras-chave do resumo em Português
-\begin{keywords}
-
-    %Edge Computing, Cloud Computing, Resource Management, Resource Monitoring, Topology Management, Overlay Networks, Migration, Offloading
-    
-    Computação na periferia, Computação distribuída, Gestão de recursos, Monitorização, Gestão de topologias de redes
-
-\end{keywords}
-% to add an extra black line

@@ -31,11 +31,11 @@ One of the key challenges in distributed resource management is ensuring that th
 
 The master implements fine-grained sharing of resources across frameworks by employing \textit{resource offers}, which consist of lists containing free resources distributed among slaves. The master makes decisions about how many resources to offer to each framework, and the decision-making process is based on an arbitrary organizational policy, such as fair sharing or priority. Each framework that wishes to use Mesos must implement a \textit{scheduler} and an \textit{executor}. The scheduler registers with the Mesos master to receive resource offers, and the executor is the process that is launched on slave nodes to run the framework's tasks.
 
-A limitation of the Mesos resource sharing platform is that it is not scalable, given the central component issuing resource allocations (the original authors mention the system scales up to 50000 slave daemons on 99 physical machines), which is not enough for an edge environment. Furthermore, the resource offer model forces frameworks to employ a specific programming model based on schedulers and executors, which we believe to be too restrictive.
+A limitation of the Mesos resource sharing platform is that it has limited scalability, given the central component issuing resource allocations (the original authors mention the system scales up to 50000 slave daemons on 99 physical machines), which is not enough for an edge environment. Furthermore, the resource offer model forces frameworks to employ a specific programming model based on schedulers and executors, which we believe to be too restrictive.
 
-\textbf{Yarn} (Yet Another Resource Negotiator) \cite{Vavilapalli2013ApacheHY} is a centralized multi-tenant resource sharing platform that decouples the programming model from the resource management infrastructure and delegates many scheduling functions to per-application components. The architecture of YARN is composed by: a per-cluster Resource Manager (RM), multiple Application Masters (AM), and Node Managers (NM). The Resource Manager (RM) tracks resource usage and node liveness, enforces allocation invariants and arbitrates contention among tenants.
+\textbf{Yarn} (Yet Another Resource Negotiator) \cite{Vavilapalli2013ApacheHY} is a centralized multi-tenant resource sharing platform that decouples the programming model from the resource management infrastructure and delegates many scheduling functions to per-application components. The architecture of YARN is composed by: a per-cluster Resource Manager (RM), multiple Application Masters (AM), and Node Managers (NM). The RM tracks resource usage and node liveness, enforces allocation invariants and arbitrates contention among tenants.
 
-Application Masters (AM) run arbitrary user code, their duties in the system consist of managing the lifecycle aspects, including dynamically increasing and decreasing resource consumption, managing the flow of execution, and handling faults. Node Managers (NM) are worker daemons, whose responsibilities consist of managing container dependencies, monitoring their execution, and providing a set of services for them.
+AMs run arbitrary user code, their duties in the system consist of managing the lifecycle aspects, including dynamically increasing and decreasing resource consumption, managing the flow of execution, and handling faults. Node Managers (NM) are worker daemons, whose responsibilities consist of managing container dependencies, monitoring their execution, and providing a set of services for them.
 
 AMs send resource requests to the RM, containing the number of containers to request, the resources per container, locality preferences, and a priority level within the application. These requests are designed to capture the needs of applications while at the same time removing application concerns (such as task dependencies) from the scheduler. Because the RM is in charge of processing and scheduling all task distributions for each request made by AMs, it is effectively a \textit{monolithic} scheduler. By consequence, there is a unique point of failure, which makes this system inadequate for large scale edge environments.
 
@@ -61,7 +61,7 @@ These solutions provide a comprehensive system model which models many different
 
 Although resource management systems have been present for many years, these are often tailored towards small scale environments composed by homogenous devices in stable environments, which contrast with the edge of the network, where devices are extremely numerous, operate on a decentralized fashion, and are highly heterogenous.
 
-We argue that a centralized controller is not the ideal solution for an edge environment, given the fact that as the number of devices in the system increases, so does the number of resources to track, and the harder it is for a centralized component to have an up-to-date global view of the system.
+We argue that a centralized controller is not an ideal solution for an edge environment, given the fact that as the number of devices in the system increases, so does the number of resources to track, and the harder it is for a centralized component to have an up-to-date global view of the system.
 
 Due to their low capacity, devices at the edge of the network are very susceptible to workload changes, for example, a 5G tower that is hosting services cannot handle a drastic increase in the number of users it is serving. In this scenario, we argue that in order to maintain pre-established performance criteria, devices must autonomously make resource management decisions such as scaling an allocation horizontally or vertically in order to quickly meet the demands of users/tenants.
 
@@ -75,7 +75,7 @@ Due to their low capacity, devices at the edge of the network are very susceptib
 
 % \subsubsection{Offloading}
 
-%In this section we study offloading, which is technique used by edge-enabled applications to fully take advantage of edge nodes.
+%In this Section we study offloading, which is technique used by edge-enabled applications to fully take advantage of edge nodes.
 
 %Offloading is a technique in which a server, application and the associated data are transferred onto another node in the network \cite{Hong2019}. There are two variants for offloading: either from the user device to the edge, or from the cloud to the edge. 
 
