@@ -13,7 +13,7 @@
         \State joinTimeouts \Comment{collection of contacted nodes -> timerIDs}
         \State bestPeerLastLevel : Node \Comment{the best peer contacted so far in the join process}
         \State joinReqTimeoutTid \Comment{ timerID for join messages}
-        \State self : Node \Comment{ myself}
+        \State prevBestP : Node \Comment{ myself}
         \State landmarks \Comment{landmark nodes}
     \asdend
 
@@ -84,7 +84,7 @@
 
 \asdupon[receive(JoinRequest<>, sender)]
     \State childID \asdassign addChildren(sender) \Comment{new chilren is established, and an ID is generated for it}
-    \State sendMessageSideChannel(JoinRequestReply<childID, self>, p.IP)
+    \State sendMessageSideChannel(JoinRequestReply<childID, self>, sender)
 \asdend
     
 \asdupon[receive(JoinRequestReply<myID, parent>, sender)]
@@ -100,9 +100,9 @@
     \State sendMessageSideChannel(JoinRequest<>, p.IP)
 \asdend
 
-\asdprocedure[contactNodes(ips : IP[])]
+\asdprocedure[contactNodes(ips : IP{[]})]
     \State nodesToContact \asdassign \{\}
-    \State toContact \asdassign [Node<0,nil,0,false,lIP,false,[]> for ip in ips]
+    \State toContact \asdassign [Node<0,nil,0,false,ip,false,[]> for ip in ips]
     \For{n in toContact}
         \State nodesToContact[n] \asdassign n
         \State MeasureNode(n) 

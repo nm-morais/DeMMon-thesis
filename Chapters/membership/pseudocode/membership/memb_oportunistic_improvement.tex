@@ -4,12 +4,15 @@
 \begin{algorithmic}[1]
     
     \asdstate
+        \State parent : Node \Comment{defined in join} 
+        \State children : dict<string,Node> \Comment{defined in join} 
+        \State siblings : dict<string,Node> \Comment{defined in join} 
         \State pView : set<Node> \label{alg:memb:passive_view_maint:state}
     \asdend
 
     \asdrepeateveryx{config.RandWalkPeriodicity} \label{alg:memb:passive_view_maint:walk_trig}
         \State sample \asdassign getRandSample([pView + allNeighs + children + parent + siblings], config.NrPeersToMergeRandWalk)
-        \State target \asdassign getRand(excludeDescendatsOf(ascNeighs, self.ID))
+        \State target \asdassign getRand(parent + siblings)
         \State sendMessage(RandomWalk<sample + self, config.RandWalkTTL, self.ID, self.IP>, target)
     \asdend
 
@@ -20,29 +23,28 @@
         \EndIf
         \State updateNodesToHigherVersion(sample, pView) \label{alg:memb:passive_view_maint:walk_rec_merge_start}
         \State ascNeighs \asdassign set(parent + siblings)
-        \State allNeighs \asdassign set(allNeighs + ascNeighs + children)
+        \State allNeighs \asdassign set(ascNeighs + children)
         \State toAdd \asdassign getRandSample(excludeDescendantsOf(pView + allNeighs / sample,self.ID), config.NrPeersToMergeRandWalk)
         \State toRemoveFromSample \asdassign getRandSample(sample, nrNodesToRemove)
-        \State sample \asdassign sample / toRemoveFromSample
+        \State sample \asdassign sample.removeAll(toRemoveFromSample)
         \State pView \asdassign excludeDescendantsOf(toRemoveFromSample + pView, self.ID)  
-        \State pView \asdassign pView / allNeighs
-        \State pView \asdassign pView[:config.MaxEViewSize]
-        \State sample  \asdassign trimSetToSize(sample + toAdd + self, config.MaxRndWalkSampleSize) \label{alg:memb:passive_view_maint:walk_rec_merge_end}
+        \State pView \asdassign pView.removeAll(allNeighs)
+        \State pView \asdassign trimSetToSize(pView, config.MaxEViewSize)
+        \State sample  \asdassign trimSetToSize(sample + toAdd + self, config.config.MaxRndWalkSampleSize) \label{alg:memb:passive_view_maint:walk_rec_merge_end}
         \State target \asdassign getRand(excludeDescendantsOf(allNeighs, nID)
         \If{target == nil || ttl == 0} \label{alg:memb:passive_view_maint:walk_rec_send}
             \State sendMessageSideChannel(RandomWalkReply<sample>, orig)
         \Else
-            \State sendMessage(RandomWalk<sample, ttl-1, nID, orig>, getRandom(ascNeighs))
+            \State sendMessage(RandomWalk<sample, ttl-1, nID, orig>, target)
         \EndIf \label{alg:memb:passive_view_maint:walk_rec_send_end}
     \asdend
 
-    \asdupon[receive( RandomWalkReply<sample>, sender)]: \label{alg:memb:passive_view_maint:walk_reply_recv_start}
+    \asdupon[receive(RandomWalkReply<sample>, sender)]: \label{alg:memb:passive_view_maint:walk_reply_recv_start}
         \State sample \asdassign excludeDescendantsOf(sample, self.ID)
         \State updateNodesToHigherVersion(sample, pView)
         \State sample \asdassign excludeNodesInActiveView(sample)
         \State pView \asdassign trimSetToSize(pView + sample, config.MaxEViewSize) \label{alg:memb:passive_view_maint:walk_reply_recv_end}
     \asdend
-
 
     \asdrepeateveryx{config.OportunisticOptimizationTimeout} \label{alg:memb:passive_view_maint:eval_nodes}
         \State toMeasureRand \asdassign getRandSample(pView, len(pView)) // shuffle sample
@@ -55,6 +57,7 @@
                 \State measurePeer(p)
             \EndIf
         \EndFor
+
         \State measuredNr \asdassign 0
         \For{i=0; i < len(toMeasureRand) \&\& measuredNr < config.toMeasureBiased ; i++}
             \If{canBecomeChildrenOf(p)} \label{alg:memb:passive_view_maint:opt_verification_2}
@@ -64,15 +67,15 @@
         \EndFor
     \asdend
 
-    \asdupon[peerMeasured(p, latency)] \label{alg:memb:passive_view_maint:peer_measured}
-        \State latencyImprovement := parent.measuredLatency - Latency
+    \asdupon[peerMeasured(p, measuredLatency)] \label{alg:memb:passive_view_maint:peer_measured}
+        \State latencyImprovement := parent.currentLatency() - measuredLatency
         \If{latencyImprovement >= config.MinLatencyForImprovement}
             \State sendMessageSideChannel(OportunisticImprovementReq<self>,p)
         \EndIf
     \asdend
 
     \asdupon[receive(OportunisticImprovementReq<p>,sender)] \label{alg:memb:passive_view_maint:oport_msg_recv}
-        \If{isDescendent(p.ID,self)}
+        \If{isDescendant(p.ID,self)}
             \State sendMessageSideChannel(OportunisticImprovementReqReply<false>,sender)
         \Else
             \State addChildren(sender)
@@ -91,10 +94,10 @@
         \If{(c.nrChildren > 0 \&\& parent.ID.level() >= c.ID.level())}
             \State return false
         \EndIf
-        \State return parent.nrChildren > 0 \&\& !isDescendentOf(parent.ID, c) \&\& !isDescendentOf(c, parent.ID)
+        \State return parent.nrChildren > 0 \&\& !isDescendantOf(parent.ID, c) \&\& !isDescendantOf(c, parent.ID)
     \asdend
 
-    \asdprocedure[isDescendentOf(nodeID, PotentialDescID)]
+    \asdprocedure[isDescendantOf(nodeID, PotentialDescID)]
         \State return PotentialDescID.Contains(nodeID)
     \asdend
 
