@@ -17,7 +17,7 @@ The utilized parameters for the different protocols were tuned to attempt to per
 
 The second column, named ``VSizeMin'', corresponds to the minimum number of children for each node in DeMMon. The third parameter, titled ``PVSizeMax'', corresponds to the maximum size of the passive view, which is set to 25 for DeMMon, Hyparview and X-BOT, and set as 7 for the case of Cyclon T-Man. In the case of T-man, this parameter corresponds to the size of the Cyclon view (running to provide its initial view). The next parameter, labelled ``Shuffle'', corresponds to the periodicity of each protocols' shuffle mechanism. This parameter is set to 5 seconds for all protocols. Following, we have the ``PWRL'' parameter, which corresponds to the TTL of the random walks (for each protocol that has a random walk mechanism). The last-mentioned parameter is the ``$\delta$T'' parameter, which corresponds to the minimum latency improvement for both X-Bot to perform active view exchanges and for DeMMon to make opportunistic improvements. Some parameters such as timeouts and the duration of some periodic procedures were omitted, however, all timeouts, e.g. timeouts for dialling nodes, receiving message responses, among others, are set to 5 seconds. Furthermore, all periodic mechanisms are executed with a frequency lower than 15 seconds.
 
-\todo{pode haver mais parametros / talvez meter uma tabela completa em anexo?}
+% \todo{pode haver mais parametros / talvez meter uma tabela completa em anexo?}
 
 \begin{table} \label{table:proto_test_params}
     \caption{Membership evaluation: protocol configuration parameters}
@@ -85,11 +85,9 @@ Finally, still regarding the experiments without node failures, we show, in figu
 
 Provided with the result analysis for the experiments with no failures, we now provide the results for the in-degree distribution of the protocol in a scenario with failures. This experiment attempts to test the fault tolerance of the protocols by first establishing the network, and during the middle of the experiment, induce a failure of 50\% of the nodes. The objective of this experiment was to test if any node became isolated from the network after the failures. Results from this experiment may be observed in figure \ref{fig:overlay_proto_res_net_building:50_failures_inDegree}, where it is observable that, for all tested protocols except T-Man, no nodes became isolated, allowing us to conclude that both the devised protocol and the tested baselines can recover from faults effectively.
 
-\todo{meter resultados grandes em anexo?}
-
 As previously mentioned, the applicability of our solution was tested in two different aspects: the first was the process of building and maintaining the overlay network, which was covered in the previous paragraphs. The second evaluated aspect is information dissemination (via message broadcasting), which we will now cover in the following subsection.
 
-\subsection{Information dissemination}
+\subsection{Information dissemination} \label{results:inf_diss}
 
 The second set of conducted experiments, as mentioned previously, intends to test the applicability of the devised membership protocol in an information dissemination scenario. To do so, we tested it against the same set of baseline protocols used in the previous experiments enriched with two message dissemination protocols: the first is a simple flood protocol, where if a node wishes to broadcast a message, it sends that message to every peer in its active view, then, nodes that receive this message, propagate it to every neighbour if they have not done so previously (excluding the sender). The second used dissemination protocol was PlumTree \cite{plumTree}, which is a dissemination protocol that builds a dissemination tree based on the paths taken by the broadcast messages.
 
