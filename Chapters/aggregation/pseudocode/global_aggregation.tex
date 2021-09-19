@@ -3,10 +3,12 @@
     \begin{algorithmic}[1]
 
     \asdstate \label{alg:mon:global_agg:state_start}
-        \State parent,children,siblings \Comment{Defined by the overlay protocol}
-        \State tIds \asdassign map()
-        \State lastTimeSent \asdassign map()
-        \State neighValues \asdassign map() \label{alg:mon:global_agg:state_end}
+        \State parent : Node \Comment{Defined by the overlay protocol} 
+        \State children : dict<string,Node> \Comment{Defined by the overlay protocol} 
+        \State siblings : dict<string,Node> \Comment{Defined by the overlay protocol}  
+        \State tIds : dict <string, < <string, string, timeDuration, string, string, boolean, dict< string, timeStamp > > \asdassign dict()
+        \State lastTimeSent : dict<string, dict<string, timeStamp>> \asdassign dict()
+        \State neighValues : dict<string, dict<value, timeStamp>> \asdassign dict() \label{alg:mon:global_agg:state_end}
     \asdend
 
     \asdupon[StartGlobalAggregationRequest(diffF, mergeF, query, periodicity ,outmName)] 
@@ -17,8 +19,8 @@
             \State tIds[tId] \asdassign <mergeF, query, periodicity, outmName, timerId, true, aggNeighs>
         \Else
             \State timerID \asdassign registerPeriodicTimer(ExportGlobalAggTimer(tId), periodicity)
-            \State tIds[tId] \asdassign <mergeF, query, periodicity, outmName, timerId, true, map()>
-            \State neighValues[tId] = map()
+            \State tIds[tId] \asdassign <mergeF, query, periodicity, outmName, timerId, true, dict()>
+            \State neighValues[tId] = dict()
             \State
         \EndIf
     \asdend
@@ -48,7 +50,7 @@
         \For{<diffF, mergeF, query, periodicity, outmName, tId> in gAggs}
             \If{id in tIds} \label{alg:mon:global_agg:propag_recv_merge}
                 \State gAggTreeArr.append(<diffF, mergeF, query, periodicity ,outmName, timerId, tId>)
-                \State neighValues[tId] = map()
+                \State neighValues[tId] = dict()
                 \State tIds[tId] \asdassign <diffF, mergeF, query, periodicity ,outmName, timerId, false, <sender: time.Now()>>
                 \State registerPeriodicTimer(HandleTreeAggTimer(tId), periodicity)
             \Else \label{alg:mon:global_agg:propag_recv_merge_end}

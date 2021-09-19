@@ -9,15 +9,15 @@
     \asdend
     \asdstate \label{alg:memb:join:state}
         \State contactedNodes \Comment{collection of all successfully contacted nodes}
-        \State nodesToContact \Comment{nodes being contacted}
-        \State joinTimeouts \Comment{collection of contacted nodes -> timerIDs}
+        \State nodesToContact set<Node> \Comment{nodes being contacted}
+        \State joinTimeouts : dict<Node, time> \Comment{collection of contacted nodes -> timerIDs}
         \State bestPeerLastLevel : Node \Comment{the best peer contacted so far in the join process}
-        \State joinReqTimeoutTid \Comment{ timerID for join messages}
+        \State joinReqTimeoutTid : string \Comment{ timerID for join messages}
         \State prevBestP : Node \Comment{ myself}
-        \State landmarks \Comment{landmark nodes}
+        \State landmarks : set<IP> \Comment{landmark nodes}
     \asdend
 
-\asdupon[Init(landmarks : IP[], selfIP, isLandmark)] \label{alg:memb:join:init}
+\asdupon[Init(landmarks : set<IP>, selfIP, isLandmark)] \label{alg:memb:join:init}
     \State landmarks \asdassign landmarks 
     \State joinTimeouts, prevBestP \asdassign \{\}, nil
     \IfThenElse{isLandmark}

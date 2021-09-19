@@ -3,9 +3,9 @@
 \begin{algorithmic}[1]
 
     \asdstate \label{alg:mon:tree_agg:state}
-    \State parent : Node \Comment{Defined by the overlay protocol} 
-    \State children : dict<string,Node> \Comment{Defined by the overlay protocol} 
-    \State siblings : dict<string,Node> \Comment{Defined by the overlay protocol}  
+        \State parent : Node \Comment{Defined by the overlay protocol} 
+        \State children : dict<string,Node> \Comment{Defined by the overlay protocol} 
+        \State siblings : dict<string,Node> \Comment{Defined by the overlay protocol}  
         \State tIds \asdassign map()
         \State lastSeen \asdassign dict<string,>
         \State childValues : dict<string,dict<string,<value, timeStamp>>> \asdassign dict()
