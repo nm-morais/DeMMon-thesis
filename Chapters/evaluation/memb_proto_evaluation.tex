@@ -17,8 +17,6 @@ The utilized parameters for the different protocols were tuned to attempt to per
 
 The second column, named ``VSizeMin'', corresponds to the minimum number of children for each node in DeMMon. The third parameter, titled ``PVSizeMax'', corresponds to the maximum size of the passive view, which is set to 25 for DeMMon, Hyparview and X-BOT, and set as 7 for the case of Cyclon T-Man. In the case of T-man, this parameter corresponds to the size of the Cyclon view (running to provide its initial view). The next parameter, labelled ``Shuffle'', corresponds to the periodicity of each protocols' shuffle mechanism. This parameter is set to 5 seconds for all protocols. Following, we have the ``PWRL'' parameter, which corresponds to the TTL of the random walks (for each protocol that has a random walk mechanism). The last-mentioned parameter is the ``$\delta$T'' parameter, which corresponds to the minimum latency improvement for both X-Bot to perform active view exchanges and for DeMMon to make opportunistic improvements. Some parameters such as timeouts and the duration of some periodic procedures were omitted, however, all timeouts, e.g. timeouts for dialling nodes, receiving message responses, among others, are set to 5 seconds. Furthermore, all periodic mechanisms are executed with a frequency lower than 15 seconds.
 
-% \todo{pode haver mais parametros / talvez meter uma tabela completa em anexo?}
-
 \begin{table} \label{table:proto_test_params}
     \caption{Membership evaluation: protocol configuration parameters}
     \scalebox{1}{
@@ -133,7 +131,7 @@ In regard to the simple flood experiment (fig. \ref{fig:overlay_proto_res_msg_di
 
 In the case of scenarios with induced failures (figures \ref{fig:overlay_proto_res_msg_diss:50_failures_reliability_flood} and \ref{fig:overlay_proto_res_msg_diss:50_failures_reliability_plumTree}), we observe a similar trend in regard to the PlumTree experiments, with DeMMon achieving higher reliability values. However, in the simple flood experiments, we observe that DeMMon achieves a lower reliability value when under congestion, we believe this occurs because as the failures are occurring, if the nodes are saturated, the failure recovery mechanisms may take a long time frame to execute, and during this period nodes are disconnected from the remaining overlay and consequently do not receive or send message to or from any node which is not their descendant, leading to a lower reliability value.
 
-Provided the results from the combination of the baseline protocols with PlumTree consistently performs worse in terms of reliability (when the network is saturated) when compared to employing only a simple flood protocol, we now focus on the comparison between DeMMon and the baseline protocols executing the simple flood protocol, however all obtained results are available in annex \todo{put the results in annex, and ref}.
+Provided the results from the combination of the baseline protocols with PlumTree consistently performs worse in terms of reliability (when the network is saturated) when compared to employing only a simple flood protocol, we now focus on the comparison between DeMMon and the baseline protocols executing the simple flood protocol, however all obtained results are available in annex \ref{annex_1}.
 
 \begin{figure}[htbp]
     \centering
