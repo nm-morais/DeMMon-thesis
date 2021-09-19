@@ -6,9 +6,9 @@
         \State parent : Node \Comment{Defined by the overlay protocol} 
         \State children : dict<string,Node> \Comment{Defined by the overlay protocol} 
         \State siblings : dict<string,Node> \Comment{Defined by the overlay protocol}  
-        \State tIds : dict<string, <string, string, timeDuration, string, string, boolean, dict< string, timeStamp>> \asdassign dict()
         \State lastTimeSent : dict<string, dict<string, timeStamp>> \asdassign dict()
         \State neighValues : dict<string, dict<value, timeStamp>> \asdassign dict() \label{alg:mon:global_agg:state_end}
+        \State tIds : dict<string, <string, string, timeDuration, string, string, boolean, dict< string, timeStamp>> \asdassign dict()
     \asdend
 
     \asdupon[StartGlobalAggregationRequest(diffF, mergeF, query, periodicity ,outmName)] 
