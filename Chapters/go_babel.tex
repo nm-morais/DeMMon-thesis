@@ -6,16 +6,11 @@
 %% Chapter with the template manual
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\typeout{NT FILE GO-Babel.tex}
-
-\chapter{GO-Babel}
-\label{cha:GO-Babel}
-
-The first contribution of this thesis is an event-based framework called GO-Babel, available on  \cite{goBabel}. This framework is a port in Golang \cite{golang} of Babel \cite{babel} with additions focused on fault detection and latency probing. Babel, in turn, is inspired on the model proposed by Yggdrasil \cite{akosThesis}.
+The first (smaller) contribution of this thesis is an event-based framework called GO-Babel, available on \cite{goBabel}. This framework is a port in Golang \cite{golang} of Babel \cite{babel} with additions focused on fault detection and latency probing. Babel, in turn, is inspired on the model proposed by Yggdrasil \cite{akosThesis}.
 
 The decision to build this framework arose from the need to use Babel for building the distributed protocols and the decision to use Golang during this dissertation (due to its primitives for building concurrent systems). Given that there was no implementation of Babel in Golang, and the current Babel implementation lacked some needed features such as a fault detector and a latency measurement tool, we implemented a new version in Golang with these additions.
 
-\section{Overview}
+\subsection{Overview}
 
 In summary, this framework has the following main objectives:
 
@@ -56,7 +51,7 @@ In Figure \ref{fig:go-babel-overview} we provide a high-level overview of the ar
 
 As previously mentioned, the  Node Watcher is the only new addition to the framework, and consequently, it is the component explained in further detail. The remaining components of this framework were implemented similarly to the equivalent components of Babel \cite{babel} and Yggdrasil \cite{akosThesis}.
 
-\section{Node Watcher} \label{sec:Node-Watcher}
+\subsection{Node Watcher} \label{sec:Node-Watcher}
 
 The motivation to build this component was a lack of tools to measure latency in the original design of Babel. If, for example, a protocol were to measure the latency to a node without an active connection, it would need to establish a new TCP connection and use it to send the probes. In this case, both the fault detector and latency detector logic are in the protocol, which is sub-optimal since the same logic would have to be replicated by any protocol that wishes to optimize its active connections using latency as a heuristic. Alternatively, if a protocol measures latencies in a separate module asynchronously (making the code reusable), this would break the single-threaded nature of the execution of protocols in Babel (which impacts usability), and protocols would have to deal with race conditions of altering the state concurrently. Due to this, we believe that encapsulating this logic in an optional component and expose it in a Babel-compatible interface is the preferred option, which was the one used.
 
@@ -68,6 +63,6 @@ When a protocol issues a command to watch a node, if the ``watched'' node fails 
 
 In order to prevent protocols from having to set timers to check the nodes' latency calculator or fault detector, the Node Watcher also allows the possibility of registering ``observer'' functions (or conditions), which return a boolean value based on the current node information. The Node Watcher then executes these functions periodically, and if one returns true, a notification gets sent to the issuing protocol. In order to prevent protocols from getting overloaded with notifications when a condition returns ``true'', these may configure a grace period, which the Node Watcher will wait for until re-evaluating the condition.
 
-\section{Summary}
+\subsection{Summary}
 
-We believe Go-Babel is a small, yet valuable contribution to the distributed systems community not only as it provides more choice for developers in terms of choice of programming languages when choosing a distributed systems framework, but also because it provides many abstractions which ease thee deployment of self-improving protocols that employ latency as an optimization heuristic. Finally, it also provides a secondary fault detector which may be employed alongside the implicit fault detector granted by TCP connections, which is useful for cases when the TCP connection has failed yet the nodes did not receive any errors (e.g. when the ethernet cable is cut). Lastly, as the implementation is in Golang \cite{golang}, it allows easier integration with a range of packages already implemented in the language, many of which are useful for combining with GO-Babel. 
+We believe Go-Babel is a small, yet valuable contribution to the distributed systems community. It not only as it provides more choice for developers in terms of choice of programming languages when choosing a distributed systems framework, but it also provides many abstractions which ease the development of self-improving protocols that employ latency as an optimization heuristic. Finally, it also offers a secondary fault detector which may be employed alongside the implicit fault detector granted by TCP connections. This is useful for cases when the TCP connection has failed yet the nodes did not receive any errors (e.g. when the ethernet cable is cut). Lastly, as the implementation is in Golang \cite{golang}, it allows easier integration with a range of packages already implemented in the language, many of which are useful for combining with GO-Babel. 

@@ -45,24 +45,26 @@ The contributions which arose from the conducted work are as follows:
 
 \begin{enumerate}
 
-    \item A smaller contribution that derived from the work conducted in the context of this thesis which consists in a port to Golang of Babel \cite{babel}, a framework for building distributed systems, used to build our solution. This contribution has some additions focused on latency measurement and fault detection.
+    \item A smaller contribution that derived from the work conducted in the context of this thesis which consists in a port to Golang of Babel \cite{babel}, a framework for building distributed systems, used to help developing the remaining components. This contribution has some additions focused on latency measurement and fault detection.
 
-    \item A distributed monitoring framework, built for decentralized resource management systems, composed of three main components: {
+    \item A distributed monitoring framework, built for decentralized resource management systems, composed of four main components: {
         \begin{enumerate}
+
             \item A novel overlay protocol which strives to build a logical multi-tree-shaped logical network using both bandwidth and node latency as heuristics for defining the topology of the network. This protocol is fully decentralized and fault-tolerant, with its configuration being only a set of static nodes: the roots of the trees.
             
             \item A distributed aggregation protocol, which uses the connections made available by the overlay protocol's tree structure to perform efficient on-demand and decentralized information collection.
             
             \item An API that allows resource management applications to insert, process, and retrieve time-series data to and from a DeMMon node. This API also offers operations that allow the collection and processing of information from other DeMMon nodes in the network. 
+            
             % Furthermore, it also allows applications to inspect the operation of the overlay protocol.
-            
-            \item An experimental evaluation of the membership protocol against popular alternatives found in the state of the art, where their fault tolerance, the ability to improve the network cost, and their capacity to perform information dissemination reliably is studied. 
-
-            \item An experimental evaluation of the monitoring protocol against different Prometheus \cite{prometheus} configurations. This evaluation focuses on the accuracy of the collected monitoring values over time, as well as the cost for networking/processing the information.
-            
         \end{enumerate}
         }
+            
     \item A proposed benchmark in the form of an edge-enabled application composed by multiple loosely coupled micro-services, tailored to evaluate the performance of resource management platforms. In this benchmark, geographical proximity leads to a significant improvement of QOS for the end-user, favouring resource management platforms that optimize placement of their services closer to the client (i.e. applications that take advantage of edge computing).
+    
+    \item An experimental evaluation of the membership protocol against popular alternatives found in the state of the art, where their fault tolerance, the ability to improve the network cost, and their capacity to perform information dissemination reliably is studied. 
+
+    \item An experimental evaluation of the monitoring protocol against different Prometheus \cite{prometheus} configurations. This evaluation focuses on the accuracy of the collected monitoring values over time, as well as the cost for networking/processing the information.
     
 \end{enumerate}
 
@@ -72,9 +74,7 @@ The remaining of this document is structured as follows:
 
 Chapter \ref{cha:related_work} studies related work that is relevant to the overall goal of the work presented in this thesis: we begin by analyzing similar paradigms to Edge Computing, the devices which compose these environments, and execution environments for edge-enabled applications. We also discuss strategies towards federating various devices in an abstraction layer and study search strategies to find resources in this layer. Finally, we cover monitoring and management of system resources.
 
-Chapter \ref{cha:GO-Babel} covers the design and implementation of the initial contribution, that as previously mentioned, consists of a port to Golang of Babel \cite{babel}, which in turn was used to build our solution. 
-
-Following, chapter \ref{cha:demmon} explains the implementation of the developed solution, beginning with the overlay protocol, followed by the aggregation protocol that uses the overlay protocols' connections, and lastly, we cover the monitoring module of our system that stores and serves information as time-series.
+Following, chapter \ref{cha:demmon} explains the implementation of the developed solution. It begins with the design and implementation of the initial contribution, that as previously mentioned, consists of a port to Golang of Babel \cite{babel}, which in turn was used to build the remaining components. After we cover the design and implementation of the overlay protocol, followed by the aggregation protocol that uses the overlay protocols' connections, and lastly, we cover the monitoring module of our system that stores and serves information as time-series.
 
 After, in chapter \ref{cha:benchmark}, we cover the design and implementation of the previously mentioned edge-enabled benchmarking application targeted for testing decentralized resource management platforms.
 
