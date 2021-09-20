@@ -4,7 +4,7 @@ The \textbf{monitoring module} is tasked with storing metrics, resolving queries
 
 We believe it is, however, important to remember that the focus of this work is to provide a usable proof-of-concept of a decentralized monitoring framework, targeted for decentralized resource management solutions. Consequently, the focus of this module is to provide just enough functionality for a proof of concept, namely in aspects such as the storage of metrics in disk or the efficiency of the query language, which are interesting research challenges by themselves, however are orthogonal to the conducted work. 
 
-This module is composed by three different components (illustrated by fig. \ref{fig:mon_module_overview}): the \textbf{query engine}, the \textbf{time-series database} (TSDB)), and the \textbf{alert manager}, whose roles in the system we now briefly explain:
+This module is composed by three different components (illustrated by fig. \ref{fig:mon_module_overview}): the \textbf{query engine}, the \textbf{time-series database} (TSDB), and the \textbf{alert manager}, whose roles in the system we now briefly explain:
 
 \begin{figure}[htbp]
     \centering
@@ -89,9 +89,9 @@ The alert manager is the last component of the monitoring module, it is responsi
 In DeMMon, an alarm contains the following parameters: 
 
 \begin{enumerate}
-    \item \textbf{Condition}. This is essentially a query (explained in \ref{sec:mon_module:query_engine}) that must return a boolean value.
+    \item \textbf{Condition}. This is essentially a query (explained in Section \ref{sec:mon_module:query_engine}) that must return a boolean value.
     
-    \item \textbf{Periodicity}. The periodicity denotes how often the condition is evaluated, and how often notifications are sent to the client that issued the alarm
+    \item \textbf{Periodicity}. The periodicity denotes how often the condition is evaluated and how often notifications are sent to the client that issued the alarm
     
     \item \textbf{Backoff time}. The backoff time is a time duration that bounds the rate at which the monitoring module emits notifications, which would otherwise happen at the alarm periodicity every time the alarm is verified (e.g. if the supplied periodicity is low).
     
