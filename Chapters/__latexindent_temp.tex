@@ -16,7 +16,7 @@ DeMMon (Decentralized Management and Monitoring Overlay Network) is an overlay n
 
 In this chapter, we will begin by explaining the targeted environment and the operation of the overlay network, whose tree shape is the basis for the aggregation protocol. After, detail how the aggregation protocol performs aggregations in the tree, and lastly, list the operations exposed by the API and discuss how it interacts with the remaining components. \todo{insert refs to subsections ahead}
 
-This solution, as observable in Figure \ref{fig:demmon-overview}, is composed of three major components:
+This solution, as observable in Figure~\ref{fig:demmon-overview}, is composed of three major components:
 
 \begin{figure}[htbp]
     \centering
@@ -42,7 +42,7 @@ In this section, we discuss the design of the overlay network, which aims to bui
 
 The assumed system model is assumed to be a distributed scenario composed of nodes connected to the internet set-up such that they can send and receive messages via the internet (with an external IP or port-forwarding). We also assume that nodes are spread throughout a large area and have varied capacity values.
 
-Regarding the fault model, we assume that all but a small portion of nodes (also known as the landmarks, which in our model represent DCs) can fail, and when other nodes fail, they do so in a crash-fault manner, stopping all emissions and receptions of messages. We assume landmarks have additional fault tolerance given their privileged infrastructure, and additionally, we assume other such as replication \cite{} mechanisms could be employed to ensure that faulty landmarks get replaced in case of failure. 
+Regarding the fault model, we assume that all but a small portion of nodes (also known as the landmarks, which in our model represent DCs) can fail, and when other nodes fail, they do so in a crash-fault manner, stopping all emissions and receptions of messages. We assume landmarks have additional fault tolerance given their privileged infrastructure, and additionally, we assume other such as replication~\cite{} mechanisms could be employed to ensure that faulty landmarks get replaced in case of failure. 
 
 Finally, all nodes must run the same software stack with similar configuration settings and landmark values, installed a priori.
 
@@ -54,7 +54,7 @@ The devised membership protocol is coalesced by three main mechanisms: (1) the \
 
 \subsubsection{Join mechanism}
 
-As previously mentioned, the join mechanism is the mechanism responsible for creating the initial tree structure. This mechanism is the first to be executed by all nodes in the system. Its first step (line \ref{alg:state:state} of alg. \ref{alg:state}) is to initialize the state of the joining node, composed by: (1) a map of type Node containing all successfully contacted nodes so far the join process, (2) a collection of type Node with all the nodes currently being contacted, (3) a set of timer ids for each node being contacted, (4) the best node contacted so far in the join process, (5) a timer id for contacting the chosen node in the join process, and finally (5) a variable of type Node denoting the peer itself. The type ``Node'' is a collection of attributes regarding a node, such as: latency measured, its parent, its number of children, among others.
+As previously mentioned, the join mechanism is the mechanism responsible for creating the initial tree structure. This mechanism is the first to be executed by all nodes in the system. Its first step (line~\ref{alg:state:state} of alg.~\ref{alg:state}) is to initialize the state of the joining node, composed by: (1) a map of type Node containing all successfully contacted nodes so far the join process, (2) a collection of type Node with all the nodes currently being contacted, (3) a set of timer ids for each node being contacted, (4) the best node contacted so far in the join process, (5) a timer id for contacting the chosen node in the join process, and finally (5) a variable of type Node denoting the peer itself. The type ``Node'' is a collection of attributes regarding a node, such as: latency measured, its parent, its number of children, among others.
 
 
 

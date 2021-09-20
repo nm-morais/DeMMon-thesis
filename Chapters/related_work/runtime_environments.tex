@@ -7,7 +7,7 @@
 
 % \subsection{Virtual Machines}
 
-% A VM provides a complete environment in which an operating system and many processes, possibly belonging to multiple users, can coexist. By using VMs, a single-host hardware platform can support multiple, isolated guest operating system environments simultaneously \cite{1430629}. 
+% A VM provides a complete environment in which an operating system and many processes, possibly belonging to multiple users, can coexist. By using VMs, a single-host hardware platform can support multiple, isolated guest operating system environments simultaneously~\cite{1430629}. 
 
 % Virtual machines rely on a type of software called a \textit{hypervisor}, the role of the hypervisor is to abstract hardware to support the concurrent execution of full-fledged operating systems (e.g. Linux or Windows). Virtualizing the hardware layer ensures great isolation between virtual machines, meaning that a VM cannot directly interact with the host or the other VMs, which is highly desirable for both the virtualized applications and the host. 
 
@@ -15,9 +15,9 @@
 
 % \subsection{Containers}
 
-% Containers (e.g., Docker \cite{docker}, Linux Containers \cite{lxc}, among others) can be considered as a lightweight alternative to hypervisor-based virtualization. When using containers, applications share an OS (and maybe binaries and libraries), and implement isolation of processes at the operating system level. As a result, these deployments are significantly smaller in size than hypervisor deployments, for comparison, a physical machine may store hundreds of containers versus a few tens of VMs \cite{7036275}.  
+% Containers (e.g., Docker~\cite{docker}, Linux Containers~\cite{lxc}, among others) can be considered as a lightweight alternative to hypervisor-based virtualization. When using containers, applications share an OS (and maybe binaries and libraries), and implement isolation of processes at the operating system level. As a result, these deployments are significantly smaller in size than hypervisor deployments, for comparison, a physical machine may store hundreds of containers versus a few tens of VMs~\cite{7036275}.  
 
-% In terms of performance, container-based virtualization can be compared to an OS running on bare-metal in terms of memory, CPU, and disk usage \cite{preeth2015evaluation}, and contrary to VMS, restarting a container doesn't require rebooting the OS \cite{7036275}, meaning that a small-sized computation task may be accomplished much faster. 
+% In terms of performance, container-based virtualization can be compared to an OS running on bare-metal in terms of memory, CPU, and disk usage~\cite{preeth2015evaluation}, and contrary to VMS, restarting a container doesn't require rebooting the OS~\cite{7036275}, meaning that a small-sized computation task may be accomplished much faster. 
 
 % Consequently, given their lightweight nature, it is possible to deploy container-based applications (e.g. microservices), which can perform fast migration across nodes in the edge environment (e.g. in order to improve quality of service (QoS) of applications). This flexibility towards the migration process is an effective tool to deal with many challenges such as load balancing, scaling, resource reallocation and fault tolerance. 
 

@@ -1,7 +1,7 @@
 \chapter{Related Work}
 \label{cha:related_work}
 
-The goal of this chapter is to present the work in the state of the art that is related to our objectives. We begin by presenting what we believe to be four main high-level requirements of a decentralized resource sharing platform, as denoted in Figure \ref{fig:proposed_architecture}:
+The goal of this chapter is to present the work in the state of the art that is related to our objectives. We begin by presenting what we believe to be four main high-level requirements of a decentralized resource sharing platform, as denoted in Figure~\ref{fig:proposed_architecture}:
 
 \begin{enumerate}
 
@@ -22,15 +22,15 @@ The goal of this chapter is to present the work in the state of the art that is 
     \label{fig:proposed_architecture}
 \end{figure}
 
-% Next, we study execution environments for applications, namely virtual machines and containers, discuss their performance impact as well as their strengths and limitations towards supporting edge-enabled applications (Section \ref{sec:runtime_environments}).
+% Next, we study execution environments for applications, namely virtual machines and containers, discuss their performance impact as well as their strengths and limitations towards supporting edge-enabled applications (Section~\ref{sec:runtime_environments}).
 
-Considering the identified high-level requirements of such a system, and considering the goal of creating such a system for the edge environment, in the following sections we begin by covering the taxonomy of devices that compose the edge environment and discuss how they can be employed towards the design of the proposed solution (Section \ref{sec:edge_computing}). 
+Considering the identified high-level requirements of such a system, and considering the goal of creating such a system for the edge environment, in the following sections we begin by covering the taxonomy of devices that compose the edge environment and discuss how they can be employed towards the design of the proposed solution (Section~\ref{sec:edge_computing}). 
 
-Following, we study how to federate devices in an efficient abstraction layer that establishes an efficient topology (Section \ref{sec:topology_management}), we address how peers can efficiently organize to index and search for the resources they need (e.g. services, peers, computing power, among others), which in turn enables the delegation of particular application components (Section \ref{sec:res_location}). 
+Following, we study how to federate devices in an efficient abstraction layer that establishes an efficient topology (Section~\ref{sec:topology_management}), we address how peers can efficiently organize to index and search for the resources they need (e.g. services, peers, computing power, among others), which in turn enables the delegation of particular application components (Section~\ref{sec:res_location}). 
 
 % This is important given the fact that edge devices are typically resource constrained, and a computing task which would otherwise require a single cloud device, may require multiple edge devices to be accomplished in an efficient way.
 
-Next, in Section \ref{sec:res_monitoring}, we cover the current state-of-the-art regarding the collection and aggregation of metrics, which are paramount to summarize and enrich nodes with the necessary information to perform efficient resource management decisions in a decentralized manner. We study current aggregation practices and discuss relevant resource monitoring systems in the literature. For each system, we address its limitations and advantages for the edge environment. Lastly, as we believe it is necessary to gather a perception of the needs of current state-of-the-art resource management solutions, in Section \ref{sec:res_management} we briefly survey the related work in this area.
+Next, in Section~\ref{sec:res_monitoring}, we cover the current state-of-the-art regarding the collection and aggregation of metrics, which are paramount to summarize and enrich nodes with the necessary information to perform efficient resource management decisions in a decentralized manner. We study current aggregation practices and discuss relevant resource monitoring systems in the literature. For each system, we address its limitations and advantages for the edge environment. Lastly, as we believe it is necessary to gather a perception of the needs of current state-of-the-art resource management solutions, in Section~\ref{sec:res_management} we briefly survey the related work in this area.
 
 \section{Edge Environment} \label{sec:edge_computing} \input{Chapters/related_work/edge_computing.tex}
 

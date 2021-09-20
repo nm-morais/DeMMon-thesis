@@ -1203,7 +1203,7 @@
 \newcommand{\@ntfixspacing}[2]{%
   \renewcommand*{\bibfont}{\hypersetup{allcolors=#1}\color{#1}%
                            \sffamily\fontsize{#2}{#2}\selectfont}
-  \refsection%
+ ~\refsection%
     \begin{minipage}{\linewidth}%
       \bibfont%
       \theacknowledgmentsstr(\option{/novathesis/coverlang})%
