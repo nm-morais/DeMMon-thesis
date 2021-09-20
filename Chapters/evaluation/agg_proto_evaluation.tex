@@ -90,5 +90,3 @@ The final obtained result, showing the average network cost incurred during thes
 
 The remaining configurations (Prometheus tree and Prometheus centralized), as they do not perform in-transit aggregation of the metrics, incur networking costs that scale with the number of metrics emitted by the nodes. Consequently, from the standpoint of scalability, this means its scalability will be limited by the number of series emitted per node, that contrary to DeMMon or configurations with ``aggregator leaves'' ( which as previously mentioned, are not representative of most Prometheus setups), which obtain linear networking costs with the number of emitted metrics.
 
-% \subsection{Neighborhood aggregation} 
-
