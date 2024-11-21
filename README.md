@@ -1,4 +1,6 @@
-# Abstract
+# DeMMon: Decentralized Management and Monitoring for Edge Computing
+
+## Abstract
 
 The centralized model proposed by the Cloud computing paradigm mismatches the decentralized nature of mobile and IoT applications, given the fact that most of the data production and consumption is performed by end-user devices outside of the Data Center (DC). As the number of these devices grows, and given the need to transport data to and from DCs for computation, application providers incur additional infrastructure costs, and end-users incur delays when performing operations. 
 
